@@ -1,0 +1,28 @@
+.footer{
+	height: auto;
+	width: 100%;
+	margin: 0 auto;
+	position: absolute;
+	bottom: 0;
+	box-shadow: 0px -3px 10px 0px rgba(0, 0, 0, 0.19);
+	background-color: rgb(255, 255, 255);
+}
+.item{
+	border: 2px solid green;
+	display: inline-block;
+	vertical-align: middle;
+	width: 250px;
+}
+.image{
+	display: inline-block;
+	height: 50px;
+	width: 50px;
+	border: 1px dashed red;
+	vertical-align: middle;
+	background-color: rgb(98, 98, 98);
+}
+.meta{
+	margin: 0 5px 0 5px !important;
+	display: inline-block !important;
+	vertical-align: middle !important;
+}

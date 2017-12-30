@@ -1,24 +1,24 @@
 import React from "react";
-import {Header, Segment, Button, Icon, Grid, Breadcrumb} from 'semantic-ui-react'
-import {PageFolderCss} from './css/PageFolderCss.js'
+import {Header, Segment, Button, Icon, Grid, Breadcrumb} from 'semantic-ui-react';
+import PageHeaderCss from './css/PageHeader.css';
 
-export class PageFolder extends React.Component {
+export class PageHeader extends React.Component {
 	constructor(props){
 		super(props);
 
 	}
 	render(){
 		return(
-			<div style={PageFolderCss.header}>
-				<span style={PageFolderCss.helper}></span>
-				<Button basic compact icon style={PageFolderCss.btn}  onClick={() => this.props.toggleVisibility()}>
+			<div className={PageHeaderCss.header}>
+				<span className={PageHeaderCss.helper}></span>
+				<Button basic compact icon className={PageHeaderCss.btn}  onClick={() => this.props.toggleVisibility()}>
 					<Icon name='sidebar'/>
 				</Button>
 				<Icon name='music'size='large'/>
-				<Header style={PageFolderCss.h1}>
+				<Header className={PageHeaderCss.h1}>
 					MusicPlayer
 				</Header>
-				<Breadcrumb as={Segment} compact basic size='big' style={PageFolderCss.path}>
+				<Breadcrumb as={Segment} compact basic size='big' className={PageHeaderCss.path}>
 					<Breadcrumb.Section link>Home</Breadcrumb.Section>
 				    <Breadcrumb.Divider icon='right angle' />
 				    <Breadcrumb.Section link>Store</Breadcrumb.Section>
