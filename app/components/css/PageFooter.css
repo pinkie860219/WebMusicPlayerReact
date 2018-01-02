@@ -1,5 +1,5 @@
 .footer{
-	height: auto;
+	height: 50px;
 	width: 100%;
 	margin: 0 auto;
 	position: absolute;
@@ -12,12 +12,12 @@
 	display: inline-block;
 	vertical-align: middle;
 	width: 250px;
+	float: left;
 }
 .image{
 	display: inline-block;
 	height: 50px;
 	width: 50px;
-	border: 1px dashed red;
 	vertical-align: middle;
 	background-color: rgb(98, 98, 98);
 }

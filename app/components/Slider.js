@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./css/Slider.css";
-import styled from "styled-components"
+import styled from "styled-components";
 export class Slider extends React.Component {
 	constructor(props){
 		super(props);
