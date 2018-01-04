@@ -12,13 +12,17 @@ export class App extends React.Component {
 			visible: false,
 			activeItem: 'album',
 			curTime: 0,
+			songTime:500,
+			volume:100,
 		};
 	}
 
 	setCurTime(t){
 		this.setState({curTime:t});
 	}
-
+	setVolume(t){
+		this.setState({volume:t});
+	}
 	toggleVisibility(){
 		this.setState({ visible: !this.state.visible });
 		console.log("toggle!");
@@ -35,8 +39,9 @@ export class App extends React.Component {
 					<SideList visible = {this.state.visible} activeItem = {this.state.activeItem} toggleVisibility = {() => this.toggleVisibility()} handleItemClick = {({name}) =>  this.handleItemClick({name})}/>
 				  <Sidebar.Pusher as={"div"} className={Master.bk}>
 				  	<PageHeader toggleVisibility = {() => this.toggleVisibility()}/>
-					<h1 className={Master.bk}>{this.state.curTime}</h1>
-					<PageFooter setCurTime = {(t)=>this.setCurTime(t)} curTime = {this.state.curTime}/>
+					<h1 className={Master.bk}>{"curtime:"+this.state.curTime}</h1>
+					<h1 className={Master.bk}>{"volume:"+this.state.volume}</h1>
+					<PageFooter setCurTime = {(t)=>this.setCurTime(t)} curTime = {this.state.curTime} songTime = {this.state.songTime} volume = {this.state.volume} setVolume = {(t)=>this.setVolume(t)} />
 				  </Sidebar.Pusher>
 				</Sidebar.Pushable>
 			</div>

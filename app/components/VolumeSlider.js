@@ -2,14 +2,12 @@ import React from "react";
 import style from "./css/Slider.css";
 import styled from "styled-components"
 import {Slider} from "./Slider.js";
+import {Icon, Header} from "semantic-ui-react";
 
-const Div = styled.div`
-	display: inline-block;
-	padding: 0;
-	border:2px solid rgb(231, 40, 244);
-`;
 const VSlider = styled(Slider)`
-	width:auto;
+	display:inline-flex;
+	flex-shrink:1;
+	width:100%;
 `;
 
 export class VolumeSlider extends React.Component {
@@ -17,17 +15,12 @@ export class VolumeSlider extends React.Component {
 		super(props);
 
 	}
-	handleChange(e){
-		this.setState({
-			value:e.target.value
-		});
-		this.props.setCurTime(this.state.value);
-	}
 	render(){
 
 		return(
-			<div className = {`${style.container} ${this.props.className}`}>
-				<Slider value={this.props.value} max={this.props.max} setCurTime = {(t)=>this.props.setCurTime(t)} />
+			<div className = {`${this.props.className}`}>
+				<Icon name='volume up' size='large'/>
+				<VSlider value={this.props.value} max={this.props.max} onChange = {(t)=>this.props.setVolume(t)} />
 			</div>
 		);
 	}

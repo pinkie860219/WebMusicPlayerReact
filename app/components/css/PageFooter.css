@@ -6,23 +6,24 @@
 	bottom: 0;
 	box-shadow: 0px -3px 10px 0px rgba(0, 0, 0, 0.19);
 	background-color: rgb(255, 255, 255);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 .item{
-	border: 2px solid green;
-	display: inline-block;
-	vertical-align: middle;
+	background-color: rgba(113, 113, 113, 0.14);
 	width: 250px;
-	float: left;
+	display: inline-flex;
+	align-items: center;
+	flex-shrink: 0;
 }
 .image{
-	display: inline-block;
+	display: inline-flex;
 	height: 50px;
 	width: 50px;
-	vertical-align: middle;
 	background-color: rgb(98, 98, 98);
 }
 .meta{
 	margin: 0 5px 0 5px !important;
-	display: inline-block !important;
-	vertical-align: middle !important;
+	display: inline-flex !important;
 }

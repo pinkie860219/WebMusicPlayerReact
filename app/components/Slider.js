@@ -4,13 +4,16 @@ import styled from "styled-components";
 export class Slider extends React.Component {
 	constructor(props){
 		super(props);
+		this.state={
+			value:this.props.value,
+		}
 
 	}
 	handleChange(e){
 		this.setState({
 			value:e.target.value
 		});
-		this.props.setCurTime(this.state.value);
+		this.props.onChange(this.state.value);
 	}
 	render(){
 
