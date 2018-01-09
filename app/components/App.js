@@ -1,5 +1,4 @@
 import React from "react";
-import Websocket from 'react-websocket';
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Grid, Label } from 'semantic-ui-react';
 import {SideList} from "./SideList.js";
 import {PageHeader} from "./PageHeader.js";
@@ -38,7 +37,7 @@ export class App extends React.Component {
 	    //console.log(event);
 	    //console.log(input);
 	    if(input.Action === "list"){
-			
+
 	    }
 	}
 	render(){
@@ -54,7 +53,6 @@ export class App extends React.Component {
 						<PageFooter setCurTime = {(t)=>this.setCurTime(t)} curTime = {this.state.curTime} songTime = {this.state.songTime} volume = {this.state.volume} setVolume = {(t)=>this.setVolume(t)} />
 					</Sidebar.Pusher>
 				</Sidebar.Pushable>
-				<Websocket url='ws://localhost:8024//ws/MusicPlayer/' onMessage={(data)=>this.handleData(data)}/>
 			</div>
 		);
 	}
