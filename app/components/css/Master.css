@@ -4,7 +4,19 @@
 	padding: 0;
 	margin: 0 auto;
 	background-color: rgb(180, 245, 86);
+	display: flex;
 }
 .bk{
 	background-color: rgb(240, 240, 240) !important;
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.hh{
+	border: 2px red solid;
+}
+.pushable{
+	display: flex;
+	width: 100%;
 }

@@ -1,0 +1,19 @@
+.container{
+	display: inline-flex;
+	flex: 0 0 50px;
+
+	align-items: center;
+	border: 2px solid rgb(217, 217, 217);
+	margin: 2px 2px 2px 2px;
+	border-radius: 5px;
+}
+.icon{
+	display: inline-flex !important;
+	height: auto !important;
+	margin: 0 0 0 10px !important;
+}
+.header{
+	display: inline-flex !important;
+	height: auto !important;
+	margin: 0 0 0 10px !important;
+}
