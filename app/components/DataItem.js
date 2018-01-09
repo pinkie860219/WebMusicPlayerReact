@@ -21,6 +21,9 @@ export class DataItem extends React.Component {
 			icon_type:icon_type,
 		};
 	}
+	clickHandler(str){
+		this.props.onClick();
+	}
 	mouseOver(){
 		this.setState({
 			color:"black",
@@ -36,7 +39,7 @@ export class DataItem extends React.Component {
 	render(){
 
 		return(
-			<div className = {style.container} onMouseOver={()=>this.mouseOver()}  onMouseOut={()=>this.mouseOut()} style={{backgroundColor:this.state.bkcolor}}>
+			<div className = {style.container} onMouseOver={()=>this.mouseOver()}  onMouseOut={()=>this.mouseOut()} onClick = {()=>this.clickHandler()} style={{backgroundColor:this.state.bkcolor}}>
 				<Icon color={this.state.color} name={this.state.icon_type} className = {style.icon} size="large"/>
 				<Header color={this.state.color} className = {style.header} >
 					{this.props.content}

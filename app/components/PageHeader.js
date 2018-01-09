@@ -5,7 +5,26 @@ import PageHeaderCss from './css/PageHeader.css';
 export class PageHeader extends React.Component {
 	constructor(props){
 		super(props);
+		this.state={
+			path:[],
+		}
 
+	}
+	componentWillReceiveProps(nextProps){
+		let output=[];
+		output.push(
+			<Breadcrumb.Section link key = {0} onClick={()=>{this.props.setCurDirPop(0)}}>
+			Home
+			</Breadcrumb.Section>
+		);
+		output.push(<Breadcrumb.Divider icon='right angle' key = {'0_divider'}/>);
+		for(let i =0; i< nextProps.curDir.length; i++){
+			output.push(<Breadcrumb.Section link key = {(i+1)}  onClick={()=>{this.props.setCurDirPop((i+1))}}>{nextProps.curDir[i]}</Breadcrumb.Section>);
+			output.push(<Breadcrumb.Divider icon='right angle' key = {(i+1)+'_divider'}/>);
+		}
+		this.setState({
+			path:output,
+		});
 	}
 	render(){
 		return(
@@ -19,11 +38,7 @@ export class PageHeader extends React.Component {
 					MusicPlayer
 				</Header>
 				<Breadcrumb as={Segment} compact basic size='big' className={PageHeaderCss.path}>
-					<Breadcrumb.Section link>Home</Breadcrumb.Section>
-				    <Breadcrumb.Divider icon='right angle' />
-				    <Breadcrumb.Section link>Store</Breadcrumb.Section>
-				    <Breadcrumb.Divider icon='right angle' />
-				    <Breadcrumb.Section active>T-Shirt</Breadcrumb.Section>
+					{this.state.path}
 				</Breadcrumb>
 			</div>
 		);
