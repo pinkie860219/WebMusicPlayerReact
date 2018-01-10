@@ -10,10 +10,11 @@ export class Slider extends React.Component {
 
 	}
 	handleChange(e){
+		let v = e.target.value;
 		this.setState({
-			value:e.target.value
+			value:v
 		});
-		this.props.onChange(this.state.value);
+		this.props.onChange(v);
 	}
 	render(){
 

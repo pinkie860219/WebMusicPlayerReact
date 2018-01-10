@@ -16,8 +16,7 @@ export class TimeSlider extends React.Component {
 		super(props);
 
 	}
-	HHMMSS(ipt){
-		let time = parseInt(ipt, 10);
+	HHMMSS(time){//time in second
 		let hr = Math.floor(time/3600);
 		let min = Math.floor((time - hr * 3600) / 60);
 		let sec = time - hr*3600 - min * 60;
