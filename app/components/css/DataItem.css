@@ -6,6 +6,7 @@
 	border: 2px solid rgb(217, 217, 217);
 	margin: 2px 2px 2px 2px;
 	border-radius: 5px;
+	cursor: pointer;
 }
 .icon{
 	display: inline-flex !important;

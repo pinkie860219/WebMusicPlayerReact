@@ -59,6 +59,8 @@ export class PageFooter extends React.Component {
 				</div>
 				<CCtrlBtn
 					playStatus = {this.props.playStatus}
+					loopStatus = {this.props.loopStatus}
+					setLoopStatus = {()=>this.props.setLoopStatus()}
 					setSongURLtoNext = {() => this.props.setSongURLtoNext()}
 					setSongURLtoPre = {() => this.props.setSongURLtoPre()}
 					togglePlayStatus = {() => this.props.togglePlayStatus()}

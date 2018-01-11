@@ -17,9 +17,12 @@ export class App extends React.Component {
 			activeItem: 'album', //sideList的選項
 
 			playStatus:Sound.status.STOPPED, // 音樂的播放狀態
+			loopStatus:0, // 預設不重複播放，1全部播放，2單曲播放
 			curTime: 0, // 音樂的現在的播放時間
 			songTime:0, // 音樂的全長
 			volume:100, // 音量
+
+
 			curSong:'', // 現在播放的音樂名稱
 			curSongURL:'', // 現在播放音樂的網址
 			curDir:[], // 當前的瀏覽路徑
@@ -68,11 +71,17 @@ export class App extends React.Component {
 		});
 
 		//把displayList存近playingList
-		let curPlayingURLList = this.state.curDisplayList.map(item => {
+		// let curPlayingURLList = this.state.curDisplayList.map(item => {
+		// 	if(item.IsDir != true){
+		// 		return this.state.musicURL + encodeD.join('/') + '/'+ encodeURIComponent(item.Name);
+		// 	}
+		// });
+		let curPlayingURLList = [];
+		for(let item of this.state.curDisplayList){
 			if(item.IsDir != true){
-				return this.state.musicURL + encodeD.join('/') + '/'+ encodeURIComponent(item.Name);
+				curPlayingURLList.push(this.state.musicURL + encodeD.join('/') + '/'+ encodeURIComponent(item.Name));
 			}
-		});
+		}
 		console.log(curPlayingURLList);
 		this.setState({
 			curPlayingURLList: curPlayingURLList,
@@ -91,11 +100,30 @@ export class App extends React.Component {
 	}
 	setSongURLtoNext(){// 下一首
 		console.log("setSongURLtoNext");
-		let index = this.state.curPlayingURLList.indexOf(this.state.curSongURL)+1 < this.state.curPlayingURLList.length ? this.state.curPlayingURLList.indexOf(this.state.curSongURL)+1 :
-		0;
+		let index; // 下一首的index
+		//正常狀況，播完清單即停止
+		switch (this.state.loopStatus) {
+			case 0:
+				index =
+					this.state.curPlayingURLList.indexOf(this.state.curSongURL)+1
+					<
+					this.state.curPlayingURLList.length
+					?
+					this.state.curPlayingURLList.indexOf(this.state.curSongURL)+1
+					:
+					0;
+				break;
+			case 1:
+				index = (this.state.curPlayingURLList.indexOf(this.state.curSongURL) + 1) % this.state.curPlayingURLList.length;
+				break;
+			case 2:
+				index = this.state.curPlayingURLList.indexOf(this.state.curSongURL)
+				break;
+		}
+		console.log(index+'/'+this.state.curPlayingURLList.length);
 		let url = this.state.curPlayingURLList[index];
 		this.setSongURL(url);
-		if(index){
+		if(index || this.state.loopStatus){
 			this.setState({
 				playStatus:Sound.status.PLAYING,
 			});
@@ -149,6 +177,13 @@ export class App extends React.Component {
 	handleItemClick({name}){ // 發生在點sidelist的時候
 		this.setState({ activeItem: name });
 	}
+
+	setLoopStatus(){
+		let  c = (this.state.loopStatus + 1) % 3;
+		this.setState({
+			loopStatus: c,
+		});
+	}
 	render(){
 		return(
 			<div className={Master.page}>
@@ -190,6 +225,8 @@ export class App extends React.Component {
 						<PageFooter
 							curSong = {this.state.curSong}
 							playStatus = {this.state.playStatus}
+							loopStatus = {this.state.loopStatus}
+							setLoopStatus = {()=>this.setLoopStatus()}
 							setCurTime = {(t)=>this.setCurTime(t)}
 							curTime = {this.state.curTime}
 							songTime = {this.state.songTime}
