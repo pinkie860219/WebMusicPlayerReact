@@ -17,10 +17,9 @@ export class PageHeader extends React.Component {
 			Home
 			</Breadcrumb.Section>
 		);
-		output.push(<Breadcrumb.Divider icon='right angle' key = {'0_divider'}/>);
 		for(let i =0; i< nextProps.curDir.length; i++){
-			output.push(<Breadcrumb.Section link key = {(i+1)}  onClick={()=>{this.props.setCurDirPop((i+1))}}>{nextProps.curDir[i]}</Breadcrumb.Section>);
 			output.push(<Breadcrumb.Divider icon='right angle' key = {(i+1)+'_divider'}/>);
+			output.push(<Breadcrumb.Section link key = {(i+1)}  onClick={()=>{this.props.setCurDirPop((i+1))}}>{nextProps.curDir[i]}</Breadcrumb.Section>);
 		}
 		this.setState({
 			path:output,

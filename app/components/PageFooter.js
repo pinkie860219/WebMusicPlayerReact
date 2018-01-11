@@ -50,14 +50,19 @@ export class PageFooter extends React.Component {
 						</div>
 						<Header as='h3' className = {style.meta}>
 						    <Header.Content>
-						      	三個歐吉桑
+						      	{this.props.curSong}
 						      	<Header.Subheader>
-						        	BUMP OF CHICKEN
+						        	音樂家
 						    	</Header.Subheader>
 						    </Header.Content>
 						</Header>
 				</div>
-				<CCtrlBtn/>
+				<CCtrlBtn
+					playStatus = {this.props.playStatus}
+					setSongURLtoNext = {() => this.props.setSongURLtoNext()}
+					setSongURLtoPre = {() => this.props.setSongURLtoPre()}
+					togglePlayStatus = {() => this.props.togglePlayStatus()}
+				/>
 				<TSlider value={this.props.curTime} max={this.props.songTime} setCurTime = {(t)=>this.props.setCurTime(t)} />
 				<VSlider value={this.props.volume} max={100} setVolume = {(t)=>this.props.setVolume(t)}/>
 			</div>
