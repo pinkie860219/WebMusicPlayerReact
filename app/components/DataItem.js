@@ -17,7 +17,7 @@ export class DataItem extends React.Component {
 		}
 		this.state={
 			color:"grey",
-			bkcolor:"rgba(255, 255, 255, 0)",
+			bkcolorIndex:0,
 			icon_type:icon_type,
 		};
 	}
@@ -27,20 +27,29 @@ export class DataItem extends React.Component {
 	mouseOver(){
 		this.setState({
 			color:"black",
-			bkcolor:"rgba(255, 255, 255, 0.57)",
+			bkcolorIndex:1,
 		});
 	}
 	mouseOut(){
 		this.setState({
 			color:"grey",
-			bkcolor:"rgba(255, 255, 255, 0)",
+			bkcolorIndex:0,
 		});
 	}
 	render(){
 
 		return(
-			<div className = {style.container} onMouseOver={()=>this.mouseOver()}  onMouseOut={()=>this.mouseOut()} onClick = {()=>this.clickHandler()} style={{backgroundColor:this.state.bkcolor}}>
-				<Icon color={this.state.color} name={this.state.icon_type} className = {style.icon} size="large"/>
+			<div
+				className = {`${style.container} ${this.props.className}`} onMouseOver={()=>this.mouseOver()}
+				onMouseOut={()=>this.mouseOut()}
+				onClick = {()=>this.clickHandler()}
+				style={{backgroundColor:this.props.bkcolor[this.state.bkcolorIndex]}}>
+				<Icon
+					color={this.state.color}
+					name={this.state.icon_type}
+					className = {style.icon}
+					size="large"
+				/>
 				<Header color={this.state.color} className = {style.header} >
 					{this.props.content}
 				</Header>

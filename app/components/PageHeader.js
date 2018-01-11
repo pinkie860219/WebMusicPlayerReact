@@ -13,8 +13,8 @@ export class PageHeader extends React.Component {
 	componentWillReceiveProps(nextProps){
 		let output=[];
 		output.push(
-			<Breadcrumb.Section link key = {0} onClick={()=>{this.props.setCurDirPop(0)}}>
-			Home
+			<Breadcrumb.Section link key = {0} onClick={()=>{this.props.setCurDirPop(0)}} >
+				<Icon name='home'/>
 			</Breadcrumb.Section>
 		);
 		for(let i =0; i< nextProps.curDir.length; i++){

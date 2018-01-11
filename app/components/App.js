@@ -220,7 +220,12 @@ export class App extends React.Component {
 					<Sidebar.Pusher as={"div"} className={Master.bk}>
 					  	<PageHeader toggleVisibility = {() => this.toggleVisibility()} curDir={this.state.curDir} setCurDirPop = {(index)=>{this.setCurDirPop(index)}}/>
 
-						<PageGrid curDisplayList = {this.state.curDisplayList} setCurDir = {(str)=>this.setCurDir(str)} setCurSong = {(str)=>this.setCurSong(str)}/>
+						<PageGrid
+							curDisplayList = {this.state.curDisplayList}
+							setCurDir = {(str)=>this.setCurDir(str)}
+							setCurSong = {(str)=>this.setCurSong(str)}
+							curSong = {this.state.curSong}
+						/>
 
 						<PageFooter
 							curSong = {this.state.curSong}

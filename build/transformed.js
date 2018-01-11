@@ -42391,9 +42391,12 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			activeItem: 'album', //sideList的選項
 
 			playStatus: __WEBPACK_IMPORTED_MODULE_1_react_sound___default.a.status.STOPPED, // 音樂的播放狀態
+			loopStatus: 0, // 預設不重複播放，1全部播放，2單曲播放
 			curTime: 0, // 音樂的現在的播放時間
 			songTime: 0, // 音樂的全長
 			volume: 100, // 音量
+
+
 			curSong: '', // 現在播放的音樂名稱
 			curSongURL: '', // 現在播放音樂的網址
 			curDir: [], // 當前的瀏覽路徑
@@ -42451,11 +42454,17 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		});
 
 		//把displayList存近playingList
-		let curPlayingURLList = this.state.curDisplayList.map(item => {
+		// let curPlayingURLList = this.state.curDisplayList.map(item => {
+		// 	if(item.IsDir != true){
+		// 		return this.state.musicURL + encodeD.join('/') + '/'+ encodeURIComponent(item.Name);
+		// 	}
+		// });
+		let curPlayingURLList = [];
+		for (let item of this.state.curDisplayList) {
 			if (item.IsDir != true) {
-				return this.state.musicURL + encodeD.join('/') + '/' + encodeURIComponent(item.Name);
+				curPlayingURLList.push(this.state.musicURL + encodeD.join('/') + '/' + encodeURIComponent(item.Name));
 			}
-		});
+		}
 		console.log(curPlayingURLList);
 		this.setState({
 			curPlayingURLList: curPlayingURLList
@@ -42476,10 +42485,23 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	setSongURLtoNext() {
 		// 下一首
 		console.log("setSongURLtoNext");
-		let index = this.state.curPlayingURLList.indexOf(this.state.curSongURL) + 1 < this.state.curPlayingURLList.length ? this.state.curPlayingURLList.indexOf(this.state.curSongURL) + 1 : 0;
+		let index; // 下一首的index
+		//正常狀況，播完清單即停止
+		switch (this.state.loopStatus) {
+			case 0:
+				index = this.state.curPlayingURLList.indexOf(this.state.curSongURL) + 1 < this.state.curPlayingURLList.length ? this.state.curPlayingURLList.indexOf(this.state.curSongURL) + 1 : 0;
+				break;
+			case 1:
+				index = (this.state.curPlayingURLList.indexOf(this.state.curSongURL) + 1) % this.state.curPlayingURLList.length;
+				break;
+			case 2:
+				index = this.state.curPlayingURLList.indexOf(this.state.curSongURL);
+				break;
+		}
+		console.log(index + '/' + this.state.curPlayingURLList.length);
 		let url = this.state.curPlayingURLList[index];
 		this.setSongURL(url);
-		if (index) {
+		if (index || this.state.loopStatus) {
 			this.setState({
 				playStatus: __WEBPACK_IMPORTED_MODULE_1_react_sound___default.a.status.PLAYING
 			});
@@ -42539,6 +42561,13 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		// 發生在點sidelist的時候
 		this.setState({ activeItem: name });
 	}
+
+	setLoopStatus() {
+		let c = (this.state.loopStatus + 1) % 3;
+		this.setState({
+			loopStatus: c
+		});
+	}
 	render() {
 		return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 			"div",
@@ -42581,10 +42610,17 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__PageHeader_js__["a" /* PageHeader */], { toggleVisibility: () => this.toggleVisibility(), curDir: this.state.curDir, setCurDirPop: index => {
 							this.setCurDirPop(index);
 						} }),
-					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__PageGrid_js__["a" /* PageGrid */], { curDisplayList: this.state.curDisplayList, setCurDir: str => this.setCurDir(str), setCurSong: str => this.setCurSong(str) }),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__PageGrid_js__["a" /* PageGrid */], {
+						curDisplayList: this.state.curDisplayList,
+						setCurDir: str => this.setCurDir(str),
+						setCurSong: str => this.setCurSong(str),
+						curSong: this.state.curSong
+					}),
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__PageFooter_js__["a" /* PageFooter */], {
 						curSong: this.state.curSong,
 						playStatus: this.state.playStatus,
+						loopStatus: this.state.loopStatus,
+						setLoopStatus: () => this.setLoopStatus(),
 						setCurTime: t => this.setCurTime(t),
 						curTime: this.state.curTime,
 						songTime: this.state.songTime,
@@ -70489,7 +70525,7 @@ class PageHeader extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 			{ link: true, key: 0, onClick: () => {
 					this.props.setCurDirPop(0);
 				} },
-			'Home'
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["d" /* Icon */], { name: 'home' })
 		));
 		for (let i = 0; i < nextProps.curDir.length; i++) {
 			output.push(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["a" /* Breadcrumb */].Divider, { icon: 'right angle', key: i + 1 + '_divider' }));
@@ -70762,6 +70798,8 @@ class PageFooter extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 			),
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(CCtrlBtn, {
 				playStatus: this.props.playStatus,
+				loopStatus: this.props.loopStatus,
+				setLoopStatus: () => this.props.setLoopStatus(),
 				setSongURLtoNext: () => this.props.setSongURLtoNext(),
 				setSongURLtoPre: () => this.props.setSongURLtoPre(),
 				togglePlayStatus: () => this.props.togglePlayStatus()
@@ -72597,7 +72635,7 @@ exports = module.exports = __webpack_require__(56)(undefined);
 
 
 // module
-exports.push([module.i, "._1RAteIpFo5PnmBb-lSmgyS{\n\tdisplay: inline-block;\n\tpadding: 0;\n}\n._5gG2FQ2n1Eu_GGWTopaam{\n\twidth: 100%;\n\theight: 10px;\n\tpadding: 0;\n\tmargin: 0 auto;\n\tbackground-color: #00ffab;\n\tborder: 1px solid #bfc2c0;\n\ttransition: all 0.3s ease;\n\tcursor: pointer;\n\tborder-radius: 5px;\n}\n._5gG2FQ2n1Eu_GGWTopaam:hover {\n  background-color: #60ffca;\n}\n\n._5gG2FQ2n1Eu_GGWTopaam::-webkit-slider-thumb {\n  width: 12px;\n  height: 12px;\n  background-color: #d9ffef;\n  border-radius: 100%;\n  box-shadow: 0px 0px 3px #92c4b0;\n  transition: all 0.5s ease;\n  cursor: pointer;\n}\n._5gG2FQ2n1Eu_GGWTopaam::-webkit-slider-thumb:hover {\n  background-color: #c3ecda;\n}\n._5gG2FQ2n1Eu_GGWTopaam::-webkit-slider-thumb:active {\n  box-shadow: 0px 0px 1px #d8f1e7;\n  cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "._1RAteIpFo5PnmBb-lSmgyS{\n\tdisplay: inline-block;\n\tpadding: 0;\n}\n._5gG2FQ2n1Eu_GGWTopaam{\n\t-webkit-appearance: none;\n\twidth: 100%;\n\theight: 10px;\n\tpadding: 0;\n\tmargin: 0 auto;\n\tbackground-color: #00ffab;\n\tborder: 1px solid #bfc2c0;\n\ttransition: all 0.3s ease;\n\tcursor: pointer;\n\tborder-radius: 5px;\n\n\toutline : none;\n}\n._5gG2FQ2n1Eu_GGWTopaam:hover {\n  \tbackground-color: #60ffca;\n}\n\n._5gG2FQ2n1Eu_GGWTopaam::-webkit-slider-thumb {\n\t-webkit-appearance: none;\n \twidth: 12px;\n \theight: 12px;\n  \tbackground-color: #d9ffef;\n\tborder-radius: 100%;\n\tbox-shadow: 0px 0px 3px #92c4b0;\n\ttransition: all 0.5s ease;\n\tcursor: pointer;\n}\n._5gG2FQ2n1Eu_GGWTopaam::-webkit-slider-thumb:hover {\n  \tbackground-color: #c3ecda;\n}\n._5gG2FQ2n1Eu_GGWTopaam::-webkit-slider-thumb:active {\n  \tbox-shadow: 0px 0px 1px #d8f1e7;\n  \tcursor: pointer;\n}\n", ""]);
 
 // exports
 exports.locals = {
@@ -72729,16 +72767,42 @@ class TimeSlider extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 const CButton = Object(__WEBPACK_IMPORTED_MODULE_3_styled_components__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_4_semantic_ui_react__["b" /* Button */])`
 	display:inline-flex !important;
 `;
+const LoopButton = __WEBPACK_IMPORTED_MODULE_3_styled_components__["a" /* default */].div`
+	display:inline-flex;
+	position:relative;
+`;
 const CIcon = Object(__WEBPACK_IMPORTED_MODULE_3_styled_components__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_4_semantic_ui_react__["d" /* Icon */])`
 	display:inline-flex !important;
 	margin:0 0 0 10px !important;
 	padding: 0 !important;
+
+	transition: all 0.1s ease !important;
+`;
+const FloatIcon = __WEBPACK_IMPORTED_MODULE_3_styled_components__["a" /* default */].div`
+	display:${props => props.loopDisplay};
+	color:white;
+	background-color:rgb(255, 61, 61);
+	border-radius:100%;
+	height:1em;
+	width:1em;
+	font-size: 15px;
+	line-height:15px;
+	padding:0;
+	margin:0 auto;
+	justify-content: center;
+	align-content: center;
+	position: absolute;
+	right:-5px;
+	top:-5px;
+	
 `;
 class CtrlBtn extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			playIcon: "play"
+			playIcon: "play",
+			loopDisplay: "none",
+			loopColor: "black"
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -72750,6 +72814,26 @@ class CtrlBtn extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			this.setState({
 				playIcon: "play"
 			});
+		}
+		switch (nextProps.loopStatus) {
+			case 0:
+				this.setState({
+					loopDisplay: "none",
+					loopColor: "black"
+				});
+				break;
+			case 1:
+				this.setState({
+					loopDisplay: "none",
+					loopColor: "green"
+				});
+				break;
+			case 2:
+				this.setState({
+					loopDisplay: "inline-flex",
+					loopColor: "green"
+				});
+				break;
 		}
 	}
 	render() {
@@ -72765,7 +72849,16 @@ class CtrlBtn extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(CButton, { circular: true, color: "black", basic: true, icon: "step forward",
 				onClick: () => this.props.setSongURLtoNext()
 			}),
-			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(CIcon, { name: "retweet", link: true, size: "large" })
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				LoopButton,
+				{ onClick: () => this.props.setLoopStatus() },
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(CIcon, { name: "retweet", link: true, size: "large", color: this.state.loopColor }),
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					FloatIcon,
+					{ loopDisplay: this.state.loopDisplay },
+					"1"
+				)
+			)
 		);
 	}
 }
@@ -72834,11 +72927,14 @@ exports.locals = {
 
 
 
+
 class PageGrid extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			output: []
+			output: [],
+			pColor: ['rgba(255, 250, 117, 0.54)', 'rgba(255, 251, 152, 0.54)'],
+			nColor: ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0.57)']
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -72846,10 +72942,14 @@ class PageGrid extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			let type = 0;
 			if (item.IsDir) {
 				type = 0; //is folder
-				return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__DataItem_js__["a" /* DataItem */], { key: item.Name, type: type, content: item.Name, onClick: () => this.props.setCurDir(item.Name) });
+				return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__DataItem_js__["a" /* DataItem */], { key: item.Name, type: type, content: item.Name, onClick: () => this.props.setCurDir(item.Name), bkcolor: this.state.nColor });
 			} else {
 				type = 1; //is music file
-				return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__DataItem_js__["a" /* DataItem */], { key: item.Name, type: type, content: item.Name, onClick: () => this.props.setCurSong(item.Name) });
+				if (item.Name == this.props.curSong) {
+					return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__DataItem_js__["a" /* DataItem */], { key: item.Name, type: type, content: item.Name, onClick: () => this.props.setCurSong(item.Name), bkcolor: this.state.pColor });
+				} else {
+					return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__DataItem_js__["a" /* DataItem */], { key: item.Name, type: type, content: item.Name, onClick: () => this.props.setCurSong(item.Name), bkcolor: this.state.nColor });
+				}
 			}
 		});
 		// console.log(output);
@@ -72945,7 +73045,7 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		}
 		this.state = {
 			color: "grey",
-			bkcolor: "rgba(255, 255, 255, 0)",
+			bkcolorIndex: 0,
 			icon_type: icon_type
 		};
 	}
@@ -72955,21 +73055,30 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	mouseOver() {
 		this.setState({
 			color: "black",
-			bkcolor: "rgba(255, 255, 255, 0.57)"
+			bkcolorIndex: 1
 		});
 	}
 	mouseOut() {
 		this.setState({
 			color: "grey",
-			bkcolor: "rgba(255, 255, 255, 0)"
+			bkcolorIndex: 0
 		});
 	}
 	render() {
 
 		return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 			"div",
-			{ className: __WEBPACK_IMPORTED_MODULE_1__css_DataItem_css___default.a.container, onMouseOver: () => this.mouseOver(), onMouseOut: () => this.mouseOut(), onClick: () => this.clickHandler(), style: { backgroundColor: this.state.bkcolor } },
-			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["d" /* Icon */], { color: this.state.color, name: this.state.icon_type, className: __WEBPACK_IMPORTED_MODULE_1__css_DataItem_css___default.a.icon, size: "large" }),
+			{
+				className: `${__WEBPACK_IMPORTED_MODULE_1__css_DataItem_css___default.a.container} ${this.props.className}`, onMouseOver: () => this.mouseOver(),
+				onMouseOut: () => this.mouseOut(),
+				onClick: () => this.clickHandler(),
+				style: { backgroundColor: this.props.bkcolor[this.state.bkcolorIndex] } },
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["d" /* Icon */], {
+				color: this.state.color,
+				name: this.state.icon_type,
+				className: __WEBPACK_IMPORTED_MODULE_1__css_DataItem_css___default.a.icon,
+				size: "large"
+			}),
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["c" /* Header */],
 				{ color: this.state.color, className: __WEBPACK_IMPORTED_MODULE_1__css_DataItem_css___default.a.header },
@@ -73021,7 +73130,7 @@ exports = module.exports = __webpack_require__(56)(undefined);
 
 
 // module
-exports.push([module.i, "._1L_tu4L8hSVkddxBv3s2wF{\n\tdisplay: inline-flex;\n\tflex: 0 0 50px;\n\n\talign-items: center;\n\tborder: 2px solid rgb(217, 217, 217);\n\tmargin: 2px 2px 2px 2px;\n\tborder-radius: 5px;\n}\n._2CJJ9QXvF8I19VXLSMiC0m{\n\tdisplay: inline-flex !important;\n\theight: auto !important;\n\tmargin: 0 0 0 10px !important;\n}\n._3QdItNV9BsYS5OhOQ3EdaP{\n\tdisplay: inline-flex !important;\n\theight: auto !important;\n\tmargin: 0 0 0 10px !important;\n}\n", ""]);
+exports.push([module.i, "._1L_tu4L8hSVkddxBv3s2wF{\n\tdisplay: inline-flex;\n\tflex: 0 0 50px;\n\n\talign-items: center;\n\tborder: 2px solid rgb(217, 217, 217);\n\tmargin: 2px 2px 2px 2px;\n\tborder-radius: 5px;\n\tcursor: pointer;\n\n\ttransition: all 0.1s ease;\n}\n._2CJJ9QXvF8I19VXLSMiC0m{\n\tdisplay: inline-flex !important;\n\theight: auto !important;\n\tmargin: 0 0 0 10px !important;\n}\n._3QdItNV9BsYS5OhOQ3EdaP{\n\tdisplay: inline-flex !important;\n\theight: auto !important;\n\tmargin: 0 0 0 10px !important;\n}\n", ""]);
 
 // exports
 exports.locals = {
