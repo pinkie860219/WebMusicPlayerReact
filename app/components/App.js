@@ -21,7 +21,8 @@ export class App extends React.Component {
 			curTime: 0, // 音樂的現在的播放時間
 			songTime:0, // 音樂的全長
 			volume:100, // 音量
-
+			lastVolume:0,
+			muteStatus:false,
 
 			curSong:'', // 現在播放的音樂名稱
 			curSongURL:'', // 現在播放音樂的網址
@@ -168,6 +169,31 @@ export class App extends React.Component {
 	}
 	setVolume(t){ //slider設定音量
 		this.setState({volume:t});
+		if(t==0){
+			this.setState({
+				muteStatus:true,
+			});
+		} else {
+			this.setState({
+				muteStatus:false,
+			});
+		}
+	}
+	toggleMute(){
+		if(this.state.muteStatus){
+			this.setState({
+				muteStatus:false,
+				volume: this.state.lastVolume,
+			});
+		} else {
+			this.setState({
+				muteStatus:true,
+				lastVolume:this.state.volume,
+				volume: 0,
+			});
+
+		}
+
 	}
 	toggleVisibility(){ //開關sidelist
 		this.setState({ visible: !this.state.visible });
@@ -240,6 +266,8 @@ export class App extends React.Component {
 							setSongURLtoNext = {() => this.setSongURLtoNext()}
 							setSongURLtoPre = {() => this.setSongURLtoPre()}
 							togglePlayStatus = {() => this.togglePlayStatus()}
+							muteStatus = {this.state.muteStatus}
+							toggleMute = {() => this.toggleMute()}
 						/>
 					</Sidebar.Pusher>
 				</Sidebar.Pushable>

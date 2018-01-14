@@ -66,7 +66,7 @@ export class PageFooter extends React.Component {
 					togglePlayStatus = {() => this.props.togglePlayStatus()}
 				/>
 				<TSlider value={this.props.curTime} max={this.props.songTime} setCurTime = {(t)=>this.props.setCurTime(t)} />
-				<VSlider value={this.props.volume} max={100} setVolume = {(t)=>this.props.setVolume(t)}/>
+				<VSlider value={this.props.volume} max={100} setVolume = {(t)=>this.props.setVolume(t)} muteStatus = {this.props.muteStatus} toggleMute = {this.props.toggleMute}/>
 			</div>
 		);
 	}
