@@ -1,8 +1,8 @@
 .container{
 	display: inline-flex;
 	flex: 0 0 50px;
-
 	align-items: center;
+	justify-content: space-between;
 	border: 2px solid rgb(217, 217, 217);
 	margin: 2px 2px 2px 2px;
 	border-radius: 5px;

@@ -11987,6 +11987,11 @@ class Slider extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			value: this.props.value
 		};
 	}
+	componentWillReceiveProps(nextProps) {
+		this.setState({
+			value: nextProps.value
+		});
+	}
 	handleChange(e) {
 		let v = e.target.value;
 		this.setState({
@@ -11999,7 +12004,7 @@ class Slider extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 			"div",
 			{ className: `${__WEBPACK_IMPORTED_MODULE_1__css_Slider_css___default.a.container} ${this.props.className}` },
-			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { className: __WEBPACK_IMPORTED_MODULE_1__css_Slider_css___default.a.seek, type: "range", value: this.props.value, max: this.props.max, onChange: e => {
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { className: __WEBPACK_IMPORTED_MODULE_1__css_Slider_css___default.a.seek, type: "range", value: this.state.value, max: this.props.max, onChange: e => {
 					this.handleChange(e);
 				} })
 		);
@@ -42395,7 +42400,8 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			curTime: 0, // 音樂的現在的播放時間
 			songTime: 0, // 音樂的全長
 			volume: 100, // 音量
-
+			lastVolume: 0,
+			muteStatus: false,
 
 			curSong: '', // 現在播放的音樂名稱
 			curSongURL: '', // 現在播放音樂的網址
@@ -42550,6 +42556,29 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	setVolume(t) {
 		//slider設定音量
 		this.setState({ volume: t });
+		if (t == 0) {
+			this.setState({
+				muteStatus: true
+			});
+		} else {
+			this.setState({
+				muteStatus: false
+			});
+		}
+	}
+	toggleMute() {
+		if (this.state.muteStatus) {
+			this.setState({
+				muteStatus: false,
+				volume: this.state.lastVolume
+			});
+		} else {
+			this.setState({
+				muteStatus: true,
+				lastVolume: this.state.volume,
+				volume: 0
+			});
+		}
 	}
 	toggleVisibility() {
 		//開關sidelist
@@ -42628,7 +42657,9 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 						setVolume: t => this.setVolume(t),
 						setSongURLtoNext: () => this.setSongURLtoNext(),
 						setSongURLtoPre: () => this.setSongURLtoPre(),
-						togglePlayStatus: () => this.togglePlayStatus()
+						togglePlayStatus: () => this.togglePlayStatus(),
+						muteStatus: this.state.muteStatus,
+						toggleMute: () => this.toggleMute()
 					})
 				)
 			)
@@ -70805,7 +70836,7 @@ class PageFooter extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 				togglePlayStatus: () => this.props.togglePlayStatus()
 			}),
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(TSlider, { value: this.props.curTime, max: this.props.songTime, setCurTime: t => this.props.setCurTime(t) }),
-			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(VSlider, { value: this.props.volume, max: 100, setVolume: t => this.props.setVolume(t) })
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(VSlider, { value: this.props.volume, max: 100, setVolume: t => this.props.setVolume(t), muteStatus: this.props.muteStatus, toggleMute: this.props.toggleMute })
 		);
 	}
 }
@@ -72666,17 +72697,49 @@ const VSlider = Object(__WEBPACK_IMPORTED_MODULE_2_styled_components__["a" /* de
 	flex-shrink:1;
 	width:100%;
 `;
+const IconDiv = __WEBPACK_IMPORTED_MODULE_2_styled_components__["a" /* default */].div`
+	display:inline-flex;
+
+	justify-content: center;
+	width:30px;
+`;
+const CIcon = Object(__WEBPACK_IMPORTED_MODULE_2_styled_components__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_4_semantic_ui_react__["d" /* Icon */])`
+	width:100%;
+	display:inline-flex;
+`;
 
 class VolumeSlider extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			icon_name: "volume up"
+		};
+	}
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.muteStatus) {
+			this.setState({
+				icon_name: "volume off"
+			});
+		} else if (nextProps.value < 50) {
+			this.setState({
+				icon_name: "volume down"
+			});
+		} else {
+			this.setState({
+				icon_name: "volume up"
+			});
+		}
 	}
 	render() {
 
 		return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 			"div",
 			{ className: `${this.props.className}` },
-			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_semantic_ui_react__["d" /* Icon */], { name: "volume up", size: "large" }),
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				IconDiv,
+				null,
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(CIcon, { name: this.state.icon_name, size: "large", link: true, onClick: () => this.props.toggleMute() })
+			),
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(VSlider, { value: this.props.value, max: this.props.max, onChange: t => this.props.setVolume(t) })
 		);
 	}
@@ -73030,6 +73093,26 @@ exports.locals = {
 
 
 
+
+const CIcon = Object(__WEBPACK_IMPORTED_MODULE_2_styled_components__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["d" /* Icon */])`
+	display: inline-flex !important;
+	height: auto !important;
+	margin: 0 0 0 0 !important;
+	padding:2px 0 0 2px !important;
+`;
+const Div = __WEBPACK_IMPORTED_MODULE_2_styled_components__["a" /* default */].div`
+	display: inline-flex;
+	align-items:center;
+	height:100%;
+`;
+const Div1 = Div.extend`
+	flex:1;
+`;
+const Div2 = Div.extend`
+	justify-content: center;
+	width:50px !important;
+	border-radius: 0 5px 5px 0;
+`;
 class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	constructor(props) {
 		super(props);
@@ -73045,12 +73128,16 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		}
 		this.state = {
 			color: "grey",
+			colorAdd: "grey",
 			bkcolorIndex: 0,
 			icon_type: icon_type
 		};
 	}
-	clickHandler(str) {
+	clickHandler() {
 		this.props.onClick();
+	}
+	clickAddHandler() {
+		console.log("plus");
 	}
 	mouseOver() {
 		this.setState({
@@ -73064,6 +73151,16 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			bkcolorIndex: 0
 		});
 	}
+	mouseOverAdd() {
+		this.setState({
+			colorAdd: "black"
+		});
+	}
+	mouseOutAdd() {
+		this.setState({
+			colorAdd: "grey"
+		});
+	}
 	render() {
 
 		return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -73071,18 +73168,31 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			{
 				className: `${__WEBPACK_IMPORTED_MODULE_1__css_DataItem_css___default.a.container} ${this.props.className}`, onMouseOver: () => this.mouseOver(),
 				onMouseOut: () => this.mouseOut(),
-				onClick: () => this.clickHandler(),
 				style: { backgroundColor: this.props.bkcolor[this.state.bkcolorIndex] } },
-			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["d" /* Icon */], {
-				color: this.state.color,
-				name: this.state.icon_type,
-				className: __WEBPACK_IMPORTED_MODULE_1__css_DataItem_css___default.a.icon,
-				size: "large"
-			}),
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-				__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["c" /* Header */],
-				{ color: this.state.color, className: __WEBPACK_IMPORTED_MODULE_1__css_DataItem_css___default.a.header },
-				this.props.content
+				Div1,
+				{ onClick: () => this.clickHandler() },
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["d" /* Icon */], {
+					color: this.state.color,
+					name: this.state.icon_type,
+					className: __WEBPACK_IMPORTED_MODULE_1__css_DataItem_css___default.a.icon,
+					size: "large"
+				}),
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["c" /* Header */],
+					{ color: this.state.color, className: __WEBPACK_IMPORTED_MODULE_1__css_DataItem_css___default.a.header },
+					this.props.content
+				)
+			),
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				Div2,
+				{
+					onClick: () => {
+						this.clickAddHandler();
+					},
+					onMouseOver: () => this.mouseOverAdd(),
+					onMouseOut: () => this.mouseOutAdd() },
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(CIcon, { name: "plus", size: "large", color: this.state.colorAdd })
 			)
 		);
 	}
@@ -73130,7 +73240,7 @@ exports = module.exports = __webpack_require__(56)(undefined);
 
 
 // module
-exports.push([module.i, "._1L_tu4L8hSVkddxBv3s2wF{\n\tdisplay: inline-flex;\n\tflex: 0 0 50px;\n\n\talign-items: center;\n\tborder: 2px solid rgb(217, 217, 217);\n\tmargin: 2px 2px 2px 2px;\n\tborder-radius: 5px;\n\tcursor: pointer;\n\n\ttransition: all 0.1s ease;\n}\n._2CJJ9QXvF8I19VXLSMiC0m{\n\tdisplay: inline-flex !important;\n\theight: auto !important;\n\tmargin: 0 0 0 10px !important;\n}\n._3QdItNV9BsYS5OhOQ3EdaP{\n\tdisplay: inline-flex !important;\n\theight: auto !important;\n\tmargin: 0 0 0 10px !important;\n}\n", ""]);
+exports.push([module.i, "._1L_tu4L8hSVkddxBv3s2wF{\n\tdisplay: inline-flex;\n\tflex: 0 0 50px;\n\talign-items: center;\n\tjustify-content: space-between;\n\tborder: 2px solid rgb(217, 217, 217);\n\tmargin: 2px 2px 2px 2px;\n\tborder-radius: 5px;\n\tcursor: pointer;\n\n\ttransition: all 0.1s ease;\n}\n._2CJJ9QXvF8I19VXLSMiC0m{\n\tdisplay: inline-flex !important;\n\theight: auto !important;\n\tmargin: 0 0 0 10px !important;\n}\n._3QdItNV9BsYS5OhOQ3EdaP{\n\tdisplay: inline-flex !important;\n\theight: auto !important;\n\tmargin: 0 0 0 10px !important;\n}\n", ""]);
 
 // exports
 exports.locals = {
