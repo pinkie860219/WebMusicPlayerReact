@@ -1853,7 +1853,7 @@ FormField.propTypes = process.env.NODE_ENV !== "production" ? {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__collections_Grid_GridRow__ = __webpack_require__(343);
 /* unused harmony reexport GridRow */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__collections_Menu__ = __webpack_require__(690);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_25__collections_Menu__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_25__collections_Menu__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__collections_Menu_MenuHeader__ = __webpack_require__(345);
 /* unused harmony reexport MenuHeader */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__collections_Menu_MenuItem__ = __webpack_require__(346);
@@ -1899,13 +1899,13 @@ FormField.propTypes = process.env.NODE_ENV !== "production" ? {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__elements_Flag__ = __webpack_require__(323);
 /* unused harmony reexport Flag */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__elements_Header__ = __webpack_require__(707);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_48__elements_Header__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_48__elements_Header__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__elements_Header_HeaderContent__ = __webpack_require__(356);
 /* unused harmony reexport HeaderContent */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__elements_Header_HeaderSubheader__ = __webpack_require__(355);
 /* unused harmony reexport HeaderSubheader */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__elements_Icon__ = __webpack_require__(17);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_51__elements_Icon__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_51__elements_Icon__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__elements_Icon_IconGroup__ = __webpack_require__(301);
 /* unused harmony reexport IconGroup */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__elements_Image__ = __webpack_require__(69);
@@ -1915,7 +1915,7 @@ FormField.propTypes = process.env.NODE_ENV !== "production" ? {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__elements_Input__ = __webpack_require__(184);
 /* unused harmony reexport Input */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__elements_Label__ = __webpack_require__(124);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_56__elements_Label__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_56__elements_Label__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__elements_Label_LabelDetail__ = __webpack_require__(307);
 /* unused harmony reexport LabelDetail */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__elements_Label_LabelGroup__ = __webpack_require__(308);
@@ -1943,7 +1943,7 @@ FormField.propTypes = process.env.NODE_ENV !== "production" ? {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__elements_Reveal_RevealContent__ = __webpack_require__(359);
 /* unused harmony reexport RevealContent */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__elements_Segment__ = __webpack_require__(717);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_70__elements_Segment__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_70__elements_Segment__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__elements_Segment_SegmentGroup__ = __webpack_require__(361);
 /* unused harmony reexport SegmentGroup */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__elements_Step__ = __webpack_require__(718);
@@ -1971,7 +1971,7 @@ FormField.propTypes = process.env.NODE_ENV !== "production" ? {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_83__modules_Dimmer_DimmerDimmable__ = __webpack_require__(305);
 /* unused harmony reexport DimmerDimmable */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_84__modules_Dropdown__ = __webpack_require__(183);
-/* unused harmony reexport Dropdown */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_84__modules_Dropdown__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_85__modules_Dropdown_DropdownDivider__ = __webpack_require__(321);
 /* unused harmony reexport DropdownDivider */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_86__modules_Dropdown_DropdownHeader__ = __webpack_require__(324);
@@ -2015,7 +2015,7 @@ FormField.propTypes = process.env.NODE_ENV !== "production" ? {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_105__modules_Search_SearchResults__ = __webpack_require__(371);
 /* unused harmony reexport SearchResults */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_106__modules_Sidebar__ = __webpack_require__(739);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_106__modules_Sidebar__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_106__modules_Sidebar__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_107__modules_Sidebar_SidebarPushable__ = __webpack_require__(372);
 /* unused harmony reexport SidebarPushable */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_108__modules_Sidebar_SidebarPusher__ = __webpack_require__(373);
@@ -42390,10 +42390,11 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			serverURL: 'https://pinkiebala.nctu.me/MusicServer-dir?dir=/', // 檔案路徑的API
-			musicURL: 'https://pinkiebala.nctu.me/MusicServer/', // serve音樂檔案的API
+			serverURL: 'https://pinkiebala.nctu.me/MusicServer/dir?dir=/', // 檔案路徑的API
+			musicURL: 'https://pinkiebala.nctu.me/MusicServer/file/', // serve音樂檔案的API
+			songListURL: 'https://pinkiebala.nctu.me/MusicServer/songlist',
 			visible: false, // sideList的開關
-			activeItem: 'album', //sideList的選項
+			activeItem: 'folder', //sideList的選項
 
 			playStatus: __WEBPACK_IMPORTED_MODULE_1_react_sound___default.a.status.STOPPED, // 音樂的播放狀態
 			loopStatus: 0, // 預設不重複播放，1全部播放，2單曲播放
@@ -42409,12 +42410,15 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
 			curDisplayList: [], // 當前的瀏覽路徑下的檔案
 			curPlayingURLList: [], // 現在的播放清單，存的是url
-			curPlayingList: [] // 現在的播放清單，存的是名稱
+			curPlayingList: [], // 現在的播放清單，存的是名稱
+
+			songLists: []
 		};
 	}
 	componentWillMount() {
 		// 程式剛執行時更新頁面
 		this.fetchAsync(this.state.curDir);
+		this.fetchSongLists();
 	}
 
 	async fetchAsync(d) {
@@ -42429,6 +42433,16 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		//console.log(data);
 
 		this.setState({ curDisplayList: data });
+	}
+	async fetchSongLists() {
+		// 更新瀏覽頁面
+
+		console.log("fetchhhhhhhhsonglists");
+		let response = await fetch(this.state.songListURL);
+		let data = await response.json();
+		console.log(data);
+
+		this.setState({ songLists: data });
 	}
 	setCurDir(str) {
 		// 點擊資料夾，設定瀏覽位置
@@ -42588,6 +42602,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
 	handleItemClick({ name }) {
 		// 發生在點sidelist的時候
+		console.log("name:" + name);
 		this.setState({ activeItem: name });
 	}
 
@@ -42630,11 +42645,17 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 				}
 			}),
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-				__WEBPACK_IMPORTED_MODULE_2_semantic_ui_react__["h" /* Sidebar */].Pushable,
-				{ as: __WEBPACK_IMPORTED_MODULE_2_semantic_ui_react__["g" /* Segment */], className: __WEBPACK_IMPORTED_MODULE_7__css_Master_css___default.a.pushable },
-				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__SideList_js__["a" /* SideList */], { visible: this.state.visible, activeItem: this.state.activeItem, toggleVisibility: () => this.toggleVisibility(), handleItemClick: ({ name }) => this.handleItemClick({ name }) }),
+				__WEBPACK_IMPORTED_MODULE_2_semantic_ui_react__["i" /* Sidebar */].Pushable,
+				{ as: __WEBPACK_IMPORTED_MODULE_2_semantic_ui_react__["h" /* Segment */], className: __WEBPACK_IMPORTED_MODULE_7__css_Master_css___default.a.pushable },
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__SideList_js__["a" /* SideList */], {
+					visible: this.state.visible,
+					activeItem: this.state.activeItem,
+					toggleVisibility: () => this.toggleVisibility(),
+					handleItemClick: ({ name }) => this.handleItemClick({ name }),
+					songLists: this.state.songLists
+				}),
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-					__WEBPACK_IMPORTED_MODULE_2_semantic_ui_react__["h" /* Sidebar */].Pusher,
+					__WEBPACK_IMPORTED_MODULE_2_semantic_ui_react__["i" /* Sidebar */].Pusher,
 					{ as: "div", className: __WEBPACK_IMPORTED_MODULE_7__css_Master_css___default.a.bk },
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__PageHeader_js__["a" /* PageHeader */], { toggleVisibility: () => this.toggleVisibility(), curDir: this.state.curDir, setCurDirPop: index => {
 							this.setCurDirPop(index);
@@ -70462,65 +70483,94 @@ Feed.User = __WEBPACK_IMPORTED_MODULE_16__FeedUser__["a" /* default */];
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__ = __webpack_require__(39);
 
 
+// const options = [
+//   { key: 'a', value: 'a', text: 'Café with accent' },
+//   { key: 'b', value: 'b', text: 'Cafe without accent' },
+//   { key: 'c', value: 'c', text: 'Déjà vu' },
+//   { key: 'd', value: 'd', text: 'Deja vu' },
+//   { key: 'e', value: 'e', text: 'Scandinavian å ä æ ø ö' },
+//   { key: 'f', value: 'f', text: 'Scandinavian a a ae o o' },
+// ]
 
 class SideList extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			visible: props.visible,
-			activeItem: props.activeItem
+			options: []
 		};
 	}
 
 	componentWillReceiveProps(nextProps) {
+		let options = [];
+		nextProps.songLists.forEach(item => {
+			for (var i in item.SongListNames) {
+				options.push({ key: i, value: i, text: item.SongListNames[i] });
+			}
+		});
 		this.setState({
 			visible: nextProps.visible,
-			activeItem: nextProps.activeItem
+			options: options
 		});
 	}
 
+	handleChange(e, data) {
+		this.props.handleItemClick({ name: 'songlist' });
+		console.log("handleChange value = " + data.value);
+	}
+
 	render() {
+		const { searchQuery, value } = this.state;
 		return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-			__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["h" /* Sidebar */],
-			{ as: __WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["f" /* Menu */], animation: 'overlay', width: 'wide', visible: this.state.visible, icon: 'labeled', vertical: true, inverted: true },
+			__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["i" /* Sidebar */],
+			{ as: __WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["g" /* Menu */], animation: 'overlay', width: 'wide', visible: this.state.visible, icon: 'labeled', vertical: true, inverted: true },
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-				__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["f" /* Menu */].Item,
+				__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["g" /* Menu */].Item,
 				{ name: 'back', onClick: () => this.props.toggleVisibility() },
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-					__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["g" /* Segment */],
+					__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["h" /* Segment */],
 					{ textAlign: 'right', basic: true },
-					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["d" /* Icon */], { name: 'remove', inverted: true, size: 'big' })
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["e" /* Icon */], { name: 'remove', inverted: true, size: 'big' })
 				)
 			),
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-				__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["f" /* Menu */].Item,
-				{ name: 'album', active: this.state.activeItem === 'album', onClick: (e, { name }) => this.props.handleItemClick({ name }) },
+				__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["g" /* Menu */].Item,
+				{ name: 'album', active: this.props.activeItem === 'album', onClick: (e, { name }) => this.props.handleItemClick({ name }) },
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-					__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["e" /* Label */],
+					__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["f" /* Label */],
 					{ color: 'teal' },
 					'1'
 				),
 				'Album'
 			),
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-				__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["f" /* Menu */].Item,
-				{ name: 'folder', active: this.state.activeItem === 'folder', onClick: (e, { name }) => this.props.handleItemClick({ name }) },
+				__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["g" /* Menu */].Item,
+				{ name: 'folder', active: this.props.activeItem === 'folder', onClick: (e, { name }) => this.props.handleItemClick({ name }) },
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-					__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["e" /* Label */],
+					__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["f" /* Label */],
 					null,
 					'51'
 				),
 				'Folder'
 			),
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-				__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["f" /* Menu */].Item,
-				{ name: 'song list', active: this.state.activeItem === 'song list', onClick: (e, { name }) => this.props.handleItemClick({ name }) },
+				__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["g" /* Menu */].Item,
+				{ name: 'songlist', active: this.props.activeItem === 'songlist' },
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-					__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["e" /* Label */],
+					__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["f" /* Label */],
 					null,
 					'1'
 				),
-				'Song List'
+				'Song List',
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["c" /* Dropdown */], {
+					fluid: true,
+					onChange: (e, data) => this.handleChange(e, data),
+					placeholder: 'songlist',
+					options: this.state.options,
+					search: true,
+					selection: true,
+					value: value
+				})
 			)
 		);
 	}
@@ -70556,7 +70606,7 @@ class PageHeader extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 			{ link: true, key: 0, onClick: () => {
 					this.props.setCurDirPop(0);
 				} },
-			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["d" /* Icon */], { name: 'home' })
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["e" /* Icon */], { name: 'home' })
 		));
 		for (let i = 0; i < nextProps.curDir.length; i++) {
 			output.push(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["a" /* Breadcrumb */].Divider, { icon: 'right angle', key: i + 1 + '_divider' }));
@@ -70580,17 +70630,17 @@ class PageHeader extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["b" /* Button */],
 				{ basic: true, compact: true, icon: true, className: __WEBPACK_IMPORTED_MODULE_2__css_PageHeader_css___default.a.btn, onClick: () => this.props.toggleVisibility() },
-				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["d" /* Icon */], { name: 'sidebar' })
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["e" /* Icon */], { name: 'sidebar' })
 			),
-			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["d" /* Icon */], { name: 'music', size: 'large' }),
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["e" /* Icon */], { name: 'music', size: 'large' }),
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-				__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["c" /* Header */],
+				__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["d" /* Header */],
 				{ className: __WEBPACK_IMPORTED_MODULE_2__css_PageHeader_css___default.a.h1 },
 				'MusicPlayer'
 			),
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["a" /* Breadcrumb */],
-				{ as: __WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["g" /* Segment */], compact: true, basic: true, size: 'big', className: __WEBPACK_IMPORTED_MODULE_2__css_PageHeader_css___default.a.path },
+				{ as: __WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["h" /* Segment */], compact: true, basic: true, size: 'big', className: __WEBPACK_IMPORTED_MODULE_2__css_PageHeader_css___default.a.path },
 				this.state.path
 			)
 		);
@@ -70813,14 +70863,14 @@ class PageFooter extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 				{ className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_css___default.a.item },
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_css___default.a.image }),
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-					__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["c" /* Header */],
+					__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["d" /* Header */],
 					{ as: "h3", className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_css___default.a.meta },
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-						__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["c" /* Header */].Content,
+						__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["d" /* Header */].Content,
 						null,
 						this.props.curSong,
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-							__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["c" /* Header */].Subheader,
+							__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["d" /* Header */].Subheader,
 							null,
 							"\u97F3\u6A02\u5BB6"
 						)
@@ -72703,7 +72753,7 @@ const IconDiv = __WEBPACK_IMPORTED_MODULE_2_styled_components__["a" /* default *
 	justify-content: center;
 	width:30px;
 `;
-const CIcon = Object(__WEBPACK_IMPORTED_MODULE_2_styled_components__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_4_semantic_ui_react__["d" /* Icon */])`
+const CIcon = Object(__WEBPACK_IMPORTED_MODULE_2_styled_components__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_4_semantic_ui_react__["e" /* Icon */])`
 	width:100%;
 	display:inline-flex;
 `;
@@ -72834,7 +72884,7 @@ const LoopButton = __WEBPACK_IMPORTED_MODULE_3_styled_components__["a" /* defaul
 	display:inline-flex;
 	position:relative;
 `;
-const CIcon = Object(__WEBPACK_IMPORTED_MODULE_3_styled_components__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_4_semantic_ui_react__["d" /* Icon */])`
+const CIcon = Object(__WEBPACK_IMPORTED_MODULE_3_styled_components__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_4_semantic_ui_react__["e" /* Icon */])`
 	display:inline-flex !important;
 	margin:0 0 0 10px !important;
 	padding: 0 !important;
@@ -73094,7 +73144,7 @@ exports.locals = {
 
 
 
-const CIcon = Object(__WEBPACK_IMPORTED_MODULE_2_styled_components__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["d" /* Icon */])`
+const CIcon = Object(__WEBPACK_IMPORTED_MODULE_2_styled_components__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["e" /* Icon */])`
 	display: inline-flex !important;
 	height: auto !important;
 	margin: 0 0 0 0 !important;
@@ -73172,14 +73222,14 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				Div1,
 				{ onClick: () => this.clickHandler() },
-				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["d" /* Icon */], {
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["e" /* Icon */], {
 					color: this.state.color,
 					name: this.state.icon_type,
 					className: __WEBPACK_IMPORTED_MODULE_1__css_DataItem_css___default.a.icon,
 					size: "large"
 				}),
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-					__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["c" /* Header */],
+					__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["d" /* Header */],
 					{ color: this.state.color, className: __WEBPACK_IMPORTED_MODULE_1__css_DataItem_css___default.a.header },
 					this.props.content
 				)

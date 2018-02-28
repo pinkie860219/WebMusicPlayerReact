@@ -11,10 +11,11 @@ export class App extends React.Component {
 	constructor(props) {
 	    super(props);
 	    this.state = {
-			serverURL:'https://pinkiebala.nctu.me/MusicServer-dir?dir=/', // 檔案路徑的API
-			musicURL:'https://pinkiebala.nctu.me/MusicServer/', // serve音樂檔案的API
+			serverURL:'https://pinkiebala.nctu.me/MusicServer/dir?dir=/', // 檔案路徑的API
+			musicURL:'https://pinkiebala.nctu.me/MusicServer/file/', // serve音樂檔案的API
+			songListURL:'https://pinkiebala.nctu.me/MusicServer/songlist',
 			visible: false, // sideList的開關
-			activeItem: 'album', //sideList的選項
+			activeItem: 'folder', //sideList的選項
 
 			playStatus:Sound.status.STOPPED, // 音樂的播放狀態
 			loopStatus:0, // 預設不重複播放，1全部播放，2單曲播放
@@ -31,10 +32,13 @@ export class App extends React.Component {
 			curDisplayList:[], // 當前的瀏覽路徑下的檔案
 			curPlayingURLList:[], // 現在的播放清單，存的是url
 			curPlayingList:[], // 現在的播放清單，存的是名稱
+
+			songLists:[],
 		};
 	}
 	componentWillMount(){ // 程式剛執行時更新頁面
 		this.fetchAsync(this.state.curDir);
+		this.fetchSongLists();
 	}
 
 	async fetchAsync(d){ // 更新瀏覽頁面
@@ -46,6 +50,15 @@ export class App extends React.Component {
 		//console.log(data);
 
 		this.setState({curDisplayList: data});
+	}
+	async fetchSongLists(){ // 更新瀏覽頁面
+
+		console.log("fetchhhhhhhhsonglists");
+		let response = await fetch(this.state.songListURL);
+		let data = await response.json();
+		console.log(data);
+
+		this.setState({songLists: data});
 	}
 	setCurDir(str){ // 點擊資料夾，設定瀏覽位置
 		let d = this.state.curDir;
@@ -201,6 +214,7 @@ export class App extends React.Component {
 	}
 
 	handleItemClick({name}){ // 發生在點sidelist的時候
+		console.log("name:"+name);
 		this.setState({ activeItem: name });
 	}
 
@@ -242,7 +256,13 @@ export class App extends React.Component {
 					}}
 				/>
 				<Sidebar.Pushable as={Segment} className={Master.pushable}>
-					<SideList visible = {this.state.visible} activeItem = {this.state.activeItem} toggleVisibility = {() => this.toggleVisibility()} handleItemClick = {({name}) =>  this.handleItemClick({name})}/>
+					<SideList
+						visible = {this.state.visible}
+						activeItem = {this.state.activeItem}
+						toggleVisibility = {() => this.toggleVisibility()}
+						handleItemClick = {({name}) =>  this.handleItemClick({name})}
+						songLists = {this.state.songLists}
+					/>
 					<Sidebar.Pusher as={"div"} className={Master.bk}>
 					  	<PageHeader toggleVisibility = {() => this.toggleVisibility()} curDir={this.state.curDir} setCurDirPop = {(index)=>{this.setCurDirPop(index)}}/>
 
