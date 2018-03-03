@@ -13,9 +13,8 @@ export class PageGrid extends React.Component {
 			nColor:['rgba(255, 255, 255, 0)','rgba(255, 255, 255, 0.57)'],
 			containerStyle: style.container,
 		}
-
 	}
-	componentWillReceiveProps(nextProps){
+	updatePage(nextProps){
 		if(nextProps.curDisplayList.length != 0){
 			let output = [];
 			output = nextProps.curDisplayList.map( (item, index) => {
@@ -32,11 +31,11 @@ export class PageGrid extends React.Component {
 					type=1;//is music file
 					if(item.Name == this.props.curSong){
 						return(
-							<DataItem key = {index} type={type} content = {item.Name} onClick = {()=>this.props.setCurSong(item.Name)} bkcolor = {this.state.pColor}/>
+							<DataItem key = {index} type={type} content = {item.Name} onClick = {()=>this.props.setCurSong(item)} bkcolor = {this.state.pColor}/>
 						);
 					} else {
 						return(
-							<DataItem key = {index} type={type} content = {item.Name} onClick = {()=>this.props.setCurSong(item.Name)} bkcolor = {this.state.nColor}/>
+							<DataItem key = {index} type={type} content = {item.Name} onClick = {()=>this.props.setCurSong(item)} bkcolor = {this.state.nColor}/>
 						);
 					}
 				}
@@ -65,7 +64,11 @@ export class PageGrid extends React.Component {
 				containerStyle: style.container2,
 			});
 		}
-
+	}
+	componentWillReceiveProps(nextProps){
+		if(JSON.stringify(nextProps.curDisplayList) !== JSON.stringify(this.props.curDisplayList)){
+			this.updatePage(nextProps);
+		}
 
 	}
 	render(){
