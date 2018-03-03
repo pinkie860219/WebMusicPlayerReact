@@ -1,4 +1,5 @@
 import React from "react";
+import style from "./css/SideList.css";
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Grid, Label, Dropdown } from 'semantic-ui-react'
 // const options = [
 //   { key: 'a', value: 'a', text: 'Café with accent' },
@@ -19,28 +20,22 @@ export class SideList extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps){
-		let options = [];
-		nextProps.songLists.forEach( item => {
-			for(var i in item.SongListNames){
-				options.push({ key: i, value: i, text: item.SongListNames[i] });
-			}
-		});
 		this.setState({
 			visible: nextProps.visible,
-			options:options,
 		})
 	}
 
 	handleChange(e, data){
 		this.props.handleItemClick({name:'songlist'});
-		console.log("handleChange value = " + data.value);
+		this.props.handleSongListChange(data.value);
+		//console.log("handleChange value = " + data.value);
 
 	}
 
 	render(){
 		const { searchQuery, value } = this.state;
 		return(
-			<Sidebar as={Menu} animation='overlay' width='wide' visible={this.state.visible} icon='labeled' vertical inverted >
+			<Sidebar as={Menu} animation='uncover' width='wide' visible={this.state.visible} icon='labeled' vertical inverted >
 
 			  	<Menu.Item name='back' onClick={() => this.props.toggleVisibility()} >
 				  	<Segment textAlign='right' basic>
@@ -60,10 +55,11 @@ export class SideList extends React.Component {
 					<Label>1</Label>
 					Song List
 					<Dropdown
+						className={style.dropdown}
 			        	fluid
 			        	onChange={(e, data) => this.handleChange(e, data)}
 			        	placeholder='songlist'
-						options={this.state.options}
+						options={this.props.songLists}
 			        	search
 			        	selection
 			        	value={value}

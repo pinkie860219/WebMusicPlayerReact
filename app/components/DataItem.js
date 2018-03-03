@@ -35,12 +35,29 @@ export class DataItem extends React.Component {
 				break;
 
 		}
+
+		//console.log("construcor:"+icon_type);
 		this.state={
 			color:"grey",
 			colorAdd:"grey",
 			bkcolorIndex:0,
 			icon_type:icon_type,
 		};
+	}
+	componentWillReceiveProps(nextProps){
+		let icon_type;
+		switch (nextProps.type) {
+			case 0:
+				icon_type="folder";
+				break;
+			case 1:
+				icon_type="video play outline";
+				break;
+
+		}
+		this.setState({
+			icon_type:icon_type,
+		});
 	}
 	clickHandler(){
 		this.props.onClick();
@@ -71,7 +88,6 @@ export class DataItem extends React.Component {
 		});
 	}
 	render(){
-
 		return(
 			<div
 				className = {`${style.container} ${this.props.className}`} onMouseOver={()=>this.mouseOver()}

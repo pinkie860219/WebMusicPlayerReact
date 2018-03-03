@@ -34,7 +34,10 @@ export class App extends React.Component {
 			curPlayingList:[], // 現在的播放清單，存的是名稱
 
 			songLists:[],
+
+			fileExist:true,
 		};
+
 	}
 	componentWillMount(){ // 程式剛執行時更新頁面
 		this.fetchAsync(this.state.curDir);
@@ -47,18 +50,40 @@ export class App extends React.Component {
 		let encodeD = d.map(item => {return encodeURIComponent(item)});
 		let response = await fetch(this.state.serverURL+encodeD.join('/'));
 		let data = await response.json();
-		//console.log(data);
+	//	console.log(data);
 
 		this.setState({curDisplayList: data});
 	}
-	async fetchSongLists(){ // 更新瀏覽頁面
+	async fetchSongLists(){
 
 		console.log("fetchhhhhhhhsonglists");
 		let response = await fetch(this.state.songListURL);
 		let data = await response.json();
-		console.log(data);
+		let output = [];
+		data.forEach( item => {
+			for(var i in item.SongListNames){
+				output.push({ key: i, value: i, text: item.SongListNames[i] });
+			}
+		});
+		this.setState({songLists: output});
+		//console.log(output);
+	}
+	async fetchSongListSongs(value){
 
-		this.setState({songLists: data});
+		console.log("fetchhhhhhhhsonglistsong");
+		const targetURL = this.state.songListURL + '/' + this.state.songLists[value].text;
+		let response = await fetch(targetURL);
+		//console.log(targetURL);
+
+		let data = await response.json();
+		//console.log(data);
+		let output = data.map(item => {
+			let newItem = Object.assign({},item);
+			newItem.IsDir = false;
+			return newItem;
+		});
+		//console.log(output);
+		this.setState({curDisplayList: output});
 	}
 	setCurDir(str){ // 點擊資料夾，設定瀏覽位置
 		let d = this.state.curDir;
@@ -214,8 +239,11 @@ export class App extends React.Component {
 	}
 
 	handleItemClick({name}){ // 發生在點sidelist的時候
-		console.log("name:"+name);
+		//console.log("name:"+name);
 		this.setState({ activeItem: name });
+		if(name == 'folder'){
+			this.fetchAsync(this.state.curDir);
+		}
 	}
 
 	setLoopStatus(){
@@ -261,6 +289,7 @@ export class App extends React.Component {
 						activeItem = {this.state.activeItem}
 						toggleVisibility = {() => this.toggleVisibility()}
 						handleItemClick = {({name}) =>  this.handleItemClick({name})}
+						handleSongListChange = {(value) => this.fetchSongListSongs(value)}
 						songLists = {this.state.songLists}
 					/>
 					<Sidebar.Pusher as={"div"} className={Master.bk}>
@@ -271,6 +300,7 @@ export class App extends React.Component {
 							setCurDir = {(str)=>this.setCurDir(str)}
 							setCurSong = {(str)=>this.setCurSong(str)}
 							curSong = {this.state.curSong}
+							fileExist = {this.state.fileExist}
 						/>
 
 						<PageFooter
