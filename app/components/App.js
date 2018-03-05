@@ -39,11 +39,12 @@ export class App extends React.Component {
 		};
 
 	}
-	componentWillMount(){ // 程式剛執行時更新頁面
+	componentDidMount(){ // 程式剛執行時更新頁面
+		this.fetchSongLists();
+
 		let d = this.state.curDir;
 		let encodeD = d.map(item => {return encodeURIComponent(item)});
 		this.fetchAsync(encodeD.join('/'));
-		this.fetchSongLists();
 	}
 
 	async fetchAsync(d){ // 更新瀏覽頁面
@@ -76,7 +77,7 @@ export class App extends React.Component {
 			}
 		});
 		this.setState({songLists: output});
-		//console.log(output);
+		console.log(output);
 	}
 	async fetchSongListSongs(value){
 
@@ -94,6 +95,38 @@ export class App extends React.Component {
 		});
 		//console.log(output);
 		this.setState({curDisplayList: output});
+	}
+	async handleAddSongList(value){
+		console.log("handleAddSongList");
+		const targetURL = this.state.songListURL;
+		let response = await fetch(targetURL,{
+			method:'POST',
+			body:value,
+		});
+		let data = await response.json();
+		let output = [];
+		data.forEach( item => {
+			for(var i in item.SongListNames){
+				output.push({ key: i, value: i, text: item.SongListNames[i] });
+			}
+		});
+		this.setState({songLists: output});
+	}
+	async handleAddToSongList(value){
+		console.log("handleAddSongList");
+		const targetURL = this.state.songListURL;
+		let response = await fetch(targetURL,{
+			method:'POST',
+			body:value,
+		});
+		let data = await response.json();
+		let output = [];
+		data.forEach( item => {
+			for(var i in item.SongListNames){
+				output.push({ key: i, value: i, text: item.SongListNames[i] });
+			}
+		});
+		this.setState({songLists: output});
 	}
 	setCurDir(str){ // 點擊資料夾，設定瀏覽位置
 		let d = this.state.curDir;
@@ -195,7 +228,7 @@ export class App extends React.Component {
 			}
 		}
 		curIndex = parseInt(curIndex);
-		
+
 		if(this.state.curTime / 1000 < 2 && curIndex > 0){
 			let index = curIndex - 1 > 0 ? curIndex - 1 : 0;
 			let url = this.state.curPlayingList[index].Url;
@@ -312,6 +345,7 @@ export class App extends React.Component {
 						toggleVisibility = {() => this.toggleVisibility()}
 						handleItemClick = {({name}) =>  this.handleItemClick({name})}
 						handleSongListChange = {(value) => this.fetchSongListSongs(value)}
+						handleAddSongList = {(value) => this.handleAddSongList(value)}
 						songLists = {this.state.songLists}
 					/>
 					<Sidebar.Pusher as={"div"} className={Master.bk}>
@@ -323,6 +357,7 @@ export class App extends React.Component {
 							setCurSong = {(song)=>this.setCurSong(song)}
 							curSong = {this.state.curSong}
 							fileExist = {this.state.fileExist}
+							songLists = {this.state.songLists}
 						/>
 
 						<PageFooter

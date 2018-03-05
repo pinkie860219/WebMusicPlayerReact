@@ -31,7 +31,6 @@ export class SideList extends React.Component {
 		//console.log("handleChange value = " + data.value);
 
 	}
-
 	render(){
 		const { searchQuery, value } = this.state;
 		return(

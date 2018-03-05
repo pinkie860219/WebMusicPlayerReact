@@ -15,36 +15,51 @@ export class PageGrid extends React.Component {
 		}
 	}
 	updatePage(nextProps){
+		console.log("updatePage");
 		if(nextProps.curDisplayList.length != 0){
 			let output = [];
 			output = nextProps.curDisplayList.map( (item, index) => {
 				let type=0;
 				if(item.IsDir){
-					console.log("file");
+					//console.log("file");
 					type=0;//is folder
 					return(
-						<DataItem key = {index} type={type} content = {item.Name} onClick = {()=>this.props.setCurDir(item.Name)} bkcolor = {this.state.nColor}/>
+						<DataItem
+							key = {index} type={type} content = {item.Name}
+							onClick = {()=>nextProps.setCurDir(item.Name)}
+							bkcolor = {this.state.nColor}
+							songLists = {nextProps.songLists}
+							url = {item.Url}
+						/>
 					);
 				}
 				else {
-					console.log("music");
+					//console.log("music");
 					type=1;//is music file
-					if(item.Name == this.props.curSong){
+					if(item.Name == nextProps.curSong){
 						return(
-							<DataItem key = {index} type={type} content = {item.Name} onClick = {()=>this.props.setCurSong(item)} bkcolor = {this.state.pColor}/>
+							<DataItem
+								key = {index} type={type} content = {item.Name}
+								onClick = {()=>nextProps.setCurSong(item)}
+								bkcolor = {this.state.pColor}
+								songLists = {nextProps.songLists}
+								url = {item.Url}
+							/>
 						);
 					} else {
 						return(
-							<DataItem key = {index} type={type} content = {item.Name} onClick = {()=>this.props.setCurSong(item)} bkcolor = {this.state.nColor}/>
+							<DataItem
+								key = {index} type={type} content = {item.Name}
+								onClick = {()=>nextProps.setCurSong(item)}
+								bkcolor = {this.state.nColor}
+								songLists = {nextProps.songLists}
+								url = {item.Url}
+							/>
 						);
 					}
 				}
 
 			});
-			// console.log("nextprops:");
-			// console.log(nextProps);
-			// console.log("Grid:");
-			// console.log(output);
 			this.setState({
 				output:output,
 				containerStyle: style.container,
@@ -66,10 +81,13 @@ export class PageGrid extends React.Component {
 		}
 	}
 	componentWillReceiveProps(nextProps){
-		if(JSON.stringify(nextProps.curDisplayList) !== JSON.stringify(this.props.curDisplayList)){
+		if(
+			JSON.stringify(nextProps.curDisplayList) !== JSON.stringify(this.props.curDisplayList) ||
+			JSON.stringify(nextProps.songLists) !==
+			JSON.stringify(this.props.songLists)
+		){
 			this.updatePage(nextProps);
 		}
-
 	}
 	render(){
 		return(

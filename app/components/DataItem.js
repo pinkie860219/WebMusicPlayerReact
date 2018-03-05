@@ -1,13 +1,18 @@
 import React from "react";
 import style from "./css/DataItem.css";
 import styled from "styled-components";
-import { Icon, Header, Button} from 'semantic-ui-react';
+import { Icon, Header, Button, Dropdown} from 'semantic-ui-react';
 
 const CIcon = styled(Icon)`
 	display: inline-flex !important;
 	height: auto !important;
 	margin: 0 0 0 0 !important;
 	padding:2px 0 0 2px !important;
+`;
+const CDropdown = styled(Dropdown)`
+	display: inline-flex !important;
+	height: auto !important;
+	margin: 0 0 0 0 !important;
 `;
 const Div = styled.div`
 	display: inline-flex;
@@ -19,7 +24,7 @@ const Div1 = Div.extend`
 `;
 const Div2 = Div.extend`
 	justify-content: center;
-	width:50px !important;
+	width:auto;
 	border-radius: 0 5px 5px 0;
 `;
 export class DataItem extends React.Component {
@@ -87,7 +92,38 @@ export class DataItem extends React.Component {
 			colorAdd:"grey",
 		});
 	}
+	handleAddition(e, { value }){
+	    this.props.handleAddSongList(value);
+	}
+	handleChange(e, {song}){
+		console.log("plus:");
+		console.log(song);
+	}
 	render(){
+		let tail;
+		switch (this.props.type) {
+			case 0:
+				break;
+			case 1:
+				tail = (<Div2
+
+					onMouseOver={()=>this.mouseOverAdd()}
+					onMouseOut={()=>this.mouseOutAdd()}>
+
+					<CDropdown
+						trigger={(<CIcon name='plus' size = 'large' color='black' link/>)}
+						pointing='top right'
+						direction='right'
+						icon={null}
+						options={this.props.songLists}
+						song={{Name:this.props.content, Url:this.props.url}}
+						onChange={(e, {song}) => this.handleChange(e, {song})}
+					/>
+
+				</Div2>);
+				break;
+
+		}
 		return(
 			<div
 				className = {`${style.container} ${this.props.className}`} onMouseOver={()=>this.mouseOver()}
@@ -104,12 +140,7 @@ export class DataItem extends React.Component {
 						{this.props.content}
 					</Header>
 				</Div1>
-				<Div2
-					onClick = {()=>{this.clickAddHandler();}}
-					onMouseOver={()=>this.mouseOverAdd()}
-					onMouseOut={()=>this.mouseOutAdd()}>
-					<CIcon name='plus' size = 'large' color={this.state.colorAdd}/>
-				</Div2>
+				{tail}
 			</div>
 		);
 	}
