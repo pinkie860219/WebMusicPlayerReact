@@ -42758,10 +42758,20 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		let data = await response.json();
 		let output = [];
 		data.forEach(item => {
+			let foundindex = item.SongListNames.length;
 			for (var i in item.SongListNames) {
-				output.push({ key: i, value: i, text: item.SongListNames[i] });
+				if (item.SongListNames[i] == "system.indexes") {
+					foundindex = i;
+				} else {
+					if (i < foundindex) {
+						output.push({ key: i, value: i, text: item.SongListNames[i] });
+					} else {
+						output.push({ key: i - 1, value: i - 1, text: item.SongListNames[i] });
+					}
+				}
 			}
 		});
+
 		this.setState({ songLists: output });
 		console.log(output);
 	}
@@ -42797,8 +42807,17 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		let data = await response.json();
 		let output = [];
 		data.forEach(item => {
+			let foundindex = item.SongListNames.length;
 			for (var i in item.SongListNames) {
-				output.push({ key: i, value: i, text: item.SongListNames[i] });
+				if (item.SongListNames[i] == "system.indexes") {
+					foundindex = i;
+				} else {
+					if (i < foundindex) {
+						output.push({ key: i, value: i, text: item.SongListNames[i] });
+					} else {
+						output.push({ key: i - 1, value: i - 1, text: item.SongListNames[i] });
+					}
+				}
 			}
 		});
 		this.setState({ songLists: output });
@@ -74252,24 +74271,25 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			colorAdd: "grey"
 		});
 	}
-	handleClick(e, { song }) {
-		console.log("plus:");
-		console.log(song);
+	handleClick(e, { value, song }) {
+		this.props.handleAddToSongList(value, song);
+		// console.log("plus:");
+		// console.log(value);
+		// console.log(song);
 	}
-	handleAddSongList(e, { song }) {}
 	handleInput(e, { value }) {
-		console.log("handleInput:");
-		console.log(value);
+		// console.log("handleInput:");
+		// console.log(value);
 		this.setState({
 			inputText: value
 		});
 	}
 	handleInputConfirm(e, { song }) {
 		this.props.handleAddToSongList(this.state.inputText, song);
-		console.log("handleInputConfirm:\nNewListName:");
-		console.log(this.state.inputText);
-		console.log("song:");
-		console.log(song);
+		// console.log("handleInputConfirm:\nNewListName:");
+		// console.log(this.state.inputText);
+		// console.log("song:");
+		// console.log(song);
 	}
 	render() {
 		let tail;
@@ -74321,7 +74341,7 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 									{
 										key: index,
 										value: item.text,
-										onClick: (e, { song }) => this.handleClick(e, { song }),
+										onClick: (e, { value, song }) => this.handleClick(e, { value, song }),
 										song: { Name: this.props.content, Url: this.props.url } },
 									item.text
 								);

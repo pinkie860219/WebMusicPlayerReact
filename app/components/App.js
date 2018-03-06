@@ -72,10 +72,21 @@ export class App extends React.Component {
 		let data = await response.json();
 		let output = [];
 		data.forEach( item => {
+			let foundindex = item.SongListNames.length
 			for(var i in item.SongListNames){
-				output.push({ key: i, value: i, text: item.SongListNames[i] });
+				if(item.SongListNames[i] == "system.indexes"){
+					foundindex = i;
+				} else {
+					if(i < foundindex){
+						output.push({ key: i, value: i, text: item.SongListNames[i] });
+					} else {
+						output.push({ key: i-1, value: i-1, text: item.SongListNames[i] });
+					}
+				}
+
 			}
 		});
+
 		this.setState({songLists: output});
 		console.log(output);
 	}
@@ -111,8 +122,18 @@ export class App extends React.Component {
 		let data = await response.json();
 		let output = [];
 		data.forEach( item => {
+			let foundindex = item.SongListNames.length
 			for(var i in item.SongListNames){
-				output.push({ key: i, value: i, text: item.SongListNames[i] });
+				if(item.SongListNames[i] == "system.indexes"){
+					foundindex = i;
+				} else {
+					if(i < foundindex){
+						output.push({ key: i, value: i, text: item.SongListNames[i] });
+					} else {
+						output.push({ key: i-1, value: i-1, text: item.SongListNames[i] });
+					}
+				}
+
 			}
 		});
 		this.setState({songLists: output});

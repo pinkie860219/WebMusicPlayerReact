@@ -93,26 +93,25 @@ export class DataItem extends React.Component {
 			colorAdd:"grey",
 		});
 	}
-	handleClick(e, {song}){
-		console.log("plus:");
-		console.log(song);
-	}
-	handleAddSongList(e, {song}){
-
+	handleClick(e, {value, song}){
+		this.props.handleAddToSongList(value, song);
+		// console.log("plus:");
+		// console.log(value);
+		// console.log(song);
 	}
 	handleInput(e, {value}){
-		console.log("handleInput:");
-		console.log(value);
+		// console.log("handleInput:");
+		// console.log(value);
 		this.setState({
 			inputText:value,
 		});
 	}
 	handleInputConfirm(e,{song}){
-		this.props.handleAddToSongList(this.state.inputText, song)
-		console.log("handleInputConfirm:\nNewListName:");
-		console.log(this.state.inputText);
-		console.log("song:");
-		console.log(song);
+		this.props.handleAddToSongList(this.state.inputText, song);
+		// console.log("handleInputConfirm:\nNewListName:");
+		// console.log(this.state.inputText);
+		// console.log("song:");
+		// console.log(song);
 	}
 	render(){
 		let tail;
@@ -157,7 +156,7 @@ export class DataItem extends React.Component {
 									<Dropdown.Item
 										key = {index}
 										value = {item.text}
-										onClick={(e, {song}) => this.handleClick(e, {song})}
+										onClick={(e, {value, song}) => this.handleClick(e, {value, song})}
 										song={{Name:this.props.content, Url:this.props.url}}>
 										{item.text}
 									</Dropdown.Item>
