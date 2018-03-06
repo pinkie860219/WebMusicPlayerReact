@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./css/DataItem.css";
 import styled from "styled-components";
-import { Icon, Header, Button, Dropdown} from 'semantic-ui-react';
+import { Icon, Header, Button, Dropdown, Input, Popup} from 'semantic-ui-react';
 
 const CIcon = styled(Icon)`
 	display: inline-flex !important;
@@ -47,6 +47,7 @@ export class DataItem extends React.Component {
 			colorAdd:"grey",
 			bkcolorIndex:0,
 			icon_type:icon_type,
+			inputText:"",
 		};
 	}
 	componentWillReceiveProps(nextProps){
@@ -92,11 +93,25 @@ export class DataItem extends React.Component {
 			colorAdd:"grey",
 		});
 	}
-	handleAddition(e, { value }){
-	    this.props.handleAddSongList(value);
-	}
-	handleChange(e, {song}){
+	handleClick(e, {song}){
 		console.log("plus:");
+		console.log(song);
+	}
+	handleAddSongList(e, {song}){
+
+	}
+	handleInput(e, {value}){
+		console.log("handleInput:");
+		console.log(value);
+		this.setState({
+			inputText:value,
+		});
+	}
+	handleInputConfirm(e,{song}){
+		this.props.handleAddToSongList(this.state.inputText, song)
+		console.log("handleInputConfirm:\nNewListName:");
+		console.log(this.state.inputText);
+		console.log("song:");
 		console.log(song);
 	}
 	render(){
@@ -115,10 +130,41 @@ export class DataItem extends React.Component {
 						pointing='top right'
 						direction='right'
 						icon={null}
-						options={this.props.songLists}
-						song={{Name:this.props.content, Url:this.props.url}}
-						onChange={(e, {song}) => this.handleChange(e, {song})}
-					/>
+					>
+						<Dropdown.Menu >
+							<Popup hoverable
+					          	trigger={
+								  	<Dropdown.Item icon="add square" content="New List"	/>
+								}
+					          	position='left center'
+					        >
+								<Input
+									placeholder="List Name"
+									onChange={(e,{value})=>this.handleInput(e,{value})}
+								>
+									<input/>
+									<Button
+										song={{Name:this.props.content, Url:this.props.url}}
+										onClick={(e,{song}) => this.handleInputConfirm(e,{song})}
+										icon="plus"
+									/>
+								</Input>
+							</Popup>
+
+      						<Dropdown.Divider />
+							{this.props.songLists.map( (item, index) => {
+								return(
+									<Dropdown.Item
+										key = {index}
+										value = {item.text}
+										onClick={(e, {song}) => this.handleClick(e, {song})}
+										song={{Name:this.props.content, Url:this.props.url}}>
+										{item.text}
+									</Dropdown.Item>
+								);
+							})}
+						</Dropdown.Menu>
+					</CDropdown>
 
 				</Div2>);
 				break;

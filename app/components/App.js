@@ -96,12 +96,17 @@ export class App extends React.Component {
 		//console.log(output);
 		this.setState({curDisplayList: output});
 	}
-	async handleAddSongList(value){
-		console.log("handleAddSongList");
+	async handleAddToSongList(songList, song){
+		console.log("handleAddToSongList");
 		const targetURL = this.state.songListURL;
+
+		let formData = new FormData();
+		formData.append('songlist',songList);
+		formData.append('name',song.Name);
+		formData.append('url',song.Url);
 		let response = await fetch(targetURL,{
 			method:'POST',
-			body:value,
+			body:formData,
 		});
 		let data = await response.json();
 		let output = [];
@@ -111,22 +116,7 @@ export class App extends React.Component {
 			}
 		});
 		this.setState({songLists: output});
-	}
-	async handleAddToSongList(value){
-		console.log("handleAddSongList");
-		const targetURL = this.state.songListURL;
-		let response = await fetch(targetURL,{
-			method:'POST',
-			body:value,
-		});
-		let data = await response.json();
-		let output = [];
-		data.forEach( item => {
-			for(var i in item.SongListNames){
-				output.push({ key: i, value: i, text: item.SongListNames[i] });
-			}
-		});
-		this.setState({songLists: output});
+		console.log(output);
 	}
 	setCurDir(str){ // 點擊資料夾，設定瀏覽位置
 		let d = this.state.curDir;
@@ -358,6 +348,7 @@ export class App extends React.Component {
 							curSong = {this.state.curSong}
 							fileExist = {this.state.fileExist}
 							songLists = {this.state.songLists}
+							handleAddToSongList = {(songList, song)=>this.handleAddToSongList(songList, song)}
 						/>
 
 						<PageFooter

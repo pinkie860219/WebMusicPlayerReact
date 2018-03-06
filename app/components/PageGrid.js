@@ -30,6 +30,7 @@ export class PageGrid extends React.Component {
 							bkcolor = {this.state.nColor}
 							songLists = {nextProps.songLists}
 							url = {item.Url}
+							handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
 						/>
 					);
 				}
@@ -44,6 +45,7 @@ export class PageGrid extends React.Component {
 								bkcolor = {this.state.pColor}
 								songLists = {nextProps.songLists}
 								url = {item.Url}
+								handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
 							/>
 						);
 					} else {
@@ -54,6 +56,7 @@ export class PageGrid extends React.Component {
 								bkcolor = {this.state.nColor}
 								songLists = {nextProps.songLists}
 								url = {item.Url}
+								handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
 							/>
 						);
 					}

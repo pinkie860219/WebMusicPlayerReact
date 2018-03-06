@@ -24,7 +24,6 @@ export class SideList extends React.Component {
 			visible: nextProps.visible,
 		})
 	}
-
 	handleChange(e, data){
 		this.props.handleItemClick({name:'songlist'});
 		this.props.handleSongListChange(data.value);
