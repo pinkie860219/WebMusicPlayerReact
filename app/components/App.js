@@ -366,7 +366,7 @@ export class App extends React.Component {
 							curDisplayList = {this.state.curDisplayList}
 							setCurDir = {(str)=>this.setCurDir(str)}
 							setCurSong = {(song)=>this.setCurSong(song)}
-							curSong = {this.state.curSong}
+							curSongURL = {this.state.curSongURL}
 							fileExist = {this.state.fileExist}
 							songLists = {this.state.songLists}
 							handleAddToSongList = {(songList, song)=>this.handleAddToSongList(songList, song)}

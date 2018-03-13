@@ -37,7 +37,7 @@ export class PageGrid extends React.Component {
 				else {
 					//console.log("music");
 					type=1;//is music file
-					if(item.Name == nextProps.curSong){
+					if(item.Url == nextProps.curSongURL){
 						return(
 							<DataItem
 								key = {index} type={type} content = {item.Name}
@@ -85,9 +85,7 @@ export class PageGrid extends React.Component {
 	}
 	componentWillReceiveProps(nextProps){
 		if(
-			JSON.stringify(nextProps.curDisplayList) !== JSON.stringify(this.props.curDisplayList) ||
-			JSON.stringify(nextProps.songLists) !==
-			JSON.stringify(this.props.songLists)
+			JSON.stringify(nextProps) !== JSON.stringify(this.props)
 		){
 			this.updatePage(nextProps);
 		}
