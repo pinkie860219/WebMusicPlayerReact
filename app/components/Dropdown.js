@@ -29,20 +29,26 @@ export class Dropdown extends React.Component {
 			this.props.setVisible(newVisible);
 		}
 	}
+	componentDidUpdate(pp,ps){
+		if(this.state.visible){
+			this.dropdown.focus();
+		}
+	}
 	handleClick(e, {value, song}){
 
 	}
 	onBlur(e) {
-	    let currentTarget = e.currentTarget;
+		console.log("blurRRRR");
+		let currentTarget = e.currentTarget;
+	    setTimeout(()=>{
+			if (!currentTarget.contains(document.activeElement)) {
+				this.setState({
+				 	visible:false,
+			 	});
+			 	this.props.setVisible(false);
+			}
 
-	    setTimeout(function() {
-	      if (!currentTarget.contains(document.activeElement)) {
-	        console.log('component officially blurred');
-			this.setState({
-	  			visible: false,
-	  		});
-	      }
-	    }, 0);
+		}, 0);
 	}
 	render(){
 		let display;
@@ -52,7 +58,8 @@ export class Dropdown extends React.Component {
 			display = `${style.container2} ${this.props.className}`;
 		}
 		return(
-			<div className = {display} onBlur={(e)=>this.onBlur(e)}>
+			<div className = {display} onBlur={(e)=>this.onBlur(e)} tabIndex={0}
+				ref = {(container) => {this.dropdown = container;}}>
 				<div className = {style.pointDiv}/>
 				<CSegment basic compact as={Button}>
 					<Icon name='add square'/>
