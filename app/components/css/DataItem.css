@@ -7,7 +7,7 @@
 	margin: 2px 2px 2px 2px;
 	border-radius: 5px;
 	cursor: pointer;
-
+	position: relative;
 	transition: all 0.1s ease;
 }
 .icon{

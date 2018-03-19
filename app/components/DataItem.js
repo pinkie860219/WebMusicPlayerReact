@@ -1,12 +1,12 @@
 import React from "react";
 import style from "./css/DataItem.css";
 import styled from "styled-components";
-import { Icon, Header, Button, Dropdown, Input, Popup} from 'semantic-ui-react';
-
+import { Icon, Header, Button,  Input, } from 'semantic-ui-react';
+import {Dropdown} from './Dropdown.js'
 const CIcon = styled(Icon)`
 	display: inline-flex !important;
 	height: auto !important;
-	margin: 0 0 0 0 !important;
+	margin: 0 10 0 0 !important;
 	padding:2px 0 0 2px !important;
 `;
 const CDropdown = styled(Dropdown)`
@@ -48,6 +48,9 @@ export class DataItem extends React.Component {
 			bkcolorIndex:0,
 			icon_type:icon_type,
 			inputText:"",
+			dropdownSignal:false,
+			visiblePlus:false,
+			visibleDropdown:false,
 		};
 	}
 	componentWillReceiveProps(nextProps){
@@ -68,19 +71,24 @@ export class DataItem extends React.Component {
 	clickHandler(){
 		this.props.onClick();
 	}
-	clickAddHandler(){
+	toggleDropdown(){
 		console.log("plus");
+		this.setState({
+			dropdownSignal: !this.state.dropdownSignal
+		});
 	}
 	mouseOver(){
 		this.setState({
 			color:"black",
 			bkcolorIndex:1,
+			visiblePlus: true,
 		});
 	}
 	mouseOut(){
 		this.setState({
 			color:"grey",
 			bkcolorIndex:0,
+			visiblePlus: false,
 		});
 	}
 	mouseOverAdd(){
@@ -113,6 +121,11 @@ export class DataItem extends React.Component {
 		// console.log("song:");
 		// console.log(song);
 	}
+	setVisible(newVisible){
+		this.setState({
+			visibleDropdown:newVisible,
+		});
+	}
 	render(){
 		let tail;
 		switch (this.props.type) {
@@ -121,10 +134,13 @@ export class DataItem extends React.Component {
 			case 1:
 				tail = (<Div2
 
-					onMouseOver={()=>this.mouseOverAdd()}
-					onMouseOut={()=>this.mouseOutAdd()}>
-
-					<CDropdown
+					onMouseEnter={()=>this.mouseOverAdd()}
+					onMouseLeave={()=>this.mouseOutAdd()}>
+					{
+						(this.state.visiblePlus||this.state.visibleDropdown)?(<CIcon name='plus' size = 'large' color='black' link onClick={()=>this.toggleDropdown()}/>):''
+					}
+					<Dropdown songLists={this.props.songLists} signal={this.state.dropdownSignal} setVisible = {(t)=>this.setVisible(t)}/>
+					{/*<CDropdown
 						trigger={(<CIcon name='plus' size = 'large' color='black' link/>)}
 						pointing='top right'
 						direction='right'
@@ -163,7 +179,7 @@ export class DataItem extends React.Component {
 								);
 							})}
 						</Dropdown.Menu>
-					</CDropdown>
+					</CDropdown>*/}
 
 				</Div2>);
 				break;
@@ -171,8 +187,8 @@ export class DataItem extends React.Component {
 		}
 		return(
 			<div
-				className = {`${style.container} ${this.props.className}`} onMouseOver={()=>this.mouseOver()}
-				onMouseOut={()=>this.mouseOut()}
+				className = {`${style.container} ${this.props.className}`} onMouseEnter={()=>this.mouseOver()}
+				onMouseLeave={()=>this.mouseOut()}
 				style={{backgroundColor:this.props.bkcolor[this.state.bkcolorIndex]}}>
 				<Div1 onClick = {()=>this.clickHandler()}>
 					<Icon

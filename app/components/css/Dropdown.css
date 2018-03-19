@@ -1,0 +1,23 @@
+.container{
+	background-color: lightgreen;
+	position: absolute;
+	display: inline-flex;
+	flex-direction: column;
+	top: 95%;
+	right: 10px;
+	z-index: 2;
+	border-radius: 3px;
+	padding: 3px;
+}
+.container2{
+	display: none;
+}
+.pointDiv{
+	background-color: lightgreen;
+	position: absolute;
+	height: 10px;
+	width: 10px;
+	right:5px;
+	top: -5px;
+	transform: rotate(45deg);
+}
