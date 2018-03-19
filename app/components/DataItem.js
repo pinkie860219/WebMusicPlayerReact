@@ -47,7 +47,6 @@ export class DataItem extends React.Component {
 			colorAdd:"grey",
 			bkcolorIndex:0,
 			icon_type:icon_type,
-			inputText:"",
 			dropdownSignal:false,
 			visiblePlus:false,
 			visibleDropdown:false,
@@ -101,26 +100,6 @@ export class DataItem extends React.Component {
 			colorAdd:"grey",
 		});
 	}
-	handleClick(e, {value, song}){
-		this.props.handleAddToSongList(value, song);
-		// console.log("plus:");
-		// console.log(value);
-		// console.log(song);
-	}
-	handleInput(e, {value}){
-		// console.log("handleInput:");
-		// console.log(value);
-		this.setState({
-			inputText:value,
-		});
-	}
-	handleInputConfirm(e,{song}){
-		this.props.handleAddToSongList(this.state.inputText, song);
-		// console.log("handleInputConfirm:\nNewListName:");
-		// console.log(this.state.inputText);
-		// console.log("song:");
-		// console.log(song);
-	}
 	setVisible(newVisible){
 		this.setState({
 			visibleDropdown:newVisible,
@@ -139,7 +118,12 @@ export class DataItem extends React.Component {
 					{
 						(this.state.visiblePlus||this.state.visibleDropdown)?(<CIcon name='plus' size = 'large' color='black' link onClick={()=>this.toggleDropdown()}/>):''
 					}
-					<Dropdown songLists={this.props.songLists} signal={this.state.dropdownSignal} setVisible = {(t)=>this.setVisible(t)}/>
+					<Dropdown
+						songLists={this.props.songLists}
+						signal={this.state.dropdownSignal}
+						setVisible = {(t)=>this.setVisible(t)}
+						song={{Name:this.props.content, Url:this.props.url}}
+						handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}/>
 					{/*<CDropdown
 						trigger={(<CIcon name='plus' size = 'large' color='black' link/>)}
 						pointing='top right'

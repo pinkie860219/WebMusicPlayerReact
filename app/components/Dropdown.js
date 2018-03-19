@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./css/Dropdown.css";
 import styled from "styled-components";
-import {Button, Checkbox, Divider, Icon, Segment } from 'semantic-ui-react';
+import {Button, Checkbox, Divider, Icon, Input, Segment } from 'semantic-ui-react';
 const CCheckbox = styled(Checkbox)`
 	display: inline-flex !important;
 	height: auto !important;
@@ -18,6 +18,8 @@ export class Dropdown extends React.Component {
 		super(props);
 		this.state={
 			visible:false,
+			inputVisible:false,
+			inputText:"",
 		}
 	}
 	componentWillReceiveProps(nextProps){
@@ -34,8 +36,10 @@ export class Dropdown extends React.Component {
 			this.dropdown.focus();
 		}
 	}
-	handleClick(e, {value, song}){
-
+	handleOnChange({value, song, checked}){
+		if(checked){
+			this.props.handleAddToSongList(value, song);
+		}
 	}
 	onBlur(e) {
 		console.log("blurRRRR");
@@ -50,6 +54,19 @@ export class Dropdown extends React.Component {
 
 		}, 0);
 	}
+	toggleInput(){
+		this.setState({
+			inputVisible:!this.state.inputVisible,
+		});
+	}
+	handleInputConfirm({song}){
+		this.props.handleAddToSongList(this.state.inputText, song);
+	}
+	handleInput(e, {value}){
+		this.setState({
+			inputText:value,
+		});
+	}
 	render(){
 		let display;
 		if(this.state.visible){
@@ -61,18 +78,39 @@ export class Dropdown extends React.Component {
 			<div className = {display} onBlur={(e)=>this.onBlur(e)} tabIndex={0}
 				ref = {(container) => {this.dropdown = container;}}>
 				<div className = {style.pointDiv}/>
-				<CSegment basic compact as={Button}>
-					<Icon name='add square'/>
-					New List
-				</CSegment>
-				<Divider fitted/>
+				{
+					!this.state.inputVisible?
+					(<CSegment basic compact as={Button} onClick={()=>this.toggleInput()}>
+						<Icon name='add square'/>
+						New List
+					</CSegment>):
+					(<div>
+						名稱
+						<br/>
+						<Input
+							placeholder="List Name"
+							onChange={(e,{value})=>this.handleInput(e,{value})}
+							action={
+								<Button
+									song={this.props.song}
+									onClick={(e,{song}) => this.handleInputConfirm({song})}
+									icon="plus"
+									primary
+								/>
+							}
+						/>
+
+
+					</div>)
+				}
+				<Divider />
 				{this.props.songLists.map( (item, index) => {
 					return(
 						<CCheckbox
 							key = {index}
 							value = {item.text}
-							onClick={(e, {value, song}) => this.handleClick(e, {value, song})}
-							song={{Name:this.props.content, Url:this.props.url}}
+							onChange={(e, {value, song, checked}) => this.handleOnChange( {value, song, checked})}
+							song={this.props.song}
 							label={item.text}/>
 
 					);

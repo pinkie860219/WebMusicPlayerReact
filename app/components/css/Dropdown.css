@@ -20,6 +20,7 @@
 	width: 10px;
 	right:5px;
 	top: -5px;
+	z-index: -1;
 	transform: rotate(45deg);
 }
 .container:focus, .pointDiv:focus{
