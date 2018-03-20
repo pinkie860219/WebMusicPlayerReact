@@ -25,12 +25,13 @@ export class PageGrid extends React.Component {
 					type=0;//is folder
 					return(
 						<DataItem
-							key = {index} type={type} content = {item.Name}
+							key = {index} type={type}
+							song = {{Name:item.Name, Url:item.Url}}
 							onClick = {()=>nextProps.setCurDir(item.Name)}
 							bkcolor = {this.state.nColor}
 							songLists = {nextProps.songLists}
-							url = {item.Url}
 							handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
+							songQueryURL = {this.props.songQueryURL}
 						/>
 					);
 				}
@@ -40,23 +41,25 @@ export class PageGrid extends React.Component {
 					if(item.Url == nextProps.curSongURL){
 						return(
 							<DataItem
-								key = {index} type={type} content = {item.Name}
+								key = {index} type={type}
+								song = {{Name:item.Name, Url:item.Url}}
 								onClick = {()=>nextProps.setCurSong(item)}
 								bkcolor = {this.state.pColor}
 								songLists = {nextProps.songLists}
-								url = {item.Url}
 								handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
+								songQueryURL = {this.props.songQueryURL}
 							/>
 						);
 					} else {
 						return(
 							<DataItem
-								key = {index} type={type} content = {item.Name}
+								key = {index} type={type}
+								song = {{Name:item.Name, Url:item.Url}}
 								onClick = {()=>nextProps.setCurSong(item)}
 								bkcolor = {this.state.nColor}
 								songLists = {nextProps.songLists}
-								url = {item.Url}
 								handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
+								songQueryURL = {this.props.songQueryURL}
 							/>
 						);
 					}

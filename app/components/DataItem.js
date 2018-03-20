@@ -122,8 +122,9 @@ export class DataItem extends React.Component {
 						songLists={this.props.songLists}
 						signal={this.state.dropdownSignal}
 						setVisible = {(t)=>this.setVisible(t)}
-						song={{Name:this.props.content, Url:this.props.url}}
-						handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}/>
+						song={this.props.song}
+						handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
+						songQueryURL = {this.props.songQueryURL}/>
 					{/*<CDropdown
 						trigger={(<CIcon name='plus' size = 'large' color='black' link/>)}
 						pointing='top right'
@@ -182,7 +183,7 @@ export class DataItem extends React.Component {
 						size="large"
 					/>
 					<Header color={this.state.color} className = {style.header} >
-						{this.props.content}
+						{this.props.song.Name}
 					</Header>
 				</Div1>
 				{tail}

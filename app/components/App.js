@@ -14,6 +14,7 @@ export class App extends React.Component {
 			serverURL:'https://pinkiebala.nctu.me/MusicServer/dir?dir=/', // 檔案路徑的API
 			musicURL:'https://pinkiebala.nctu.me/MusicServer/file/', // serve音樂檔案的API
 			songListURL:'https://pinkiebala.nctu.me/MusicServer/songlist',
+			songQueryURL:'https://pinkiebala.nctu.me/MusicServer/songquery?url=',
 			visible: false, // sideList的開關
 			activeItem: 'folder', //sideList的選項
 
@@ -65,6 +66,7 @@ export class App extends React.Component {
 		});
 		this.setState({curDisplayList: data});
 	}
+
 	async fetchSongLists(){
 
 		console.log("fetchhhhhhhhsonglists");
@@ -73,7 +75,7 @@ export class App extends React.Component {
 		let output = [];
 		data.forEach( item => {
 			let foundindex = item.SongListNames.length
-			for(var i in item.SongListNames){
+			for(let i in item.SongListNames){
 				if(item.SongListNames[i] == "system.indexes"){
 					foundindex = i;
 				} else {
@@ -110,7 +112,7 @@ export class App extends React.Component {
 	async handleAddToSongList(songList, song){
 		console.log("handleAddToSongList");
 		const targetURL = this.state.songListURL;
-		
+
 		let formData = new FormData();
 		formData.append('songlist',songList);
 		formData.append('name',song.Name);
@@ -370,6 +372,7 @@ export class App extends React.Component {
 							fileExist = {this.state.fileExist}
 							songLists = {this.state.songLists}
 							handleAddToSongList = {(songList, song)=>this.handleAddToSongList(songList, song)}
+							songQueryURL = {this.state.songQueryURL}
 						/>
 
 						<PageFooter

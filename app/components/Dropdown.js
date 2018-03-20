@@ -20,11 +20,18 @@ export class Dropdown extends React.Component {
 			visible:false,
 			inputVisible:false,
 			inputText:"",
+			foundInSongListNames:[],
 		}
+	}
+	componentDidMount(){
+		//this.fetchSongQuery();
 	}
 	componentWillReceiveProps(nextProps){
 		if(nextProps.signal != this.props.signal){
 			const newVisible = !this.state.visible
+			if(newVisible){
+				this.fetchSongQuery();
+			}
 			this.setState({
 				visible: newVisible,
 			})
@@ -32,13 +39,14 @@ export class Dropdown extends React.Component {
 		}
 	}
 	componentDidUpdate(pp,ps){
-		if(this.state.visible){
+		if(this.state.visible && (this.state.visible != ps.visible)){
 			this.dropdown.focus();
 		}
 	}
 	handleOnChange({value, song, checked}){
 		if(checked){
 			this.props.handleAddToSongList(value, song);
+			this.fetchSongQuery();
 		}
 	}
 	onBlur(e) {
@@ -61,10 +69,32 @@ export class Dropdown extends React.Component {
 	}
 	handleInputConfirm({song}){
 		this.props.handleAddToSongList(this.state.inputText, song);
+		this.fetchSongQuery();
 	}
 	handleInput(e, {value}){
 		this.setState({
 			inputText:value,
+		});
+	}
+	async fetchSongQuery(){ // 查詢此歌存在於哪些歌單
+
+		console.log("fetchSongQuery");
+
+		let formData = new FormData();
+		formData.append('url',this.props.song.Url);
+		let response = await fetch(this.props.songQueryURL + this.props.song.Url,{
+			method:'POST',
+			body:formData,
+		});
+	//	let response = await fetch(this.props.songQueryURL + this.props.song.Url);
+		let data = await response.json();
+	//	console.log(data);
+		data.forEach(item => {
+			this.setState({
+				foundInSongListNames:item.SongListNames,
+			});
+			//console.log(item.SongListNames);
+			console.log(data);
 		});
 	}
 	render(){
@@ -111,7 +141,9 @@ export class Dropdown extends React.Component {
 							value = {item.text}
 							onChange={(e, {value, song, checked}) => this.handleOnChange( {value, song, checked})}
 							song={this.props.song}
-							label={item.text}/>
+							label={item.text}
+							checked={this.state.foundInSongListNames.indexOf(item.text)>=0?true:false}
+						/>
 
 					);
 				})}
