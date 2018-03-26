@@ -128,7 +128,8 @@ export class DataItem extends React.Component {
 						setVisible = {(t)=>this.setVisible(t)}
 						song={this.props.song}
 						handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
-						songQueryURL = {this.props.songQueryURL}/>
+						songQueryURL = {this.props.songQueryURL}
+						handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}/>
 					{/*<CDropdown
 						trigger={(<CIcon name='plus' size = 'large' color='black' link/>)}
 						pointing='top right'

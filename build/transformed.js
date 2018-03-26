@@ -42825,6 +42825,37 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		this.setState({ songLists: output });
 		console.log(output);
 	}
+	async handleDeleteSong(songList, song) {
+		console.log("handleDeleteSong");
+		const targetURL = this.state.songListURL;
+
+		let formData = new FormData();
+		formData.append('songlist', songList);
+		formData.append('name', song.Name);
+		formData.append('url', song.Url);
+		let response = await fetch(targetURL, {
+			method: 'DELETE',
+			body: formData
+		});
+		let data = await response.json();
+		let output = [];
+		data.forEach(item => {
+			let foundindex = item.SongListNames.length;
+			for (var i in item.SongListNames) {
+				if (item.SongListNames[i] == "system.indexes") {
+					foundindex = i;
+				} else {
+					if (i < foundindex) {
+						output.push({ key: i, value: i, text: item.SongListNames[i] });
+					} else {
+						output.push({ key: i - 1, value: i - 1, text: item.SongListNames[i] });
+					}
+				}
+			}
+		});
+		this.setState({ songLists: output });
+		console.log(output);
+	}
 	setCurDir(str) {
 		// 點擊資料夾，設定瀏覽位置
 		let d = this.state.curDir;
@@ -43077,7 +43108,8 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 						fileExist: this.state.fileExist,
 						songLists: this.state.songLists,
 						handleAddToSongList: (songList, song) => this.handleAddToSongList(songList, song),
-						songQueryURL: this.state.songQueryURL
+						songQueryURL: this.state.songQueryURL,
+						handleDeleteSong: (songList, song) => this.handleDeleteSong(songList, song)
 					}),
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__PageFooter_js__["a" /* PageFooter */], {
 						curSong: this.state.curSong,
@@ -74057,7 +74089,8 @@ class PageGrid extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 						bkcolor: this.state.nColor,
 						songLists: nextProps.songLists,
 						handleAddToSongList: (songList, song) => this.props.handleAddToSongList(songList, song),
-						songQueryURL: this.props.songQueryURL
+						songQueryURL: this.props.songQueryURL,
+						handleDeleteSong: (songList, song) => this.props.handleDeleteSong(songList, song)
 					});
 				} else {
 					//console.log("music");
@@ -74070,7 +74103,8 @@ class PageGrid extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 							bkcolor: this.state.pColor,
 							songLists: nextProps.songLists,
 							handleAddToSongList: (songList, song) => this.props.handleAddToSongList(songList, song),
-							songQueryURL: this.props.songQueryURL
+							songQueryURL: this.props.songQueryURL,
+							handleDeleteSong: (songList, song) => this.props.handleDeleteSong(songList, song)
 						});
 					} else {
 						return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__DataItem_js__["a" /* DataItem */], {
@@ -74080,7 +74114,8 @@ class PageGrid extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 							bkcolor: this.state.nColor,
 							songLists: nextProps.songLists,
 							handleAddToSongList: (songList, song) => this.props.handleAddToSongList(songList, song),
-							songQueryURL: this.props.songQueryURL
+							songQueryURL: this.props.songQueryURL,
+							handleDeleteSong: (songList, song) => this.props.handleDeleteSong(songList, song)
 						});
 					}
 				}
@@ -74234,7 +74269,8 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			icon_type: icon_type,
 			dropdownSignal: false,
 			visiblePlus: false,
-			visibleDropdown: false
+			visibleDropdown: false,
+			dropdownFlag: false
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -74256,10 +74292,11 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		this.props.onClick();
 	}
 	toggleDropdown() {
-		console.log("plus");
-		this.setState({
-			dropdownSignal: !this.state.dropdownSignal
-		});
+		if (!this.state.dropdownFlag) {
+			this.setState({
+				visibleDropdown: !this.state.visibleDropdown
+			});
+		}
 	}
 	mouseOver() {
 		this.setState({
@@ -74306,10 +74343,12 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Dropdown_js__["a" /* Dropdown */], {
 						songLists: this.props.songLists,
 						signal: this.state.dropdownSignal,
+						visible: this.state.visibleDropdown,
 						setVisible: t => this.setVisible(t),
 						song: this.props.song,
 						handleAddToSongList: (songList, song) => this.props.handleAddToSongList(songList, song),
-						songQueryURL: this.props.songQueryURL })
+						songQueryURL: this.props.songQueryURL,
+						handleDeleteSong: (songList, song) => this.props.handleDeleteSong(songList, song) })
 				);
 				break;
 
@@ -74421,7 +74460,6 @@ class Dropdown extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			visible: false,
 			inputVisible: false,
 			inputText: "",
 			foundInSongListNames: []
@@ -74431,25 +74469,36 @@ class Dropdown extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		//this.fetchSongQuery();
 	}
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.signal != this.props.signal) {
-			const newVisible = !this.state.visible;
-			if (newVisible) {
-				this.fetchSongQuery();
-			}
-			this.setState({
-				visible: newVisible
-			});
-			this.props.setVisible(newVisible);
-		}
+		// if(nextProps.signal != this.props.signal){
+		// 	const newVisible = !this.state.visible
+		// 	if(newVisible){
+		// 		this.fetchSongQuery();
+		// 	}
+		// 	this.setState({
+		// 		visible: newVisible,
+		// 	})
+		// 	this.props.setVisible(newVisible);
+		// // }
+		// if(nextProps.visible){
+		//
+		// }
 	}
 	componentDidUpdate(pp, ps) {
-		if (this.state.visible && this.state.visible != ps.visible) {
+
+		if (this.props.visible && this.props.visible != pp.visible) {
 			this.dropdown.focus();
+			this.fetchSongQuery();
+		}
+		if (this.state.inputVisible && this.state.inputVisible != ps.inputVisible) {
+			this.inputField.focus();
 		}
 	}
 	handleOnChange({ value, song, checked }) {
 		if (checked) {
 			this.props.handleAddToSongList(value, song);
+			this.fetchSongQuery();
+		} else {
+			this.props.handleDeleteSong(value, song);
 			this.fetchSongQuery();
 		}
 	}
@@ -74458,8 +74507,9 @@ class Dropdown extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		let currentTarget = e.currentTarget;
 		setTimeout(() => {
 			if (!currentTarget.contains(document.activeElement)) {
+
 				this.setState({
-					visible: false
+					inputVisible: false
 				});
 				this.props.setVisible(false);
 			}
@@ -74503,7 +74553,7 @@ class Dropdown extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	}
 	render() {
 		let display;
-		if (this.state.visible) {
+		if (this.props.visible) {
 			display = `${__WEBPACK_IMPORTED_MODULE_1__css_Dropdown_css___default.a.container} ${this.props.className}`;
 		} else {
 			display = `${__WEBPACK_IMPORTED_MODULE_1__css_Dropdown_css___default.a.container2} ${this.props.className}`;
@@ -74526,6 +74576,9 @@ class Dropdown extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 				"\u540D\u7A31",
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("br", null),
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["h" /* Input */], {
+					ref: input => {
+						this.inputField = input;
+					},
 					placeholder: "List Name",
 					onChange: (e, { value }) => this.handleInput(e, { value }),
 					action: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["b" /* Button */], {
@@ -74593,7 +74646,7 @@ exports = module.exports = __webpack_require__(40)(undefined);
 
 
 // module
-exports.push([module.i, ".L5KSVsOtLHC9BpTY3MIVc{\n\tbackground-color: rgb(250, 250, 250);\n\tposition: absolute;\n\tdisplay: inline-flex;\n\tflex-direction: column;\n\ttop: 95%;\n\tright: 10px;\n\tz-index: 2;\n\tborder-radius: 3px;\n\tpadding: 3px;\n\tfilter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.56));\n}\n._2HWSwHBhsOOVACjQ8z8TW6{\n\tdisplay: none;\n}\n.MXCU2_wkWeieHc_CiA7VT{\n\tbackground-color: rgb(250, 250, 250);\n\tposition: absolute;\n\theight: 10px;\n\twidth: 10px;\n\tright:5px;\n\ttop: -5px;\n\tz-index: -1;\n\ttransform: rotate(45deg);\n}\n.L5KSVsOtLHC9BpTY3MIVc:focus, .MXCU2_wkWeieHc_CiA7VT:focus{\n\toutline: none;\n}\n", ""]);
+exports.push([module.i, ".L5KSVsOtLHC9BpTY3MIVc{\n\tbackground-color: rgb(250, 250, 250);\n\tposition: absolute;\n\tdisplay: inline-flex;\n\tflex-direction: column;\n\ttop: 5px;\n\tright: 40px;\n\tz-index: 2;\n\tborder-radius: 3px;\n\tpadding: 3px;\n\tfilter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.56));\n}\n._2HWSwHBhsOOVACjQ8z8TW6{\n\tdisplay: none;\n}\n.MXCU2_wkWeieHc_CiA7VT{\n\tbackground-color: rgb(250, 250, 250);\n\tposition: absolute;\n\theight: 10px;\n\twidth: 10px;\n\tright:-5px;\n\ttop: 15px;\n\tz-index: -1;\n\ttransform: rotate(45deg);\n}\n.L5KSVsOtLHC9BpTY3MIVc:focus, .MXCU2_wkWeieHc_CiA7VT:focus{\n\toutline: none;\n}\n", ""]);
 
 // exports
 exports.locals = {

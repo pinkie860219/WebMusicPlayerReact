@@ -141,6 +141,38 @@ export class App extends React.Component {
 		this.setState({songLists: output});
 		console.log(output);
 	}
+	async handleDeleteSong(songList, song){
+		console.log("handleDeleteSong");
+		const targetURL = this.state.songListURL;
+
+		let formData = new FormData();
+		formData.append('songlist',songList);
+		formData.append('name',song.Name);
+		formData.append('url',song.Url);
+		let response = await fetch(targetURL,{
+			method:'DELETE',
+			body:formData,
+		});
+		let data = await response.json();
+		let output = [];
+		data.forEach( item => {
+			let foundindex = item.SongListNames.length
+			for(var i in item.SongListNames){
+				if(item.SongListNames[i] == "system.indexes"){
+					foundindex = i;
+				} else {
+					if(i < foundindex){
+						output.push({ key: i, value: i, text: item.SongListNames[i] });
+					} else {
+						output.push({ key: i-1, value: i-1, text: item.SongListNames[i] });
+					}
+				}
+
+			}
+		});
+		this.setState({songLists: output});
+		console.log(output);
+	}
 	setCurDir(str){ // 點擊資料夾，設定瀏覽位置
 		let d = this.state.curDir;
 		d.push(str);
@@ -373,6 +405,7 @@ export class App extends React.Component {
 							songLists = {this.state.songLists}
 							handleAddToSongList = {(songList, song)=>this.handleAddToSongList(songList, song)}
 							songQueryURL = {this.state.songQueryURL}
+							handleDeleteSong = {(songList, song)=>this.handleDeleteSong(songList, song)}
 						/>
 
 						<PageFooter

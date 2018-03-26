@@ -54,6 +54,9 @@ export class Dropdown extends React.Component {
 		if(checked){
 			this.props.handleAddToSongList(value, song);
 			this.fetchSongQuery();
+		} else {
+			this.props.handleDeleteSong(value, song);
+			this.fetchSongQuery();
 		}
 	}
 	onBlur(e) {

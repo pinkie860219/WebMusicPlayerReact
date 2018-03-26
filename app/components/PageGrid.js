@@ -32,6 +32,7 @@ export class PageGrid extends React.Component {
 							songLists = {nextProps.songLists}
 							handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
 							songQueryURL = {this.props.songQueryURL}
+							handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}
 						/>
 					);
 				}
@@ -48,6 +49,7 @@ export class PageGrid extends React.Component {
 								songLists = {nextProps.songLists}
 								handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
 								songQueryURL = {this.props.songQueryURL}
+								handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}
 							/>
 						);
 					} else {
@@ -60,6 +62,7 @@ export class PageGrid extends React.Component {
 								songLists = {nextProps.songLists}
 								handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
 								songQueryURL = {this.props.songQueryURL}
+								handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}
 							/>
 						);
 					}
