@@ -50,6 +50,7 @@ export class DataItem extends React.Component {
 			dropdownSignal:false,
 			visiblePlus:false,
 			visibleDropdown:false,
+			dropdownFlag:false,
 		};
 	}
 	componentWillReceiveProps(nextProps){
@@ -71,10 +72,11 @@ export class DataItem extends React.Component {
 		this.props.onClick();
 	}
 	toggleDropdown(){
-		console.log("plus");
-		this.setState({
-			dropdownSignal: !this.state.dropdownSignal
-		});
+		if(!this.state.dropdownFlag){
+			this.setState({
+				visibleDropdown: !this.state.visibleDropdown,
+			});
+		}
 	}
 	mouseOver(){
 		this.setState({
@@ -116,11 +118,13 @@ export class DataItem extends React.Component {
 					onMouseEnter={()=>this.mouseOverAdd()}
 					onMouseLeave={()=>this.mouseOutAdd()}>
 					{
-						(this.state.visiblePlus||this.state.visibleDropdown)?(<CIcon name='plus' size = 'large' color='black' link onClick={()=>this.toggleDropdown()}/>):''
+						(this.state.visiblePlus||this.state.visibleDropdown)?
+						(<CIcon name='plus' size = 'large' color='black' link onClick={()=>this.toggleDropdown()} />):''
 					}
 					<Dropdown
 						songLists={this.props.songLists}
 						signal={this.state.dropdownSignal}
+						visible={this.state.visibleDropdown}
 						setVisible = {(t)=>this.setVisible(t)}
 						song={this.props.song}
 						handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}

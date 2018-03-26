@@ -17,7 +17,6 @@ export class Dropdown extends React.Component {
 	constructor(props){
 		super(props);
 		this.state={
-			visible:false,
 			inputVisible:false,
 			inputText:"",
 			foundInSongListNames:[],
@@ -27,20 +26,28 @@ export class Dropdown extends React.Component {
 		//this.fetchSongQuery();
 	}
 	componentWillReceiveProps(nextProps){
-		if(nextProps.signal != this.props.signal){
-			const newVisible = !this.state.visible
-			if(newVisible){
-				this.fetchSongQuery();
-			}
-			this.setState({
-				visible: newVisible,
-			})
-			this.props.setVisible(newVisible);
-		}
+		// if(nextProps.signal != this.props.signal){
+		// 	const newVisible = !this.state.visible
+		// 	if(newVisible){
+		// 		this.fetchSongQuery();
+		// 	}
+		// 	this.setState({
+		// 		visible: newVisible,
+		// 	})
+		// 	this.props.setVisible(newVisible);
+		// // }
+		// if(nextProps.visible){
+        //
+		// }
 	}
 	componentDidUpdate(pp,ps){
-		if(this.state.visible && (this.state.visible != ps.visible)){
+
+		if(this.props.visible && (this.props.visible != pp.visible)){
 			this.dropdown.focus();
+			this.fetchSongQuery();
+		}
+		if(this.state.inputVisible && (this.state.inputVisible != ps.inputVisible)){
+			this.inputField.focus();
 		}
 	}
 	handleOnChange({value, song, checked}){
@@ -54,8 +61,9 @@ export class Dropdown extends React.Component {
 		let currentTarget = e.currentTarget;
 	    setTimeout(()=>{
 			if (!currentTarget.contains(document.activeElement)) {
+
 				this.setState({
-				 	visible:false,
+					inputVisible:false,
 			 	});
 			 	this.props.setVisible(false);
 			}
@@ -99,7 +107,7 @@ export class Dropdown extends React.Component {
 	}
 	render(){
 		let display;
-		if(this.state.visible){
+		if(this.props.visible){
 			display = `${style.container} ${this.props.className}`;
 		} else {
 			display = `${style.container2} ${this.props.className}`;
@@ -118,6 +126,7 @@ export class Dropdown extends React.Component {
 						名稱
 						<br/>
 						<Input
+							ref = {(input) => {this.inputField = input;}}
 							placeholder="List Name"
 							onChange={(e,{value})=>this.handleInput(e,{value})}
 							action={
