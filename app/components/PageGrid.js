@@ -12,6 +12,7 @@ export class PageGrid extends React.Component {
 			pColor:['rgba(255, 250, 117, 0.54)','rgba(255, 251, 152, 0.54)'],
 			nColor:['rgba(255, 255, 255, 0)','rgba(255, 255, 255, 0.57)'],
 			containerStyle: style.container,
+			refreshSignal:false,
 		}
 	}
 	updatePage(nextProps){
@@ -30,9 +31,11 @@ export class PageGrid extends React.Component {
 							onClick = {()=>nextProps.setCurDir(item.Name)}
 							bkcolor = {this.state.nColor}
 							songLists = {nextProps.songLists}
-							handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
-							songQueryURL = {this.props.songQueryURL}
-							handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}
+							handleAddToSongList = {(songList, song)=>nextProps.handleAddToSongList(songList, song)}
+							songQueryURL = {nextProps.songQueryURL}
+							handleDeleteSong = {(songList, song)=>nextProps.handleDeleteSong(songList, song)}
+							curDisplaySongListName = {nextProps.curDisplaySongListName}
+							refreshSignal = {this.state.refreshSignal}
 						/>
 					);
 				}
@@ -47,9 +50,11 @@ export class PageGrid extends React.Component {
 								onClick = {()=>nextProps.setCurSong(item)}
 								bkcolor = {this.state.pColor}
 								songLists = {nextProps.songLists}
-								handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
-								songQueryURL = {this.props.songQueryURL}
-								handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}
+								handleAddToSongList = {(songList, song)=>nextProps.handleAddToSongList(songList, song)}
+								songQueryURL = {nextProps.songQueryURL}
+								handleDeleteSong = {(songList, song)=>nextProps.handleDeleteSong(songList, song)}
+								curDisplaySongListName = {nextProps.curDisplaySongListName}
+								refreshSignal = {this.state.refreshSignal}
 							/>
 						);
 					} else {
@@ -60,16 +65,22 @@ export class PageGrid extends React.Component {
 								onClick = {()=>nextProps.setCurSong(item)}
 								bkcolor = {this.state.nColor}
 								songLists = {nextProps.songLists}
-								handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
-								songQueryURL = {this.props.songQueryURL}
-								handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}
+								handleAddToSongList = {(songList, song)=>nextProps.handleAddToSongList(songList, song)}
+								songQueryURL = {nextProps.songQueryURL}
+								handleDeleteSong = {(songList, song)=>nextProps.handleDeleteSong(songList, song)}
+								curDisplaySongListName = {nextProps.curDisplaySongListName}
+								refreshSignal = {this.state.refreshSignal}
 							/>
 						);
 					}
 				}
 
+
 			});
+
+
 			this.setState({
+				refreshSignal: !this.state.refreshSignal,
 				output:output,
 				containerStyle: style.container,
 			});

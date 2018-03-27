@@ -33,7 +33,7 @@ export class App extends React.Component {
 			curDisplayList:[], // 當前的瀏覽路徑下的檔案{Name, Url, IsDir}
 		//	curPlayingURLList:[], // 現在的播放清單，存的是url
 			curPlayingList:[], // 現在的播放清單，{Name, Url, IsDir}
-
+			curDisplaySongListName:'',
 			songLists:[],
 
 			fileExist:true,
@@ -56,15 +56,23 @@ export class App extends React.Component {
 
 		let response = await fetch(this.state.serverURL + d);
 		let data = await response.json();
-	//	console.log(data);
-		data.forEach(item => {
-			if(item.IsDir){
-				item.Url = this.state.serverURL + d + '/'+ encodeURIComponent(item.Name);
-			} else {
-				item.Url = this.state.musicURL + d + '/'+ encodeURIComponent(item.Name);
-			}
+		//console.log(data);
+		if(data){
+			data.forEach(item => {
+				if(item.IsDir){
+					item.Url = this.state.serverURL + d + '/'+ encodeURIComponent(item.Name);
+				} else {
+					item.Url = this.state.musicURL + d + '/'+ encodeURIComponent(item.Name);
+				}
+			});
+		} else {
+			data = [];
+		}
+
+		this.setState({
+			curDisplayList: data,
+			curDisplaySongListName:''
 		});
-		this.setState({curDisplayList: data});
 	}
 
 	async fetchSongLists(){
@@ -100,14 +108,23 @@ export class App extends React.Component {
 		//console.log(targetURL);
 
 		let data = await response.json();
-		//console.log(data);
-		let output = data.map(item => {
-			let newItem = Object.assign({},item);
-			newItem.IsDir = false;
-			return newItem;
-		});
+		if(data){
+			data.forEach(item => {
+				item.IsDir = false;
+			});
+		} else {
+			data = [];
+		}
+		// let output = data.map(item => {
+		// 	let newItem = Object.assign({},item);
+		// 	newItem.IsDir = false;
+		// 	return newItem;
+		// });
 		//console.log(output);
-		this.setState({curDisplayList: output});
+		this.setState({
+			curDisplayList: data,
+			curDisplaySongListName: this.state.songLists[value].text,
+		});
 	}
 	async handleAddToSongList(songList, song){
 		console.log("handleAddToSongList");
@@ -406,6 +423,7 @@ export class App extends React.Component {
 							handleAddToSongList = {(songList, song)=>this.handleAddToSongList(songList, song)}
 							songQueryURL = {this.state.songQueryURL}
 							handleDeleteSong = {(songList, song)=>this.handleDeleteSong(songList, song)}
+							curDisplaySongListName = {this.state.curDisplaySongListName}
 						/>
 
 						<PageFooter

@@ -57,6 +57,12 @@ export class Dropdown extends React.Component {
 		} else {
 			this.props.handleDeleteSong(value, song);
 			this.fetchSongQuery();
+			console.log("curlistname:")
+			console.log(this.props.curDisplaySongListName);
+			console.log("value:"+value);
+			if(this.props.curDisplaySongListName == value){
+				this.props.distory();
+			}
 		}
 	}
 	onBlur(e) {

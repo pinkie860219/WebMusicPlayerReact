@@ -64,9 +64,15 @@ export class DataItem extends React.Component {
 				break;
 
 		}
+		if(this.props.refreshSignal != nextProps.refreshSignal){
+			this.refresh();
+		}
 		this.setState({
 			icon_type:icon_type,
 		});
+	}
+	componentDidMount(){
+		this.refresh();
 	}
 	clickHandler(){
 		this.props.onClick();
@@ -107,6 +113,33 @@ export class DataItem extends React.Component {
 			visibleDropdown:newVisible,
 		});
 	}
+	distory(){
+		console.log("distory");
+		this.setState({
+			colorStyle:{
+				transition:" all 0.4s ease",
+				backgroundColor:"rgb(255, 106, 106)",
+				visibility: "hidden",
+	  			opacity: 0,
+			}
+		});
+		setTimeout(()=>{
+			this.setState({
+				colorStyle:{
+					display:"none",
+				}
+			})
+		},400)
+	}
+	refresh(){
+		console.log("refresh");
+		this.setState({
+			colorStyle:{
+				backgroundColor:this.props.bkcolor[this.state.bkcolorIndex],
+				display:"inline-flex",
+			},
+		});
+	}
 	render(){
 		let tail;
 		switch (this.props.type) {
@@ -129,47 +162,10 @@ export class DataItem extends React.Component {
 						song={this.props.song}
 						handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
 						songQueryURL = {this.props.songQueryURL}
-						handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}/>
-					{/*<CDropdown
-						trigger={(<CIcon name='plus' size = 'large' color='black' link/>)}
-						pointing='top right'
-						direction='right'
-						icon={null}
-					>
-						<Dropdown.Menu >
-							<Popup hoverable
-					          	trigger={
-								  	<Dropdown.Item icon="add square" content="New List"	/>
-								}
-					          	position='left center'
-					        >
-								<Input
-									placeholder="List Name"
-									onChange={(e,{value})=>this.handleInput(e,{value})}
-								>
-									<input/>
-									<Button
-										song={{Name:this.props.content, Url:this.props.url}}
-										onClick={(e,{song}) => this.handleInputConfirm(e,{song})}
-										icon="plus"
-									/>
-								</Input>
-							</Popup>
+						handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}
+						curDisplaySongListName = {this.props.curDisplaySongListName}
+						distory = {()=>this.distory()}/>
 
-      						<Dropdown.Divider />
-							{this.props.songLists.map( (item, index) => {
-								return(
-									<Dropdown.Item
-										key = {index}
-										value = {item.text}
-										onClick={(e, {value, song}) => this.handleClick(e, {value, song})}
-										song={{Name:this.props.content, Url:this.props.url}}>
-										{item.text}
-									</Dropdown.Item>
-								);
-							})}
-						</Dropdown.Menu>
-					</CDropdown>*/}
 
 				</Div2>);
 				break;
@@ -179,7 +175,7 @@ export class DataItem extends React.Component {
 			<div
 				className = {`${style.container} ${this.props.className}`} onMouseEnter={()=>this.mouseOver()}
 				onMouseLeave={()=>this.mouseOut()}
-				style={{backgroundColor:this.props.bkcolor[this.state.bkcolorIndex]}}>
+				style={this.state.colorStyle}>
 				<Div1 onClick = {()=>this.clickHandler()}>
 					<Icon
 						color={this.state.color}

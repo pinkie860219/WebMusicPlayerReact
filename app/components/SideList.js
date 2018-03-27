@@ -1,14 +1,7 @@
 import React from "react";
 import style from "./css/SideList.css";
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Grid, Label, Dropdown } from 'semantic-ui-react'
-// const options = [
-//   { key: 'a', value: 'a', text: 'Café with accent' },
-//   { key: 'b', value: 'b', text: 'Cafe without accent' },
-//   { key: 'c', value: 'c', text: 'Déjà vu' },
-//   { key: 'd', value: 'd', text: 'Deja vu' },
-//   { key: 'e', value: 'e', text: 'Scandinavian å ä æ ø ö' },
-//   { key: 'f', value: 'f', text: 'Scandinavian a a ae o o' },
-// ]
+
 
 export class SideList extends React.Component {
 	constructor(props) {
