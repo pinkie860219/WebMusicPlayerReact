@@ -65,14 +65,14 @@ export class DataItem extends React.Component {
 
 		}
 		if(this.props.refreshSignal != nextProps.refreshSignal){
-			this.refresh();
+			this.refresh(nextProps);
 		}
 		this.setState({
 			icon_type:icon_type,
 		});
 	}
 	componentDidMount(){
-		this.refresh();
+		this.refresh(this.props);
 	}
 	clickHandler(){
 		this.props.onClick();
@@ -131,11 +131,11 @@ export class DataItem extends React.Component {
 			})
 		},400)
 	}
-	refresh(){
+	refresh(p){
 		console.log("refresh");
 		this.setState({
 			colorStyle:{
-				backgroundColor:this.props.bkcolor[this.state.bkcolorIndex],
+				backgroundColor:p.bkcolor[this.state.bkcolorIndex],
 				display:"inline-flex",
 			},
 		});

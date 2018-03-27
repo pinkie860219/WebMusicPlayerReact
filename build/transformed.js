@@ -42716,7 +42716,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			curDisplayList: [], // 當前的瀏覽路徑下的檔案{Name, Url, IsDir}
 			//	curPlayingURLList:[], // 現在的播放清單，存的是url
 			curPlayingList: [], // 現在的播放清單，{Name, Url, IsDir}
-
+			curDisplaySongListName: '',
 			songLists: [],
 
 			fileExist: true
@@ -42742,15 +42742,23 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
 		let response = await fetch(this.state.serverURL + d);
 		let data = await response.json();
-		//	console.log(data);
-		data.forEach(item => {
-			if (item.IsDir) {
-				item.Url = this.state.serverURL + d + '/' + encodeURIComponent(item.Name);
-			} else {
-				item.Url = this.state.musicURL + d + '/' + encodeURIComponent(item.Name);
-			}
+		//console.log(data);
+		if (data) {
+			data.forEach(item => {
+				if (item.IsDir) {
+					item.Url = this.state.serverURL + d + '/' + encodeURIComponent(item.Name);
+				} else {
+					item.Url = this.state.musicURL + d + '/' + encodeURIComponent(item.Name);
+				}
+			});
+		} else {
+			data = [];
+		}
+
+		this.setState({
+			curDisplayList: data,
+			curDisplaySongListName: ''
 		});
-		this.setState({ curDisplayList: data });
 	}
 
 	async fetchSongLists() {
@@ -42785,14 +42793,23 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		//console.log(targetURL);
 
 		let data = await response.json();
-		//console.log(data);
-		let output = data.map(item => {
-			let newItem = Object.assign({}, item);
-			newItem.IsDir = false;
-			return newItem;
-		});
+		if (data) {
+			data.forEach(item => {
+				item.IsDir = false;
+			});
+		} else {
+			data = [];
+		}
+		// let output = data.map(item => {
+		// 	let newItem = Object.assign({},item);
+		// 	newItem.IsDir = false;
+		// 	return newItem;
+		// });
 		//console.log(output);
-		this.setState({ curDisplayList: output });
+		this.setState({
+			curDisplayList: data,
+			curDisplaySongListName: this.state.songLists[value].text
+		});
 	}
 	async handleAddToSongList(songList, song) {
 		console.log("handleAddToSongList");
@@ -43109,7 +43126,8 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 						songLists: this.state.songLists,
 						handleAddToSongList: (songList, song) => this.handleAddToSongList(songList, song),
 						songQueryURL: this.state.songQueryURL,
-						handleDeleteSong: (songList, song) => this.handleDeleteSong(songList, song)
+						handleDeleteSong: (songList, song) => this.handleDeleteSong(songList, song),
+						curDisplaySongListName: this.state.curDisplaySongListName
 					}),
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__PageFooter_js__["a" /* PageFooter */], {
 						curSong: this.state.curSong,
@@ -71463,14 +71481,6 @@ Feed.User = __WEBPACK_IMPORTED_MODULE_16__FeedUser__["a" /* default */];
 
 
 
-// const options = [
-//   { key: 'a', value: 'a', text: 'Café with accent' },
-//   { key: 'b', value: 'b', text: 'Cafe without accent' },
-//   { key: 'c', value: 'c', text: 'Déjà vu' },
-//   { key: 'd', value: 'd', text: 'Deja vu' },
-//   { key: 'e', value: 'e', text: 'Scandinavian å ä æ ø ö' },
-//   { key: 'f', value: 'f', text: 'Scandinavian a a ae o o' },
-// ]
 
 class SideList extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	constructor(props) {
@@ -74070,7 +74080,8 @@ class PageGrid extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			output: [],
 			pColor: ['rgba(255, 250, 117, 0.54)', 'rgba(255, 251, 152, 0.54)'],
 			nColor: ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0.57)'],
-			containerStyle: __WEBPACK_IMPORTED_MODULE_1__css_PageGrid_css___default.a.container
+			containerStyle: __WEBPACK_IMPORTED_MODULE_1__css_PageGrid_css___default.a.container,
+			refreshSignal: false
 		};
 	}
 	updatePage(nextProps) {
@@ -74088,9 +74099,11 @@ class PageGrid extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 						onClick: () => nextProps.setCurDir(item.Name),
 						bkcolor: this.state.nColor,
 						songLists: nextProps.songLists,
-						handleAddToSongList: (songList, song) => this.props.handleAddToSongList(songList, song),
-						songQueryURL: this.props.songQueryURL,
-						handleDeleteSong: (songList, song) => this.props.handleDeleteSong(songList, song)
+						handleAddToSongList: (songList, song) => nextProps.handleAddToSongList(songList, song),
+						songQueryURL: nextProps.songQueryURL,
+						handleDeleteSong: (songList, song) => nextProps.handleDeleteSong(songList, song),
+						curDisplaySongListName: nextProps.curDisplaySongListName,
+						refreshSignal: this.state.refreshSignal
 					});
 				} else {
 					//console.log("music");
@@ -74102,9 +74115,11 @@ class PageGrid extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 							onClick: () => nextProps.setCurSong(item),
 							bkcolor: this.state.pColor,
 							songLists: nextProps.songLists,
-							handleAddToSongList: (songList, song) => this.props.handleAddToSongList(songList, song),
-							songQueryURL: this.props.songQueryURL,
-							handleDeleteSong: (songList, song) => this.props.handleDeleteSong(songList, song)
+							handleAddToSongList: (songList, song) => nextProps.handleAddToSongList(songList, song),
+							songQueryURL: nextProps.songQueryURL,
+							handleDeleteSong: (songList, song) => nextProps.handleDeleteSong(songList, song),
+							curDisplaySongListName: nextProps.curDisplaySongListName,
+							refreshSignal: this.state.refreshSignal
 						});
 					} else {
 						return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__DataItem_js__["a" /* DataItem */], {
@@ -74113,14 +74128,18 @@ class PageGrid extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 							onClick: () => nextProps.setCurSong(item),
 							bkcolor: this.state.nColor,
 							songLists: nextProps.songLists,
-							handleAddToSongList: (songList, song) => this.props.handleAddToSongList(songList, song),
-							songQueryURL: this.props.songQueryURL,
-							handleDeleteSong: (songList, song) => this.props.handleDeleteSong(songList, song)
+							handleAddToSongList: (songList, song) => nextProps.handleAddToSongList(songList, song),
+							songQueryURL: nextProps.songQueryURL,
+							handleDeleteSong: (songList, song) => nextProps.handleDeleteSong(songList, song),
+							curDisplaySongListName: nextProps.curDisplaySongListName,
+							refreshSignal: this.state.refreshSignal
 						});
 					}
 				}
 			});
+
 			this.setState({
+				refreshSignal: !this.state.refreshSignal,
 				output: output,
 				containerStyle: __WEBPACK_IMPORTED_MODULE_1__css_PageGrid_css___default.a.container
 			});
@@ -74284,9 +74303,15 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 				break;
 
 		}
+		if (this.props.refreshSignal != nextProps.refreshSignal) {
+			this.refresh(nextProps);
+		}
 		this.setState({
 			icon_type: icon_type
 		});
+	}
+	componentDidMount() {
+		this.refresh(this.props);
 	}
 	clickHandler() {
 		this.props.onClick();
@@ -74327,6 +74352,33 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			visibleDropdown: newVisible
 		});
 	}
+	distory() {
+		console.log("distory");
+		this.setState({
+			colorStyle: {
+				transition: " all 0.4s ease",
+				backgroundColor: "rgb(255, 106, 106)",
+				visibility: "hidden",
+				opacity: 0
+			}
+		});
+		setTimeout(() => {
+			this.setState({
+				colorStyle: {
+					display: "none"
+				}
+			});
+		}, 400);
+	}
+	refresh(p) {
+		console.log("refresh");
+		this.setState({
+			colorStyle: {
+				backgroundColor: p.bkcolor[this.state.bkcolorIndex],
+				display: "inline-flex"
+			}
+		});
+	}
 	render() {
 		let tail;
 		switch (this.props.type) {
@@ -74348,7 +74400,9 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 						song: this.props.song,
 						handleAddToSongList: (songList, song) => this.props.handleAddToSongList(songList, song),
 						songQueryURL: this.props.songQueryURL,
-						handleDeleteSong: (songList, song) => this.props.handleDeleteSong(songList, song) })
+						handleDeleteSong: (songList, song) => this.props.handleDeleteSong(songList, song),
+						curDisplaySongListName: this.props.curDisplaySongListName,
+						distory: () => this.distory() })
 				);
 				break;
 
@@ -74358,7 +74412,7 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			{
 				className: `${__WEBPACK_IMPORTED_MODULE_1__css_DataItem_css___default.a.container} ${this.props.className}`, onMouseEnter: () => this.mouseOver(),
 				onMouseLeave: () => this.mouseOut(),
-				style: { backgroundColor: this.props.bkcolor[this.state.bkcolorIndex] } },
+				style: this.state.colorStyle },
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				Div1,
 				{ onClick: () => this.clickHandler() },
@@ -74500,6 +74554,12 @@ class Dropdown extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		} else {
 			this.props.handleDeleteSong(value, song);
 			this.fetchSongQuery();
+			console.log("curlistname:");
+			console.log(this.props.curDisplaySongListName);
+			console.log("value:" + value);
+			if (this.props.curDisplaySongListName == value) {
+				this.props.distory();
+			}
 		}
 	}
 	onBlur(e) {
