@@ -51,6 +51,7 @@ export class DataItem extends React.Component {
 			visiblePlus:false,
 			visibleDropdown:false,
 			dropdownFlag:false,
+			colorStyle_state:0,
 		};
 	}
 	componentWillReceiveProps(nextProps){
@@ -65,14 +66,14 @@ export class DataItem extends React.Component {
 
 		}
 		if(this.props.refreshSignal != nextProps.refreshSignal){
-			this.refresh(nextProps);
+			this.refresh();
 		}
 		this.setState({
 			icon_type:icon_type,
 		});
 	}
 	componentDidMount(){
-		this.refresh(this.props);
+		this.refresh();
 	}
 	clickHandler(){
 		this.props.onClick();
@@ -116,28 +117,18 @@ export class DataItem extends React.Component {
 	distory(){
 		console.log("distory");
 		this.setState({
-			colorStyle:{
-				transition:" all 0.4s ease",
-				backgroundColor:"rgb(255, 106, 106)",
-				visibility: "hidden",
-	  			opacity: 0,
-			}
+			colorStyle_state:1,
 		});
 		setTimeout(()=>{
 			this.setState({
-				colorStyle:{
-					display:"none",
-				}
+				colorStyle_state:2,
 			})
 		},400)
 	}
-	refresh(p){
+	refresh(){
 		console.log("refresh");
 		this.setState({
-			colorStyle:{
-				backgroundColor:p.bkcolor[this.state.bkcolorIndex],
-				display:"inline-flex",
-			},
+			colorStyle_state:0,
 		});
 	}
 	render(){
@@ -171,11 +162,35 @@ export class DataItem extends React.Component {
 				break;
 
 		}
+		let colorStyle;
+		switch (this.state.colorStyle_state) {
+			case 0:
+				colorStyle = {
+					backgroundColor:this.props.bkcolor[this.state.bkcolorIndex],
+					display:"inline-flex",
+				};
+				break;
+			case 1:
+				colorStyle = {
+					transition:" all 0.4s ease",
+					backgroundColor:"rgb(255, 106, 106)",
+					visibility: "hidden",
+					opacity: 0,
+				};
+				break;
+			case 2:
+				colorStyle = {
+					display:"none",
+				};
+				break;
+			default:
+
+		}
 		return(
 			<div
 				className = {`${style.container} ${this.props.className}`} onMouseEnter={()=>this.mouseOver()}
 				onMouseLeave={()=>this.mouseOut()}
-				style={this.state.colorStyle}>
+				style={colorStyle}>
 				<Div1 onClick = {()=>this.clickHandler()}>
 					<Icon
 						color={this.state.color}

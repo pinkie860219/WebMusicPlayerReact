@@ -12220,6 +12220,13 @@ ItemMeta.create = Object(__WEBPACK_IMPORTED_MODULE_4__lib__["m" /* createShortha
 
 
 
+
+const Cinput = __WEBPACK_IMPORTED_MODULE_2_styled_components__["a" /* default */].input`
+	--min: 0;
+	--max: ${props => props.max};
+	--val: ${props => props.value};
+`;
+
 class Slider extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	constructor(props) {
 		super(props);
@@ -12244,9 +12251,15 @@ class Slider extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 			"div",
 			{ className: `${__WEBPACK_IMPORTED_MODULE_1__css_Slider_css___default.a.container} ${this.props.className}` },
-			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { className: __WEBPACK_IMPORTED_MODULE_1__css_Slider_css___default.a.seek, type: "range", value: this.state.value, max: this.props.max, onChange: e => {
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Cinput, {
+				className: __WEBPACK_IMPORTED_MODULE_1__css_Slider_css___default.a.seek,
+				type: "range",
+				value: this.state.value,
+				max: this.props.max,
+				onChange: e => {
 					this.handleChange(e);
-				} })
+				}
+			})
 		);
 	}
 }
@@ -73746,7 +73759,7 @@ exports = module.exports = __webpack_require__(40)(undefined);
 
 
 // module
-exports.push([module.i, "._1RAteIpFo5PnmBb-lSmgyS{\n\tdisplay: inline-block;\n\tpadding: 0;\n}\n._5gG2FQ2n1Eu_GGWTopaam{\n\t-webkit-appearance: none;\n\twidth: 100%;\n\theight: 10px;\n\tpadding: 0;\n\tmargin: 0 auto;\n\tbackground-color: #00ffab;\n\tborder: 1px solid #bfc2c0;\n\ttransition: all 0.3s ease;\n\tcursor: pointer;\n\tborder-radius: 5px;\n\n\toutline : none;\n}\n._5gG2FQ2n1Eu_GGWTopaam:hover {\n  \tbackground-color: #60ffca;\n}\n\n._5gG2FQ2n1Eu_GGWTopaam::-webkit-slider-thumb {\n\t-webkit-appearance: none;\n \twidth: 12px;\n \theight: 12px;\n  \tbackground-color: #d9ffef;\n\tborder-radius: 100%;\n\tbox-shadow: 0px 0px 3px #92c4b0;\n\ttransition: all 0.5s ease;\n\tcursor: pointer;\n}\n._5gG2FQ2n1Eu_GGWTopaam::-webkit-slider-thumb:hover {\n  \tbackground-color: #c3ecda;\n}\n._5gG2FQ2n1Eu_GGWTopaam::-webkit-slider-thumb:active {\n  \tbox-shadow: 0px 0px 1px #d8f1e7;\n  \tcursor: pointer;\n}\n", ""]);
+exports.push([module.i, "._1RAteIpFo5PnmBb-lSmgyS{\n\tdisplay: inline-block;\n\tpadding: 0;\n\t--rangebk-color:#d7ddd7;\n\t--rangebk-color-hover:#dee0de;\n\t--progress-color:#00ffab;\n\t--progress-color-hover:#60ffca;\n\t--thumb-color:rgb(237, 237, 237);\n\t--thumb-color-hover:rgb(245, 240, 240);\n\t--thumb-shadow-hover:rgba(199, 197, 197, 0.59);\n}\n._5gG2FQ2n1Eu_GGWTopaam{\n\t-webkit-appearance: none;\n\twidth: 100%;\n\theight: 10px;\n\tpadding: 0;\n\tmargin: 0 auto;\n\t/*background-color: #00ffab;*/\n\tbackground-color: var(--rangebk-color);\n\ttransition: all 0.3s ease;\n\tcursor: pointer;\n\tborder-radius: 5px;\n\tbox-shadow: inset 0 0 3px rgba(0, 0, 0, 0.13);\n\toutline : none;\n\t--range: calc(var(--max) - var(--min));\n\t--ratio: calc((var(--val) - var(--min))/var(--range));\n\t--sx: calc(0.5*12px + var(--ratio)*(100% - 12px));\n}\n._5gG2FQ2n1Eu_GGWTopaam:focus{\n\toutline: none;\n}\n._5gG2FQ2n1Eu_GGWTopaam:hover {\n  \tbackground-color: var(--rangebk-color-hover);\n}\n._5gG2FQ2n1Eu_GGWTopaam::-webkit-slider-runnable-track {\n\theight: 100%;\n\t-webkit-appearance: none;\n\tbackground: linear-gradient(var(--progress-color), var(--progress-color)) 0/var(--sx) 100% no-repeat  var(--rangebk-color);\n\tborder-radius: 5px;\n}\n._5gG2FQ2n1Eu_GGWTopaam::-webkit-slider-runnable-track:hover{\n\tbackground: linear-gradient(var(--progress-color-hover), var(--progress-color-hover)) 0/var(--sx) 100% no-repeat var(--rangebk-color-hover);\n}\n._5gG2FQ2n1Eu_GGWTopaam::-webkit-slider-thumb{\n\t-webkit-appearance: none;\n \twidth: 12px;\n \theight: 12px;\n\tmargin-top: -1px;\n  \tbackground-color: var(--thumb-color);\n\tborder-radius: 100%;\n\tcursor: pointer;\n\tbox-shadow: 1px 1px 0px 0px rgb(207, 207, 207);\n}\n._5gG2FQ2n1Eu_GGWTopaam::-webkit-slider-thumb:hover {\n  \tbackground-color: var(--thumb-color-hover);\n \tbox-shadow: 0px 0px 0px 5px var(--thumb-shadow-hover);\n \twidth: 15px;\n \theight: 15px;\n\tmargin-top: -2px;\n}\n._5gG2FQ2n1Eu_GGWTopaam::-webkit-slider-thumb:active {\n\tbox-shadow: 0px 0px 0px 5px var(--thumb-shadow-hover);\n  \tcursor: pointer;\n}\n\n\n/*FF*/\n._5gG2FQ2n1Eu_GGWTopaam::-moz-focus-outer {\n    border: 0;\n}\n._5gG2FQ2n1Eu_GGWTopaam::-moz-range-thumb{\n  \twidth: 12px;\n  \theight: 12px;\n   \tbackground-color: var(--thumb-color);\n\tborder:0;\n \tborder-radius: 100%;\n \tcursor: pointer;\n\tbox-shadow: 1px 1px 0px 0px rgb(207, 207, 207);\n }\n._5gG2FQ2n1Eu_GGWTopaam::-moz-range-thumb:hover {\n  \tbackground-color: var(--thumb-color-hover);\n \tbox-shadow: 0px 0px 0px 5px var(--thumb-shadow-hover);\n}\n._5gG2FQ2n1Eu_GGWTopaam::-moz-range-thumb:active {\n\tbox-shadow: 0px 0px 0px 5px var(--thumb-shadow-hover);\n  \tcursor: pointer;\n}\n._5gG2FQ2n1Eu_GGWTopaam::-moz-range-track {\n\tbackground: none;\n\tborder: none;\n}\n._5gG2FQ2n1Eu_GGWTopaam::-moz-range-progress{\n\ttransition: all 0.3s ease;\n\tbackground-color: var(--progress-color);\n\theight: 100%;\n\tborder-radius: 5px;\n}\n._5gG2FQ2n1Eu_GGWTopaam::-moz-range-progress:hover{\n\tbackground-color: var(--progress-color-hover);\n\theight: 100%;\n\tborder-radius: 5px;\n}\n", ""]);
 
 // exports
 exports.locals = {
