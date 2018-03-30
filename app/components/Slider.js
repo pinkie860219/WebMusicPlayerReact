@@ -1,6 +1,13 @@
 import React from "react";
 import style from "./css/Slider.css";
 import styled from "styled-components";
+
+const Cinput = styled.input`
+	--min: 0;
+	--max: ${props => props.max};
+	--val: ${props => props.value};
+`;
+
 export class Slider extends React.Component {
 	constructor(props){
 		super(props);
@@ -25,7 +32,13 @@ export class Slider extends React.Component {
 
 		return(
 			<div className = {`${style.container} ${this.props.className}`}>
-				<input className={style.seek} type="range" value={this.state.value} max = {this.props.max} onChange = {(e)=>{this.handleChange(e)}}/>
+				<Cinput
+					className={style.seek}
+					type="range"
+					value={this.state.value}
+					max = {this.props.max}
+					onChange = {(e)=>{this.handleChange(e)}}
+				/>
 			</div>
 		);
 	}
