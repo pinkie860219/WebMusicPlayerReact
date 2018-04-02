@@ -71865,24 +71865,10 @@ exports.locals = {
 const TimeSliderWidth = 300;
 const VolumeSliderWidth = 200;
 
-const CCtrlBtn = Object(__WEBPACK_IMPORTED_MODULE_2_styled_components__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_7__CtrlBtn_js__["a" /* CtrlBtn */])`
-	margin: 0 0 0 30px;
-`;
-
 const TSlider = Object(__WEBPACK_IMPORTED_MODULE_2_styled_components__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_6__TimeSlider_js__["a" /* TimeSlider */])`
-	width:100%;
-	margin: 0 30px 0 30px;
-	display: inline-flex;
-	align-items: center;
 `;
 const VSlider = Object(__WEBPACK_IMPORTED_MODULE_2_styled_components__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_5__VolumeSlider_js__["a" /* VolumeSlider */])`
-	padding: 0;
-	display: inline-flex;
-	align-items: center;
-
-	margin-left:auto;
 	width:${VolumeSliderWidth + "px"};
-	margin: 0 30px 0 30px;
 `;
 
 class PageFooter extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
@@ -71903,33 +71889,50 @@ class PageFooter extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 				} },
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				"div",
-				{ className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_css___default.a.item },
-				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_css___default.a.image }),
+				{ className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_css___default.a.panel },
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-					__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["f" /* Header */],
-					{ as: "h3", className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_css___default.a.meta },
+					"div",
+					{ className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_css___default.a.item },
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_css___default.a.image }),
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-						__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["f" /* Header */].Content,
-						null,
-						this.props.curSong,
+						__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["f" /* Header */],
+						{ as: "h3", className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_css___default.a.meta },
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-							__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["f" /* Header */].Subheader,
+							__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["f" /* Header */].Content,
 							null,
-							"\u97F3\u6A02\u5BB6"
+							this.props.curSong,
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["f" /* Header */].Subheader,
+								null,
+								"\u97F3\u6A02\u5BB6"
+							)
 						)
 					)
-				)
+				),
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__CtrlBtn_js__["a" /* CtrlBtn */], {
+					className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_css___default.a.CtrlBtn,
+					playStatus: this.props.playStatus,
+					loopStatus: this.props.loopStatus,
+					setLoopStatus: () => this.props.setLoopStatus(),
+					setSongURLtoNext: () => this.props.setSongURLtoNext(),
+					setSongURLtoPre: () => this.props.setSongURLtoPre(),
+					togglePlayStatus: () => this.props.togglePlayStatus()
+				})
 			),
-			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(CCtrlBtn, {
-				playStatus: this.props.playStatus,
-				loopStatus: this.props.loopStatus,
-				setLoopStatus: () => this.props.setLoopStatus(),
-				setSongURLtoNext: () => this.props.setSongURLtoNext(),
-				setSongURLtoPre: () => this.props.setSongURLtoPre(),
-				togglePlayStatus: () => this.props.togglePlayStatus()
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(TSlider, {
+				value: this.props.curTime,
+				max: this.props.songTime,
+				setCurTime: t => this.props.setCurTime(t),
+				className: `${__WEBPACK_IMPORTED_MODULE_1__css_PageFooter_css___default.a.TSlider} ${this.props.className}`
 			}),
-			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(TSlider, { value: this.props.curTime, max: this.props.songTime, setCurTime: t => this.props.setCurTime(t) }),
-			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(VSlider, { value: this.props.volume, max: 100, setVolume: t => this.props.setVolume(t), muteStatus: this.props.muteStatus, toggleMute: this.props.toggleMute })
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(VSlider, {
+				value: this.props.volume,
+				max: 100,
+				setVolume: t => this.props.setVolume(t),
+				muteStatus: this.props.muteStatus,
+				toggleMute: this.props.toggleMute,
+				className: `${__WEBPACK_IMPORTED_MODULE_1__css_PageFooter_css___default.a.VSlider} ${this.props.className}`
+			})
 		);
 	}
 }
@@ -71976,14 +71979,18 @@ exports = module.exports = __webpack_require__(40)(undefined);
 
 
 // module
-exports.push([module.i, "._2FANz82aRPdiMfsFVJCGVU{\n\theight: 50px;\n\twidth: 100%;\n\tmargin: 0 auto;\n\tbox-shadow: 0px -3px 10px 0px rgba(0, 0, 0, 0.19);\n\tbackground-color: rgb(255, 255, 255);\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: space-between;\n}\n._2Zq-P7IQQHX5F4asAbKBRv{\n\tbackground-color: rgba(113, 113, 113, 0.14);\n\twidth: 250px;\n\tdisplay: inline-flex;\n\talign-items: center;\n\tflex-shrink: 0;\n}\n._19sm8f-2slvWF6ZRgKE56J{\n\tdisplay: inline-flex;\n\tflex: 0 0 50px;\n\theight: 50px;\n\twidth: 50px;\n\tbackground-color: rgb(98, 98, 98);\n}\n._1ssaQnCpN6iqufcHCf1Jkn{\n\tmargin: 0 5px 0 5px !important;\n\tdisplay: inline-flex !important;\n\toverflow-x: hidden;\n\twhite-space: nowrap;\n}\n", ""]);
+exports.push([module.i, "._2FANz82aRPdiMfsFVJCGVU{\n\theight: 50px;\n\twidth: 100%;\n\tmargin: 0 auto;\n\tbox-shadow: 0px -3px 10px 0px rgba(0, 0, 0, 0.19);\n\tbackground-color: rgb(255, 255, 255);\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: space-between;\n}\n._2Zq-P7IQQHX5F4asAbKBRv{\n\tbackground-color: rgba(113, 113, 113, 0.14);\n\tdisplay: inline-flex;\n\talign-items: center;\n\tflex:1 0;\n\twidth: 250px;\n\torder:1;\n\toverflow: scroll;\n}\n._19sm8f-2slvWF6ZRgKE56J{\n\tdisplay: inline-flex;\n\tflex: 0 0 50px;\n\theight: 50px;\n\twidth: 50px;\n\tbackground-color: rgb(98, 98, 98);\n}\n._1ssaQnCpN6iqufcHCf1Jkn{\n\tmargin: 0 5px 0 5px !important;\n\tdisplay: inline-flex !important;\n\toverflow-x: hidden;\n\twhite-space: nowrap;\n}\n._27byMxRV4Vm01Ww4jXp6Rs{\n\tmargin: 0 0 0 30px;\n\tdisplay: inline-flex;\n\torder:2;\n\tflex:0 0;\n\twidth: auto;\n}\n._32G-hDIoCqKQXu6YotDRpg{\n\tdisplay: inline-flex;\n\tflex: 0 0 auto;\n\torder: 2;\n}\n._2o0puLCxkTRAisBz_IlDNv{\n\tmargin: 0 30px 0 30px;\n\tdisplay: inline-flex;\n\tflex: 0 1 100%;\n\talign-items: center;\n\torder:3;\n}\n.wdd-LVGRkqaCFJ4DtDc94{\n\tpadding: 0;\n\tdisplay: inline-flex;\n\talign-items: center;\n\n\tmargin-left:auto;\n\tmargin: 0 30px 0 30px;\n\torder:4;\n}\n@media screen and (max-width: 768px) {\n\t._2FANz82aRPdiMfsFVJCGVU{\n\t\theight: auto;\n\t\twidth: 100%;\n\t\tmargin: 0 auto;\n\t\tpadding: 0;\n\t\tdisplay: flex;\n\t\talign-items: stretch;\n\t\tjustify-content: space-between;\n\t\tflex-direction: column;\n\t}\n\t._32G-hDIoCqKQXu6YotDRpg{\n\t\tdisplay: flex;\n\t\tflex: 0 0 auto;\n\t}\n\t._2o0puLCxkTRAisBz_IlDNv{\n\t\tmargin: 0;\n\t\tdisplay: flex;\n\t\torder:1;\n\t}\n\t.wdd-LVGRkqaCFJ4DtDc94{\n\t\tdisplay: none;\n\t}\n}\n@media screen and (min-width: 768px) and (max-width: 1024px) {\n\t._2o0puLCxkTRAisBz_IlDNv{\n\t}\n\t.wdd-LVGRkqaCFJ4DtDc94{\n\t\tdisplay: none;\n\t}\n}\n", ""]);
 
 // exports
 exports.locals = {
 	"footer": "_2FANz82aRPdiMfsFVJCGVU",
 	"item": "_2Zq-P7IQQHX5F4asAbKBRv",
 	"image": "_19sm8f-2slvWF6ZRgKE56J",
-	"meta": "_1ssaQnCpN6iqufcHCf1Jkn"
+	"meta": "_1ssaQnCpN6iqufcHCf1Jkn",
+	"CtrlBtn": "_27byMxRV4Vm01Ww4jXp6Rs",
+	"panel": "_32G-hDIoCqKQXu6YotDRpg",
+	"TSlider": "_2o0puLCxkTRAisBz_IlDNv",
+	"VSlider": "wdd-LVGRkqaCFJ4DtDc94"
 };
 
 /***/ }),
@@ -73858,10 +73865,14 @@ class VolumeSlider extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Compone
 
 
 
+const Cspan = __WEBPACK_IMPORTED_MODULE_2_styled_components__["a" /* default */].span`
+	display: inline-flex;
+	flex:0 0 auto;
+`;
 const TSlider = Object(__WEBPACK_IMPORTED_MODULE_2_styled_components__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_3__Slider_js__["a" /* Slider */])`
 	display:inline-flex;
-	flex-shrink:1;
 	width:100%;
+	flex-shrink:1;
 	margin-left: 20px;
 `;
 
@@ -73894,7 +73905,11 @@ class TimeSlider extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 		return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 			"div",
 			{ className: `${this.props.className}` },
-			output,
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				Cspan,
+				null,
+				output
+			),
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(TSlider, { value: this.props.value, max: this.props.max, onChange: t => this.props.setCurTime(t) })
 		);
 	}
@@ -74302,7 +74317,8 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			dropdownSignal: false,
 			visiblePlus: false,
 			visibleDropdown: false,
-			dropdownFlag: false
+			dropdownFlag: false,
+			colorStyle_state: 0
 		};
 	}
 	componentWillReceiveProps(nextProps) {
@@ -74317,14 +74333,14 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
 		}
 		if (this.props.refreshSignal != nextProps.refreshSignal) {
-			this.refresh(nextProps);
+			this.refresh();
 		}
 		this.setState({
 			icon_type: icon_type
 		});
 	}
 	componentDidMount() {
-		this.refresh(this.props);
+		this.refresh();
 	}
 	clickHandler() {
 		this.props.onClick();
@@ -74368,28 +74384,18 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	distory() {
 		console.log("distory");
 		this.setState({
-			colorStyle: {
-				transition: " all 0.4s ease",
-				backgroundColor: "rgb(255, 106, 106)",
-				visibility: "hidden",
-				opacity: 0
-			}
+			colorStyle_state: 1
 		});
 		setTimeout(() => {
 			this.setState({
-				colorStyle: {
-					display: "none"
-				}
+				colorStyle_state: 2
 			});
 		}, 400);
 	}
-	refresh(p) {
+	refresh() {
 		console.log("refresh");
 		this.setState({
-			colorStyle: {
-				backgroundColor: p.bkcolor[this.state.bkcolorIndex],
-				display: "inline-flex"
-			}
+			colorStyle_state: 0
 		});
 	}
 	render() {
@@ -74420,12 +74426,36 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 				break;
 
 		}
+		let colorStyle;
+		switch (this.state.colorStyle_state) {
+			case 0:
+				colorStyle = {
+					backgroundColor: this.props.bkcolor[this.state.bkcolorIndex],
+					display: "inline-flex"
+				};
+				break;
+			case 1:
+				colorStyle = {
+					transition: " all 0.4s ease",
+					backgroundColor: "rgb(255, 106, 106)",
+					visibility: "hidden",
+					opacity: 0
+				};
+				break;
+			case 2:
+				colorStyle = {
+					display: "none"
+				};
+				break;
+			default:
+
+		}
 		return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 			"div",
 			{
 				className: `${__WEBPACK_IMPORTED_MODULE_1__css_DataItem_css___default.a.container} ${this.props.className}`, onMouseEnter: () => this.mouseOver(),
 				onMouseLeave: () => this.mouseOut(),
-				style: this.state.colorStyle },
+				style: colorStyle },
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				Div1,
 				{ onClick: () => this.clickHandler() },

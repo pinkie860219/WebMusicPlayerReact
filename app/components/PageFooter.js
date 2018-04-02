@@ -11,24 +11,10 @@ import {CtrlBtn} from "./CtrlBtn.js";
 const TimeSliderWidth = 300;
 const VolumeSliderWidth = 200;
 
-const CCtrlBtn = styled(CtrlBtn)`
-	margin: 0 0 0 30px;
-`;
-
 const TSlider = styled(TimeSlider)`
-	width:100%;
-	margin: 0 30px 0 30px;
-	display: inline-flex;
-	align-items: center;
 `;
 const VSlider = styled(VolumeSlider)`
-	padding: 0;
-	display: inline-flex;
-	align-items: center;
-
-	margin-left:auto;
 	width:${VolumeSliderWidth+"px"};
-	margin: 0 30px 0 30px;
 `;
 
 export class PageFooter extends React.Component {
@@ -45,28 +31,43 @@ export class PageFooter extends React.Component {
 	render(){
 		return(
 			<div className = {style.footer} ref={input => {this.myInput = input}}>
-				<div className = {style.item}>
-						<div className = {style.image}>
-						</div>
-						<Header as='h3' className = {style.meta}>
-						    <Header.Content>
-						      	{this.props.curSong}
-						      	<Header.Subheader>
-						        	音樂家
-						    	</Header.Subheader>
-						    </Header.Content>
-						</Header>
+				<div className = {style.panel}>
+					<div className = {style.item}>
+							<div className = {style.image}>
+							</div>
+							<Header as='h3' className = {style.meta}>
+								<Header.Content>
+									{this.props.curSong}
+									<Header.Subheader>
+										音樂家
+									</Header.Subheader>
+								</Header.Content>
+							</Header>
+					</div>
+					<CtrlBtn
+						className = {style.CtrlBtn}
+						playStatus = {this.props.playStatus}
+						loopStatus = {this.props.loopStatus}
+						setLoopStatus = {()=>this.props.setLoopStatus()}
+						setSongURLtoNext = {() => this.props.setSongURLtoNext()}
+						setSongURLtoPre = {() => this.props.setSongURLtoPre()}
+						togglePlayStatus = {() => this.props.togglePlayStatus()}
+					/>
 				</div>
-				<CCtrlBtn
-					playStatus = {this.props.playStatus}
-					loopStatus = {this.props.loopStatus}
-					setLoopStatus = {()=>this.props.setLoopStatus()}
-					setSongURLtoNext = {() => this.props.setSongURLtoNext()}
-					setSongURLtoPre = {() => this.props.setSongURLtoPre()}
-					togglePlayStatus = {() => this.props.togglePlayStatus()}
+				<TSlider
+					value={this.props.curTime}
+					max={this.props.songTime}
+					setCurTime = {(t)=>this.props.setCurTime(t)}
+					className = {`${style.TSlider} ${this.props.className}`}
 				/>
-				<TSlider value={this.props.curTime} max={this.props.songTime} setCurTime = {(t)=>this.props.setCurTime(t)} />
-				<VSlider value={this.props.volume} max={100} setVolume = {(t)=>this.props.setVolume(t)} muteStatus = {this.props.muteStatus} toggleMute = {this.props.toggleMute}/>
+				<VSlider
+					value={this.props.volume}
+					max={100}
+					setVolume = {(t)=>this.props.setVolume(t)}
+					muteStatus = {this.props.muteStatus}
+					toggleMute = {this.props.toggleMute}
+					className = {`${style.VSlider} ${this.props.className}`}
+				/>
 			</div>
 		);
 	}
