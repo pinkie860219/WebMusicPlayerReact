@@ -15,7 +15,7 @@
 	flex:1 0;
 	width: 250px;
 	order:1;
-	overflow: scroll;
+	overflow: hidden;
 }
 .image{
 	display: inline-flex;
