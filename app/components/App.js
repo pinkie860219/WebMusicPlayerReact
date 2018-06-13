@@ -39,7 +39,7 @@ export class App extends React.Component {
 			songLists:[],
 
 			fileExist:true,
-			loading:false,
+			loading:true,
 		};
 
 	}
@@ -62,14 +62,13 @@ export class App extends React.Component {
 		//console.log(`newCurDir=${newCurDir}`);
 		// console.log(this.state.curDir);
 		if( ((this.state.activeItem != prevState.activeItem)&&(this.state.activeItem==="folder")) || (newCurDir != prevCurDir)){
-			this.setState({
-				loading:true,
-			});
 			this.fetchAsync(newCurDir);
 		}
 	}
 	async fetchAsync(d){ // 更新瀏覽頁面
-
+		this.setState({
+			loading:true,
+		});
 		console.log("fetchhhhhhhh");
 		//console.log(d);
 		//let encodeD = d.map(item => {return encodeURIComponent(item)});
@@ -123,7 +122,9 @@ export class App extends React.Component {
 		//console.log(output);
 	}
 	async fetchSongListSongs(value){
-
+		this.setState({
+			loading:true,
+		});
 		console.log("fetchhhhhhhhsonglistsong");
 		const targetURL = this.state.songListURL + '/' + this.state.songLists[value].text;
 		let response = await fetch(targetURL);
@@ -146,6 +147,7 @@ export class App extends React.Component {
 		this.setState({
 			curDisplayList: data,
 			curDisplaySongListName: this.state.songLists[value].text,
+			loading:false,
 		});
 	}
 	async handleAddToSongList(songList, song){
