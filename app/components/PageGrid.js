@@ -2,7 +2,7 @@ import React from "react";
 import style from "./css/PageGrid.css";
 import styled from "styled-components";
 import {DataItem} from "./DataItem.js"
-import { Icon, Header} from 'semantic-ui-react';
+import { Loader, Icon, Header} from 'semantic-ui-react';
 
 export class PageGrid extends React.Component {
 	constructor(props){
@@ -16,7 +16,7 @@ export class PageGrid extends React.Component {
 		}
 	}
 	updatePage(nextProps){
-		console.log("updatePage");
+		//console.log("updatePage");
 		if(nextProps.curDisplayList.length != 0){
 			let output = [];
 			output = nextProps.curDisplayList.map( (item, index) => {
@@ -108,9 +108,17 @@ export class PageGrid extends React.Component {
 		}
 	}
 	render(){
+		const containerStyle = this.props.loading? [this.state.containerStyle, style.dim].join(' '):this.state.containerStyle;
+		const dimmerStyle = this.props.loading? [style.dimmer, style.dimmer_active].join(' '):style.dimmer;
 		return(
-			<div className = {this.state.containerStyle}>
-				{this.state.output}
+			<div className = {style.container}>
+				<div className = {dimmerStyle}>
+					<Loader active={this.props.loading} size='large'>Preparing Files</Loader>
+				</div>
+
+				<div className = {containerStyle}>
+					{this.state.output}
+				</div>
 			</div>
 		);
 

@@ -115,7 +115,7 @@ export class DataItem extends React.Component {
 		});
 	}
 	distory(){
-		console.log("distory");
+		//console.log("distory");
 		this.setState({
 			colorStyle_state:1,
 		});
@@ -126,7 +126,7 @@ export class DataItem extends React.Component {
 		},400)
 	}
 	refresh(){
-		console.log("refresh");
+		//console.log("refresh");
 		this.setState({
 			colorStyle_state:0,
 		});

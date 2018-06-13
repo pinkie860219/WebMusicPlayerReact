@@ -5,7 +5,9 @@ import {SideList} from "./SideList.js";
 import {PageHeader} from "./PageHeader.js";
 import {PageFooter} from "./PageFooter.js";
 import {PageGrid} from "./PageGrid.js";
-import Master from "./css/Master.css"
+import Master from "./css/Master.css";
+import queryString from 'query-string';
+import history from './history';
 
 export class App extends React.Component {
 	constructor(props) {
@@ -37,20 +39,39 @@ export class App extends React.Component {
 			songLists:[],
 
 			fileExist:true,
+			loading:false,
 		};
 
 	}
 	componentDidMount(){ // 程式剛執行時更新頁面
+		console.log("this is query string");
+		console.log(history.location);
+		const queryParams = queryString.parse(history.location.search);
+		console.log(queryParams);
 		this.fetchSongLists();
 
-		let d = this.state.curDir;
-		let encodeD = d.map(item => {return encodeURIComponent(item)});
-		this.fetchAsync(encodeD.join('/'));
+		// let d = this.state.curDir;
+		// let encodeD = d.map(item => {return encodeURIComponent(item)});
+		this.fetchAsync("");
 	}
-
+	componentDidUpdate(prevProps, prevState) {
+		const prevCurDir = prevState.curDir.map(item => {return encodeURIComponent(item)}).join('/');
+		const newCurDir = this.state.curDir.map(item => {return encodeURIComponent(item)}).join('/');
+		//console.log(`prevCurDir=${prevCurDir}`);
+		// console.log(prevState.curDir);
+		//console.log(`newCurDir=${newCurDir}`);
+		// console.log(this.state.curDir);
+		if( ((this.state.activeItem != prevState.activeItem)&&(this.state.activeItem==="folder")) || (newCurDir != prevCurDir)){
+			this.setState({
+				loading:true,
+			});
+			this.fetchAsync(newCurDir);
+		}
+	}
 	async fetchAsync(d){ // 更新瀏覽頁面
 
 		console.log("fetchhhhhhhh");
+		//console.log(d);
 		//let encodeD = d.map(item => {return encodeURIComponent(item)});
 		//let response = await fetch(this.state.serverURL+encodeD.join('/'));
 
@@ -71,13 +92,14 @@ export class App extends React.Component {
 
 		this.setState({
 			curDisplayList: data,
-			curDisplaySongListName:''
+			curDisplaySongListName:'',
+			loading:false,
 		});
 	}
 
 	async fetchSongLists(){
 
-		console.log("fetchhhhhhhhsonglists");
+		//console.log("fetchhhhhhhhsonglists");
 		let response = await fetch(this.state.songListURL);
 		let data = await response.json();
 		let output = [];
@@ -98,7 +120,7 @@ export class App extends React.Component {
 		});
 
 		this.setState({songLists: output});
-		console.log(output);
+		//console.log(output);
 	}
 	async fetchSongListSongs(value){
 
@@ -190,22 +212,31 @@ export class App extends React.Component {
 		this.setState({songLists: output});
 		console.log(output);
 	}
+	setQueryParams(dir, songList, songURL){
+		history.push({
+			search:`?dir=${dir}&songLost=${songList}&songURL=${songURL}`,
+		});
+	}
 	setCurDir(str){ // 點擊資料夾，設定瀏覽位置
-		let d = this.state.curDir;
+		let d = this.state.curDir.slice();
 		d.push(str);
-		this.setState({curDir:d});
+		this.setState({
+			curDir:d,
+		});
 		//console.log('curDir:'+d.join('/'));
-		let encodeD = d.map(item => {return encodeURIComponent(item)});
-		this.fetchAsync(encodeD.join('/'));
+		//let encodeD = d.map(item => {return encodeURIComponent(item)});
+		//this.fetchAsync(encodeD.join('/'));
 	}
 	setCurDirPop(index){ // 點擊麵包的路徑，設定瀏覽位置
 		// console.log(index);
-		let d = this.state.curDir;
+		let d = this.state.curDir.slice();
 		d = d.slice(0, index);
-		this.setState({curDir:d});
+		this.setState({
+			curDir:d,
+		});
 		//console.log('curDir:'+d.join('/'));
-		let encodeD = d.map(item => {return encodeURIComponent(item)});
-		this.fetchAsync(encodeD.join('/'));
+		//let encodeD = d.map(item => {return encodeURIComponent(item)});
+		//this.fetchAsync(encodeD.join('/'));
 	}
 	setCurSong(song){ //點音樂item切換音樂
 		//設定音樂URL
@@ -231,8 +262,11 @@ export class App extends React.Component {
 		});
 	}
 	setSongURL(song){//setState切換音樂url
-		// let sName = url.substr(url.lastIndexOf('/') - url.length + 1);
-		// let songName = decodeURIComponent(sName)
+
+		//如果有song就設定網址
+		//
+		//
+
 		console.log(song.Name);
 		this.setState({
 			curSong:song.Name,
@@ -356,11 +390,11 @@ export class App extends React.Component {
 	handleItemClick({name}){ // 發生在點sidelist的時候
 		//console.log("name:"+name);
 		this.setState({ activeItem: name });
-		if(name == 'folder'){
-			let d = this.state.curDir;
-			let encodeD = d.map(item => {return encodeURIComponent(item)});
-			this.fetchAsync(encodeD.join('/'));
-		}
+		// if(name == 'folder'){
+		// 	let d = this.state.curDir;
+		// 	let encodeD = d.map(item => {return encodeURIComponent(item)});
+		// 	this.fetchAsync(encodeD.join('/'));
+		// }
 	}
 
 	setLoopStatus(){
@@ -419,6 +453,7 @@ export class App extends React.Component {
 							setCurSong = {(song)=>this.setCurSong(song)}
 							curSongURL = {this.state.curSongURL}
 							fileExist = {this.state.fileExist}
+							loading = {this.state.loading}
 							songLists = {this.state.songLists}
 							handleAddToSongList = {(songList, song)=>this.handleAddToSongList(songList, song)}
 							songQueryURL = {this.state.songQueryURL}
