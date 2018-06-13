@@ -44806,15 +44806,16 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	}
 	componentDidMount() {
 		// 程式剛執行時更新頁面
+		this.fetchSongLists();
+		this.fetchAsync("");
+		__WEBPACK_IMPORTED_MODULE_9__history__["a" /* default */].listen((location, action) => {
+			// location is an object like window.location
+			console.log(action, location.pathname, location.state);
+		});
 		console.log("this is query string");
 		console.log(__WEBPACK_IMPORTED_MODULE_9__history__["a" /* default */].location);
 		const queryParams = __WEBPACK_IMPORTED_MODULE_8_query_string___default.a.parse(__WEBPACK_IMPORTED_MODULE_9__history__["a" /* default */].location.search);
 		console.log(queryParams);
-		this.fetchSongLists();
-
-		// let d = this.state.curDir;
-		// let encodeD = d.map(item => {return encodeURIComponent(item)});
-		this.fetchAsync("");
 	}
 	componentDidUpdate(prevProps, prevState) {
 		const prevCurDir = prevState.curDir.map(item => {
