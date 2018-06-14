@@ -48,6 +48,15 @@ export class App extends React.Component {
 		this.init();
 	}
 	componentDidUpdate(prevProps, prevState) {
+		const prevCurDir = prevState.curDir.map(item => {return encodeURIComponent(item)}).join('/');
+		const newCurDir = this.state.curDir.map(item => {return encodeURIComponent(item)}).join('/');
+		if( (this.state.activeItem != prevState.activeItem)&&(this.state.activeItem==="folder")){
+			this.setState({
+				curSongListIndex:-1
+			});
+			this.fetchAsync(newCurDir);
+		}
+
 
 		//url change state
 		if(this.props.location !== prevProps.location){
@@ -66,21 +75,19 @@ export class App extends React.Component {
 			curSong:prevState.curSong,
 		};
 		if(JSON.stringify(newSearch) !== JSON.stringify(prevSearch)){
+			console.log(toolLib.makeSearchString(newSearch));
 			this.props.history.push({
 				search:toolLib.makeSearchString(newSearch),
 			});
-			/////check curDir
-			const prevCurDir = prevState.curDir.map(item => {return encodeURIComponent(item)}).join('/');
-			const newCurDir = this.state.curDir.map(item => {return encodeURIComponent(item)}).join('/');
 
-			if( ((this.state.activeItem != prevState.activeItem)&&(this.state.activeItem==="folder")) || (newCurDir != prevCurDir)){
-				this.fetchAsync(newCurDir);
-			}
 			///
 			////check curSongListIndex
 			if((this.state.curSongListIndex !== prevState.curSongListIndex) && (this.state.curSongListIndex >= 0)){
 				this.fetchSongListSongs(this.state.curSongListIndex);
+			} else if(newCurDir != prevCurDir){/////check curDir
+				this.fetchAsync(newCurDir);
 			}
+
 			///
 			////check curSongURL
 			if(JSON.stringify(this.state.curSong) !== JSON.stringify(prevState.curSong)){
@@ -98,32 +105,35 @@ export class App extends React.Component {
 		console.log("setStateByURL:");
 	  // location is an object like window.location
 	  	const queryParams = queryString.parse(location.search);
-		const encodedSong = JSON.parse(queryParams.song);
-		const decodedSong = toolLib.decodedSong(encodedSong);
-		if(this.state.curPlayingList.length > 0){
-			this.setState({
-				curDir:toolLib.URLtoArray(queryParams.dir),
-				curPlayingListIndex:queryParams.songList,
-				curSong:decodedSong,
-			})
+
+		let encodedSong ;
+		let decodedSong = {};
+		if(queryParams.song !== '{}' && queryParams.song){
+			encodedSong = JSON.parse(queryParams.song);
+			decodedSong = toolLib.decodedSong(encodedSong);
 		}
+
+		this.setState({
+			curDir:toolLib.URLtoArray(queryParams.dir),
+			curSongListIndex:parseInt(queryParams.songList),
+			curSong:decodedSong,
+		});
 
 	}
 	async init(){
+		await this.fetchSongLists();
+		this.setStateByURL(this.props.location);
 		const queryParams = queryString.parse(this.props.location.search);
 
 		//沒有指定歌單和路徑
-		if(queryParams.songList == "-1" && !queryParams.dir)
+		if(parseInt(queryParams.songList) >= 0){
+			await this.fetchSongListSongs(parseInt(queryParams.songList));
+		} else if(!queryParams.songList && !queryParams.dir){
 			await this.fetchAsync("");
-		else {
-			this.setState({
-				curDir:toolLib.URLtoArray(queryParams.dir),
-				curPlayingListIndex:queryParams.songList,
-			});
+		} else if(queryParams.dir){
+			await this.fetchAsync(queryParams.dir);
 		}
-		await this.fetchSongLists();
-		//this.setStateByURL(this.props.location);
-
+		// this.setStateByURL(this.props.location);
 
 		if(queryParams.song !== '{}' && queryParams.song){
 			const encodedSong = JSON.parse(queryParams.song);
@@ -329,8 +339,9 @@ export class App extends React.Component {
 		// });
 	}
 	handleSongListChange(str){
-		this.setQueryParams({
-			songList:str,
+		console.log(`handleSongListChange: ${str}`);
+		this.setState({
+			curSongListIndex:parseInt(str),
 		});
 	}
 	// setCurSongByQuery(song){
@@ -500,7 +511,7 @@ export class App extends React.Component {
 	}
 
 	handleItemClick({name}){ // 發生在點sidelist的時候
-		//console.log("name:"+name);
+		console.log("name:"+name);
 		this.setState({ activeItem: name });
 		// switch (name) {
 		// 	case 'folder':

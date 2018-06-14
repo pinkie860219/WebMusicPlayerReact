@@ -21,7 +21,17 @@ export function URLtoArray(url){
 }
 
 export function makeSearchString(query){
-	return `?dir=${arrayToURL(query.curDir)}&songList=${query.curSongListIndex}&song=${JSON.stringify(encodedSong(query.curSong))}`;
+	let outputArray = [];
+	if(arrayToURL(query.curDir)){
+		outputArray.push(`dir=${arrayToURL(query.curDir)}`);
+	}
+	if(query.curSongListIndex >= 0){
+		outputArray.push(`songList=${query.curSongListIndex}`);
+	}
+	if(typeof query.curSong.Name !== 'undefined' && typeof query.curSong.Url !== 'undefined'){
+		outputArray.push(`song=${JSON.stringify(encodedSong(query.curSong))}`)
+	}
+	return `?${outputArray.join('&')}`;
 }
 
 export function encodedSong(song){
