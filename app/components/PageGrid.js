@@ -42,7 +42,7 @@ export class PageGrid extends React.Component {
 				else {
 					//console.log("music");
 					type=1;//is music file
-					if(item.Url == nextProps.curSongURL){
+					if(decodeURIComponent(item.Url) == decodeURIComponent(nextProps.curSongURL)){
 						return(
 							<DataItem
 								key = {index} type={type}
