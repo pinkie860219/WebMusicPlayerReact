@@ -99,6 +99,7 @@ export class App extends React.Component {
 			if(JSON.stringify(this.state.curSong) !== JSON.stringify(prevState.curSong)){
 				this.setState({
 					encodeSongUrl:toolLib.playURL(this.state.curSong.Url),
+					curTime:0,
 				});
 			}
 		}

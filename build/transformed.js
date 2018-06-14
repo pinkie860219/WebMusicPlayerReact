@@ -46608,11 +46608,14 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		const newCurDir = this.state.curDir.map(item => {
 			return encodeURIComponent(item);
 		}).join('/');
-		if (this.state.activeItem != prevState.activeItem && this.state.activeItem === "folder") {
-			this.setState({
-				curSongListIndex: -1
-			});
-			this.fetchAsync(newCurDir);
+		if (this.state.activeItem != prevState.activeItem) {
+			switch (this.state.activeItem) {
+				case 'folder':
+					this.fetchAsync(newCurDir);
+					break;
+				case 'songlist':
+					break;
+			}
 		}
 
 		//url change state
@@ -46644,13 +46647,17 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			} else if (newCurDir != prevCurDir) {
 				/////check curDir
 				this.fetchAsync(newCurDir);
+				this.setState({
+					curSongListIndex: -1
+				});
 			}
 
 			///
 			////check curSongURL
 			if (JSON.stringify(this.state.curSong) !== JSON.stringify(prevState.curSong)) {
 				this.setState({
-					encodeSongUrl: __WEBPACK_IMPORTED_MODULE_9__Util_js__["d" /* playURL */](this.state.curSong.Url)
+					encodeSongUrl: __WEBPACK_IMPORTED_MODULE_9__Util_js__["d" /* playURL */](this.state.curSong.Url),
+					curTime: 0
 				});
 			}
 		}
@@ -46662,6 +46669,12 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		// location is an object like window.location
 		const queryParams = __WEBPACK_IMPORTED_MODULE_8_query_string___default.a.parse(location.search);
 
+		let curSongListIndex;
+		if (queryParams.songList) {
+			curSongListIndex = parseInt(queryParams.songList);
+		} else {
+			curSongListIndex = -1;
+		}
 		let encodedSong;
 		let decodedSong = {};
 		if (queryParams.song !== '{}' && queryParams.song) {
@@ -46671,7 +46684,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
 		this.setState({
 			curDir: __WEBPACK_IMPORTED_MODULE_9__Util_js__["a" /* URLtoArray */](queryParams.dir),
-			curSongListIndex: parseInt(queryParams.songList),
+			curSongListIndex: curSongListIndex,
 			curSong: decodedSong,
 			activeItem: queryParams.songList ? 'songlist' : 'folder'
 		});
@@ -46847,36 +46860,14 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		this.setState({ songLists: output });
 		console.log(output);
 	}
-
-	// setQueryParams(query){
-	// 	history.push({
-	// 		search:`?${queryString.stringify(query)}`,
-	// 	});
-	// 	let searchString = [];
-	// 	if(query.dir){
-	// 		searchString.push(`dir=${query.dir}`);
-	// 	} else if(query.songList){
-	// 		searchString.push(`songList=${query.songList}`)
-	// 	}
-	// 	if(query.song){
-	// 		searchString.push(`song=${query.song}`);
-	// 	} else {
-	// 		searchString.push(`song=${JSON.stringify({
-	// 			Name:this.curSong.Name,
-	// 			Url:this.curSong.Url,
-	// 		})}`);
-	// 	}
-	// 	history.push({
-	// 		search:`?${queryString.stringify(query)}`,
-	// 	});
-	// }
 	setCurDir(str) {
 		// 點擊資料夾，設定瀏覽位置
 		let d = this.state.curDir.slice();
 		d.push(str);
 		this.setState({
 			curDir: d,
-			activeItem: 'folder'
+			activeItem: 'folder',
+			curSongListIndex: -1
 		});
 
 		// this.setQueryParams({
@@ -46890,17 +46881,12 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		d = d.slice(0, index);
 		this.setState({
 			curDir: d,
-			activeItem: 'folder'
+			activeItem: 'folder',
+			curSongListIndex: -1
 		});
 		// this.setQueryParams({
 		// 	dir:this.arrayToURL(d),
 		// });
-	}
-	handleSongListChange(str) {
-		console.log(`handleSongListChange: ${str}`);
-		this.setState({
-			curSongListIndex: parseInt(str)
-		});
 	}
 	setCurSong(song) {
 		//點音樂item切換音樂
@@ -46911,7 +46897,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		this.setState({
 			playStatus: __WEBPACK_IMPORTED_MODULE_1_react_sound___default.a.status.PLAYING
 		});
-		setCurPlayingList(song);
+		this.setCurPlayingList(song);
 	}
 	setCurPlayingList(song) {
 		//把displayList存進playingList
@@ -47071,24 +47057,21 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	handleItemClick({ name }) {
 		// 發生在點sidelist的時候
 		console.log("name:" + name);
-		this.setState({ activeItem: name });
-		// switch (name) {
-		// 	case 'folder':
-		// 		this.setQueryParams({
-		// 			dir:this.arrayToURL(this.state.curDir),
-		// 		});
-		// 		break;
-		// 	default:
-		// 		break;
-		// }
-
-		// if(name == 'folder'){
-		// 	let d = this.state.curDir;
-		// 	let encodeD = d.map(item => {return encodeURIComponent(item)});
-		// 	this.fetchAsync(encodeD.join('/'));
-		// }
+		switch (name) {
+			case 'folder':
+				this.setState({ activeItem: name });
+				break;
+			default:
+				break;
+		}
 	}
-
+	handleSongListChange(str) {
+		console.log(`handleSongListChange: ${str}`);
+		this.setState({
+			curSongListIndex: parseInt(str),
+			activeItem: 'songlist'
+		});
+	}
 	setLoopStatus() {
 		let c = (this.state.loopStatus + 1) % 3;
 		this.setState({
