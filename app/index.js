@@ -8,8 +8,8 @@ import {
 } from "react-router-dom";
 
 ReactDom.render(
-	<Router history={history}>
-		<Route exact path="/" component={App}/>
+	<Router history={history} basename="ReactPlayerBeta">
+		<Route path={'/'} component={App}/>
 	</Router>
 	,document.getElementById('app')
 )

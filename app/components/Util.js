@@ -14,10 +14,12 @@ export function arrayToURL(array){
 	return returnURL;
 }
 export function URLtoArray(url){
-	if(url == "")
+	if(url == "" || !url){
 		return [];
-	else
+	}
+	else{
 		return url.split('/').map(item => {return decodeURIComponent(item)});
+	}
 }
 
 export function makeSearchString(query){

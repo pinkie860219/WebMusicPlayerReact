@@ -50,11 +50,14 @@ export class App extends React.Component {
 	componentDidUpdate(prevProps, prevState) {
 		const prevCurDir = prevState.curDir.map(item => {return encodeURIComponent(item)}).join('/');
 		const newCurDir = this.state.curDir.map(item => {return encodeURIComponent(item)}).join('/');
-		if( (this.state.activeItem != prevState.activeItem)&&(this.state.activeItem==="folder")){
-			this.setState({
-				curSongListIndex:-1
-			});
-			this.fetchAsync(newCurDir);
+		if (this.state.activeItem != prevState.activeItem){
+			switch(this.state.activeItem){
+				case 'folder':
+					this.fetchAsync(newCurDir);
+					break;
+				case 'songlist':
+					break;
+			}
 		}
 
 
@@ -86,6 +89,9 @@ export class App extends React.Component {
 				this.fetchSongListSongs(this.state.curSongListIndex);
 			} else if(newCurDir != prevCurDir){/////check curDir
 				this.fetchAsync(newCurDir);
+				this.setState({
+					curSongListIndex:-1,
+				})
 			}
 
 			///
@@ -106,6 +112,12 @@ export class App extends React.Component {
 	  // location is an object like window.location
 	  	const queryParams = queryString.parse(location.search);
 
+		let curSongListIndex
+		if(queryParams.songList){
+			curSongListIndex = parseInt(queryParams.songList);
+		} else {
+			curSongListIndex = -1;
+		}
 		let encodedSong ;
 		let decodedSong = {};
 		if(queryParams.song !== '{}' && queryParams.song){
@@ -115,8 +127,9 @@ export class App extends React.Component {
 
 		this.setState({
 			curDir:toolLib.URLtoArray(queryParams.dir),
-			curSongListIndex:parseInt(queryParams.songList),
+			curSongListIndex:curSongListIndex,
 			curSong:decodedSong,
+			activeItem:(queryParams.songList)?'songlist':'folder',
 		});
 
 	}
@@ -138,7 +151,7 @@ export class App extends React.Component {
 		if(queryParams.song !== '{}' && queryParams.song){
 			const encodedSong = JSON.parse(queryParams.song);
 			const decodedSong = toolLib.decodedSong(encodedSong);
-			this.setCurSong(decodedSong);
+			this.setCurPlayingList(decodedSong);
 			this.setState({
 				playStatus:Sound.status.PLAYING,
 			});
@@ -293,34 +306,13 @@ export class App extends React.Component {
 		this.setState({songLists: output});
 		console.log(output);
 	}
-
-	// setQueryParams(query){
-	// 	history.push({
-	// 		search:`?${queryString.stringify(query)}`,
-	// 	});
-	// 	let searchString = [];
-	// 	if(query.dir){
-	// 		searchString.push(`dir=${query.dir}`);
-	// 	} else if(query.songList){
-	// 		searchString.push(`songList=${query.songList}`)
-	// 	}
-	// 	if(query.song){
-	// 		searchString.push(`song=${query.song}`);
-	// 	} else {
-	// 		searchString.push(`song=${JSON.stringify({
-	// 			Name:this.curSong.Name,
-	// 			Url:this.curSong.Url,
-	// 		})}`);
-	// 	}
-	// 	history.push({
-	// 		search:`?${queryString.stringify(query)}`,
-	// 	});
-	// }
 	setCurDir(str){ // 點擊資料夾，設定瀏覽位置
 		let d = this.state.curDir.slice();
 		d.push(str);
 		this.setState({
 		 	curDir:d,
+			activeItem:'folder',
+			curSongListIndex:-1
 		});
 
 		// this.setQueryParams({
@@ -333,33 +325,25 @@ export class App extends React.Component {
 		d = d.slice(0, index);
 		this.setState({
 			curDir:d,
+			activeItem:'folder',
+			curSongListIndex:-1
 		});
 		// this.setQueryParams({
 		// 	dir:this.arrayToURL(d),
 		// });
 	}
-	handleSongListChange(str){
-		console.log(`handleSongListChange: ${str}`);
-		this.setState({
-			curSongListIndex:parseInt(str),
-		});
-	}
-	// setCurSongByQuery(song){
-	// 	const queryParams = queryString.parse(location.search);
-	// 	this.setQueryParams({
-	// 		dir:queryParams.dir,
-	// 		songList:queryParams.songList,
-	// 		song:JSON.stringify(song),
-	// 	});
-	// }
 	setCurSong(song){ //點音樂item切換音樂
+		console.log("setCurSong:");
 		//設定音樂URL
 		this.setSongURL(song);
 		//播放音樂
 		this.setState({
 			playStatus:Sound.status.PLAYING,
 		});
+		this.setCurPlayingList(song);
 
+	}
+	setCurPlayingList(song){
 		//把displayList存進playingList
 		let curPlayingList = [];
 		for(let item of this.state.curDisplayList){
@@ -367,7 +351,6 @@ export class App extends React.Component {
 				curPlayingList.push(item);
 			}
 		}
-		console.log("setCurSong:");
 		//console.log(curPlayingList);
 		this.setState({
 			curPlayingList: curPlayingList,
@@ -512,24 +495,21 @@ export class App extends React.Component {
 
 	handleItemClick({name}){ // 發生在點sidelist的時候
 		console.log("name:"+name);
-		this.setState({ activeItem: name });
-		// switch (name) {
-		// 	case 'folder':
-		// 		this.setQueryParams({
-		// 			dir:this.arrayToURL(this.state.curDir),
-		// 		});
-		// 		break;
-		// 	default:
-		// 		break;
-		// }
-
-		// if(name == 'folder'){
-		// 	let d = this.state.curDir;
-		// 	let encodeD = d.map(item => {return encodeURIComponent(item)});
-		// 	this.fetchAsync(encodeD.join('/'));
-		// }
+		switch (name) {
+			case 'folder':
+				this.setState({ activeItem: name });
+				break;
+			default:
+				break;
+		}
 	}
-
+	handleSongListChange(str){
+		console.log(`handleSongListChange: ${str}`);
+		this.setState({
+			curSongListIndex:parseInt(str),
+			activeItem: 'songlist'
+		});
+	}
 	setLoopStatus(){
 		let  c = (this.state.loopStatus + 1) % 3;
 		this.setState({
