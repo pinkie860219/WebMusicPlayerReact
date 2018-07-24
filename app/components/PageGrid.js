@@ -3,6 +3,7 @@ import style from "./css/PageGrid.css";
 import styled from "styled-components";
 import {DataItem} from "./DataItem.js"
 import { Loader, Icon, Header} from 'semantic-ui-react';
+import * as toolLib from './Util.js';
 
 export class PageGrid extends React.Component {
 	constructor(props){
@@ -12,7 +13,6 @@ export class PageGrid extends React.Component {
 			pColor:['rgba(255, 250, 117, 0.54)','rgba(255, 251, 152, 0.54)'],
 			nColor:['rgba(255, 255, 255, 0)','rgba(255, 255, 255, 0.57)'],
 			containerStyle: style.container,
-			refreshSignal:false,
 		}
 	}
 	updatePage(nextProps){
@@ -26,7 +26,7 @@ export class PageGrid extends React.Component {
 					type=0;//is folder
 					return(
 						<DataItem
-							key = {index} type={type}
+							key = {toolLib.uniqueKey(JSON.stringify(item))} type={type}
 							song = {{Name:item.Name, Url:item.Url}}
 							onClick = {()=>nextProps.setCurDir(item.Name)}
 							bkcolor = {this.state.nColor}
@@ -35,7 +35,6 @@ export class PageGrid extends React.Component {
 							songQueryURL = {nextProps.songQueryURL}
 							handleDeleteSong = {(songList, song)=>nextProps.handleDeleteSong(songList, song)}
 							curDisplaySongListName = {nextProps.curDisplaySongListName}
-							refreshSignal = {this.state.refreshSignal}
 						/>
 					);
 				}
@@ -45,7 +44,7 @@ export class PageGrid extends React.Component {
 					if(decodeURIComponent(item.Url) == decodeURIComponent(nextProps.curSongURL)){
 						return(
 							<DataItem
-								key = {index} type={type}
+								key = {toolLib.uniqueKey(JSON.stringify(item))} type={type}
 								song = {{Name:item.Name, Url:item.Url}}
 								onClick = {()=>nextProps.setCurSong(item)}
 								bkcolor = {this.state.pColor}
@@ -54,13 +53,12 @@ export class PageGrid extends React.Component {
 								songQueryURL = {nextProps.songQueryURL}
 								handleDeleteSong = {(songList, song)=>nextProps.handleDeleteSong(songList, song)}
 								curDisplaySongListName = {nextProps.curDisplaySongListName}
-								refreshSignal = {this.state.refreshSignal}
 							/>
 						);
 					} else {
 						return(
 							<DataItem
-								key = {index} type={type}
+								key = {toolLib.uniqueKey(JSON.stringify(item))} type={type}
 								song = {{Name:item.Name, Url:item.Url}}
 								onClick = {()=>nextProps.setCurSong(item)}
 								bkcolor = {this.state.nColor}
@@ -69,7 +67,6 @@ export class PageGrid extends React.Component {
 								songQueryURL = {nextProps.songQueryURL}
 								handleDeleteSong = {(songList, song)=>nextProps.handleDeleteSong(songList, song)}
 								curDisplaySongListName = {nextProps.curDisplaySongListName}
-								refreshSignal = {this.state.refreshSignal}
 							/>
 						);
 					}
@@ -80,7 +77,6 @@ export class PageGrid extends React.Component {
 
 
 			this.setState({
-				refreshSignal: !this.state.refreshSignal,
 				output:output,
 				containerStyle: style.container,
 			});

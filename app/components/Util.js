@@ -1,3 +1,5 @@
+import shortid from 'shortid';
+
 export function playURL(url){
 	if(url){
 		let output = URLtoArray(url);
@@ -48,4 +50,8 @@ export function decodedSong(song){
 		Name:decodeURIComponent(song.Name),
 		Url:decodeURIComponent(song.Url),
 	};
+}
+
+export function uniqueKey(pre){
+  return `${pre}_${shortid.generate()}`;
 }
