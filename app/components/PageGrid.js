@@ -9,17 +9,16 @@ export class PageGrid extends React.Component {
 	constructor(props){
 		super(props);
 		this.state={
-			output:[],
 			pColor:['rgba(255, 250, 117, 0.54)','rgba(255, 251, 152, 0.54)'],
 			nColor:['rgba(255, 255, 255, 0)','rgba(255, 255, 255, 0.57)'],
-			containerStyle: style.container,
 		}
 	}
-	updatePage(nextProps){
-		//console.log("updatePage");
-		if(nextProps.curDisplayList.length != 0){
-			let output = [];
-			output = nextProps.curDisplayList.map( (item, index) => {
+	render(){
+		const dimmerStyle = this.props.loading? [style.dimmer, style.dimmer_active].join(' '):style.dimmer;
+		let output = [];
+		let containerStyle;
+		if(this.props.curDisplayList.length != 0){
+			output = this.props.curDisplayList.map( (item, index) => {
 				let type=0;
 				if(item.IsDir){
 					//console.log("file");
@@ -28,31 +27,31 @@ export class PageGrid extends React.Component {
 						<DataItem
 							key = {toolLib.uniqueKey(JSON.stringify(item))} type={type}
 							song = {{Name:item.Name, Url:item.Url}}
-							onClick = {()=>nextProps.setCurDir(item.Name)}
+							onClick = {()=>this.props.setCurDir(item.Name)}
 							bkcolor = {this.state.nColor}
-							songLists = {nextProps.songLists}
-							handleAddToSongList = {(songList, song)=>nextProps.handleAddToSongList(songList, song)}
-							songQueryURL = {nextProps.songQueryURL}
-							handleDeleteSong = {(songList, song)=>nextProps.handleDeleteSong(songList, song)}
-							curDisplaySongListName = {nextProps.curDisplaySongListName}
+							songLists = {this.props.songLists}
+							handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
+							songQueryURL = {this.props.songQueryURL}
+							handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}
+							curDisplaySongListName = {this.props.curDisplaySongListName}
 						/>
 					);
 				}
 				else {
 					//console.log("music");
 					type=1;//is music file
-					if(decodeURIComponent(item.Url) == decodeURIComponent(nextProps.curSongURL)){
+					if(decodeURIComponent(item.Url) == decodeURIComponent(this.props.curSongURL)){
 						return(
 							<DataItem
 								key = {toolLib.uniqueKey(JSON.stringify(item))} type={type}
 								song = {{Name:item.Name, Url:item.Url}}
-								onClick = {()=>nextProps.setCurSong(item)}
+								onClick = {()=>this.props.setCurSong(item)}
 								bkcolor = {this.state.pColor}
-								songLists = {nextProps.songLists}
-								handleAddToSongList = {(songList, song)=>nextProps.handleAddToSongList(songList, song)}
-								songQueryURL = {nextProps.songQueryURL}
-								handleDeleteSong = {(songList, song)=>nextProps.handleDeleteSong(songList, song)}
-								curDisplaySongListName = {nextProps.curDisplaySongListName}
+								songLists = {this.props.songLists}
+								handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
+								songQueryURL = {this.props.songQueryURL}
+								handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}
+								curDisplaySongListName = {this.props.curDisplaySongListName}
 							/>
 						);
 					} else {
@@ -60,28 +59,21 @@ export class PageGrid extends React.Component {
 							<DataItem
 								key = {toolLib.uniqueKey(JSON.stringify(item))} type={type}
 								song = {{Name:item.Name, Url:item.Url}}
-								onClick = {()=>nextProps.setCurSong(item)}
+								onClick = {()=>this.props.setCurSong(item)}
 								bkcolor = {this.state.nColor}
-								songLists = {nextProps.songLists}
+								songLists = {this.props.songLists}
 								handleAddToSongList = {(songList, song)=>nextProps.handleAddToSongList(songList, song)}
-								songQueryURL = {nextProps.songQueryURL}
-								handleDeleteSong = {(songList, song)=>nextProps.handleDeleteSong(songList, song)}
-								curDisplaySongListName = {nextProps.curDisplaySongListName}
+								songQueryURL = {this.props.songQueryURL}
+								handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}
+								curDisplaySongListName = {this.props.curDisplaySongListName}
 							/>
 						);
 					}
 				}
-
-
 			});
-
-
-			this.setState({
-				output:output,
-				containerStyle: style.container,
-			});
+			containerStyle = this.props.loading? [style.container, style.dim].join(' '):style.container;
 		} else {
-			let output = (
+			output = (
 				<Header as='h2' icon>
 					<Icon name='bug' />
 						Files not found.
@@ -90,22 +82,9 @@ export class PageGrid extends React.Component {
 						</Header.Subheader>
 				</Header>
 			);
-			this.setState({
-				output:output,
-				containerStyle: style.container2,
-			});
+			containerStyle = this.props.loading? [style.container2, style.dim].join(' '):style.container2;
 		}
-	}
-	componentWillReceiveProps(nextProps){
-		if(
-			JSON.stringify(nextProps) !== JSON.stringify(this.props)
-		){
-			this.updatePage(nextProps);
-		}
-	}
-	render(){
-		const containerStyle = this.props.loading? [this.state.containerStyle, style.dim].join(' '):this.state.containerStyle;
-		const dimmerStyle = this.props.loading? [style.dimmer, style.dimmer_active].join(' '):style.dimmer;
+
 		return(
 			<div className = {style.container}>
 				<div className = {dimmerStyle}>
@@ -113,7 +92,7 @@ export class PageGrid extends React.Component {
 				</div>
 
 				<div className = {containerStyle}>
-					{this.state.output}
+					{output}
 				</div>
 			</div>
 		);
