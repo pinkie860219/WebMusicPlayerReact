@@ -1,31 +1,13 @@
 import React from "react";
-import style from "./css/DataItem.css";
+import styles from "./css/DataItem.scss";
 import styled from "styled-components";
 import { Icon, Header, Button,  Input, } from 'semantic-ui-react';
-import {Dropdown} from './Dropdown.js'
-const CIcon = styled(Icon)`
-	display: inline-flex !important;
-	height: auto !important;
-	margin: 0 10 0 0 !important;
-	padding:2px 0 0 2px !important;
-`;
+import {Dropdown} from './Dropdown.js';
+
 const CDropdown = styled(Dropdown)`
 	display: inline-flex !important;
 	height: auto !important;
 	margin: 0 0 0 0 !important;
-`;
-const Div = styled.div`
-	display: inline-flex;
-	align-items:center;
-	height:100%;
-`;
-const Div1 = Div.extend`
-	flex:1;
-`;
-const Div2 = Div.extend`
-	justify-content: center;
-	width:auto;
-	border-radius: 0 5px 5px 0;
 `;
 export class DataItem extends React.Component {
 	constructor(props){
@@ -43,15 +25,11 @@ export class DataItem extends React.Component {
 
 		//console.log("construcor:"+icon_type);
 		this.state={
-			color:"grey",
-			colorAdd:"grey",
-			bkcolorIndex:0,
 			icon_type:icon_type,
 			dropdownSignal:false,
 			visiblePlus:false,
 			visibleDropdown:false,
 			dropdownFlag:false,
-			colorStyle_state:0,
 		};
 	}
 	componentWillReceiveProps(nextProps){
@@ -65,15 +43,9 @@ export class DataItem extends React.Component {
 				break;
 
 		}
-		if(this.props.refreshSignal != nextProps.refreshSignal){
-			this.refresh();
-		}
 		this.setState({
 			icon_type:icon_type,
 		});
-	}
-	componentDidMount(){
-		this.refresh();
 	}
 	clickHandler(){
 		this.props.onClick();
@@ -85,66 +57,25 @@ export class DataItem extends React.Component {
 			});
 		}
 	}
-	mouseOver(){
-		this.setState({
-			color:"black",
-			bkcolorIndex:1,
-			visiblePlus: true,
-		});
-	}
-	mouseOut(){
-		this.setState({
-			color:"grey",
-			bkcolorIndex:0,
-			visiblePlus: false,
-		});
-	}
-	mouseOverAdd(){
-		this.setState({
-			colorAdd:"black",
-		});
-	}
-	mouseOutAdd(){
-		this.setState({
-			colorAdd:"grey",
-		});
-	}
 	setVisible(newVisible){
 		this.setState({
 			visibleDropdown:newVisible,
 		});
 	}
-	distory(){
-		//console.log("distory");
-		this.setState({
-			colorStyle_state:1,
-		});
-		setTimeout(()=>{
-			this.setState({
-				colorStyle_state:2,
-			})
-		},400)
-	}
-	refresh(){
-		//console.log("refresh");
-		this.setState({
-			colorStyle_state:0,
-		});
-	}
 	render(){
-		let tail;
+		//console.log(`dataitem render ${this.props.key}`);
+		let tail, icon;
 		switch (this.props.type) {
 			case 0:
+				icon = (<i className={`fas fa-folder ${styles.icon}`}></i>);
 				break;
 			case 1:
-				tail = (<Div2
-
-					onMouseEnter={()=>this.mouseOverAdd()}
-					onMouseLeave={()=>this.mouseOutAdd()}>
-					{
-						(this.state.visiblePlus||this.state.visibleDropdown)?
-						(<CIcon name='plus' size = 'large' color='black' link onClick={()=>this.toggleDropdown()} />):''
-					}
+				const plusStyle = this.state.visibleDropdown?styles.plusVisible:styles.plusHidden;
+				icon = (<i className={`far fa-play-circle ${styles.icon}`}></i>);
+				tail = (<div
+					className={`${styles.tail}  ${plusStyle}`}
+					onClick={()=>this.toggleDropdown()}>
+					<i className={`fas fa-plus`}></i>
 					<Dropdown
 						songLists={this.props.songLists}
 						signal={this.state.dropdownSignal}
@@ -156,52 +87,26 @@ export class DataItem extends React.Component {
 						handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}
 						curDisplaySongListName = {this.props.curDisplaySongListName}
 						distory = {()=>this.distory()}/>
-
-
-				</Div2>);
+					</div>);
 				break;
 
 		}
-		let colorStyle;
-		switch (this.state.colorStyle_state) {
-			case 0:
-				colorStyle = {
-					backgroundColor:this.props.bkcolor[this.state.bkcolorIndex],
-					display:"inline-flex",
-				};
-				break;
-			case 1:
-				colorStyle = {
-					transition:" all 0.4s ease",
-					backgroundColor:"rgb(255, 106, 106)",
-					visibility: "hidden",
-					opacity: 0,
-				};
-				break;
-			case 2:
-				colorStyle = {
-					display:"none",
-				};
-				break;
-			default:
 
+		let colorStyle;
+		if(decodeURIComponent(this.props.song.Url) == decodeURIComponent(this.props.curSongURL)){
+			colorStyle = styles.playing;
+		} else {
+			colorStyle = styles.notPlaying;
 		}
 		return(
 			<div
-				className = {`${style.container} ${this.props.className}`} onMouseEnter={()=>this.mouseOver()}
-				onMouseLeave={()=>this.mouseOut()}
-				style={colorStyle}>
-				<Div1 onClick = {()=>this.clickHandler()}>
-					<Icon
-						color={this.state.color}
-						name={this.state.icon_type}
-						className = {style.icon}
-						size="large"
-					/>
-					<Header color={this.state.color} className = {style.header} >
+				className = {`${styles.container} ${colorStyle}`}>
+				<div className={styles.head} onClick = {()=>this.clickHandler()}>
+					{icon}
+					<div className = {styles.header} >
 						{this.props.song.Name}
-					</Header>
-				</Div1>
+					</div>
+				</div>
 				{tail}
 			</div>
 		);

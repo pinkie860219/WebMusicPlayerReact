@@ -8,10 +8,10 @@ import * as toolLib from './Util.js';
 export class PageGrid extends React.Component {
 	constructor(props){
 		super(props);
-		this.state={
-			pColor:['rgba(255, 250, 117, 0.54)','rgba(255, 251, 152, 0.54)'],
-			nColor:['rgba(255, 255, 255, 0)','rgba(255, 255, 255, 0.57)'],
-		}
+	}
+	componentDidUpdate(prevProps, prevState){
+		console.log(`PropsChanged:${!(JSON.stringify(this.props)===JSON.stringify(prevProps))}`); 
+		console.log(`StateChanged:${!(JSON.stringify(this.state)===JSON.stringify(prevState))}`);
 	}
 	render(){
 		const dimmerStyle = this.props.loading? [style.dimmer, style.dimmer_active].join(' '):style.dimmer;
@@ -28,7 +28,6 @@ export class PageGrid extends React.Component {
 							key = {toolLib.uniqueKey(JSON.stringify(item))} type={type}
 							song = {{Name:item.Name, Url:item.Url}}
 							onClick = {()=>this.props.setCurDir(item.Name)}
-							bkcolor = {this.state.nColor}
 							songLists = {this.props.songLists}
 							handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
 							songQueryURL = {this.props.songQueryURL}
@@ -40,35 +39,19 @@ export class PageGrid extends React.Component {
 				else {
 					//console.log("music");
 					type=1;//is music file
-					if(decodeURIComponent(item.Url) == decodeURIComponent(this.props.curSongURL)){
-						return(
-							<DataItem
-								key = {toolLib.uniqueKey(JSON.stringify(item))} type={type}
-								song = {{Name:item.Name, Url:item.Url}}
-								onClick = {()=>this.props.setCurSong(item)}
-								bkcolor = {this.state.pColor}
-								songLists = {this.props.songLists}
-								handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
-								songQueryURL = {this.props.songQueryURL}
-								handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}
-								curDisplaySongListName = {this.props.curDisplaySongListName}
-							/>
-						);
-					} else {
-						return(
-							<DataItem
-								key = {toolLib.uniqueKey(JSON.stringify(item))} type={type}
-								song = {{Name:item.Name, Url:item.Url}}
-								onClick = {()=>this.props.setCurSong(item)}
-								bkcolor = {this.state.nColor}
-								songLists = {this.props.songLists}
-								handleAddToSongList = {(songList, song)=>nextProps.handleAddToSongList(songList, song)}
-								songQueryURL = {this.props.songQueryURL}
-								handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}
-								curDisplaySongListName = {this.props.curDisplaySongListName}
-							/>
-						);
-					}
+					return(
+						<DataItem
+							key = {toolLib.uniqueKey(JSON.stringify(item))} type={type}
+							song = {{Name:item.Name, Url:item.Url}}
+							onClick = {()=>this.props.setCurSong(item)}
+							songLists = {this.props.songLists}
+							handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
+							songQueryURL = {this.props.songQueryURL}
+							handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}
+							curDisplaySongListName = {this.props.curDisplaySongListName}
+							curSongURL = {this.props.curSongURL}
+						/>
+					);
 				}
 			});
 			containerStyle = this.props.loading? [style.container, style.dim].join(' '):style.container;

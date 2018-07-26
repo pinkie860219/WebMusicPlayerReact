@@ -1,0 +1,67 @@
+$constainerRadius:5px;
+.container{
+	display: inline-flex;
+	flex: 0 0 50px;
+	align-items: center;
+	justify-content: space-between;
+	border: 2px solid rgb(217, 217, 217);
+	margin: 2px 2px 2px 2px;
+	border-radius: $constainerRadius;
+	cursor: pointer;
+	position: relative;
+	transition: all 0.1s ease;
+	.plusHidden{
+		visibility: hidden;
+	}
+	&:hover{
+		.plusHidden{
+			visibility: visible;
+		}
+	}
+}
+.plusVisible{
+	visibility: visible;
+}
+.head{
+	display: flex;
+	align-items:center;
+	height:100%;
+	flex:1;
+	padding-left: 10px;
+}
+.tail{
+	display: flex;
+	align-items: center;
+	border-radius: 0 $constainerRadius $constainerRadius 0;
+	height: 100%;
+	padding-left: 10px;
+	padding-right: 10px;
+	i{
+		font-size: 1.5em;
+	}
+}
+.header{
+	display: inline-flex;
+	margin-left: 10px;
+	font-size: 1.3em;
+	font-weight: bold;
+}
+.icon{
+	font-size: 1.5em;
+}
+.playing{
+	background-color: rgba(255, 250, 117, 0.54);
+	color: rgb(54, 54, 54);
+	&:hover{
+		background-color: rgba(255, 251, 152, 0.54);
+		color: rgb(5, 5, 5);
+	}
+}
+.notPlaying{
+	background-color: rgba(255, 255, 255, 0);
+	color: rgb(54, 54, 54);
+	&:hover{
+		background-color: rgba(255, 255, 255, 0.57);
+		color: rgb(5, 5, 5);
+	}
+}

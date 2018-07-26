@@ -106,7 +106,6 @@ export class App extends React.Component {
 		/////
 
 
-
 	}
 	setStateByURL(location){
 		console.log("setStateByURL:");
