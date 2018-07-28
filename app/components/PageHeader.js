@@ -10,10 +10,6 @@ export class PageHeader extends React.Component {
 		}
 
 	}
-	componentDidUpdate(prevProps, prevState){
-		console.log(`HeaderPropsChanged:${!(JSON.stringify(this.props)===JSON.stringify(prevProps))}`);
-		console.log(`HeaderStateChanged:${!(JSON.stringify(this.state)===JSON.stringify(prevState))}`);
-	}
 	componentWillReceiveProps(nextProps){
 		let output=[];
 		output.push(

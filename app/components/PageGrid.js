@@ -1,17 +1,13 @@
 import React from "react";
 import style from "./css/PageGrid.css";
 import styled from "styled-components";
-import {DataItem} from "./DataItem.js"
+import {DataItemWithSongInfo} from "./DataItem.js"
 import { Loader, Icon, Header} from 'semantic-ui-react';
 import * as toolLib from './Util.js';
 
 export class PageGrid extends React.Component {
 	constructor(props){
 		super(props);
-	}
-	componentDidUpdate(prevProps, prevState){
-		console.log(`PropsChanged:${!(JSON.stringify(this.props)===JSON.stringify(prevProps))}`); 
-		console.log(`StateChanged:${!(JSON.stringify(this.state)===JSON.stringify(prevState))}`);
 	}
 	render(){
 		const dimmerStyle = this.props.loading? [style.dimmer, style.dimmer_active].join(' '):style.dimmer;
@@ -24,7 +20,7 @@ export class PageGrid extends React.Component {
 					//console.log("file");
 					type=0;//is folder
 					return(
-						<DataItem
+						<DataItemWithSongInfo
 							key = {toolLib.uniqueKey(JSON.stringify(item))} type={type}
 							song = {{Name:item.Name, Url:item.Url}}
 							onClick = {()=>this.props.setCurDir(item.Name)}
@@ -40,7 +36,7 @@ export class PageGrid extends React.Component {
 					//console.log("music");
 					type=1;//is music file
 					return(
-						<DataItem
+						<DataItemWithSongInfo
 							key = {toolLib.uniqueKey(JSON.stringify(item))} type={type}
 							song = {{Name:item.Name, Url:item.Url}}
 							onClick = {()=>this.props.setCurSong(item)}

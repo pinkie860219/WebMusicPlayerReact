@@ -3,13 +3,14 @@ import styles from "./css/DataItem.scss";
 import styled from "styled-components";
 import { Icon, Header, Button,  Input, } from 'semantic-ui-react';
 import {Dropdown} from './Dropdown.js';
+import {withSongInfo} from './context/SongInfoContext.js';
 
 const CDropdown = styled(Dropdown)`
 	display: inline-flex !important;
 	height: auto !important;
 	margin: 0 0 0 0 !important;
 `;
-export class DataItem extends React.Component {
+class DataItem extends React.Component {
 	constructor(props){
 		super(props);
 		let icon_type;
@@ -93,7 +94,7 @@ export class DataItem extends React.Component {
 		}
 
 		let colorStyle;
-		if(decodeURIComponent(this.props.song.Url) == decodeURIComponent(this.props.curSongURL)){
+		if(decodeURIComponent(this.props.song.Url) == decodeURIComponent(this.props.curSong.Url)){
 			colorStyle = styles.playing;
 		} else {
 			colorStyle = styles.notPlaying;
@@ -112,3 +113,4 @@ export class DataItem extends React.Component {
 		);
 	}
 }
+export const DataItemWithSongInfo = withSongInfo(DataItem);

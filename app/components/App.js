@@ -1,13 +1,13 @@
 import React from "react";
-import Sound from "react-sound";
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Grid, Label } from 'semantic-ui-react';
 import {SideList} from "./SideList.js";
 import {PageHeader} from "./PageHeader.js";
-import {PageFooter} from "./PageFooter.js";
+import {FooterPlayer} from "./PageFooter.js";
 import {PageGrid} from "./PageGrid.js";
 import Master from "./css/Master.css";
 import queryString from 'query-string';
 import * as toolLib from './Util.js';
+import {SongInfoContext} from './context/SongInfoContext.js';
 
 export class App extends React.Component {
 	constructor(props) {
@@ -20,27 +20,23 @@ export class App extends React.Component {
 			visible: false, // sideList的開關
 			activeItem: 'folder', //sideList的選項
 
-			playStatus:Sound.status.STOPPED, // 音樂的播放狀態
-			loopStatus:0, // 預設不重複播放，1全部播放，2單曲播放
-			curTime: 0, // 音樂的現在的播放時間
-			songTime:0, // 音樂的全長
-			volume:100, // 音量
-			lastVolume:0,
-			muteStatus:false,
 
-			curSong:{}, // 現在播放的音樂{Name:歌名, Url,網址 }
 			curDir:[], // 當前的瀏覽路徑
 
 			curDisplayList:[], // 當前的瀏覽路徑下的檔案{Name, Url, IsDir}
-		//	curPlayingURLList:[], // 現在的播放清單，存的是url
 			curSongListIndex:-1,
-			curPlayingList:[], // 現在的播放清單，{Name, Url, IsDir}
 			curDisplaySongListName:'',
 			songLists:[],
 
 			fileExist:true,
 			loading:true,
-			encodeSongUrl:"",//encode後的songurl
+
+			// for SongInfoContext usage
+			songInfo:{
+				curSong:{},
+				curPlayingList:[], // 現在的播放清單，{Name, Url}
+				setSongUrl:(song)=>this.setSongUrl(song),
+			},
 		};
 
 	}
@@ -70,15 +66,15 @@ export class App extends React.Component {
 		const newSearch = {
 			curDir:this.state.curDir,
 			curSongListIndex:this.state.curSongListIndex,
-			curSong:this.state.curSong,
+			curSong:this.state.songInfo.curSong,
 		};
 		const prevSearch = {
 			curDir:prevState.curDir,
 			curSongListIndex:prevState.curSongListIndex,
-			curSong:prevState.curSong,
+			curSong:prevState.songInfo.curSong,
 		};
 		if(JSON.stringify(newSearch) !== JSON.stringify(prevSearch)){
-			console.log(toolLib.makeSearchString(newSearch));
+			//console.log(toolLib.makeSearchString(newSearch));
 			this.props.history.push({
 				search:toolLib.makeSearchString(newSearch),
 			});
@@ -95,20 +91,14 @@ export class App extends React.Component {
 			}
 
 			///
-			////check curSongURL
-			if(JSON.stringify(this.state.curSong) !== JSON.stringify(prevState.curSong)){
-				this.setState({
-					encodeSongUrl:toolLib.playURL(this.state.curSong.Url),
-					curTime:0,
-				});
-			}
+
 		}
 		/////
 
 
 	}
 	setStateByURL(location){
-		console.log("setStateByURL:");
+		//console.log("setStateByURL:");
 	  // location is an object like window.location
 	  	const queryParams = queryString.parse(location.search);
 
@@ -161,7 +151,7 @@ export class App extends React.Component {
 		this.setState({
 			loading:true,
 		});
-		console.log("fetchhhhhhhh");
+		//console.log("fetchhhhhhhh");
 		//console.log(d);
 		//let encodeD = d.map(item => {return encodeURIComponent(item)});
 		//let response = await fetch(this.state.serverURL+encodeD.join('/'));
@@ -217,7 +207,7 @@ export class App extends React.Component {
 		this.setState({
 			loading:true,
 		});
-		console.log("fetchhhhhhhhsonglistsong");
+		// console.log("fetchhhhhhhhsonglistsong");
 		const targetURL = this.state.songListURL + '/' + this.state.songLists[value].text;
 		let response = await fetch(targetURL);
 		//console.log(targetURL);
@@ -243,7 +233,7 @@ export class App extends React.Component {
 		});
 	}
 	async handleAddToSongList(songList, song){
-		console.log("handleAddToSongList");
+		// console.log("handleAddToSongList");
 		const targetURL = this.state.songListURL;
 
 		let formData = new FormData();
@@ -272,10 +262,10 @@ export class App extends React.Component {
 			}
 		});
 		this.setState({songLists: output});
-		console.log(output);
+		// console.log(output);
 	}
 	async handleDeleteSong(songList, song){
-		console.log("handleDeleteSong");
+		// console.log("handleDeleteSong");
 		const targetURL = this.state.songListURL;
 
 		let formData = new FormData();
@@ -304,7 +294,7 @@ export class App extends React.Component {
 			}
 		});
 		this.setState({songLists: output});
-		console.log(output);
+		// console.log(output);
 	}
 	setCurDir(str){ // 點擊資料夾，設定瀏覽位置
 		let d = this.state.curDir.slice();
@@ -333,168 +323,52 @@ export class App extends React.Component {
 		// });
 	}
 	setCurSong(song){ //點音樂item切換音樂
-		console.log("setCurSong:");
-		//設定音樂URL
-		this.setSongURL(song);
-		//播放音樂
-		this.setState({
-			playStatus:Sound.status.PLAYING,
-		});
-		this.setCurPlayingList(song);
+		// console.log("setCurSong:");
+		let songInfo = {...this.state.songInfo};
+		songInfo.curSong = {
+			Name:decodeURIComponent(song.Name),
+			Url:decodeURIComponent(song.Url),
+		};
+		songInfo.curPlayingList = this.getCurPlayingListFromCurDisplayList();
+		this.setState({songInfo});
+
+		console.log("Now Playing~~ " + song.Name + "\nFrom : " + song.Url);
 
 	}
-	setCurPlayingList(song){
+	getCurPlayingListFromCurDisplayList(){
 		//把displayList存進playingList
 		let curPlayingList = [];
 		for(let item of this.state.curDisplayList){
 			if(item.IsDir != true){
-				curPlayingList.push(item);
+				curPlayingList.push({Name:item.Name, Url:item.Url});
 			}
 		}
-		//console.log(curPlayingList);
-		this.setState({
-			curPlayingList: curPlayingList,
-		});
+		return curPlayingList;
 	}
-	setSongURL(song){//setState切換音樂url
+	setSongUrl(song){
 
-		//如果有song就設定網址
-		//
-		//
-
-		console.log("setSongURL");
-		//console.log(song);
-		this.setState({
-			curSong:{
-				Name:decodeURIComponent(song.Name),
-				Url:decodeURIComponent(song.Url),
-			},
-			curTime:0,
-		});
+		this.setState(prevState => (
+			{
+				...prevState,
+				songInfo:{
+					...prevState.songInfo,
+					curSong:{
+						Name:decodeURIComponent(song.Name),
+						Url:decodeURIComponent(song.Url),
+					}
+				}
+			}
+		));
 		console.log("Now Playing~~ " + song.Name + "\nFrom : " + song.Url);
 	}
-	setSongURLtoNext(){// 下一首
-		console.log("setSongURLtoNext");
-		let index = 5; // 下一首的index
-		let curIndex = 0; // 目前的index
-		for(let i in this.state.curPlayingList){
-			const curUrl = decodeURIComponent(this.state.curSong.Url);
-			const listUrl = decodeURIComponent(this.state.curPlayingList[i].Url)
-			if(listUrl == curUrl){
-				curIndex = i;
-			}
-		}
-		curIndex = parseInt(curIndex);
-		console.log(curIndex);
-		//正常狀況，播完清單即停止
 
-		switch (this.state.loopStatus) {
-			case 0:
-				index = (curIndex + 1) < this.state.curPlayingList.length ? (curIndex + 1) : 0;
-				break;
-			case 1:
-				index = (curIndex + 1) % this.state.curPlayingList.length;
-				break;
-			case 2:
-				index = curIndex;
-				break;
-		}
-
-		//this.setSongURL(this.state.curPlayingList[index]);
-		this.setCurSong({
-			Name:this.state.curPlayingList[index].Name,
-			Url:this.state.curPlayingList[index].Url,
-		});
-		if(index || this.state.loopStatus){
-			this.setState({
-				playStatus:Sound.status.PLAYING,
-			});
-		} else{
-			this.setState({
-				playStatus:Sound.status.STOPPED,
-			});
-		}
-	}
-	setSongURLtoPre(){ // 上一首
-		console.log("setSongURLtoPre");
-		//如果時間小於2秒，上一首，else，時間回到0
-		let curIndex; // 目前的index
-		for(let i in this.state.curPlayingList){
-			const curUrl = decodeURIComponent(this.state.curSong.Url);
-			const listUrl = decodeURIComponent(this.state.curPlayingList[i].Url)
-			if(listUrl == curUrl){
-				curIndex = i;
-			}
-		}
-		curIndex = parseInt(curIndex);
-
-		if(this.state.curTime / 1000 < 2 && curIndex > 0){
-			let index = curIndex - 1 > 0 ? curIndex - 1 : 0;
-			//this.setSongURL(this.state.curPlayingList[index]);
-			this.setCurSong({
-				Name:this.state.curPlayingList[index].Name,
-				Url:this.state.curPlayingList[index].Url,
-			});
-			this.setState({
-				curTime : 0,
-			});
-		} else{
-			this.setState({
-				curTime : 0,
-			});
-		}
-	}
-	togglePlayStatus(){ // 暫停or播放音樂
-		if(this.state.playStatus == Sound.status.PLAYING){
-			this.setState({
-				playStatus:Sound.status.PAUSED,
-			});
-		} else if(this.state.curSong.Url){
-			this.setState({
-				playStatus:Sound.status.PLAYING,
-			});
-		}
-	}
-	setCurTime(t){ // TSlider設定歌曲時間，curSong有的時候才有效
-		if(this.state.curSong){
-			this.setState({curTime:t});
-		}
-	}
-	setVolume(t){ //slider設定音量
-		this.setState({volume:t});
-		if(t==0){
-			this.setState({
-				muteStatus:true,
-			});
-		} else {
-			this.setState({
-				muteStatus:false,
-			});
-		}
-	}
-	toggleMute(){
-		if(this.state.muteStatus){
-			this.setState({
-				muteStatus:false,
-				volume: this.state.lastVolume,
-			});
-		} else {
-			this.setState({
-				muteStatus:true,
-				lastVolume:this.state.volume,
-				volume: 0,
-			});
-
-		}
-
-	}
 	toggleVisibility(){ //開關sidelist
 		this.setState({ visible: !this.state.visible });
-		console.log("toggle!");
+		// console.log("toggle!");
 	}
 
 	handleItemClick({name}){ // 發生在點sidelist的時候
-		console.log("name:"+name);
+		// console.log("name:"+name);
 		switch (name) {
 			case 'folder':
 				this.setState({ activeItem: name });
@@ -504,49 +378,16 @@ export class App extends React.Component {
 		}
 	}
 	handleSongListChange(str){
-		console.log(`handleSongListChange: ${str}`);
+		// console.log(`handleSongListChange: ${str}`);
 		this.setState({
 			curSongListIndex:parseInt(str),
 			activeItem: 'songlist'
 		});
 	}
-	setLoopStatus(){
-		let  c = (this.state.loopStatus + 1) % 3;
-		this.setState({
-			loopStatus: c,
-		});
-	}
 	render(){
 		return(
+			<SongInfoContext.Provider value={this.state.songInfo}>
 			<div className={Master.page}>
-				<Sound
-					url = {this.state.encodeSongUrl}
-					playStatus = {this.state.playStatus}
-					volume = {this.state.volume}
-					position = {this.state.curTime}
-					onError = {(c,d)=>{
-						console.log('!!!!'+d +'\n' + this.state.curSong.Name);
-						this.setState({
-							playStatus:Sound.status.STOPPED,
-						});
-					}}
-					onLoading = {(o) => {
-						//console.log("song Loading");
-						this.setState({
-							songTime : o.duration,
-						});
-					}}
-					onPlaying = {(o)=>{
-						//console.log("song Playing");
-						this.setState({
-							curTime : o.position,
-						});
-					//	console.log(o.position+'/'+o.duration);
-					}}
-					onFinishedPlaying = {()=>{
-						this.setSongURLtoNext();
-					}}
-				/>
 				<Sidebar.Pushable as={Segment} className={Master.pushable}>
 					<SideList
 						visible = {this.state.visible}
@@ -567,7 +408,6 @@ export class App extends React.Component {
 								Name:song.Name,
 								Url:song.Url,
 							})}
-							curSongURL = {this.state.curSong.Url}
 							fileExist = {this.state.fileExist}
 							loading = {this.state.loading}
 							songLists = {this.state.songLists}
@@ -577,26 +417,12 @@ export class App extends React.Component {
 							curDisplaySongListName = {this.state.curDisplaySongListName}
 						/>
 
-						<PageFooter
-							curSong = {this.state.curSong.Name}
-							playStatus = {this.state.playStatus}
-							loopStatus = {this.state.loopStatus}
-							setLoopStatus = {()=>this.setLoopStatus()}
-							setCurTime = {(t)=>this.setCurTime(t)}
-							curTime = {this.state.curTime}
-							songTime = {this.state.songTime}
-							volume = {this.state.volume}
-							setVolume = {(t)=>this.setVolume(t)}
-							setSongURLtoNext = {() => this.setSongURLtoNext()}
-							setSongURLtoPre = {() => this.setSongURLtoPre()}
-							togglePlayStatus = {() => this.togglePlayStatus()}
-							muteStatus = {this.state.muteStatus}
-							toggleMute = {() => this.toggleMute()}
-						/>
+						<FooterPlayer/>
 					</Sidebar.Pusher>
 				</Sidebar.Pushable>
 
 			</div>
+			</SongInfoContext.Provider>
 		);
 	}
 
