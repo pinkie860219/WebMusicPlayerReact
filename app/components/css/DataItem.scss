@@ -1,15 +1,16 @@
-$constainerRadius:5px;
+@import "./theme.scss";
+$constainerRadius:0px;
 .container{
 	display: inline-flex;
 	flex: 0 0 50px;
 	align-items: center;
 	justify-content: space-between;
-	border: 2px solid rgb(217, 217, 217);
-	margin: 2px 2px 2px 2px;
 	border-radius: $constainerRadius;
 	cursor: pointer;
 	position: relative;
 	transition: all 0.1s ease;
+	padding-left: 20px;
+	padding-right: 20px;
 	.plusHidden{
 		visibility: hidden;
 	}
@@ -36,32 +37,37 @@ $constainerRadius:5px;
 	height: 100%;
 	padding-left: 10px;
 	padding-right: 10px;
+	position: relative;
 	i{
 		font-size: 1.5em;
+		color: $fontColorData;
 	}
 }
 .header{
 	display: inline-flex;
 	margin-left: 10px;
 	font-size: 1.3em;
-	font-weight: bold;
+	font-weight: normal;
 }
 .icon{
 	font-size: 1.5em;
+	color: $iconColor;
 }
 .playing{
-	background-color: rgba(255, 250, 117, 0.54);
-	color: rgb(54, 54, 54);
+	background-color: inherit;
+	// background-color: rgba(255, 250, 117, 0.54);
+	color:$themeColor;
+	.icon{
+		color: $themeColor;
+	}
 	&:hover{
-		background-color: rgba(255, 251, 152, 0.54);
-		color: rgb(5, 5, 5);
+		background-color: rgba(255, 255, 255, 0.07);
 	}
 }
 .notPlaying{
-	background-color: rgba(255, 255, 255, 0);
-	color: rgb(54, 54, 54);
+	background-color: inherit;
+	color:$fontColorData;
 	&:hover{
-		background-color: rgba(255, 255, 255, 0.57);
-		color: rgb(5, 5, 5);
+		background-color: rgba(255, 255, 255, 0.07);
 	}
 }

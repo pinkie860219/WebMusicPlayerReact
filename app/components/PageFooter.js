@@ -1,6 +1,5 @@
 import React from "react";
-import style from "./css/PageFooter.css";
-import styled from "styled-components";
+import style from "./css/PageFooter.scss";
 import {Item, Image, Header} from "semantic-ui-react";
 import {Slider} from "./Slider.js";
 import {VolumeSlider} from "./VolumeSlider.js";
@@ -9,15 +8,6 @@ import {CtrlBtn} from "./CtrlBtn.js";
 import Sound from "react-sound";
 import * as toolLib from './Util.js';
 import {withSongInfo} from './context/SongInfoContext.js';
-
-const TimeSliderWidth = 300;
-const VolumeSliderWidth = 200;
-
-const TSlider = styled(TimeSlider)`
-`;
-const VSlider = styled(VolumeSlider)`
-	width:${VolumeSliderWidth+"px"};
-`;
 
 class PageFooter extends React.Component {
 	constructor(props){
@@ -201,16 +191,10 @@ class PageFooter extends React.Component {
 				/>
 				<div className = {style.panel}>
 					<div className = {style.item}>
-							<div className = {style.image}>
+							<div className = {style.meta}>
+								<div className={style.songName}>{this.props.curSong.Name||'現在播放歌曲'}</div>
+								<div className={style.subTitle}>音樂家</div>
 							</div>
-							<Header as='h3' className = {style.meta}>
-								<Header.Content>
-									{this.props.curSong.Name}
-									<Header.Subheader>
-										音樂家
-									</Header.Subheader>
-								</Header.Content>
-							</Header>
 					</div>
 					<CtrlBtn
 						className = {style.CtrlBtn}
@@ -222,19 +206,19 @@ class PageFooter extends React.Component {
 						togglePlayStatus = {() => this.togglePlayStatus()}
 					/>
 				</div>
-				<TSlider
+				<TimeSlider
 					value={this.state.curTime}
 					max={this.state.songTime}
 					setCurTime = {(t)=>this.setCurTime(t)}
-					className = {`${style.TSlider} ${this.props.className}`}
+					className = {style.TSlider}
 				/>
-				<VSlider
+				<VolumeSlider
 					value={this.state.volume}
 					max={100}
 					setVolume = {(t)=>this.setVolume(t)}
 					muteStatus = {this.state.muteStatus}
 					toggleMute = {this.toggleMute}
-					className = {`${style.VSlider} ${this.props.className}`}
+					className = {style.VSlider}
 				/>
 			</div>
 		);

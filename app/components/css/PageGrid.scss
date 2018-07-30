@@ -1,10 +1,11 @@
+@import "./theme.scss";
 .container{
 	display: flex;
 	flex:1;
 	flex-direction: column;
 	overflow: auto;
 	position: relative;
-	background-color: inherit;
+	background-color: $themeBackGroundColor;
 	z-index: -1;
 }
 .container2{
@@ -29,4 +30,14 @@
 .dimmer_active {
 	opacity: 1;
 	visibility: visible;
+}
+.hrLine{
+	width: 100%;
+	hr{
+		border:none;
+		border-bottom: 1px solid $hrColor;
+		margin: 0;
+	}
+	padding-left: 20px;
+	padding-right: 20px;
 }

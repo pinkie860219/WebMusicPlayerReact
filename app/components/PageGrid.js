@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./css/PageGrid.css";
+import style from "./css/PageGrid.scss";
 import styled from "styled-components";
 import {DataItemWithSongInfo} from "./DataItem.js"
 import { Loader, Icon, Header} from 'semantic-ui-react';
@@ -45,11 +45,18 @@ export class PageGrid extends React.Component {
 							songQueryURL = {this.props.songQueryURL}
 							handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}
 							curDisplaySongListName = {this.props.curDisplaySongListName}
-							curSongURL = {this.props.curSongURL}
 						/>
 					);
 				}
 			});
+			output = output.map(item=>(
+				<React.Fragment>
+					{item}
+					<div className={style.hrLine}>
+						<hr/>
+					</div>
+				</React.Fragment>
+			));
 			containerStyle = this.props.loading? [style.container, style.dim].join(' '):style.container;
 		} else {
 			output = (

@@ -1,21 +1,24 @@
+@import "./theme.scss";
 .footer{
 	height: 50px;
 	width: 100%;
 	margin: 0 auto;
 	box-shadow: 0px -3px 10px 0px rgba(0, 0, 0, 0.19);
-	background-color: rgb(255, 255, 255);
+	background-color: $themeBackGroundColorSec;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	padding: 0;
 }
 .item{
 	background-color: rgba(113, 113, 113, 0.14);
-	display: inline-flex;
+	display: flex;
 	align-items: center;
-	flex:1 0;
+	flex:1 0 250px;
 	width: 250px;
 	order:1;
 	overflow: hidden;
+	height: 100%;
 }
 .image{
 	display: inline-flex;
@@ -25,10 +28,20 @@
 	background-color: rgb(98, 98, 98);
 }
 .meta{
-	margin: 0 5px 0 5px !important;
-	display: inline-flex !important;
+	margin: 0 5px 0 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	display: flex;
 	overflow-x: hidden;
 	white-space: nowrap;
+	flex-direction: column;
+	.songName{
+		font-size: 1.2em;
+		color: $fontColorSongName;
+	}
+	.subTitle{
+		color: rgb(128, 128, 128);
+	}
 }
 .CtrlBtn{
 	margin: 0 0 0 30px;
@@ -38,9 +51,10 @@
 	width: auto;
 }
 .panel{
-	display: inline-flex;
+	display: flex;
 	flex: 0 0 auto;
 	order: 2;
+	height: 100%;
 }
 .TSlider{
 	margin: 0 30px 0 30px;

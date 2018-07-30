@@ -1,0 +1,137 @@
+@import "./theme.scss";
+.container{
+	display: flex;
+	align-items: center;
+	padding: 0;
+	flex:0 0 220px;
+	width: 220px;
+}
+.btn{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: 0.2s all ease;
+	cursor: pointer;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.playBtn{
+	height: 40px;
+	width: 40px;
+	border-radius: 100%;
+	border: 2px solid $themeColor;
+	font-size: 18px;
+	position: relative;
+}
+.playing{
+	background: none;
+	color: $themeColor;
+}
+.paused{
+	background: $themeColor;
+	color: $themeBackGroundColorSec;
+	i{
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50% ) translateX(2px);
+	}
+}
+.nextBtn{
+	height: 30px;
+	width: 30px;
+	border-radius: 100%;
+	border: none;
+	color: $ctrlColor;
+	background: none;
+	font-size: 18px;
+	&:hover{
+		color:$themeColor;
+	}
+}
+.loopBtn{
+
+	font-size: 20px;
+	border-radius: 14px;
+	padding-right: 0;
+	padding-left: 0;
+	i{
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	.pocket{
+		transition: 0.2s cubic-bezier(.74,.18,.45,1.66) width;
+		overflow: hidden;
+		position: relative;
+	}
+}
+.loopStatus_0{
+	color: $ctrlColor;
+	background: none;
+	border: 2px solid $themeBackGroundColorSec;
+	&:hover{
+		color:$themeColor;
+	}
+	.pocket{
+		width: 0;
+	}
+	.floatIcon{
+		transform: scale(0,0);
+	}
+}
+.loopStatus_1{
+	color: $themeBackGroundColorSec;
+	background-color: $themeColor;
+	border: 2px solid $themeColor;
+	&:hover{
+		color:$themeColor;
+		background-color: $themeBackGroundColorSec;
+	}
+	.pocket{
+		width: 0;
+	}
+	.floatIcon{
+		transform: scale(0,0);
+	}
+}
+.loopStatus_2{
+	color: $themeBackGroundColorSec;
+	background-color: $themeColor;
+	border: 2px solid $themeColor;
+	&:hover{
+		color:$themeColor;
+		background-color: $themeBackGroundColorSec;
+		.floatIcon{
+			color: $themeBackGroundColorSec;
+			background-color: $themeColor;
+			border-color: $themeBackGroundColorSec;
+		}
+	}
+	i{
+		margin-right: 5px;
+	}
+	.pocket{
+		width: 24px;
+	}
+	.floatIcon{
+		transform: scale(1,1);
+	}
+}
+.floatIcon{
+	transition: 0.2s all ease;
+	color:$themeColor;
+	background-color:$themeBackGroundColorSec;
+	border: 2px solid $themeColor;
+	border-radius:100%;
+	height:24px;
+	width:24px;
+	font-size: 12px;
+	line-height:12px;
+	padding:0;
+	display: flex;
+	flex-shrink: 0;
+	justify-content: center;
+	align-items: center;
+	font-family: sans-serif;
+	float: right;
+}
