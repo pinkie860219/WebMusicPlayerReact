@@ -49,8 +49,8 @@ export class PageGrid extends React.Component {
 					);
 				}
 			});
-			output = output.map(item=>(
-				<React.Fragment>
+			output = output.map((item, index)=>(
+				<React.Fragment key={`hr_${index}`}>
 					{item}
 					<div className={style.hrLine}>
 						<hr/>

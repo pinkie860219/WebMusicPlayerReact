@@ -121,11 +121,12 @@ class PageFooter extends React.Component {
 		});
 		if(index || this.state.loopStatus){
 			this.setState({
-				playStatus:Sound.status.PLAYING,
+				curTime : 0,
 			});
 		} else{
 			this.setState({
 				playStatus:Sound.status.STOPPED,
+				curTime : 0,
 			});
 		}
 	}
@@ -217,7 +218,7 @@ class PageFooter extends React.Component {
 					max={100}
 					setVolume = {(t)=>this.setVolume(t)}
 					muteStatus = {this.state.muteStatus}
-					toggleMute = {this.toggleMute}
+					toggleMute = {()=>this.toggleMute()}
 					className = {style.VSlider}
 				/>
 			</div>

@@ -1,0 +1,17 @@
+@import "./theme.scss";
+.iconDiv{
+	width: 30px;
+	display: flex;
+	flex: 0 0 30px;
+	align-items: center;
+	justify-content: flex-start;
+}
+.icon{
+	color: $ctrlColor;
+	font-size: 18px;
+	transition: 0.2s color ease;
+	cursor: pointer;
+	&:hover{
+		color: $themeColor;
+	}
+}

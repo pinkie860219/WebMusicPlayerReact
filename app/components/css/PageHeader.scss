@@ -1,0 +1,70 @@
+@import "./theme.scss";
+.header{
+	display: flex;
+	width: 100%;
+	height: 40px;
+	box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+	background-color: $themeBackGroundColorSec;
+	align-items: center;
+}
+.path{
+	display: flex;
+	color: $ctrlColor;
+	align-items: baseline;
+	transition: 0.2s all ease;
+	span{
+		padding: 0;
+		margin-left: 10px;
+		margin-right: 10px;
+		cursor: pointer;
+		transition: 0.2s all ease;
+		text-decoration:underline;
+		&:hover{
+			color: $themeColor;
+		}
+	}
+	i{
+		margin-left: 3px;
+	}
+}
+.tailBread{
+	font-weight: bold;
+}
+.btn{
+	border: none;
+	background: none;
+	background-color: inherit;
+	outline: none;
+	cursor: pointer;
+	transition: 0.2s ease all;
+}
+.menuBtn{
+	display: flex;
+	padding: 0;
+	color: $ctrlColor;
+	border: 1px solid $themeBackGroundColorSec;
+	padding: 5px 7px 5px 7px;
+	border-radius: 3px;
+	font-size: 1.2em;
+	margin-left: 20px;
+	margin-right: 10px;
+	&:hover{
+		color: $themeColor;
+		border: 1px solid $themeColor;
+	}
+}
+.titleBtn{
+	color: $themeColor;
+	display: flex;
+	align-items: baseline;
+	justify-content:space-between;
+	flex:0;
+	i{
+		font-size: 1.5em;
+	}
+	h3{
+		padding: 0;
+		margin: 0;
+		margin-left: 10px;
+	}
+}

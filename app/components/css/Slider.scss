@@ -1,10 +1,12 @@
+@import "./theme.scss";
 .container{
-	display: inline-block;
+	display: flex;
+	flex:1;
 	padding: 0;
-	--rangebk-color:#d7ddd7;
-	--rangebk-color-hover:#dee0de;
-	--progress-color:#00ffab;
-	--progress-color-hover:#60ffca;
+	--rangebk-color:#{$ctrlColor};
+	--rangebk-color-hover:#{$ctrlColor};
+	--progress-color: #{$themeColor};
+	--progress-color-hover:#{mix($themeColor,rgba(255, 255, 255, 0.12))};
 	--thumb-color:rgb(237, 237, 237);
 	--thumb-color-hover:rgb(245, 240, 240);
 	--thumb-shadow-hover:rgba(199, 197, 197, 0.59);
@@ -15,13 +17,13 @@
 	height: 10px;
 	padding: 0;
 	margin: 0 auto;
-	/*background-color: #00ffab;*/
 	background-color: var(--rangebk-color);
 	transition: all 0.3s ease;
 	cursor: pointer;
 	border-radius: 5px;
 	box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.13);
 	outline : none;
+
 	--range: calc(var(--max) - var(--min));
 	--ratio: calc((var(--val) - var(--min))/var(--range));
 	--sx: calc(0.5*12px + var(--ratio)*(100% - 12px));
@@ -30,7 +32,7 @@
 	outline: none;
 }
 .seek:hover {
-  	background-color: var(--rangebk-color-hover);
+  background-color: var(--rangebk-color-hover);
 }
 .seek::-webkit-slider-runnable-track {
 	height: 100%;
@@ -86,8 +88,10 @@
   	cursor: pointer;
 }
 .seek::-moz-range-track {
-	background: none;
+	height: 100%;
+	background-color: var(--rangebk-color);
 	border: none;
+	border-radius: 5px;
 }
 .seek::-moz-range-progress{
 	transition: all 0.3s ease;
@@ -97,6 +101,4 @@
 }
 .seek::-moz-range-progress:hover{
 	background-color: var(--progress-color-hover);
-	height: 100%;
-	border-radius: 5px;
 }

@@ -58,17 +58,17 @@
 }
 .TSlider{
 	margin: 0 30px 0 30px;
-	display: inline-flex;
+	display: flex;
 	flex: 0 1 100%;
 	align-items: center;
 	order:3;
 }
 .VSlider{
 	padding: 0;
-	display: inline-flex;
+	display: flex;
 	align-items: center;
-
-	margin-left:auto;
+	width: 100px;
+	flex: 0 0 100px;
 	margin: 0 30px 0 30px;
 	order:4;
 }

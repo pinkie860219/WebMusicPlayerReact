@@ -14,6 +14,7 @@
 	cursor: pointer;
 	margin-left: 5px;
 	margin-right: 5px;
+	outline: none;
 }
 .playBtn{
 	height: 40px;
@@ -26,6 +27,10 @@
 .playing{
 	background: none;
 	color: $themeColor;
+	&:hover{
+		background: $themeColor;
+		color: $themeBackGroundColorSec;
+	}
 }
 .paused{
 	background: $themeColor;
@@ -35,6 +40,10 @@
 		left: 50%;
 		top: 50%;
 		transform: translate(-50%, -50% ) translateX(2px);
+	}
+	&:hover{
+		background: none;
+		color: $themeColor;
 	}
 }
 .nextBtn{
@@ -52,7 +61,7 @@
 .loopBtn{
 
 	font-size: 20px;
-	border-radius: 14px;
+	border-radius: 15px;
 	padding-right: 0;
 	padding-left: 0;
 	i{
