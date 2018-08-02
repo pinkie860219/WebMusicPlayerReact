@@ -5,6 +5,14 @@ import {DataItemWithSongInfo} from "./DataItem.js"
 import { Loader, Icon, Header} from 'semantic-ui-react';
 import * as toolLib from './Util.js';
 
+const NoFile = (props) => (
+	<div className={style.noFile}>
+		<i className="fas fa-coffee"></i>
+		<div>
+			Oops, nothing here.
+		</div>
+	</div>
+)
 export class PageGrid extends React.Component {
 	constructor(props){
 		super(props);
@@ -60,13 +68,7 @@ export class PageGrid extends React.Component {
 			containerStyle = this.props.loading? [style.container, style.dim].join(' '):style.container;
 		} else {
 			output = (
-				<Header as='h2' icon>
-					<Icon name='bug' />
-						Files not found.
-						<Header.Subheader>
-							{"Oops, looks like there's no file exists."}
-						</Header.Subheader>
-				</Header>
+				<NoFile/>
 			);
 			containerStyle = this.props.loading? [style.container2, style.dim].join(' '):style.container2;
 		}
@@ -74,7 +76,7 @@ export class PageGrid extends React.Component {
 		return(
 			<div className = {style.container}>
 				<div className = {dimmerStyle}>
-					<Loader active={this.props.loading} size='large'>Preparing Files</Loader>
+					<Loader active={this.props.loading} inverted size='large'>Preparing Files</Loader>
 				</div>
 
 				<div className = {containerStyle}>

@@ -22,24 +22,6 @@ export class Dropdown extends React.Component {
 			foundInSongListNames:[],
 		}
 	}
-	componentDidMount(){
-		//this.fetchSongQuery();
-	}
-	componentWillReceiveProps(nextProps){
-		// if(nextProps.signal != this.props.signal){
-		// 	const newVisible = !this.state.visible
-		// 	if(newVisible){
-		// 		this.fetchSongQuery();
-		// 	}
-		// 	this.setState({
-		// 		visible: newVisible,
-		// 	})
-		// 	this.props.setVisible(newVisible);
-		// // }
-		// if(nextProps.visible){
-        //
-		// }
-	}
 	componentDidUpdate(pp,ps){
 
 		if(this.props.visible && (this.props.visible != pp.visible)){
