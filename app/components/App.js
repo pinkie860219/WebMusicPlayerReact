@@ -17,7 +17,7 @@ export class App extends React.Component {
 			musicURL:'https://pinkiebala.nctu.me/MusicServer/file/', // serve音樂檔案的API
 			songListURL:'https://pinkiebala.nctu.me/MusicServer/songlist',
 			songQueryURL:'https://pinkiebala.nctu.me/MusicServer/songquery?url=',
-			visible: true, // sideList的開關
+			visible: false, // sideList的開關
 			activeItem: 'folder', //sideList的選項
 
 

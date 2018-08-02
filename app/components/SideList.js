@@ -62,7 +62,7 @@ const Devider = (props) =>(
 	<div className={styles.devider}/>
 )
 const ExitButton = (props) => (
-	<div className={styles.exitBtn}>
+	<div className={styles.exitBtn} onClick = {props.onClick}>
 		<i className="fas fa-times"></i>
 		<div>Close</div>
 	</div>
@@ -83,7 +83,7 @@ export class SideList extends React.Component {
 		return(
 			<Sidebar animation='uncover' visible={this.props.visible}>
 				<div className={styles.container}>
-					<ExitButton/>
+					<ExitButton onClick={()=>this.props.toggleVisibility()}/>
 					<Devider/>
 					<SideButton icon={<i className="fas fa-folder-open"></i>}
 						active={this.props.activeItem === 'folder'}
