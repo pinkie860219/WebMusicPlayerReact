@@ -17,7 +17,7 @@ export class App extends React.Component {
 			musicURL:'https://pinkiebala.nctu.me/MusicServer/file/', // serve音樂檔案的API
 			songListURL:'https://pinkiebala.nctu.me/MusicServer/songlist',
 			songQueryURL:'https://pinkiebala.nctu.me/MusicServer/songquery?url=',
-			visible: false, // sideList的開關
+			visible: true, // sideList的開關
 			activeItem: 'folder', //sideList的選項
 
 
@@ -364,7 +364,7 @@ export class App extends React.Component {
 
 	toggleVisibility(){ //開關sidelist
 		this.setState({ visible: !this.state.visible });
-		// console.log("toggle!");
+		console.log("toggle!");
 	}
 
 	handleItemClick({name}){ // 發生在點sidelist的時候
@@ -395,8 +395,8 @@ export class App extends React.Component {
 						toggleVisibility = {() => this.toggleVisibility()}
 						handleItemClick = {({name}) =>  this.handleItemClick({name})}
 						handleSongListChange = {(value) => this.handleSongListChange(value)}
-						handleAddSongList = {(value) => this.handleAddSongList(value)}
 						songLists = {this.state.songLists}
+						curSongListIndex = {this.state.curSongListIndex}
 					/>
 					<Sidebar.Pusher as={"div"} className={Master.bk}>
 					  	<PageHeader toggleVisibility = {() => this.toggleVisibility()} curDir={this.state.curDir} setCurDirPop = {(index)=>{this.setCurDirPop(index)}}/>
