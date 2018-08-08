@@ -13,50 +13,19 @@ const CDropdown = styled(Dropdown)`
 class DataItem extends React.Component {
 	constructor(props){
 		super(props);
-		let icon_type;
-		switch (this.props.type) {
-			case 0:
-				icon_type="folder";
-				break;
-			case 1:
-				icon_type="video play outline";
-				break;
-
-		}
-
-		//console.log("construcor:"+icon_type);
 		this.state={
-			icon_type:icon_type,
 			dropdownSignal:false,
 			visiblePlus:false,
 			visibleDropdown:false,
-			dropdownFlag:false,
 		};
-	}
-	componentWillReceiveProps(nextProps){
-		let icon_type;
-		switch (nextProps.type) {
-			case 0:
-				icon_type="folder";
-				break;
-			case 1:
-				icon_type="video play outline";
-				break;
-
-		}
-		this.setState({
-			icon_type:icon_type,
-		});
 	}
 	clickHandler(){
 		this.props.onClick();
 	}
 	toggleDropdown(){
-		if(!this.state.dropdownFlag){
-			this.setState({
-				visibleDropdown: !this.state.visibleDropdown,
-			});
-		}
+		this.setState({
+			visibleDropdown: !this.state.visibleDropdown,
+		});
 	}
 	setVisible(newVisible){
 		this.setState({
@@ -79,7 +48,6 @@ class DataItem extends React.Component {
 					<i className={`fas fa-plus`}></i>
 					<Dropdown
 						songLists={this.props.songLists}
-						signal={this.state.dropdownSignal}
 						visible={this.state.visibleDropdown}
 						setVisible = {(t)=>this.setVisible(t)}
 						song={this.props.song}
@@ -87,7 +55,7 @@ class DataItem extends React.Component {
 						songQueryURL = {this.props.songQueryURL}
 						handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}
 						curDisplaySongListName = {this.props.curDisplaySongListName}
-						distory = {()=>this.distory()}/>
+						/>
 					</div>);
 				break;
 

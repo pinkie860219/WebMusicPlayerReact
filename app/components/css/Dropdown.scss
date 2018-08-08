@@ -1,0 +1,127 @@
+@import "./theme.scss";
+.container{
+	background-color: $themeBackGroundColorSec;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	top: 5px;
+	right: 40px;
+	z-index: 2;
+	border-radius: 3px;
+	filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.56));
+	width: 250px;
+	transition: 0.2s all ease;
+	color: $ctrlColor;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+.containerHidden{
+	display: none;
+}
+.pointDiv{
+	background-color: inherit;
+	position: absolute;
+	height: 10px;
+	width: 10px;
+	right:-5px;
+	top: 15px;
+	z-index: -1;
+	transform: rotate(45deg);
+}
+.container:focus, .pointDiv:focus{
+	outline: none;
+}
+.newListBtn{
+	background: none;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	width: 100%;
+	align-items: center;
+	color: rgb(82, 79, 79);
+	i{
+		color: rgb(82, 79, 79);
+	}
+	&:hover{
+		background-color: rgba(255, 255, 255, 0.07);
+		color: $ctrlColor;
+		i{
+			color: $ctrlColor;
+		}
+	}
+	padding: 10px;
+	padding-left: 20px;
+	i{
+		margin-right: 10px;
+	}
+	font-size: 1em;
+}
+$inputBorderRadius:3px;
+.inputBlock{
+	display: flex;
+	flex-direction: column;
+	padding: 5px 10px 5px 10px;
+	div{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border-radius: $inputBorderRadius;
+		height: 30px;
+		input[type="text"]{
+			border: none;
+			height: 100%;
+			display: flex;
+			width:0;
+			flex: 1 1 auto;
+			border-top-left-radius: $inputBorderRadius;
+			border-bottom-left-radius: $inputBorderRadius;
+			&:focus{
+				outline: none;
+				border-style: solid none solid solid;
+				border-width: 1px;
+				border-color: $themeColor;
+			}
+		}
+		button{
+			border: none;
+			background: none;
+			background-color: $themeColor;
+			width: 30px;
+			height: 30px;
+			display: flex;
+			flex: 0 0 30px;
+			cursor: pointer;
+			i{
+				// color: $themeBackGroundColorSec;
+				color:rgb(255, 255, 255);
+			}
+			padding: 0;
+			align-items: center;
+			justify-content: center;
+			border-top-right-radius: $inputBorderRadius;
+			border-bottom-right-radius: $inputBorderRadius;
+		}
+	}
+}
+.hrLine{
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	hr{
+		border:none;
+		border-bottom: 1px solid $hrColor;
+		margin: 0;
+	}
+}
+.checkItem{
+	padding: 5px 10px 5px 10px;
+	display: flex;
+	color: $ctrlColor;
+	align-items: center;
+	&:hover{
+		background-color: rgba(255, 255, 255, 0.07);
+	}
+	div{
+		margin-left: 10px;
+	}
+}
