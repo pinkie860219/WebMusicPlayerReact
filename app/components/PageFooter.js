@@ -8,7 +8,31 @@ import {CtrlBtn} from "./CtrlBtn.js";
 import Sound from "react-sound";
 import * as toolLib from './Util.js';
 import {withSongInfo} from './context/SongInfoContext.js';
-
+class SongClock extends React.Component{
+	HHMMSS(ms){//time in ms
+		let time = Math.floor(ms/1000);
+		let hr = Math.floor(time/3600);
+		let min = Math.floor((time - hr * 3600) / 60);
+		let sec = time - hr*3600 - min * 60;
+		let rt = [];
+		if(hr){
+			rt.push(hr);
+			if(min<10){min = "0"+min;}
+		}
+		rt.push(min);
+		if(sec<10){sec = "0"+sec;}
+		rt.push(sec);
+		return rt.join(":");
+	}
+	render(){
+		const output = this.HHMMSS(this.props.value)+"/"+this.HHMMSS(this.props.max)
+		return(
+			<span className = {style.time}>
+				{output}
+			</span>
+		);
+	}
+}
 class PageFooter extends React.Component {
 	constructor(props){
 		super(props);
@@ -190,37 +214,49 @@ class PageFooter extends React.Component {
 						this.setSongURLtoNext();
 					}}
 				/>
-				<div className = {style.panel}>
-					<div className = {style.item}>
-							<div className = {style.meta}>
-								<div className={style.songName}>{this.props.curSong.Name||'現在播放歌曲'}</div>
-								<div className={style.subTitle}>音樂家</div>
-							</div>
-					</div>
-					<CtrlBtn
-						className = {style.CtrlBtn}
-						playStatus = {this.state.playStatus}
-						loopStatus = {this.state.loopStatus}
-						setLoopStatus = {()=>this.setLoopStatus()}
-						setSongURLtoNext = {() => this.setSongURLtoNext()}
-						setSongURLtoPre = {() => this.setSongURLtoPre()}
-						togglePlayStatus = {() => this.togglePlayStatus()}
-					/>
-				</div>
 				<TimeSlider
 					value={this.state.curTime}
 					max={this.state.songTime}
 					setCurTime = {(t)=>this.setCurTime(t)}
 					className = {style.TSlider}
 				/>
-				<VolumeSlider
-					value={this.state.volume}
-					max={100}
-					setVolume = {(t)=>this.setVolume(t)}
-					muteStatus = {this.state.muteStatus}
-					toggleMute = {()=>this.toggleMute()}
-					className = {style.VSlider}
-				/>
+				<div>
+					<div className = {style.panel}>
+						<div className = {style.item}>
+								<div className = {style.meta}>
+									<div className={style.songName}>{this.props.curSong.Name||'現在播放歌曲'}</div>
+									<div className={style.subTitle}>音樂家</div>
+								</div>
+						</div>
+						<div className={style.ctrlAndTime}>
+							<CtrlBtn
+								className = {style.CtrlBtn}
+								playStatus = {this.state.playStatus}
+								loopStatus = {this.state.loopStatus}
+								setLoopStatus = {()=>this.setLoopStatus()}
+								setSongURLtoNext = {() => this.setSongURLtoNext()}
+								setSongURLtoPre = {() => this.setSongURLtoPre()}
+								togglePlayStatus = {() => this.togglePlayStatus()}
+								/>
+							<SongClock
+								value={this.state.curTime}
+								max={this.state.songTime}/>
+						</div>
+
+
+
+						<VolumeSlider
+							value={this.state.volume}
+							max={100}
+							setVolume = {(t)=>this.setVolume(t)}
+							muteStatus = {this.state.muteStatus}
+							toggleMute = {()=>this.toggleMute()}
+							className = {style.VSlider}
+						/>
+					</div>
+
+				</div>
+
 			</div>
 		);
 	}

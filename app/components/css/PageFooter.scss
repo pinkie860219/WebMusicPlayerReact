@@ -1,22 +1,25 @@
 @import "./theme.scss";
 .footer{
-	height: 50px;
 	width: 100%;
 	margin: 0 auto;
 	box-shadow: 0px -3px 10px 0px rgba(0, 0, 0, 0.19);
 	background-color: $themeBackGroundColorSec;
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	flex-direction: column;
 	padding: 0;
+}
+.panel{
+	display: flex;
+	flex: 0 0 auto;
+	height: 50px;
+	align-items: center;
 }
 .item{
 	background-color: rgba(113, 113, 113, 0.14);
 	display: flex;
 	align-items: center;
-	flex:1 0 250px;
+	flex:0 1 250px;
 	width: 250px;
-	order:1;
 	overflow: hidden;
 	height: 100%;
 }
@@ -28,13 +31,13 @@
 	background-color: rgb(98, 98, 98);
 }
 .meta{
-	margin: 0 5px 0 5px;
 	padding-left: 10px;
 	padding-right: 10px;
 	display: flex;
 	overflow-x: hidden;
 	white-space: nowrap;
 	flex-direction: column;
+	flex: 1;
 	.songName{
 		font-size: 1.2em;
 		color: $fontColorSongName;
@@ -45,23 +48,18 @@
 }
 .CtrlBtn{
 	margin: 0 0 0 30px;
-	display: inline-flex;
-	order:2;
+	display: flex;
 	flex:0 0;
 	width: auto;
 }
-.panel{
-	display: flex;
-	flex: 0 0 auto;
-	order: 2;
-	height: 100%;
+.time{
+	flex:0 0 auto;
+	color:$ctrlColor;
 }
 .TSlider{
-	margin: 0 30px 0 30px;
 	display: flex;
-	flex: 0 1 100%;
+	flex: 1 1 100%;
 	align-items: center;
-	order:3;
 }
 .VSlider{
 	padding: 0;
@@ -70,27 +68,40 @@
 	width: 100px;
 	flex: 0 0 100px;
 	margin: 0 30px 0 30px;
-	order:4;
+}
+.ctrlAndTime{
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 @media screen and (max-width: 768px) {
-	.footer{
-		height: auto;
-		width: 100%;
-		margin: 0 auto;
-		padding: 0;
-		display: flex;
-		align-items: stretch;
-		justify-content: space-between;
-		flex-direction: column;
-	}
 	.panel{
 		display: flex;
-		flex: 0 0 auto;
+		flex-direction: column;
+		align-items: flex-start;
+		height: auto;
 	}
-	.TSlider{
-		margin: 0;
+	.ctrlAndTime{
+		width: 100%;
+		padding: 10px;
+	}
+	.CtrlBtn{
 		display: flex;
-		order:1;
+		flex: 0 0 auto;
+		height: auto;
+		width: 100%;
+		margin: 0;
+	}
+	.item{
+		display: flex;
+		flex: 0 0 30px;
+		height: 30px;
+		width: 100%;
+		.meta{
+			flex-direction: row;
+			justify-content: space-between;
+		}
 	}
 	.VSlider{
 		display: none;

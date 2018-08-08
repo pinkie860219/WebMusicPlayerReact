@@ -4,9 +4,9 @@
 	flex:1;
 	padding: 0;
 	--rangebk-color:#{$themeBackGroundColorThird};
-	--rangebk-color-hover:#{$themeBackGroundColorThird};
+	--rangebk-color-hover:#{$ctrlColor};
 	--progress-color: #{$themeColor};
-	--progress-color-hover:#{mix($themeColor,rgba(255, 255, 255, 0.12))};
+	--progress-color-hover:#{$themeColor};
 	--thumb-color:rgb(237, 237, 237);
 	--thumb-color-hover:rgb(245, 240, 240);
 	--thumb-shadow-hover:rgba(199, 197, 197, 0.59);
@@ -14,13 +14,11 @@
 .seek{
 	-webkit-appearance: none;
 	width: 100%;
-	height: 10px;
+	height: 4px;
 	padding: 0;
 	margin: 0 auto;
 	background-color: var(--rangebk-color);
-	transition: all 0.3s ease;
 	cursor: pointer;
-	border-radius: 5px;
 	box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.13);
 	outline : none;
 
@@ -33,12 +31,16 @@
 }
 .seek:hover {
   background-color: var(--rangebk-color-hover);
+	height: 5px;
+	&::-moz-range-thumb{
+		width: 12px;
+		height: 12px;
+	}
 }
 .seek::-webkit-slider-runnable-track {
 	height: 100%;
 	-webkit-appearance: none;
 	background: linear-gradient(var(--progress-color), var(--progress-color)) 0/var(--sx) 100% no-repeat  var(--rangebk-color);
-	border-radius: 5px;
 }
 .seek::-webkit-slider-runnable-track:hover{
 	background: linear-gradient(var(--progress-color-hover), var(--progress-color-hover)) 0/var(--sx) 100% no-repeat var(--rangebk-color-hover);
@@ -68,19 +70,19 @@
 
 /*FF*/
 .seek::-moz-focus-outer {
-    border: 0;
+  border: 0;
 }
 .seek::-moz-range-thumb{
-  	width: 12px;
-  	height: 12px;
-   	background-color: var(--thumb-color);
+	width: 0;
+	height: 0;
+ 	background-color: var(--thumb-color);
 	border:0;
  	border-radius: 100%;
  	cursor: pointer;
 	box-shadow: 1px 1px 0px 0px rgb(207, 207, 207);
  }
 .seek::-moz-range-thumb:hover {
-  	background-color: var(--thumb-color-hover);
+	background-color: var(--thumb-color-hover);
  	box-shadow: 0px 0px 0px 5px var(--thumb-shadow-hover);
 }
 .seek::-moz-range-thumb:active {
@@ -89,15 +91,12 @@
 }
 .seek::-moz-range-track {
 	height: 100%;
-	background-color: var(--rangebk-color);
 	border: none;
-	border-radius: 5px;
 }
 .seek::-moz-range-progress{
 	transition: all 0.3s ease;
 	background-color: var(--progress-color);
 	height: 100%;
-	border-radius: 5px;
 }
 .seek::-moz-range-progress:hover{
 	background-color: var(--progress-color-hover);
