@@ -2407,7 +2407,7 @@ FormField.propTypes = process.env.NODE_ENV !== "production" ? {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__collections_Table_TableRow__ = __webpack_require__(372);
 /* unused harmony reexport TableRow */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__elements_Button_Button__ = __webpack_require__(190);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_43__elements_Button_Button__["a"]; });
+/* unused harmony reexport Button */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__elements_Button_ButtonContent__ = __webpack_require__(326);
 /* unused harmony reexport ButtonContent */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__elements_Button_ButtonGroup__ = __webpack_require__(327);
@@ -2417,17 +2417,17 @@ FormField.propTypes = process.env.NODE_ENV !== "production" ? {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__elements_Container__ = __webpack_require__(738);
 /* unused harmony reexport Container */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__elements_Divider__ = __webpack_require__(740);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_48__elements_Divider__["a"]; });
+/* unused harmony reexport Divider */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__elements_Flag__ = __webpack_require__(345);
 /* unused harmony reexport Flag */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__elements_Header__ = __webpack_require__(742);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_50__elements_Header__["a"]; });
+/* unused harmony reexport Header */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__elements_Header_HeaderContent__ = __webpack_require__(374);
 /* unused harmony reexport HeaderContent */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__elements_Header_HeaderSubheader__ = __webpack_require__(373);
 /* unused harmony reexport HeaderSubheader */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__elements_Icon__ = __webpack_require__(18);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_53__elements_Icon__["a"]; });
+/* unused harmony reexport Icon */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__elements_Icon_IconGroup__ = __webpack_require__(318);
 /* unused harmony reexport IconGroup */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__elements_Image__ = __webpack_require__(70);
@@ -2435,7 +2435,7 @@ FormField.propTypes = process.env.NODE_ENV !== "production" ? {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__elements_Image_ImageGroup__ = __webpack_require__(323);
 /* unused harmony reexport ImageGroup */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__elements_Input__ = __webpack_require__(195);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_57__elements_Input__["a"]; });
+/* unused harmony reexport Input */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__elements_Label__ = __webpack_require__(132);
 /* unused harmony reexport Label */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__elements_Label_LabelDetail__ = __webpack_require__(324);
@@ -2457,7 +2457,7 @@ FormField.propTypes = process.env.NODE_ENV !== "production" ? {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__elements_List_ListList__ = __webpack_require__(376);
 /* unused harmony reexport ListList */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__elements_Loader__ = __webpack_require__(746);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_68__elements_Loader__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_68__elements_Loader__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__elements_Rail__ = __webpack_require__(748);
 /* unused harmony reexport Rail */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__elements_Reveal__ = __webpack_require__(750);
@@ -2465,7 +2465,7 @@ FormField.propTypes = process.env.NODE_ENV !== "production" ? {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__elements_Reveal_RevealContent__ = __webpack_require__(377);
 /* unused harmony reexport RevealContent */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__elements_Segment__ = __webpack_require__(752);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_72__elements_Segment__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_72__elements_Segment__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__elements_Segment_SegmentGroup__ = __webpack_require__(379);
 /* unused harmony reexport SegmentGroup */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_74__elements_Step__ = __webpack_require__(753);
@@ -2487,7 +2487,7 @@ FormField.propTypes = process.env.NODE_ENV !== "production" ? {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_82__modules_Accordion_AccordionTitle__ = __webpack_require__(204);
 /* unused harmony reexport AccordionTitle */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_83__modules_Checkbox__ = __webpack_require__(131);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_83__modules_Checkbox__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_83__modules_Checkbox__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_84__modules_Dimmer__ = __webpack_require__(320);
 /* unused harmony reexport Dimmer */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_85__modules_Dimmer_DimmerDimmable__ = __webpack_require__(322);
@@ -2537,7 +2537,7 @@ FormField.propTypes = process.env.NODE_ENV !== "production" ? {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_107__modules_Search_SearchResults__ = __webpack_require__(389);
 /* unused harmony reexport SearchResults */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_108__modules_Sidebar__ = __webpack_require__(772);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_108__modules_Sidebar__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_108__modules_Sidebar__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_109__modules_Sidebar_SidebarPushable__ = __webpack_require__(390);
 /* unused harmony reexport SidebarPushable */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_110__modules_Sidebar_SidebarPusher__ = __webpack_require__(391);
@@ -46777,7 +46777,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			musicURL: 'https://pinkiebala.nctu.me/MusicServer/file/', // serve音樂檔案的API
 			songListURL: 'https://pinkiebala.nctu.me/MusicServer/songlist',
 			songQueryURL: 'https://pinkiebala.nctu.me/MusicServer/songquery?url=',
-			visible: true, // sideList的開關
+			visible: false, // sideList的開關
 			activeItem: 'folder', //sideList的選項
 
 
@@ -47151,19 +47151,19 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 				"div",
 				{ className: __WEBPACK_IMPORTED_MODULE_6__css_Master_css___default.a.page },
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-					__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["i" /* Sidebar */].Pushable,
-					{ as: __WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["h" /* Segment */], className: __WEBPACK_IMPORTED_MODULE_6__css_Master_css___default.a.pushable },
+					__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["d" /* Sidebar */].Pushable,
+					{ as: __WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["c" /* Segment */], className: __WEBPACK_IMPORTED_MODULE_6__css_Master_css___default.a.pushable },
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__SideList_js__["a" /* SideList */], {
 						visible: this.state.visible,
 						activeItem: this.state.activeItem,
 						toggleVisibility: () => this.toggleVisibility(),
 						handleItemClick: ({ name }) => this.handleItemClick({ name }),
 						handleSongListChange: value => this.handleSongListChange(value),
-						handleAddSongList: value => this.handleAddSongList(value),
-						songLists: this.state.songLists
+						songLists: this.state.songLists,
+						curSongListIndex: this.state.curSongListIndex
 					}),
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-						__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["i" /* Sidebar */].Pusher,
+						__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["d" /* Sidebar */].Pusher,
 						{ as: "div", className: __WEBPACK_IMPORTED_MODULE_6__css_Master_css___default.a.bk },
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__PageHeader_js__["a" /* PageHeader */], { toggleVisibility: () => this.toggleVisibility(), curDir: this.state.curDir, setCurDirPop: index => {
 								this.setCurDirPop(index);
@@ -63568,7 +63568,7 @@ Container.propTypes = process.env.NODE_ENV !== "production" ? {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Divider__ = __webpack_require__(741);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__Divider__["a"]; });
+/* unused harmony reexport default */
 
 
 
@@ -63661,7 +63661,7 @@ Divider.propTypes = process.env.NODE_ENV !== "production" ? {
   vertical: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool
 } : {};
 
-/* harmony default export */ __webpack_exports__["a"] = (Divider);
+/* unused harmony default export */ var _unused_webpack_default_export = (Divider);
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
@@ -63670,7 +63670,7 @@ Divider.propTypes = process.env.NODE_ENV !== "production" ? {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Header__ = __webpack_require__(743);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__Header__["a"]; });
+/* unused harmony reexport default */
 
 
 
@@ -63830,7 +63830,7 @@ Header.propTypes = process.env.NODE_ENV !== "production" ? {
 Header.Content = __WEBPACK_IMPORTED_MODULE_9__HeaderContent__["a" /* default */];
 Header.Subheader = __WEBPACK_IMPORTED_MODULE_8__HeaderSubheader__["a" /* default */];
 
-/* harmony default export */ __webpack_exports__["a"] = (Header);
+/* unused harmony default export */ var _unused_webpack_default_export = (Header);
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
@@ -67748,6 +67748,93 @@ Feed.User = __WEBPACK_IMPORTED_MODULE_16__FeedUser__["a" /* default */];
 
 
 
+class SideButton extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+	render() {
+		return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+			"div",
+			{ className: `${__WEBPACK_IMPORTED_MODULE_1__css_SideList_scss___default.a.sideBtn} ${this.props.active ? __WEBPACK_IMPORTED_MODULE_1__css_SideList_scss___default.a.active : ''}`, onClick: () => this.props.onClick(this.props) },
+			this.props.icon,
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				"div",
+				{ className: __WEBPACK_IMPORTED_MODULE_1__css_SideList_scss___default.a.title },
+				this.props.children
+			)
+		);
+	}
+}
+class DropdownItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+	render() {
+		return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+			"div",
+			{ className: `${__WEBPACK_IMPORTED_MODULE_1__css_SideList_scss___default.a.dropdownItem} ${this.props.active ? __WEBPACK_IMPORTED_MODULE_1__css_SideList_scss___default.a.active : ''}`, onClick: () => this.props.onClick(this.props) },
+			this.props.icon,
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				"div",
+				{ className: __WEBPACK_IMPORTED_MODULE_1__css_SideList_scss___default.a.title },
+				this.props.children
+			)
+		);
+	}
+}
+class SideDropdown extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			visible: false
+		};
+	}
+	toggleVisibility() {
+		console.log(`toggleVisibility`);
+		this.setState({
+			visible: !this.state.visible
+		});
+	}
+	render() {
+		const dropdownStyle = this.state.visible ? __WEBPACK_IMPORTED_MODULE_1__css_SideList_scss___default.a.dropdown : `${__WEBPACK_IMPORTED_MODULE_1__css_SideList_scss___default.a.dropdown} ${__WEBPACK_IMPORTED_MODULE_1__css_SideList_scss___default.a.dropdownHidden}`;
+		const arrow = this.state.visible ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-caret-down" }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-caret-right" });
+		return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+			"div",
+			{ className: __WEBPACK_IMPORTED_MODULE_1__css_SideList_scss___default.a.sideDropdown },
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				"div",
+				{ className: `${__WEBPACK_IMPORTED_MODULE_1__css_SideList_scss___default.a.sideBtn} ${this.props.active ? __WEBPACK_IMPORTED_MODULE_1__css_SideList_scss___default.a.active : ''}`, onClick: () => this.toggleVisibility() },
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					"div",
+					{ className: __WEBPACK_IMPORTED_MODULE_1__css_SideList_scss___default.a.arrow },
+					arrow
+				),
+				this.props.icon,
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					"div",
+					{ className: __WEBPACK_IMPORTED_MODULE_1__css_SideList_scss___default.a.title },
+					this.props.children
+				)
+			),
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				"div",
+				{ className: dropdownStyle },
+				this.props.options.map((item, index) => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					DropdownItem,
+					{ key: index, active: this.props.activeItem === item.value,
+						icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-list-ol" }),
+						onClick: () => this.props.onChange(item.value) },
+					item.text
+				))
+			)
+		);
+	}
+}
+const Devider = props => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: __WEBPACK_IMPORTED_MODULE_1__css_SideList_scss___default.a.devider });
+const ExitButton = props => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+	"div",
+	{ className: __WEBPACK_IMPORTED_MODULE_1__css_SideList_scss___default.a.exitBtn, onClick: props.onClick },
+	__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-times" }),
+	__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+		"div",
+		null,
+		"Close"
+	)
+);
 class SideList extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	constructor(props) {
 		super(props);
@@ -67755,28 +67842,35 @@ class SideList extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			options: []
 		};
 	}
-	handleChange(e, data) {
+	handleChange(value) {
 		this.props.handleItemClick({ name: 'songlist' });
-		this.props.handleSongListChange(data.value);
-		//console.log("handleChange value = " + data.value);
+		this.props.handleSongListChange(value);
 	}
 	render() {
 		const { searchQuery, value } = this.state;
 		return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-			__WEBPACK_IMPORTED_MODULE_2_semantic_ui_react__["i" /* Sidebar */],
-			{ animation: "uncover", width: "wide", visible: this.props.visible },
+			__WEBPACK_IMPORTED_MODULE_2_semantic_ui_react__["d" /* Sidebar */],
+			{ animation: "uncover", visible: this.props.visible },
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				"div",
 				{ className: __WEBPACK_IMPORTED_MODULE_1__css_SideList_scss___default.a.container },
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(ExitButton, { onClick: () => this.props.toggleVisibility() }),
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Devider, null),
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-					"div",
-					null,
-					"haha"
+					SideButton,
+					{ icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-folder-open" }),
+						active: this.props.activeItem === 'folder',
+						name: "folder",
+						onClick: ({ name }) => this.props.handleItemClick({ name }) },
+					"Folder"
 				),
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-					"div",
-					null,
-					"haha2"
+					SideDropdown,
+					{ icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-list-ol" }),
+						options: this.props.songLists,
+						onChange: value => this.handleChange(value),
+						activeItem: this.props.activeItem === 'songlist' ? this.props.curSongListIndex : -1 },
+					"SongList"
 				)
 			)
 		);
@@ -67825,12 +67919,21 @@ exports = module.exports = __webpack_require__(31)(false);
 
 
 // module
-exports.push([module.i, "/** Light Verision**/\n/*\n$fontColorData: #1f1f1f;\n$fontColorDataPlaying: #1f1f1f;\n$iconColor: #c3c3c3;\n$hrColor:rgba(#000000, 0.21);\n*/\n.SideList__dropdown___15PLQ {\n  margin-top: 10px !important; }\n\n.SideList__container___3jHcj {\n  height: 100%;\n  width: 100%;\n  background-color: #262626;\n  color: #f1f1f1; }\n", ""]);
+exports.push([module.i, "/** Light Verision**/\n/*\n$fontColorData: #1f1f1f;\n$fontColorDataPlaying: #1f1f1f;\n$iconColor: #c3c3c3;\n$hrColor:rgba(#000000, 0.21);\n*/\n.SideList__container___3jHcj {\n  height: 100%;\n  width: 100%;\n  background-color: #171717;\n  color: #f1f1f1;\n  display: flex;\n  align-items: stretch;\n  flex-direction: column;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  overflow: hidden; }\n\n.SideList__sideBtn___FpHAH {\n  font-size: 1.1em;\n  display: flex;\n  height: 50px;\n  flex: 0 0 50px;\n  align-items: center;\n  padding-left: 30px;\n  cursor: pointer;\n  position: relative; }\n  .SideList__sideBtn___FpHAH:hover {\n    background-color: rgba(255, 255, 255, 0.15); }\n\n.SideList__title___1w6rU {\n  margin-left: 30px; }\n\n.SideList__active___24PYB {\n  background-color: rgba(255, 255, 255, 0.12); }\n  .SideList__active___24PYB i {\n    color: #f7d026; }\n\n.SideList__sideDropdown___hH4eB {\n  overflow: hidden;\n  flex: 1;\n  display: flex;\n  flex-direction: column; }\n\n.SideList__dropdown___15PLQ {\n  overflow-y: hidden;\n  flex: 1;\n  display: flex;\n  flex-direction: column;\n  font-size: 0.8em;\n  transition: 0.2s all ease; }\n  .SideList__dropdown___15PLQ:hover {\n    overflow-y: scroll; }\n\n.SideList__dropdownHidden___15sh8 {\n  height: 0;\n  flex: 0 0 0px; }\n\n.SideList__dropdownItem___2Z5H4 {\n  display: flex;\n  height: 30px;\n  flex: 0 0 30px;\n  align-items: center;\n  padding-left: 40px;\n  cursor: pointer; }\n  .SideList__dropdownItem___2Z5H4:hover {\n    background-color: rgba(255, 255, 255, 0.15); }\n\n.SideList__exitBtn___2uawq {\n  display: flex;\n  height: 50px;\n  flex: 0 0 50px;\n  align-items: center;\n  cursor: pointer;\n  justify-content: flex-end;\n  font-size: 25px;\n  transition: 0.2s all ease;\n  padding-right: 30px; }\n  .SideList__exitBtn___2uawq:hover {\n    background-color: rgba(255, 255, 255, 0.15); }\n    .SideList__exitBtn___2uawq:hover div {\n      width: 60px;\n      margin-left: 10px; }\n  .SideList__exitBtn___2uawq div {\n    width: 0;\n    overflow: hidden;\n    transition: 0.2s all ease; }\n\n.SideList__devider___28iJ5 {\n  background-color: rgba(255, 255, 255, 0.21);\n  margin-top: 10px;\n  margin-bottom: 10px;\n  height: 1px; }\n\n.SideList__arrow___3nU8P {\n  transition: 0.2s all ease;\n  position: absolute;\n  left: 10px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 1em;\n  height: 1em; }\n", ""]);
 
 // exports
 exports.locals = {
+	"container": "SideList__container___3jHcj",
+	"sideBtn": "SideList__sideBtn___FpHAH",
+	"title": "SideList__title___1w6rU",
+	"active": "SideList__active___24PYB",
+	"sideDropdown": "SideList__sideDropdown___hH4eB",
 	"dropdown": "SideList__dropdown___15PLQ",
-	"container": "SideList__container___3jHcj"
+	"dropdownHidden": "SideList__dropdownHidden___15sh8",
+	"dropdownItem": "SideList__dropdownItem___2Z5H4",
+	"exitBtn": "SideList__exitBtn___2uawq",
+	"devider": "SideList__devider___28iJ5",
+	"arrow": "SideList__arrow___3nU8P"
 };
 
 /***/ }),
@@ -68027,7 +68130,7 @@ exports = module.exports = __webpack_require__(31)(false);
 
 
 // module
-exports.push([module.i, "/** Light Verision**/\n/*\n$fontColorData: #1f1f1f;\n$fontColorDataPlaying: #1f1f1f;\n$iconColor: #c3c3c3;\n$hrColor:rgba(#000000, 0.21);\n*/\n.PageHeader__header___3sANJ {\n  display: flex;\n  width: 100%;\n  height: 40px;\n  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.19);\n  background-color: #2d2d2d;\n  align-items: center; }\n\n.PageHeader__path___LbPtq {\n  display: flex;\n  color: #f1f1f1;\n  align-items: baseline;\n  transition: 0.2s all ease; }\n  .PageHeader__path___LbPtq span {\n    padding: 0;\n    margin-left: 10px;\n    margin-right: 10px;\n    cursor: pointer;\n    transition: 0.2s all ease;\n    text-decoration: underline; }\n    .PageHeader__path___LbPtq span:hover {\n      color: #f7d026; }\n  .PageHeader__path___LbPtq i {\n    margin-left: 3px; }\n\n.PageHeader__tailBread___3Ai_K {\n  font-weight: bold; }\n\n.PageHeader__btn___s6vfF {\n  border: none;\n  background: none;\n  background-color: inherit;\n  outline: none;\n  cursor: pointer;\n  transition: 0.2s ease all; }\n\n.PageHeader__menuBtn___xhXh_ {\n  display: flex;\n  padding: 0;\n  color: #f1f1f1;\n  border: 1px solid #2d2d2d;\n  padding: 5px 7px 5px 7px;\n  border-radius: 3px;\n  font-size: 1.2em;\n  margin-left: 20px;\n  margin-right: 10px; }\n  .PageHeader__menuBtn___xhXh_:hover {\n    color: #f7d026;\n    border: 1px solid #f7d026; }\n\n.PageHeader__titleBtn___bNMtI {\n  color: #f7d026;\n  display: flex;\n  align-items: baseline;\n  justify-content: space-between;\n  flex: 0; }\n  .PageHeader__titleBtn___bNMtI i {\n    font-size: 1.5em; }\n  .PageHeader__titleBtn___bNMtI h3 {\n    padding: 0;\n    margin: 0;\n    margin-left: 10px; }\n", ""]);
+exports.push([module.i, "/** Light Verision**/\n/*\n$fontColorData: #1f1f1f;\n$fontColorDataPlaying: #1f1f1f;\n$iconColor: #c3c3c3;\n$hrColor:rgba(#000000, 0.21);\n*/\n.PageHeader__header___3sANJ {\n  display: flex;\n  width: 100%;\n  height: 40px;\n  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.19);\n  background-color: #222222;\n  align-items: center; }\n\n.PageHeader__path___LbPtq {\n  display: flex;\n  color: #f1f1f1;\n  align-items: baseline;\n  transition: 0.2s all ease; }\n  .PageHeader__path___LbPtq span {\n    padding: 0;\n    margin-left: 10px;\n    margin-right: 10px;\n    cursor: pointer;\n    transition: 0.2s all ease;\n    text-decoration: underline; }\n    .PageHeader__path___LbPtq span:hover {\n      color: #f7d026; }\n  .PageHeader__path___LbPtq i {\n    margin-left: 3px; }\n\n.PageHeader__tailBread___3Ai_K {\n  font-weight: bold; }\n\n.PageHeader__btn___s6vfF {\n  border: none;\n  background: none;\n  background-color: inherit;\n  outline: none;\n  cursor: pointer;\n  transition: 0.2s ease all; }\n\n.PageHeader__menuBtn___xhXh_ {\n  display: flex;\n  padding: 0;\n  color: #f1f1f1;\n  border: 1px solid #222222;\n  padding: 5px 7px 5px 7px;\n  border-radius: 3px;\n  font-size: 1.2em;\n  margin-left: 20px;\n  margin-right: 10px; }\n  .PageHeader__menuBtn___xhXh_:hover {\n    color: #f7d026;\n    border: 1px solid #f7d026; }\n\n.PageHeader__titleBtn___bNMtI {\n  color: #f7d026;\n  display: flex;\n  align-items: baseline;\n  justify-content: space-between;\n  flex: 0; }\n  .PageHeader__titleBtn___bNMtI i {\n    font-size: 1.5em; }\n  .PageHeader__titleBtn___bNMtI h3 {\n    padding: 0;\n    margin: 0;\n    margin-left: 10px; }\n", ""]);
 
 // exports
 exports.locals = {
@@ -68067,7 +68170,36 @@ exports.locals = {
 
 
 
-
+class SongClock extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+	HHMMSS(ms) {
+		//time in ms
+		let time = Math.floor(ms / 1000);
+		let hr = Math.floor(time / 3600);
+		let min = Math.floor((time - hr * 3600) / 60);
+		let sec = time - hr * 3600 - min * 60;
+		let rt = [];
+		if (hr) {
+			rt.push(hr);
+			if (min < 10) {
+				min = "0" + min;
+			}
+		}
+		rt.push(min);
+		if (sec < 10) {
+			sec = "0" + sec;
+		}
+		rt.push(sec);
+		return rt.join(":");
+	}
+	render() {
+		const output = this.HHMMSS(this.props.value) + "/" + this.HHMMSS(this.props.max);
+		return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+			"span",
+			{ className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_scss___default.a.time },
+			output
+		);
+	}
+}
 class PageFooter extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	constructor(props) {
 		super(props);
@@ -68252,51 +68384,62 @@ class PageFooter extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 					this.setSongURLtoNext();
 				}
 			}),
-			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-				"div",
-				{ className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_scss___default.a.panel },
-				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-					"div",
-					{ className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_scss___default.a.item },
-					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-						"div",
-						{ className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_scss___default.a.meta },
-						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-							"div",
-							{ className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_scss___default.a.songName },
-							this.props.curSong.Name || '現在播放歌曲'
-						),
-						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-							"div",
-							{ className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_scss___default.a.subTitle },
-							"\u97F3\u6A02\u5BB6"
-						)
-					)
-				),
-				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__CtrlBtn_js__["a" /* CtrlBtn */], {
-					className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_scss___default.a.CtrlBtn,
-					playStatus: this.state.playStatus,
-					loopStatus: this.state.loopStatus,
-					setLoopStatus: () => this.setLoopStatus(),
-					setSongURLtoNext: () => this.setSongURLtoNext(),
-					setSongURLtoPre: () => this.setSongURLtoPre(),
-					togglePlayStatus: () => this.togglePlayStatus()
-				})
-			),
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__TimeSlider_js__["a" /* TimeSlider */], {
 				value: this.state.curTime,
 				max: this.state.songTime,
 				setCurTime: t => this.setCurTime(t),
 				className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_scss___default.a.TSlider
 			}),
-			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__VolumeSlider_js__["a" /* VolumeSlider */], {
-				value: this.state.volume,
-				max: 100,
-				setVolume: t => this.setVolume(t),
-				muteStatus: this.state.muteStatus,
-				toggleMute: () => this.toggleMute(),
-				className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_scss___default.a.VSlider
-			})
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				"div",
+				null,
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					"div",
+					{ className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_scss___default.a.panel },
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						"div",
+						{ className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_scss___default.a.item },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							"div",
+							{ className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_scss___default.a.meta },
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								"div",
+								{ className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_scss___default.a.songName },
+								this.props.curSong.Name || '現在播放歌曲'
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								"div",
+								{ className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_scss___default.a.subTitle },
+								"\u97F3\u6A02\u5BB6"
+							)
+						)
+					),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						"div",
+						{ className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_scss___default.a.ctrlAndTime },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__CtrlBtn_js__["a" /* CtrlBtn */], {
+							className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_scss___default.a.CtrlBtn,
+							playStatus: this.state.playStatus,
+							loopStatus: this.state.loopStatus,
+							setLoopStatus: () => this.setLoopStatus(),
+							setSongURLtoNext: () => this.setSongURLtoNext(),
+							setSongURLtoPre: () => this.setSongURLtoPre(),
+							togglePlayStatus: () => this.togglePlayStatus()
+						}),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(SongClock, {
+							value: this.state.curTime,
+							max: this.state.songTime })
+					),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__VolumeSlider_js__["a" /* VolumeSlider */], {
+						value: this.state.volume,
+						max: 100,
+						setVolume: t => this.setVolume(t),
+						muteStatus: this.state.muteStatus,
+						toggleMute: () => this.toggleMute(),
+						className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_scss___default.a.VSlider
+					})
+				)
+			)
 		);
 	}
 }
@@ -68344,20 +68487,22 @@ exports = module.exports = __webpack_require__(31)(false);
 
 
 // module
-exports.push([module.i, "/** Light Verision**/\n/*\n$fontColorData: #1f1f1f;\n$fontColorDataPlaying: #1f1f1f;\n$iconColor: #c3c3c3;\n$hrColor:rgba(#000000, 0.21);\n*/\n.PageFooter__footer___19OAW {\n  height: 50px;\n  width: 100%;\n  margin: 0 auto;\n  box-shadow: 0px -3px 10px 0px rgba(0, 0, 0, 0.19);\n  background-color: #2d2d2d;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 0; }\n\n.PageFooter__item___29O3x {\n  background-color: rgba(113, 113, 113, 0.14);\n  display: flex;\n  align-items: center;\n  flex: 1 0 250px;\n  width: 250px;\n  order: 1;\n  overflow: hidden;\n  height: 100%; }\n\n.PageFooter__image___2uNFw {\n  display: inline-flex;\n  flex: 0 0 50px;\n  height: 50px;\n  width: 50px;\n  background-color: #626262; }\n\n.PageFooter__meta___y3zfW {\n  margin: 0 5px 0 5px;\n  padding-left: 10px;\n  padding-right: 10px;\n  display: flex;\n  overflow-x: hidden;\n  white-space: nowrap;\n  flex-direction: column; }\n  .PageFooter__meta___y3zfW .PageFooter__songName___3g9en {\n    font-size: 1.2em;\n    color: #e0e0e0; }\n  .PageFooter__meta___y3zfW .PageFooter__subTitle___13BM4 {\n    color: gray; }\n\n.PageFooter__CtrlBtn___psy9j {\n  margin: 0 0 0 30px;\n  display: inline-flex;\n  order: 2;\n  flex: 0 0;\n  width: auto; }\n\n.PageFooter__panel___3WSVE {\n  display: flex;\n  flex: 0 0 auto;\n  order: 2;\n  height: 100%; }\n\n.PageFooter__TSlider___2-uPT {\n  margin: 0 30px 0 30px;\n  display: flex;\n  flex: 0 1 100%;\n  align-items: center;\n  order: 3; }\n\n.PageFooter__VSlider___3nVuq {\n  padding: 0;\n  display: flex;\n  align-items: center;\n  width: 100px;\n  flex: 0 0 100px;\n  margin: 0 30px 0 30px;\n  order: 4; }\n\n@media screen and (max-width: 768px) {\n  .PageFooter__footer___19OAW {\n    height: auto;\n    width: 100%;\n    margin: 0 auto;\n    padding: 0;\n    display: flex;\n    align-items: stretch;\n    justify-content: space-between;\n    flex-direction: column; }\n  .PageFooter__panel___3WSVE {\n    display: flex;\n    flex: 0 0 auto; }\n  .PageFooter__TSlider___2-uPT {\n    margin: 0;\n    display: flex;\n    order: 1; }\n  .PageFooter__VSlider___3nVuq {\n    display: none; } }\n\n@media screen and (min-width: 768px) and (max-width: 1024px) {\n  .PageFooter__VSlider___3nVuq {\n    display: none; } }\n", ""]);
+exports.push([module.i, "/** Light Verision**/\n/*\n$fontColorData: #1f1f1f;\n$fontColorDataPlaying: #1f1f1f;\n$iconColor: #c3c3c3;\n$hrColor:rgba(#000000, 0.21);\n*/\n.PageFooter__footer___19OAW {\n  width: 100%;\n  margin: 0 auto;\n  box-shadow: 0px -3px 10px 0px rgba(0, 0, 0, 0.19);\n  background-color: #222222;\n  display: flex;\n  flex-direction: column;\n  padding: 0; }\n\n.PageFooter__panel___3WSVE {\n  display: flex;\n  flex: 0 0 auto;\n  height: 50px;\n  align-items: center; }\n\n.PageFooter__item___29O3x {\n  background-color: rgba(113, 113, 113, 0.14);\n  display: flex;\n  align-items: center;\n  flex: 0 1 250px;\n  width: 250px;\n  overflow: hidden;\n  height: 100%; }\n\n.PageFooter__image___2uNFw {\n  display: inline-flex;\n  flex: 0 0 50px;\n  height: 50px;\n  width: 50px;\n  background-color: #626262; }\n\n.PageFooter__meta___y3zfW {\n  padding-left: 10px;\n  padding-right: 10px;\n  display: flex;\n  overflow-x: hidden;\n  white-space: nowrap;\n  flex-direction: column;\n  flex: 1; }\n  .PageFooter__meta___y3zfW .PageFooter__songName___3g9en {\n    font-size: 1.2em;\n    color: #e0e0e0; }\n  .PageFooter__meta___y3zfW .PageFooter__subTitle___13BM4 {\n    color: gray; }\n\n.PageFooter__CtrlBtn___psy9j {\n  margin: 0 0 0 30px;\n  display: flex;\n  flex: 0 0;\n  width: auto; }\n\n.PageFooter__time___3vQtd {\n  flex: 0 0 auto;\n  color: #f1f1f1; }\n\n.PageFooter__TSlider___2-uPT {\n  display: flex;\n  flex: 1 1 100%;\n  align-items: center; }\n\n.PageFooter__VSlider___3nVuq {\n  padding: 0;\n  display: flex;\n  align-items: center;\n  width: 100px;\n  flex: 0 0 100px;\n  margin: 0 30px 0 30px; }\n\n.PageFooter__ctrlAndTime___2wFdD {\n  display: flex;\n  align-items: center;\n  justify-content: space-between; }\n\n@media screen and (max-width: 768px) {\n  .PageFooter__panel___3WSVE {\n    display: flex;\n    flex-direction: column;\n    align-items: flex-start;\n    height: auto; }\n  .PageFooter__ctrlAndTime___2wFdD {\n    width: 100%;\n    padding: 10px; }\n  .PageFooter__CtrlBtn___psy9j {\n    display: flex;\n    flex: 0 0 auto;\n    height: auto;\n    width: 100%;\n    margin: 0; }\n  .PageFooter__item___29O3x {\n    display: flex;\n    flex: 0 0 30px;\n    height: 30px;\n    width: 100%; }\n    .PageFooter__item___29O3x .PageFooter__meta___y3zfW {\n      flex-direction: row;\n      justify-content: space-between; }\n  .PageFooter__VSlider___3nVuq {\n    display: none; } }\n\n@media screen and (min-width: 768px) and (max-width: 1024px) {\n  .PageFooter__VSlider___3nVuq {\n    display: none; } }\n", ""]);
 
 // exports
 exports.locals = {
 	"footer": "PageFooter__footer___19OAW",
+	"panel": "PageFooter__panel___3WSVE",
 	"item": "PageFooter__item___29O3x",
 	"image": "PageFooter__image___2uNFw",
 	"meta": "PageFooter__meta___y3zfW",
 	"songName": "PageFooter__songName___3g9en",
 	"subTitle": "PageFooter__subTitle___13BM4",
 	"CtrlBtn": "PageFooter__CtrlBtn___psy9j",
-	"panel": "PageFooter__panel___3WSVE",
+	"time": "PageFooter__time___3vQtd",
 	"TSlider": "PageFooter__TSlider___2-uPT",
-	"VSlider": "PageFooter__VSlider___3nVuq"
+	"VSlider": "PageFooter__VSlider___3nVuq",
+	"ctrlAndTime": "PageFooter__ctrlAndTime___2wFdD"
 };
 
 /***/ }),
@@ -68400,7 +68545,7 @@ exports = module.exports = __webpack_require__(31)(false);
 
 
 // module
-exports.push([module.i, "/** Light Verision**/\n/*\n$fontColorData: #1f1f1f;\n$fontColorDataPlaying: #1f1f1f;\n$iconColor: #c3c3c3;\n$hrColor:rgba(#000000, 0.21);\n*/\n.Slider__container___1s0AK {\n  display: flex;\n  flex: 1;\n  padding: 0;\n  --rangebk-color:#f1f1f1;\n  --rangebk-color-hover:#f1f1f1;\n  --progress-color: #f7d026;\n  --progress-color-hover:rgba(247, 211, 51, 0.56);\n  --thumb-color:rgb(237, 237, 237);\n  --thumb-color-hover:rgb(245, 240, 240);\n  --thumb-shadow-hover:rgba(199, 197, 197, 0.59); }\n\n.Slider__seek___1Bjo9 {\n  -webkit-appearance: none;\n  width: 100%;\n  height: 10px;\n  padding: 0;\n  margin: 0 auto;\n  background-color: var(--rangebk-color);\n  transition: all 0.3s ease;\n  cursor: pointer;\n  border-radius: 5px;\n  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.13);\n  outline: none;\n  --range: calc(var(--max) - var(--min));\n  --ratio: calc((var(--val) - var(--min))/var(--range));\n  --sx: calc(0.5*12px + var(--ratio)*(100% - 12px)); }\n\n.Slider__seek___1Bjo9:focus {\n  outline: none; }\n\n.Slider__seek___1Bjo9:hover {\n  background-color: var(--rangebk-color-hover); }\n\n.Slider__seek___1Bjo9::-webkit-slider-runnable-track {\n  height: 100%;\n  -webkit-appearance: none;\n  background: linear-gradient(var(--progress-color), var(--progress-color)) 0/var(--sx) 100% no-repeat var(--rangebk-color);\n  border-radius: 5px; }\n\n.Slider__seek___1Bjo9::-webkit-slider-runnable-track:hover {\n  background: linear-gradient(var(--progress-color-hover), var(--progress-color-hover)) 0/var(--sx) 100% no-repeat var(--rangebk-color-hover); }\n\n.Slider__seek___1Bjo9::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  width: 12px;\n  height: 12px;\n  margin-top: -1px;\n  background-color: var(--thumb-color);\n  border-radius: 100%;\n  cursor: pointer;\n  box-shadow: 1px 1px 0px 0px #cfcfcf; }\n\n.Slider__seek___1Bjo9::-webkit-slider-thumb:hover {\n  background-color: var(--thumb-color-hover);\n  box-shadow: 0px 0px 0px 5px var(--thumb-shadow-hover);\n  width: 15px;\n  height: 15px;\n  margin-top: -2px; }\n\n.Slider__seek___1Bjo9::-webkit-slider-thumb:active {\n  box-shadow: 0px 0px 0px 5px var(--thumb-shadow-hover);\n  cursor: pointer; }\n\n/*FF*/\n.Slider__seek___1Bjo9::-moz-focus-outer {\n  border: 0; }\n\n.Slider__seek___1Bjo9::-moz-range-thumb {\n  width: 12px;\n  height: 12px;\n  background-color: var(--thumb-color);\n  border: 0;\n  border-radius: 100%;\n  cursor: pointer;\n  box-shadow: 1px 1px 0px 0px #cfcfcf; }\n\n.Slider__seek___1Bjo9::-moz-range-thumb:hover {\n  background-color: var(--thumb-color-hover);\n  box-shadow: 0px 0px 0px 5px var(--thumb-shadow-hover); }\n\n.Slider__seek___1Bjo9::-moz-range-thumb:active {\n  box-shadow: 0px 0px 0px 5px var(--thumb-shadow-hover);\n  cursor: pointer; }\n\n.Slider__seek___1Bjo9::-moz-range-track {\n  height: 100%;\n  background-color: var(--rangebk-color);\n  border: none;\n  border-radius: 5px; }\n\n.Slider__seek___1Bjo9::-moz-range-progress {\n  transition: all 0.3s ease;\n  background-color: var(--progress-color);\n  height: 100%;\n  border-radius: 5px; }\n\n.Slider__seek___1Bjo9::-moz-range-progress:hover {\n  background-color: var(--progress-color-hover); }\n", ""]);
+exports.push([module.i, "/** Light Verision**/\n/*\n$fontColorData: #1f1f1f;\n$fontColorDataPlaying: #1f1f1f;\n$iconColor: #c3c3c3;\n$hrColor:rgba(#000000, 0.21);\n*/\n.Slider__container___1s0AK {\n  display: flex;\n  flex: 1;\n  padding: 0;\n  --rangebk-color:#171717;\n  --rangebk-color-hover:#f1f1f1;\n  --progress-color: #f7d026;\n  --progress-color-hover:#f7d026;\n  --thumb-color:rgb(237, 237, 237);\n  --thumb-color-hover:rgb(245, 240, 240);\n  --thumb-shadow-hover:rgba(199, 197, 197, 0.59); }\n\n.Slider__seek___1Bjo9 {\n  -webkit-appearance: none;\n  width: 100%;\n  height: 4px;\n  padding: 0;\n  margin: 0 auto;\n  background-color: var(--rangebk-color);\n  cursor: pointer;\n  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.13);\n  outline: none;\n  --range: calc(var(--max) - var(--min));\n  --ratio: calc((var(--val) - var(--min))/var(--range));\n  --sx: calc(0.5*12px + var(--ratio)*(100% - 12px)); }\n\n.Slider__seek___1Bjo9:focus {\n  outline: none; }\n\n.Slider__seek___1Bjo9:hover {\n  background-color: var(--rangebk-color-hover);\n  height: 5px; }\n  .Slider__seek___1Bjo9:hover::-moz-range-thumb {\n    width: 12px;\n    height: 12px; }\n\n.Slider__seek___1Bjo9::-webkit-slider-runnable-track {\n  height: 100%;\n  -webkit-appearance: none;\n  background: linear-gradient(var(--progress-color), var(--progress-color)) 0/var(--sx) 100% no-repeat var(--rangebk-color); }\n\n.Slider__seek___1Bjo9::-webkit-slider-runnable-track:hover {\n  background: linear-gradient(var(--progress-color-hover), var(--progress-color-hover)) 0/var(--sx) 100% no-repeat var(--rangebk-color-hover); }\n\n.Slider__seek___1Bjo9::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  width: 12px;\n  height: 12px;\n  margin-top: -1px;\n  background-color: var(--thumb-color);\n  border-radius: 100%;\n  cursor: pointer;\n  box-shadow: 1px 1px 0px 0px #cfcfcf; }\n\n.Slider__seek___1Bjo9::-webkit-slider-thumb:hover {\n  background-color: var(--thumb-color-hover);\n  box-shadow: 0px 0px 0px 5px var(--thumb-shadow-hover);\n  width: 15px;\n  height: 15px;\n  margin-top: -2px; }\n\n.Slider__seek___1Bjo9::-webkit-slider-thumb:active {\n  box-shadow: 0px 0px 0px 5px var(--thumb-shadow-hover);\n  cursor: pointer; }\n\n/*FF*/\n.Slider__seek___1Bjo9::-moz-focus-outer {\n  border: 0; }\n\n.Slider__seek___1Bjo9::-moz-range-thumb {\n  width: 0;\n  height: 0;\n  background-color: var(--thumb-color);\n  border: 0;\n  border-radius: 100%;\n  cursor: pointer;\n  box-shadow: 1px 1px 0px 0px #cfcfcf; }\n\n.Slider__seek___1Bjo9::-moz-range-thumb:hover {\n  background-color: var(--thumb-color-hover);\n  box-shadow: 0px 0px 0px 5px var(--thumb-shadow-hover); }\n\n.Slider__seek___1Bjo9::-moz-range-thumb:active {\n  box-shadow: 0px 0px 0px 5px var(--thumb-shadow-hover);\n  cursor: pointer; }\n\n.Slider__seek___1Bjo9::-moz-range-track {\n  height: 100%;\n  border: none; }\n\n.Slider__seek___1Bjo9::-moz-range-progress {\n  transition: all 0.3s ease;\n  background-color: var(--progress-color);\n  height: 100%; }\n\n.Slider__seek___1Bjo9::-moz-range-progress:hover {\n  background-color: var(--progress-color-hover); }\n", ""]);
 
 // exports
 exports.locals = {
@@ -71012,43 +71157,14 @@ exports.locals = {
 
 
 
-const TSlider = Object(__WEBPACK_IMPORTED_MODULE_1_styled_components__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_2__Slider_js__["a" /* Slider */])`
-	margin-left: 20px;
-`;
-
 class TimeSlider extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
-	HHMMSS(ms) {
-		//time in ms
-		let time = Math.floor(ms / 1000);
-		let hr = Math.floor(time / 3600);
-		let min = Math.floor((time - hr * 3600) / 60);
-		let sec = time - hr * 3600 - min * 60;
-		let rt = [];
-		if (hr) {
-			rt.push(hr);
-			if (min < 10) {
-				min = "0" + min;
-			}
-		}
-		rt.push(min);
-		if (sec < 10) {
-			sec = "0" + sec;
-		}
-		rt.push(sec);
-		return rt.join(":");
-	}
 	render() {
-		const output = this.HHMMSS(this.props.value) + "/" + this.HHMMSS(this.props.max);
+
 		return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 			"div",
-			{ className: `${this.props.className}` },
-			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-				"span",
-				{ className: __WEBPACK_IMPORTED_MODULE_4__css_TimeSlider_scss___default.a.time },
-				output
-			),
-			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(TSlider, { value: this.props.value, max: this.props.max, onChange: t => this.props.setCurTime(t) })
+			{ className: `${__WEBPACK_IMPORTED_MODULE_4__css_TimeSlider_scss___default.a.container} ${this.props.className}` },
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Slider_js__["a" /* Slider */], { value: this.props.value, max: this.props.max, onChange: t => this.props.setCurTime(t), type: "time-track" })
 		);
 	}
 }
@@ -71095,12 +71211,10 @@ exports = module.exports = __webpack_require__(31)(false);
 
 
 // module
-exports.push([module.i, "/** Light Verision**/\n/*\n$fontColorData: #1f1f1f;\n$fontColorDataPlaying: #1f1f1f;\n$iconColor: #c3c3c3;\n$hrColor:rgba(#000000, 0.21);\n*/\n.TimeSlider__time___18ySC {\n  flex: 0 0 auto;\n  color: #f1f1f1; }\n", ""]);
+exports.push([module.i, "/** Light Verision**/\n/*\n$fontColorData: #1f1f1f;\n$fontColorDataPlaying: #1f1f1f;\n$iconColor: #c3c3c3;\n$hrColor:rgba(#000000, 0.21);\n*/\n", ""]);
 
 // exports
-exports.locals = {
-	"time": "TimeSlider__time___18ySC"
-};
+
 
 /***/ }),
 /* 813 */
@@ -81164,7 +81278,7 @@ exports = module.exports = __webpack_require__(31)(false);
 
 
 // module
-exports.push([module.i, "/** Light Verision**/\n/*\n$fontColorData: #1f1f1f;\n$fontColorDataPlaying: #1f1f1f;\n$iconColor: #c3c3c3;\n$hrColor:rgba(#000000, 0.21);\n*/\n.CtrlBtn__container___3JPHA {\n  display: flex;\n  align-items: center;\n  padding: 0;\n  flex: 0 0 220px;\n  width: 220px; }\n\n.CtrlBtn__btn___PgsXa {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  transition: 0.2s all ease;\n  cursor: pointer;\n  margin-left: 5px;\n  margin-right: 5px;\n  outline: none; }\n\n.CtrlBtn__playBtn___2TyLJ {\n  height: 40px;\n  width: 40px;\n  border-radius: 100%;\n  border: 2px solid #f7d026;\n  font-size: 18px;\n  position: relative; }\n\n.CtrlBtn__playing___P8IRK {\n  background: none;\n  color: #f7d026; }\n  .CtrlBtn__playing___P8IRK:hover {\n    background: #f7d026;\n    color: #2d2d2d; }\n\n.CtrlBtn__paused___eqwGb {\n  background: #f7d026;\n  color: #2d2d2d; }\n  .CtrlBtn__paused___eqwGb i {\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    transform: translate(-50%, -50%) translateX(2px); }\n  .CtrlBtn__paused___eqwGb:hover {\n    background: none;\n    color: #f7d026; }\n\n.CtrlBtn__nextBtn___2F7Ps {\n  height: 30px;\n  width: 30px;\n  border-radius: 100%;\n  border: none;\n  color: #f1f1f1;\n  background: none;\n  font-size: 18px; }\n  .CtrlBtn__nextBtn___2F7Ps:hover {\n    color: #f7d026; }\n\n.CtrlBtn__loopBtn___37mRc {\n  font-size: 20px;\n  border-radius: 15px;\n  padding-right: 0;\n  padding-left: 0; }\n  .CtrlBtn__loopBtn___37mRc i {\n    margin-left: 10px;\n    margin-right: 10px; }\n  .CtrlBtn__loopBtn___37mRc .CtrlBtn__pocket___1JVHa {\n    transition: 0.2s cubic-bezier(0.74, 0.18, 0.45, 1.66) width;\n    overflow: hidden;\n    position: relative; }\n\n.CtrlBtn__loopStatus_0___2lUkT {\n  color: #f1f1f1;\n  background: none;\n  border: 2px solid #2d2d2d; }\n  .CtrlBtn__loopStatus_0___2lUkT:hover {\n    color: #f7d026; }\n  .CtrlBtn__loopStatus_0___2lUkT .CtrlBtn__pocket___1JVHa {\n    width: 0; }\n  .CtrlBtn__loopStatus_0___2lUkT .CtrlBtn__floatIcon___2YlFd {\n    transform: scale(0, 0); }\n\n.CtrlBtn__loopStatus_1___1Mi2Z {\n  color: #2d2d2d;\n  background-color: #f7d026;\n  border: 2px solid #f7d026; }\n  .CtrlBtn__loopStatus_1___1Mi2Z:hover {\n    color: #f7d026;\n    background-color: #2d2d2d; }\n  .CtrlBtn__loopStatus_1___1Mi2Z .CtrlBtn__pocket___1JVHa {\n    width: 0; }\n  .CtrlBtn__loopStatus_1___1Mi2Z .CtrlBtn__floatIcon___2YlFd {\n    transform: scale(0, 0); }\n\n.CtrlBtn__loopStatus_2___1ViFQ {\n  color: #2d2d2d;\n  background-color: #f7d026;\n  border: 2px solid #f7d026; }\n  .CtrlBtn__loopStatus_2___1ViFQ:hover {\n    color: #f7d026;\n    background-color: #2d2d2d; }\n    .CtrlBtn__loopStatus_2___1ViFQ:hover .CtrlBtn__floatIcon___2YlFd {\n      color: #2d2d2d;\n      background-color: #f7d026;\n      border-color: #2d2d2d; }\n  .CtrlBtn__loopStatus_2___1ViFQ i {\n    margin-right: 5px; }\n  .CtrlBtn__loopStatus_2___1ViFQ .CtrlBtn__pocket___1JVHa {\n    width: 24px; }\n  .CtrlBtn__loopStatus_2___1ViFQ .CtrlBtn__floatIcon___2YlFd {\n    transform: scale(1, 1); }\n\n.CtrlBtn__floatIcon___2YlFd {\n  transition: 0.2s all ease;\n  color: #f7d026;\n  background-color: #2d2d2d;\n  border: 2px solid #f7d026;\n  border-radius: 100%;\n  height: 24px;\n  width: 24px;\n  font-size: 12px;\n  line-height: 12px;\n  padding: 0;\n  display: flex;\n  flex-shrink: 0;\n  justify-content: center;\n  align-items: center;\n  font-family: sans-serif;\n  float: right; }\n", ""]);
+exports.push([module.i, "/** Light Verision**/\n/*\n$fontColorData: #1f1f1f;\n$fontColorDataPlaying: #1f1f1f;\n$iconColor: #c3c3c3;\n$hrColor:rgba(#000000, 0.21);\n*/\n.CtrlBtn__container___3JPHA {\n  display: flex;\n  align-items: center;\n  padding: 0;\n  flex: 0 0 auto;\n  width: 220px; }\n\n.CtrlBtn__btn___PgsXa {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  transition: 0.2s all ease;\n  cursor: pointer;\n  margin-left: 5px;\n  margin-right: 5px;\n  outline: none; }\n\n.CtrlBtn__playBtn___2TyLJ {\n  height: 40px;\n  width: 40px;\n  border-radius: 100%;\n  border: 2px solid #f7d026;\n  font-size: 18px;\n  position: relative; }\n\n.CtrlBtn__playing___P8IRK {\n  background: none;\n  color: #f7d026; }\n  .CtrlBtn__playing___P8IRK:hover {\n    background: #f7d026;\n    color: #222222; }\n\n.CtrlBtn__paused___eqwGb {\n  background: #f7d026;\n  color: #222222; }\n  .CtrlBtn__paused___eqwGb i {\n    position: absolute;\n    left: 50%;\n    top: 50%;\n    transform: translate(-50%, -50%) translateX(2px); }\n  .CtrlBtn__paused___eqwGb:hover {\n    background: none;\n    color: #f7d026; }\n\n.CtrlBtn__nextBtn___2F7Ps {\n  height: 30px;\n  width: 30px;\n  border-radius: 100%;\n  border: none;\n  color: #f1f1f1;\n  background: none;\n  font-size: 18px; }\n  .CtrlBtn__nextBtn___2F7Ps:hover {\n    color: #f7d026; }\n\n.CtrlBtn__loopBtn___37mRc {\n  font-size: 20px;\n  border-radius: 15px;\n  padding-right: 0;\n  padding-left: 0; }\n  .CtrlBtn__loopBtn___37mRc i {\n    margin-left: 10px;\n    margin-right: 10px; }\n  .CtrlBtn__loopBtn___37mRc .CtrlBtn__pocket___1JVHa {\n    transition: 0.2s cubic-bezier(0.74, 0.18, 0.45, 1.66) width;\n    overflow: hidden;\n    position: relative; }\n\n.CtrlBtn__loopStatus_0___2lUkT {\n  color: #f1f1f1;\n  background: none;\n  border: 2px solid #222222; }\n  .CtrlBtn__loopStatus_0___2lUkT:hover {\n    color: #f7d026; }\n  .CtrlBtn__loopStatus_0___2lUkT .CtrlBtn__pocket___1JVHa {\n    width: 0; }\n  .CtrlBtn__loopStatus_0___2lUkT .CtrlBtn__floatIcon___2YlFd {\n    transform: scale(0, 0); }\n\n.CtrlBtn__loopStatus_1___1Mi2Z {\n  color: #222222;\n  background-color: #f7d026;\n  border: 2px solid #f7d026; }\n  .CtrlBtn__loopStatus_1___1Mi2Z:hover {\n    color: #f7d026;\n    background-color: #222222; }\n  .CtrlBtn__loopStatus_1___1Mi2Z .CtrlBtn__pocket___1JVHa {\n    width: 0; }\n  .CtrlBtn__loopStatus_1___1Mi2Z .CtrlBtn__floatIcon___2YlFd {\n    transform: scale(0, 0); }\n\n.CtrlBtn__loopStatus_2___1ViFQ {\n  color: #222222;\n  background-color: #f7d026;\n  border: 2px solid #f7d026; }\n  .CtrlBtn__loopStatus_2___1ViFQ:hover {\n    color: #f7d026;\n    background-color: #222222; }\n    .CtrlBtn__loopStatus_2___1ViFQ:hover .CtrlBtn__floatIcon___2YlFd {\n      color: #222222;\n      background-color: #f7d026;\n      border-color: #222222; }\n  .CtrlBtn__loopStatus_2___1ViFQ i {\n    margin-right: 5px; }\n  .CtrlBtn__loopStatus_2___1ViFQ .CtrlBtn__pocket___1JVHa {\n    width: 24px; }\n  .CtrlBtn__loopStatus_2___1ViFQ .CtrlBtn__floatIcon___2YlFd {\n    transform: scale(1, 1); }\n\n.CtrlBtn__floatIcon___2YlFd {\n  transition: 0.2s all ease;\n  color: #f7d026;\n  background-color: #222222;\n  border: 2px solid #f7d026;\n  border-radius: 100%;\n  height: 24px;\n  width: 24px;\n  font-size: 12px;\n  line-height: 12px;\n  padding: 0;\n  display: flex;\n  flex-shrink: 0;\n  justify-content: center;\n  align-items: center;\n  font-family: sans-serif;\n  float: right; }\n", ""]);
 
 // exports
 exports.locals = {
@@ -81507,6 +81621,16 @@ module.exports = 0;
 
 
 
+const NoFile = props => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+	"div",
+	{ className: __WEBPACK_IMPORTED_MODULE_1__css_PageGrid_scss___default.a.noFile },
+	__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-coffee" }),
+	__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+		"div",
+		null,
+		"Oops, nothing here."
+	)
+);
 class PageGrid extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	constructor(props) {
 		super(props);
@@ -81558,17 +81682,7 @@ class PageGrid extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			));
 			containerStyle = this.props.loading ? [__WEBPACK_IMPORTED_MODULE_1__css_PageGrid_scss___default.a.container, __WEBPACK_IMPORTED_MODULE_1__css_PageGrid_scss___default.a.dim].join(' ') : __WEBPACK_IMPORTED_MODULE_1__css_PageGrid_scss___default.a.container;
 		} else {
-			output = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-				__WEBPACK_IMPORTED_MODULE_4_semantic_ui_react__["d" /* Header */],
-				{ as: "h2", icon: true },
-				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_semantic_ui_react__["e" /* Icon */], { name: "bug" }),
-				"Files not found.",
-				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-					__WEBPACK_IMPORTED_MODULE_4_semantic_ui_react__["d" /* Header */].Subheader,
-					null,
-					"Oops, looks like there's no file exists."
-				)
-			);
+			output = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(NoFile, null);
 			containerStyle = this.props.loading ? [__WEBPACK_IMPORTED_MODULE_1__css_PageGrid_scss___default.a.container2, __WEBPACK_IMPORTED_MODULE_1__css_PageGrid_scss___default.a.dim].join(' ') : __WEBPACK_IMPORTED_MODULE_1__css_PageGrid_scss___default.a.container2;
 		}
 
@@ -81579,8 +81693,8 @@ class PageGrid extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 				"div",
 				{ className: dimmerStyle },
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-					__WEBPACK_IMPORTED_MODULE_4_semantic_ui_react__["g" /* Loader */],
-					{ active: this.props.loading, size: "large" },
+					__WEBPACK_IMPORTED_MODULE_4_semantic_ui_react__["b" /* Loader */],
+					{ active: this.props.loading, inverted: true, size: "large" },
 					"Preparing Files"
 				)
 			),
@@ -81635,7 +81749,7 @@ exports = module.exports = __webpack_require__(31)(false);
 
 
 // module
-exports.push([module.i, "/** Light Verision**/\n/*\n$fontColorData: #1f1f1f;\n$fontColorDataPlaying: #1f1f1f;\n$iconColor: #c3c3c3;\n$hrColor:rgba(#000000, 0.21);\n*/\n.PageGrid__container___2zho5 {\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n  overflow: auto;\n  position: relative;\n  background-color: #222222;\n  z-index: -1; }\n\n.PageGrid__container2___14Ta2 {\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  background-color: inherit;\n  z-index: -1; }\n\n.PageGrid__dim___f_MRR {\n  filter: contrast(15%) brightness(150%) blur(3px); }\n\n.PageGrid__dimmer___1Eaa6 {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  opacity: 0;\n  visibility: hidden; }\n\n.PageGrid__dimmer_active___3q45Y {\n  opacity: 1;\n  visibility: visible; }\n\n.PageGrid__hrLine___2vlUe {\n  width: 100%;\n  padding-left: 20px;\n  padding-right: 20px; }\n  .PageGrid__hrLine___2vlUe hr {\n    border: none;\n    border-bottom: 1px solid rgba(255, 255, 255, 0.21);\n    margin: 0; }\n", ""]);
+exports.push([module.i, "/** Light Verision**/\n/*\n$fontColorData: #1f1f1f;\n$fontColorDataPlaying: #1f1f1f;\n$iconColor: #c3c3c3;\n$hrColor:rgba(#000000, 0.21);\n*/\n.PageGrid__container___2zho5 {\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n  overflow: auto;\n  position: relative;\n  background-color: #131313;\n  z-index: -1; }\n\n.PageGrid__container2___14Ta2 {\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  background-color: inherit;\n  z-index: -1; }\n\n.PageGrid__dim___f_MRR {\n  filter: blur(3px); }\n\n.PageGrid__dimmer___1Eaa6 {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  opacity: 0;\n  visibility: hidden; }\n\n.PageGrid__dimmer_active___3q45Y {\n  opacity: 1;\n  visibility: visible; }\n\n.PageGrid__hrLine___2vlUe {\n  width: 100%;\n  padding-left: 20px;\n  padding-right: 20px; }\n  .PageGrid__hrLine___2vlUe hr {\n    border: none;\n    border-bottom: 1px solid rgba(255, 255, 255, 0.21);\n    margin: 0; }\n\n.PageGrid__noFile___9qQ92 {\n  color: #f1f1f1;\n  display: flex;\n  flex-direction: column;\n  align-items: center; }\n  .PageGrid__noFile___9qQ92 i {\n    font-size: 80px; }\n  .PageGrid__noFile___9qQ92 div {\n    margin-top: 10px;\n    font-size: 20px; }\n", ""]);
 
 // exports
 exports.locals = {
@@ -81644,7 +81758,8 @@ exports.locals = {
 	"dim": "PageGrid__dim___f_MRR",
 	"dimmer": "PageGrid__dimmer___1Eaa6",
 	"dimmer_active": "PageGrid__dimmer_active___3q45Y",
-	"hrLine": "PageGrid__hrLine___2vlUe"
+	"hrLine": "PageGrid__hrLine___2vlUe",
+	"noFile": "PageGrid__noFile___9qQ92"
 };
 
 /***/ }),
@@ -81675,50 +81790,19 @@ const CDropdown = Object(__WEBPACK_IMPORTED_MODULE_2_styled_components__["a" /* 
 class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	constructor(props) {
 		super(props);
-		let icon_type;
-		switch (this.props.type) {
-			case 0:
-				icon_type = "folder";
-				break;
-			case 1:
-				icon_type = "video play outline";
-				break;
-
-		}
-
-		//console.log("construcor:"+icon_type);
 		this.state = {
-			icon_type: icon_type,
 			dropdownSignal: false,
 			visiblePlus: false,
-			visibleDropdown: false,
-			dropdownFlag: false
+			visibleDropdown: false
 		};
-	}
-	componentWillReceiveProps(nextProps) {
-		let icon_type;
-		switch (nextProps.type) {
-			case 0:
-				icon_type = "folder";
-				break;
-			case 1:
-				icon_type = "video play outline";
-				break;
-
-		}
-		this.setState({
-			icon_type: icon_type
-		});
 	}
 	clickHandler() {
 		this.props.onClick();
 	}
 	toggleDropdown() {
-		if (!this.state.dropdownFlag) {
-			this.setState({
-				visibleDropdown: !this.state.visibleDropdown
-			});
-		}
+		this.setState({
+			visibleDropdown: !this.state.visibleDropdown
+		});
 	}
 	setVisible(newVisible) {
 		this.setState({
@@ -81743,15 +81827,14 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: `fas fa-plus` }),
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Dropdown_js__["a" /* Dropdown */], {
 						songLists: this.props.songLists,
-						signal: this.state.dropdownSignal,
 						visible: this.state.visibleDropdown,
 						setVisible: t => this.setVisible(t),
 						song: this.props.song,
 						handleAddToSongList: (songList, song) => this.props.handleAddToSongList(songList, song),
 						songQueryURL: this.props.songQueryURL,
 						handleDeleteSong: (songList, song) => this.props.handleDeleteSong(songList, song),
-						curDisplaySongListName: this.props.curDisplaySongListName,
-						distory: () => this.distory() })
+						curDisplaySongListName: this.props.curDisplaySongListName
+					})
 				);
 				break;
 
@@ -81847,24 +81930,41 @@ exports.locals = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_Dropdown_css__ = __webpack_require__(860);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_Dropdown_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_Dropdown_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_Dropdown_scss__ = __webpack_require__(860);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_Dropdown_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_Dropdown_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_styled_components__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__ = __webpack_require__(42);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 
 
 
-const CCheckbox = Object(__WEBPACK_IMPORTED_MODULE_2_styled_components__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["b" /* Checkbox */])`
+
+
+class CheckItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+	handleOnChange(e) {
+		this.props.onChange(e, _extends({}, this.props, {
+			checked: e.target.checked
+		}));
+	}
+	render() {
+		return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+			"div",
+			{ className: __WEBPACK_IMPORTED_MODULE_1__css_Dropdown_scss___default.a.checkItem },
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "checkbox", checked: this.props.checked, onChange: e => this.handleOnChange(e) }),
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				"div",
+				null,
+				this.props.children
+			)
+		);
+	}
+}
+const CCheckbox = Object(__WEBPACK_IMPORTED_MODULE_2_styled_components__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["a" /* Checkbox */])`
 	display: inline-flex !important;
 	height: auto !important;
 	margin: 3px 5px 3px 5px !important;
 	padding: 0 !important;
-`;
-const CSegment = Object(__WEBPACK_IMPORTED_MODULE_2_styled_components__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["h" /* Segment */])`
-	display: inline-flex !important;
-	height: auto !important;
-	margin: 0 !important;
 `;
 class Dropdown extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	constructor(props) {
@@ -81874,33 +81974,16 @@ class Dropdown extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			inputText: "",
 			foundInSongListNames: []
 		};
-	}
-	componentDidMount() {
-		//this.fetchSongQuery();
-	}
-	componentWillReceiveProps(nextProps) {
-		// if(nextProps.signal != this.props.signal){
-		// 	const newVisible = !this.state.visible
-		// 	if(newVisible){
-		// 		this.fetchSongQuery();
-		// 	}
-		// 	this.setState({
-		// 		visible: newVisible,
-		// 	})
-		// 	this.props.setVisible(newVisible);
-		// // }
-		// if(nextProps.visible){
-		//
-		// }
+		this.inputField = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createRef();
+		this.dropdown = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createRef();
 	}
 	componentDidUpdate(pp, ps) {
-
 		if (this.props.visible && this.props.visible != pp.visible) {
-			this.dropdown.focus();
+			this.dropdown.current.focus();
 			this.fetchSongQuery();
 		}
 		if (this.state.inputVisible && this.state.inputVisible != ps.inputVisible) {
-			this.inputField.focus();
+			this.inputField.current.focus();
 		}
 	}
 	handleOnChange({ value, song, checked }) {
@@ -81914,7 +81997,8 @@ class Dropdown extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			console.log(this.props.curDisplaySongListName);
 			console.log("value:" + value);
 			if (this.props.curDisplaySongListName == value) {
-				this.props.distory();
+				//this.props.distory();
+				console.log('distory');
 			}
 		}
 	}
@@ -81936,19 +82020,19 @@ class Dropdown extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			inputVisible: !this.state.inputVisible
 		});
 	}
-	handleInputConfirm({ song }) {
-		this.props.handleAddToSongList(this.state.inputText, song);
+	handleInputConfirm() {
+		this.props.handleAddToSongList(this.state.inputText, this.props.song);
 		this.fetchSongQuery();
 	}
-	handleInput(e, { value }) {
+	handleInput(e) {
 		this.setState({
-			inputText: value
+			inputText: e.target.value
 		});
 	}
 	async fetchSongQuery() {
 		// 查詢此歌存在於哪些歌單
 
-		console.log("fetchSongQuery");
+		//console.log("fetchSongQuery");
 
 		let formData = new FormData();
 		formData.append('url', this.props.song.Url);
@@ -81964,58 +82048,62 @@ class Dropdown extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 				foundInSongListNames: item.SongListNames
 			});
 			//console.log(item.SongListNames);
-			console.log(data);
+			//console.log(data);
 		});
 	}
 	render() {
 		let display;
 		if (this.props.visible) {
-			display = `${__WEBPACK_IMPORTED_MODULE_1__css_Dropdown_css___default.a.container} ${this.props.className}`;
+			display = __WEBPACK_IMPORTED_MODULE_1__css_Dropdown_scss___default.a.container;
 		} else {
-			display = `${__WEBPACK_IMPORTED_MODULE_1__css_Dropdown_css___default.a.container2} ${this.props.className}`;
+			display = `${__WEBPACK_IMPORTED_MODULE_1__css_Dropdown_scss___default.a.container} ${__WEBPACK_IMPORTED_MODULE_1__css_Dropdown_scss___default.a.containerHidden}`;
 		}
 		return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 			"div",
-			{ className: display, onBlur: e => this.onBlur(e), tabIndex: 0,
-				ref: container => {
-					this.dropdown = container;
-				} },
-			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: __WEBPACK_IMPORTED_MODULE_1__css_Dropdown_css___default.a.pointDiv }),
+			{ className: display, onBlur: e => this.onBlur(e),
+				onClick: e => e.stopPropagation(), tabIndex: 1, ref: this.dropdown },
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: __WEBPACK_IMPORTED_MODULE_1__css_Dropdown_scss___default.a.pointDiv }),
 			!this.state.inputVisible ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-				CSegment,
-				{ basic: true, compact: true, as: __WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["a" /* Button */], onClick: () => this.toggleInput() },
-				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["e" /* Icon */], { name: "add square" }),
-				"New List"
+				"button",
+				{ className: __WEBPACK_IMPORTED_MODULE_1__css_Dropdown_scss___default.a.newListBtn, onClick: () => this.toggleInput() },
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-plus-square" }),
+				"\u65B0\u589E\u6B4C\u55AE"
 			) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				"div",
-				null,
-				"\u540D\u7A31",
-				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("br", null),
-				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["f" /* Input */], {
-					ref: input => {
-						this.inputField = input;
-					},
-					placeholder: "List Name",
-					onChange: (e, { value }) => this.handleInput(e, { value }),
-					action: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["a" /* Button */], {
-						song: this.props.song,
-						onClick: (e, { song }) => this.handleInputConfirm({ song }),
-						icon: "plus",
-						primary: true
-					})
-				})
+				{ className: __WEBPACK_IMPORTED_MODULE_1__css_Dropdown_scss___default.a.inputBlock },
+				"\u8ACB\u8F38\u5165\u65B0\u6B4C\u55AE\u540D\u7A31",
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					"div",
+					null,
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+						type: "text",
+						ref: this.inputField,
+						placeholder: "List Name",
+						onChange: e => this.handleInput(e)
+					}),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						"button",
+						{ onClick: () => this.handleInputConfirm() },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "far fa-save" })
+					)
+				)
 			),
-			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__["c" /* Divider */], null),
-			this.props.songLists.map((item, index) => {
-				return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(CCheckbox, {
+			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				"div",
+				{ className: __WEBPACK_IMPORTED_MODULE_1__css_Dropdown_scss___default.a.hrLine },
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null)
+			),
+			this.props.songLists.map((item, index) => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				CheckItem,
+				{
 					key: index,
 					value: item.text,
 					onChange: (e, { value, song, checked }) => this.handleOnChange({ value, song, checked }),
 					song: this.props.song,
-					label: item.text,
 					checked: this.state.foundInSongListNames.indexOf(item.text) >= 0 ? true : false
-				});
-			})
+				},
+				item.text
+			))
 		);
 	}
 }
@@ -82043,8 +82131,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js?modules!./Dropdown.css", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js?modules!./Dropdown.css");
+		module.hot.accept("!!../../../node_modules/css-loader/index.js??ref--2-1!../../../node_modules/sass-loader/lib/loader.js!./Dropdown.scss", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js??ref--2-1!../../../node_modules/sass-loader/lib/loader.js!./Dropdown.scss");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -82062,13 +82150,17 @@ exports = module.exports = __webpack_require__(31)(false);
 
 
 // module
-exports.push([module.i, ".L5KSVsOtLHC9BpTY3MIVc{\n\tbackground-color: rgb(250, 250, 250);\n\tposition: absolute;\n\tdisplay: inline-flex;\n\tflex-direction: column;\n\ttop: 5px;\n\tright: 40px;\n\tz-index: 2;\n\tborder-radius: 3px;\n\tpadding: 3px;\n\tfilter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.56));\n\twidth: 200px;\n}\n._2HWSwHBhsOOVACjQ8z8TW6{\n\tdisplay: none;\n}\n.MXCU2_wkWeieHc_CiA7VT{\n\tbackground-color: rgb(250, 250, 250);\n\tposition: absolute;\n\theight: 10px;\n\twidth: 10px;\n\tright:-5px;\n\ttop: 15px;\n\tz-index: -1;\n\ttransform: rotate(45deg);\n}\n.L5KSVsOtLHC9BpTY3MIVc:focus, .MXCU2_wkWeieHc_CiA7VT:focus{\n\toutline: none;\n}\n", ""]);
+exports.push([module.i, "/** Light Verision**/\n/*\n$fontColorData: #1f1f1f;\n$fontColorDataPlaying: #1f1f1f;\n$iconColor: #c3c3c3;\n$hrColor:rgba(#000000, 0.21);\n*/\n.Dropdown__container___PwTPY {\n  background-color: #222222;\n  position: absolute;\n  display: flex;\n  flex-direction: column;\n  top: 5px;\n  right: 40px;\n  z-index: 2;\n  border-radius: 3px;\n  filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.56));\n  width: 250px;\n  transition: 0.2s all ease;\n  color: #f1f1f1;\n  padding-top: 5px;\n  padding-bottom: 10px; }\n\n.Dropdown__containerHidden___N9zLY {\n  display: none; }\n\n.Dropdown__pointDiv___1yd9A {\n  background-color: inherit;\n  position: absolute;\n  height: 10px;\n  width: 10px;\n  right: -5px;\n  top: 15px;\n  z-index: -1;\n  transform: rotate(45deg); }\n\n.Dropdown__container___PwTPY:focus, .Dropdown__pointDiv___1yd9A:focus {\n  outline: none; }\n\n.Dropdown__newListBtn___1NqEx {\n  background: none;\n  border: none;\n  cursor: pointer;\n  display: flex;\n  width: 100%;\n  align-items: center;\n  color: #524f4f;\n  padding: 10px;\n  padding-left: 20px;\n  font-size: 1em; }\n  .Dropdown__newListBtn___1NqEx i {\n    color: #524f4f; }\n  .Dropdown__newListBtn___1NqEx:hover {\n    background-color: rgba(255, 255, 255, 0.07);\n    color: #f1f1f1; }\n    .Dropdown__newListBtn___1NqEx:hover i {\n      color: #f1f1f1; }\n  .Dropdown__newListBtn___1NqEx i {\n    margin-right: 10px; }\n\n.Dropdown__inputBlock___3EQiL {\n  display: flex;\n  flex-direction: column;\n  padding: 5px 10px 5px 10px; }\n  .Dropdown__inputBlock___3EQiL div {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    border-radius: 3px;\n    height: 30px; }\n    .Dropdown__inputBlock___3EQiL div input[type=\"text\"] {\n      border: none;\n      height: 100%;\n      display: flex;\n      width: 0;\n      flex: 1 1 auto;\n      border-top-left-radius: 3px;\n      border-bottom-left-radius: 3px; }\n      .Dropdown__inputBlock___3EQiL div input[type=\"text\"]:focus {\n        outline: none;\n        border-style: solid none solid solid;\n        border-width: 1px;\n        border-color: #f7d026; }\n    .Dropdown__inputBlock___3EQiL div button {\n      border: none;\n      background: none;\n      background-color: #f7d026;\n      width: 30px;\n      height: 30px;\n      display: flex;\n      flex: 0 0 30px;\n      cursor: pointer;\n      padding: 0;\n      align-items: center;\n      justify-content: center;\n      border-top-right-radius: 3px;\n      border-bottom-right-radius: 3px; }\n      .Dropdown__inputBlock___3EQiL div button i {\n        color: white; }\n\n.Dropdown__hrLine___Cnkso {\n  width: 100%;\n  margin-top: 10px;\n  margin-bottom: 10px; }\n  .Dropdown__hrLine___Cnkso hr {\n    border: none;\n    border-bottom: 1px solid rgba(255, 255, 255, 0.21);\n    margin: 0; }\n\n.Dropdown__checkItem___3kGUC {\n  padding: 5px 10px 5px 10px;\n  display: flex;\n  color: #f1f1f1;\n  align-items: center; }\n  .Dropdown__checkItem___3kGUC:hover {\n    background-color: rgba(255, 255, 255, 0.07); }\n  .Dropdown__checkItem___3kGUC div {\n    margin-left: 10px; }\n", ""]);
 
 // exports
 exports.locals = {
-	"container": "L5KSVsOtLHC9BpTY3MIVc",
-	"container2": "_2HWSwHBhsOOVACjQ8z8TW6",
-	"pointDiv": "MXCU2_wkWeieHc_CiA7VT"
+	"container": "Dropdown__container___PwTPY",
+	"containerHidden": "Dropdown__containerHidden___N9zLY",
+	"pointDiv": "Dropdown__pointDiv___1yd9A",
+	"newListBtn": "Dropdown__newListBtn___1NqEx",
+	"inputBlock": "Dropdown__inputBlock___3EQiL",
+	"hrLine": "Dropdown__hrLine___Cnkso",
+	"checkItem": "Dropdown__checkItem___3kGUC"
 };
 
 /***/ }),

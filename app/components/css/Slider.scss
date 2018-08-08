@@ -3,9 +3,10 @@
 	display: flex;
 	flex:1;
 	padding: 0;
-	--rangebk-color:#{$themeBackGroundColorThird};
+	--rangebk-color:rgb(103, 101, 101);
 	--rangebk-color-hover:#{$ctrlColor};
 	--progress-color: #{$themeColor};
+	// --progress-color: rgb(91, 200, 53);
 	--progress-color-hover:#{$themeColor};
 	--thumb-color:rgb(237, 237, 237);
 	--thumb-color-hover:rgb(245, 240, 240);
@@ -24,20 +25,30 @@
 
 	--range: calc(var(--max) - var(--min));
 	--ratio: calc((var(--val) - var(--min))/var(--range));
-	--sx: calc(0.5*12px + var(--ratio)*(100% - 12px));
+	--sx: calc(0.5*12px + var(--ratio)*(100% ));
 }
 .seek:focus{
 	outline: none;
 }
-.seek:hover {
+.seek:hover,  .seek:active{
   background-color: var(--rangebk-color-hover);
 	height: 5px;
 	&::-moz-range-thumb{
 		width: 12px;
 		height: 12px;
+	  background-color: var(--thumb-color-hover);
+	 	box-shadow: 0px 0px 0px 5px var(--thumb-shadow-hover);
+	}
+	&::-webkit-slider-thumb{
+		width: 12px;
+		height: 12px;
+		margin-top:-4px;
+	  background-color: var(--thumb-color-hover);
+	 	box-shadow: 0px 0px 0px 5px var(--thumb-shadow-hover);
 	}
 }
 .seek::-webkit-slider-runnable-track {
+	width: 100%;
 	height: 100%;
 	-webkit-appearance: none;
 	background: linear-gradient(var(--progress-color), var(--progress-color)) 0/var(--sx) 100% no-repeat  var(--rangebk-color);
@@ -47,26 +58,13 @@
 }
 .seek::-webkit-slider-thumb{
 	-webkit-appearance: none;
- 	width: 12px;
- 	height: 12px;
-	margin-top: -1px;
-  	background-color: var(--thumb-color);
+	width: 0;
+	height: 0;
+	background-color: var(--thumb-color);
 	border-radius: 100%;
 	cursor: pointer;
 	box-shadow: 1px 1px 0px 0px rgb(207, 207, 207);
 }
-.seek::-webkit-slider-thumb:hover {
-  	background-color: var(--thumb-color-hover);
- 	box-shadow: 0px 0px 0px 5px var(--thumb-shadow-hover);
- 	width: 15px;
- 	height: 15px;
-	margin-top: -2px;
-}
-.seek::-webkit-slider-thumb:active {
-	box-shadow: 0px 0px 0px 5px var(--thumb-shadow-hover);
-  	cursor: pointer;
-}
-
 
 /*FF*/
 .seek::-moz-focus-outer {
@@ -81,17 +79,10 @@
  	cursor: pointer;
 	box-shadow: 1px 1px 0px 0px rgb(207, 207, 207);
  }
-.seek::-moz-range-thumb:hover {
-	background-color: var(--thumb-color-hover);
- 	box-shadow: 0px 0px 0px 5px var(--thumb-shadow-hover);
-}
-.seek::-moz-range-thumb:active {
-	box-shadow: 0px 0px 0px 5px var(--thumb-shadow-hover);
-  	cursor: pointer;
-}
 .seek::-moz-range-track {
 	height: 100%;
 	border: none;
+	background: none;
 }
 .seek::-moz-range-progress{
 	transition: all 0.3s ease;
