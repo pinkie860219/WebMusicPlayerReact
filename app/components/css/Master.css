@@ -19,4 +19,6 @@
 .pushable{
 	display: flex;
 	width: 100%;
+	border:none !important;
+	border-radius: 0 !important;
 }
