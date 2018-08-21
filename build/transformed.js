@@ -82203,7 +82203,7 @@ exports = module.exports = __webpack_require__(31)(false);
 
 
 // module
-exports.push([module.i, "._2evtJmizxgQRB1XqFI6sYg{\n\twidth: 100%;\n\theight: 100%;\n\tpadding: 0;\n\tmargin: 0 auto;\n\tbackground-color: rgb(180, 245, 86);\n\tdisplay: flex;\n}\n.KOuqkKc5fZN6SjvBqOJ0A{\n\tbackground-color: rgb(240, 240, 240) !important;\n\tdisplay: flex;\n\twidth: 100%;\n\tflex-direction: column;\n\tjustify-content: space-between;\n}\n._1OdXRuVBuMJ0bmLdAGhd0s{\n\tborder: 2px red solid;\n}\n._21ZcJ_iUhsZ9LT_NJhuEBP{\n\tdisplay: flex;\n\twidth: 100%;\n}\n", ""]);
+exports.push([module.i, "._2evtJmizxgQRB1XqFI6sYg{\n\twidth: 100%;\n\theight: 100%;\n\tpadding: 0;\n\tmargin: 0 auto;\n\tbackground-color: rgb(180, 245, 86);\n\tdisplay: flex;\n}\n.KOuqkKc5fZN6SjvBqOJ0A{\n\tbackground-color: rgb(240, 240, 240) !important;\n\tdisplay: flex;\n\twidth: 100%;\n\tflex-direction: column;\n\tjustify-content: space-between;\n}\n._1OdXRuVBuMJ0bmLdAGhd0s{\n\tborder: 2px red solid;\n}\n._21ZcJ_iUhsZ9LT_NJhuEBP{\n\tdisplay: flex;\n\twidth: 100%;\n\tborder:none !important;\n\tborder-radius: 0 !important;\n}\n", ""]);
 
 // exports
 exports.locals = {

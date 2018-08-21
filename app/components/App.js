@@ -114,11 +114,14 @@ export class App extends React.Component {
 			encodedSong = JSON.parse(queryParams.song);
 			decodedSong = toolLib.decodedSong(encodedSong);
 		}
-
+		let songInfo = {...this.state.songInfo};
+		songInfo.curSong = {
+			...decodedSong
+		};
 		this.setState({
 			curDir:toolLib.URLtoArray(queryParams.dir),
 			curSongListIndex:curSongListIndex,
-			curSong:decodedSong,
+			songInfo:songInfo,
 			activeItem:(queryParams.songList)?'songlist':'folder',
 		});
 
