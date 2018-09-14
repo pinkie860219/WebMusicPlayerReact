@@ -8,6 +8,8 @@ import {CtrlBtn} from "./CtrlBtn.js";
 import Sound from "react-sound";
 import * as toolLib from './Util.js';
 import {withSongInfo} from './context/SongInfoContext.js';
+import {serverApi} from './other/Api.js';
+
 class SongClock extends React.Component{
 	HHMMSS(ms){//time in ms
 		let time = Math.floor(ms/1000);
@@ -45,15 +47,15 @@ class PageFooter extends React.Component {
 			volume:100, // 音量
 			lastVolume:0,
 			muteStatus:false,
-			encodeSongUrl:"",//encode後的songurl
+			SongUrl:"",//encode後的songurl
 		}
 
 	}
 	componentDidUpdate(prevProps, prevState){
 		////check curSongURL
-		if(JSON.stringify(this.props.curSong) !== JSON.stringify(prevProps.curSong)){
+		if(this.props.curSong.HashedCode !== prevProps.curSong.HashedCode){
 			this.setState({
-				encodeSongUrl:toolLib.playURL(this.props.curSong.Url),
+				SongUrl:serverApi.musicURL + this.props.curSong.HashedCode,
 				curTime:0,
 				playStatus:Sound.status.PLAYING,
 			});
@@ -187,7 +189,7 @@ class PageFooter extends React.Component {
 		return(
 			<div className = {style.footer}>
 				<Sound
-					url = {this.state.encodeSongUrl}
+					url = {this.state.SongUrl}
 					playStatus = {this.state.playStatus}
 					volume = {this.state.volume}
 					position = {this.state.curTime}

@@ -11,8 +11,8 @@ import {SongInfoContext} from './context/SongInfoContext.js';
 
 export class App extends React.Component {
 	constructor(props) {
-	    super(props);
-	    this.state = {
+    super(props);
+    this.state = {
 			serverURL:'https://pinkiebala.nctu.me/MusicServer/dir?dir=', // 檔案路徑的API
 			musicURL:'https://pinkiebala.nctu.me/MusicServer/file?m=', // serve音樂檔案的API
 			songListURL:'https://pinkiebala.nctu.me/MusicServer/songlist',
@@ -35,7 +35,7 @@ export class App extends React.Component {
 			songInfo:{
 				curSong:{},
 				curPlayingList:[], // 現在的播放清單，{Name, Url}
-				setSongUrl:(song)=>this.setSongUrl(song),
+				setSongUrl:(item)=>this.setSongUrl(item),
 			},
 		};
 
@@ -66,12 +66,12 @@ export class App extends React.Component {
 		const newSearch = {
 			curDirCode:this.state.curDirCode,
 			curSongListIndex:this.state.curSongListIndex,
-			curSong:this.state.songInfo.curSong,
+			curSongCode:this.state.songInfo.curSong.HashedCode,
 		};
 		const prevSearch = {
 			curDirCode:prevState.curDirCode,
 			curSongListIndex:prevState.curSongListIndex,
-			curSong:prevState.songInfo.curSong,
+			curSongCode:prevState.songInfo.curSong.HashedCode,
 		};
 		if(JSON.stringify(newSearch) !== JSON.stringify(prevSearch)){
 			//console.log(toolLib.makeSearchString(newSearch));
@@ -109,15 +109,10 @@ export class App extends React.Component {
 		} else {
 			curSongListIndex = -1;
 		}
-		let encodedSong ;
-		let decodedSong = {};
-		if(queryParams.song !== '{}' && queryParams.song){
-			encodedSong = JSON.parse(queryParams.song);
-			decodedSong = toolLib.decodedSong(encodedSong);
-		}
-		let songInfo = {...this.state.songInfo};
+		let songInfo = {...this.state.songInfo}
 		songInfo.curSong = {
-			...decodedSong
+			Name:'還沒啦',
+			HashedCode:queryParams.m?queryParams.m:'',
 		};
 		this.setState({
 			curDirCode: queryParams.dir,
@@ -141,10 +136,11 @@ export class App extends React.Component {
 		}
 		// this.setStateByURL(this.props.location);
 
-		if(queryParams.song !== '{}' && queryParams.song){
-			const encodedSong = JSON.parse(queryParams.song);
-			const decodedSong = toolLib.decodedSong(encodedSong);
-			this.setCurPlayingList(decodedSong);
+		if(queryParams.m){
+			this.setCurPlayingList({
+				Name:'',
+				HashedCode:queryParams.m,
+			});
 			this.setState({
 				playStatus:Sound.status.PLAYING,
 			});
@@ -312,17 +308,13 @@ export class App extends React.Component {
 			curSongListIndex:-1
 		});
 	}
-	setCurSong(song){ //點音樂item切換音樂
-		// console.log("setCurSong:");
+	setCurSong(item){ //點音樂item切換音樂
 		let songInfo = {...this.state.songInfo};
-		songInfo.curSong = {
-			Name:decodeURIComponent(song.Name),
-			Url:decodeURIComponent(song.Url),
-		};
+		songInfo.curSong = {...item};
 		songInfo.curPlayingList = this.getCurPlayingListFromCurDisplayList();
 		this.setState({songInfo});
 
-		console.log("Now Playing~~ " + song.Name + "\nFrom : " + song.Url);
+		console.log("Now Playing~~ " + item.Name + "\nFrom : " + this.state.musicURL+item.HashedCode);
 
 	}
 	getCurPlayingListFromCurDisplayList(){
@@ -335,21 +327,18 @@ export class App extends React.Component {
 		}
 		return curPlayingList;
 	}
-	setSongUrl(song){
+	setSongUrl(item){
 
 		this.setState(prevState => (
 			{
 				...prevState,
 				songInfo:{
 					...prevState.songInfo,
-					curSong:{
-						Name:decodeURIComponent(song.Name),
-						Url:decodeURIComponent(song.Url),
-					}
+					curSong:item,
 				}
 			}
 		));
-		console.log("Now Playing~~ " + song.Name + "\nFrom : " + song.Url);
+		console.log("Now Playing~~ " + item.Name + "\nFrom : " + musicURL+item.HashedCode);
 	}
 
 	toggleVisibility(){ //開關sidelist

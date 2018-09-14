@@ -32,8 +32,8 @@ export function makeSearchString(query){
 	if(query.curSongListIndex >= 0){
 		outputArray.push(`songList=${query.curSongListIndex}`);
 	}
-	if(typeof query.curSong.Name !== 'undefined' && typeof query.curSong.Url !== 'undefined'){
-		outputArray.push(`song=${JSON.stringify(encodedSong(query.curSong))}`)
+	if(query.curSongCode){
+		outputArray.push(`m=${query.curSongCode}`)
 	}
 	return `?${outputArray.join('&')}`;
 }
