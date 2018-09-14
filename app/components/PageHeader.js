@@ -19,7 +19,7 @@ export class PageHeader extends React.Component {
 						return(
 							<React.Fragment key={index}>
 								<i className="fas fa-angle-right"></i>
-								<span className={index === this.props.curDir.length - 1?styles.tailBread:''} onClick={()=>{this.props.setCurDirPop(index+1)}}>{item}</span>
+								<span className={index === this.props.curDir.length - 1?styles.tailBread:''} onClick={()=>{this.props.setCurDirPop(index+1)}}>{item.Name}</span>
 							</React.Fragment>
 						);
 					})}

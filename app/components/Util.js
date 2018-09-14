@@ -26,8 +26,8 @@ export function URLtoArray(url){
 
 export function makeSearchString(query){
 	let outputArray = [];
-	if(arrayToURL(query.curDir)){
-		outputArray.push(`dir=${arrayToURL(query.curDir)}`);
+	if(query.curDirCode){
+		outputArray.push(`dir=${query.curDirCode}`);
 	}
 	if(query.curSongListIndex >= 0){
 		outputArray.push(`songList=${query.curSongListIndex}`);

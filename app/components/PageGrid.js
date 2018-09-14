@@ -29,9 +29,9 @@ export class PageGrid extends React.Component {
 					type=0;//is folder
 					return(
 						<DataItemWithSongInfo
-							key = {toolLib.uniqueKey(JSON.stringify(item))} type={type}
-							song = {{Name:item.Name, Url:item.Url}}
-							onClick = {()=>this.props.setCurDir(item.Name)}
+							key = {item.HashedCode} type={type}
+							song = {item}
+							onClick = {()=>this.props.setCurDir(item)}
 							songLists = {this.props.songLists}
 							handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
 							songQueryURL = {this.props.songQueryURL}
@@ -45,8 +45,8 @@ export class PageGrid extends React.Component {
 					type=1;//is music file
 					return(
 						<DataItemWithSongInfo
-							key = {toolLib.uniqueKey(JSON.stringify(item))} type={type}
-							song = {{Name:item.Name, Url:item.Url}}
+							key = {item.HashedCode} type={type}
+							song = {item}
 							onClick = {()=>this.props.setCurSong(item)}
 							songLists = {this.props.songLists}
 							handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}

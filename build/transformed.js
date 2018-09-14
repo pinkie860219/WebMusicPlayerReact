@@ -46876,11 +46876,12 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			encodedSong = JSON.parse(queryParams.song);
 			decodedSong = __WEBPACK_IMPORTED_MODULE_8__Util_js__["b" /* decodedSong */](encodedSong);
 		}
-
+		let songInfo = _extends({}, this.state.songInfo);
+		songInfo.curSong = _extends({}, decodedSong);
 		this.setState({
 			curDir: __WEBPACK_IMPORTED_MODULE_8__Util_js__["a" /* URLtoArray */](queryParams.dir),
 			curSongListIndex: curSongListIndex,
-			curSong: decodedSong,
+			songInfo: songInfo,
 			activeItem: queryParams.songList ? 'songlist' : 'folder'
 		});
 	}
