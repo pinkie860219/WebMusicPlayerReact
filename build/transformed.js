@@ -3121,11 +3121,11 @@ if (process.env.NODE_ENV !== 'production') {
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(880)(isValidElement, throwOnDirectAccess);
+  module.exports = __webpack_require__(881)(isValidElement, throwOnDirectAccess);
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(882)();
+  module.exports = __webpack_require__(883)();
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
@@ -5855,11 +5855,11 @@ module.exports = warning;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createBrowserHistory__ = __webpack_require__(877);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createBrowserHistory__ = __webpack_require__(878);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__createBrowserHistory__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createHashHistory__ = __webpack_require__(878);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createHashHistory__ = __webpack_require__(879);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__createHashHistory__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__createMemoryHistory__ = __webpack_require__(879);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__createMemoryHistory__ = __webpack_require__(880);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_2__createMemoryHistory__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__LocationUtils__ = __webpack_require__(141);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_3__LocationUtils__["a"]; });
@@ -8405,11 +8405,11 @@ if (process.env.NODE_ENV !== 'production') {
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(874)(isValidElement, throwOnDirectAccess);
+  module.exports = __webpack_require__(875)(isValidElement, throwOnDirectAccess);
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(876)();
+  module.exports = __webpack_require__(877)();
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
@@ -13338,13 +13338,13 @@ module.exports = ReactPropTypesSecret;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["d"] = playURL;
+/* unused harmony export playURL */
 /* unused harmony export arrayToURL */
-/* harmony export (immutable) */ __webpack_exports__["a"] = URLtoArray;
-/* harmony export (immutable) */ __webpack_exports__["c"] = makeSearchString;
+/* unused harmony export URLtoArray */
+/* harmony export (immutable) */ __webpack_exports__["a"] = makeSearchString;
 /* unused harmony export encodedSong */
-/* harmony export (immutable) */ __webpack_exports__["b"] = decodedSong;
-/* harmony export (immutable) */ __webpack_exports__["e"] = uniqueKey;
+/* unused harmony export decodedSong */
+/* unused harmony export uniqueKey */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_shortid__ = __webpack_require__(844);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_shortid___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_shortid__);
 
@@ -13377,14 +13377,14 @@ function URLtoArray(url) {
 
 function makeSearchString(query) {
 	let outputArray = [];
-	if (arrayToURL(query.curDir)) {
-		outputArray.push(`dir=${arrayToURL(query.curDir)}`);
+	if (query.curDirCode) {
+		outputArray.push(`dir=${query.curDirCode}`);
 	}
 	if (query.curSongListIndex >= 0) {
 		outputArray.push(`songList=${query.curSongListIndex}`);
 	}
-	if (typeof query.curSong.Name !== 'undefined' && typeof query.curSong.Url !== 'undefined') {
-		outputArray.push(`song=${JSON.stringify(encodedSong(query.curSong))}`);
+	if (query.curSongCode) {
+		outputArray.push(`m=${query.curSongCode}`);
 	}
 	return `?${outputArray.join('&')}`;
 }
@@ -26820,7 +26820,7 @@ Route.childContextTypes = {
 /* 431 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isarray = __webpack_require__(887)
+var isarray = __webpack_require__(888)
 
 /**
  * Expose `pathToRegexp`.
@@ -27304,8 +27304,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_App__ = __webpack_require__(444);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_history__ = __webpack_require__(867);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_router_dom__ = __webpack_require__(872);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_history__ = __webpack_require__(868);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_router_dom__ = __webpack_require__(873);
 
 
 
@@ -46749,10 +46749,10 @@ module.exports = camelize;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SideList_js__ = __webpack_require__(786);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PageHeader_js__ = __webpack_require__(790);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__PageFooter_js__ = __webpack_require__(793);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__PageGrid_js__ = __webpack_require__(853);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__css_Master_css__ = __webpack_require__(862);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__PageGrid_js__ = __webpack_require__(854);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__css_Master_css__ = __webpack_require__(863);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__css_Master_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__css_Master_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_query_string__ = __webpack_require__(864);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_query_string__ = __webpack_require__(865);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_query_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_query_string__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Util_js__ = __webpack_require__(227);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__context_SongInfoContext_js__ = __webpack_require__(228);
@@ -46773,14 +46773,14 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			serverURL: 'https://pinkiebala.nctu.me/MusicServer/dir?dir=/', // 檔案路徑的API
-			musicURL: 'https://pinkiebala.nctu.me/MusicServer/file/', // serve音樂檔案的API
+			serverURL: 'https://pinkiebala.nctu.me/MusicServer/dir?dir=', // 檔案路徑的API
+			musicURL: 'https://pinkiebala.nctu.me/MusicServer/file?m=', // serve音樂檔案的API
 			songListURL: 'https://pinkiebala.nctu.me/MusicServer/songlist',
 			songQueryURL: 'https://pinkiebala.nctu.me/MusicServer/songquery?url=',
 			visible: false, // sideList的開關
 			activeItem: 'folder', //sideList的選項
 
-
+			curDirCode: '', //當前的瀏覽路徑的HashedCode
 			curDir: [], // 當前的瀏覽路徑
 
 			curDisplayList: [], // 當前的瀏覽路徑下的檔案{Name, Url, IsDir}
@@ -46795,7 +46795,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			songInfo: {
 				curSong: {},
 				curPlayingList: [], // 現在的播放清單，{Name, Url}
-				setSongUrl: song => this.setSongUrl(song)
+				setSongUrl: item => this.setSongUrl(item)
 			}
 		};
 	}
@@ -46804,16 +46804,12 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		this.init();
 	}
 	componentDidUpdate(prevProps, prevState) {
-		const prevCurDir = prevState.curDir.map(item => {
-			return encodeURIComponent(item);
-		}).join('/');
-		const newCurDir = this.state.curDir.map(item => {
-			return encodeURIComponent(item);
-		}).join('/');
+		const prevCurDirCode = prevState.curDirCode;
+		const newCurDirCode = this.state.curDirCode;
 		if (this.state.activeItem != prevState.activeItem) {
 			switch (this.state.activeItem) {
 				case 'folder':
-					this.fetchAsync(newCurDir);
+					this.fetchAsync(newCurDirCode);
 					break;
 				case 'songlist':
 					break;
@@ -46827,28 +46823,28 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
 		//state change url
 		const newSearch = {
-			curDir: this.state.curDir,
+			curDirCode: this.state.curDirCode,
 			curSongListIndex: this.state.curSongListIndex,
-			curSong: this.state.songInfo.curSong
+			curSongCode: this.state.songInfo.curSong.HashedCode
 		};
 		const prevSearch = {
-			curDir: prevState.curDir,
+			curDirCode: prevState.curDirCode,
 			curSongListIndex: prevState.curSongListIndex,
-			curSong: prevState.songInfo.curSong
+			curSongCode: prevState.songInfo.curSong.HashedCode
 		};
 		if (JSON.stringify(newSearch) !== JSON.stringify(prevSearch)) {
 			//console.log(toolLib.makeSearchString(newSearch));
 			this.props.history.push({
-				search: __WEBPACK_IMPORTED_MODULE_8__Util_js__["c" /* makeSearchString */](newSearch)
+				search: __WEBPACK_IMPORTED_MODULE_8__Util_js__["a" /* makeSearchString */](newSearch)
 			});
 
 			///
 			////check curSongListIndex
 			if (this.state.curSongListIndex !== prevState.curSongListIndex && this.state.curSongListIndex >= 0) {
 				this.fetchSongListSongs(this.state.curSongListIndex);
-			} else if (newCurDir != prevCurDir) {
+			} else if (newCurDirCode != prevCurDirCode) {
 				/////check curDir
-				this.fetchAsync(newCurDir);
+				this.fetchAsync(newCurDirCode);
 				this.setState({
 					curSongListIndex: -1
 				});
@@ -46862,6 +46858,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	setStateByURL(location) {
 		//console.log("setStateByURL:");
 		// location is an object like window.location
+
 		const queryParams = __WEBPACK_IMPORTED_MODULE_7_query_string___default.a.parse(location.search);
 
 		let curSongListIndex;
@@ -46870,16 +46867,13 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		} else {
 			curSongListIndex = -1;
 		}
-		let encodedSong;
-		let decodedSong = {};
-		if (queryParams.song !== '{}' && queryParams.song) {
-			encodedSong = JSON.parse(queryParams.song);
-			decodedSong = __WEBPACK_IMPORTED_MODULE_8__Util_js__["b" /* decodedSong */](encodedSong);
-		}
 		let songInfo = _extends({}, this.state.songInfo);
-		songInfo.curSong = _extends({}, decodedSong);
+		songInfo.curSong = {
+			Name: '還沒啦',
+			HashedCode: queryParams.m ? queryParams.m : ''
+		};
 		this.setState({
-			curDir: __WEBPACK_IMPORTED_MODULE_8__Util_js__["a" /* URLtoArray */](queryParams.dir),
+			curDirCode: queryParams.dir,
 			curSongListIndex: curSongListIndex,
 			songInfo: songInfo,
 			activeItem: queryParams.songList ? 'songlist' : 'folder'
@@ -46900,16 +46894,17 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		}
 		// this.setStateByURL(this.props.location);
 
-		if (queryParams.song !== '{}' && queryParams.song) {
-			const encodedSong = JSON.parse(queryParams.song);
-			const decodedSong = __WEBPACK_IMPORTED_MODULE_8__Util_js__["b" /* decodedSong */](encodedSong);
-			this.setCurPlayingList(decodedSong);
+		if (queryParams.m) {
+			this.setCurPlayingList({
+				Name: '',
+				HashedCode: queryParams.m
+			});
 			this.setState({
 				playStatus: Sound.status.PLAYING
 			});
 		}
 	}
-	async fetchAsync(d) {
+	async fetchAsync(code) {
 		// 更新瀏覽頁面
 		this.setState({
 			loading: true
@@ -46919,18 +46914,10 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		//let encodeD = d.map(item => {return encodeURIComponent(item)});
 		//let response = await fetch(this.state.serverURL+encodeD.join('/'));
 
-		let response = await fetch(this.state.serverURL + d);
+		let response = await fetch(this.state.serverURL + code);
 		let data = await response.json();
 		//console.log(data);
-		if (data) {
-			data.forEach(item => {
-				if (item.IsDir) {
-					item.Url = this.state.serverURL + d + '/' + encodeURIComponent(item.Name);
-				} else {
-					item.Url = this.state.musicURL + d + '/' + encodeURIComponent(item.Name);
-				}
-			});
-		} else {
+		if (data) {} else {
 			data = [];
 		}
 
@@ -47056,68 +47043,55 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		this.setState({ songLists: output });
 		// console.log(output);
 	}
-	setCurDir(str) {
+	setCurDir(item) {
 		// 點擊資料夾，設定瀏覽位置
 		let d = this.state.curDir.slice();
-		d.push(str);
+		d.push(item);
 		this.setState({
 			curDir: d,
+			curDirCode: item.HashedCode,
 			activeItem: 'folder',
 			curSongListIndex: -1
 		});
-
-		// this.setQueryParams({
-		// 	dir:this.arrayToURL(d),
-		// });
 	}
 	setCurDirPop(index) {
 		// 點擊麵包的路徑，設定瀏覽位置
-		// console.log(index);
 		let d = this.state.curDir.slice();
 		d = d.slice(0, index);
 		this.setState({
 			curDir: d,
+			curDirCode: d[index - 1] ? d[index - 1].HashedCode : '',
 			activeItem: 'folder',
 			curSongListIndex: -1
 		});
-		// this.setQueryParams({
-		// 	dir:this.arrayToURL(d),
-		// });
 	}
-	setCurSong(song) {
+	setCurSong(item) {
 		//點音樂item切換音樂
-		// console.log("setCurSong:");
 		let songInfo = _extends({}, this.state.songInfo);
-		songInfo.curSong = {
-			Name: decodeURIComponent(song.Name),
-			Url: decodeURIComponent(song.Url)
-		};
+		songInfo.curSong = _extends({}, item);
 		songInfo.curPlayingList = this.getCurPlayingListFromCurDisplayList();
 		this.setState({ songInfo });
 
-		console.log("Now Playing~~ " + song.Name + "\nFrom : " + song.Url);
+		console.log("Now Playing~~ " + item.Name + "\nFrom : " + this.state.musicURL + item.HashedCode);
 	}
 	getCurPlayingListFromCurDisplayList() {
 		//把displayList存進playingList
 		let curPlayingList = [];
 		for (let item of this.state.curDisplayList) {
 			if (item.IsDir != true) {
-				curPlayingList.push({ Name: item.Name, Url: item.Url });
+				curPlayingList.push(item);
 			}
 		}
 		return curPlayingList;
 	}
-	setSongUrl(song) {
+	setSongUrl(item) {
 
 		this.setState(prevState => _extends({}, prevState, {
 			songInfo: _extends({}, prevState.songInfo, {
-				curSong: {
-					Name: decodeURIComponent(song.Name),
-					Url: decodeURIComponent(song.Url)
-				}
+				curSong: item
 			})
 		}));
-		console.log("Now Playing~~ " + song.Name + "\nFrom : " + song.Url);
+		console.log("Now Playing~~ " + item.Name + "\nFrom : " + musicURL + item.HashedCode);
 	}
 
 	toggleVisibility() {
@@ -47171,11 +47145,8 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 							} }),
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__PageGrid_js__["a" /* PageGrid */], {
 							curDisplayList: this.state.curDisplayList,
-							setCurDir: str => this.setCurDir(str),
-							setCurSong: song => this.setCurSong({
-								Name: song.Name,
-								Url: song.Url
-							}),
+							setCurDir: item => this.setCurDir(item),
+							setCurSong: item => this.setCurSong(item),
 							fileExist: this.state.fileExist,
 							loading: this.state.loading,
 							songLists: this.state.songLists,
@@ -68080,7 +68051,7 @@ class PageHeader extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 							{ className: index === this.props.curDir.length - 1 ? __WEBPACK_IMPORTED_MODULE_1__css_PageHeader_scss___default.a.tailBread : '', onClick: () => {
 									this.props.setCurDirPop(index + 1);
 								} },
-							item
+							item.Name
 						)
 					);
 				})
@@ -68161,6 +68132,9 @@ exports.locals = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_sound___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_react_sound__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Util_js__ = __webpack_require__(227);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__context_SongInfoContext_js__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__other_Api_js__ = __webpack_require__(853);
+
+
 
 
 
@@ -68213,14 +68187,14 @@ class PageFooter extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 			volume: 100, // 音量
 			lastVolume: 0,
 			muteStatus: false,
-			encodeSongUrl: "" //encode後的songurl
+			SongUrl: "" //encode後的songurl
 		};
 	}
 	componentDidUpdate(prevProps, prevState) {
 		////check curSongURL
-		if (JSON.stringify(this.props.curSong) !== JSON.stringify(prevProps.curSong)) {
+		if (this.props.curSong.HashedCode !== prevProps.curSong.HashedCode) {
 			this.setState({
-				encodeSongUrl: __WEBPACK_IMPORTED_MODULE_8__Util_js__["d" /* playURL */](this.props.curSong.Url),
+				SongUrl: __WEBPACK_IMPORTED_MODULE_10__other_Api_js__["a" /* serverApi */].musicURL + this.props.curSong.HashedCode,
 				curTime: 0,
 				playStatus: __WEBPACK_IMPORTED_MODULE_7_react_sound___default.a.status.PLAYING
 			});
@@ -68358,7 +68332,7 @@ class PageFooter extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 			"div",
 			{ className: __WEBPACK_IMPORTED_MODULE_1__css_PageFooter_scss___default.a.footer },
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_sound___default.a, {
-				url: this.state.encodeSongUrl,
+				url: this.state.SongUrl,
 				playStatus: this.state.playStatus,
 				volume: this.state.volume,
 				position: this.state.curTime,
@@ -81607,12 +81581,27 @@ module.exports = 0;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return serverApi; });
+let serverPrefix = "https://pinkiebala.nctu.me/MusicServer";
+
+let serverApi = {
+	dirURL: serverPrefix + '/dir?dir=', // 檔案路徑的API
+	musicURL: serverPrefix + '/file?m=', // serve音樂檔案的API
+	songListURL: serverPrefix + '/songlist',
+	songQueryURL: serverPrefix + '/songquery?url='
+};
+
+/***/ }),
+/* 854 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_PageGrid_scss__ = __webpack_require__(854);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_PageGrid_scss__ = __webpack_require__(855);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_PageGrid_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_PageGrid_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_styled_components__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DataItem_js__ = __webpack_require__(856);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DataItem_js__ = __webpack_require__(857);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_semantic_ui_react__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Util_js__ = __webpack_require__(227);
 
@@ -81647,9 +81636,9 @@ class PageGrid extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 					//console.log("file");
 					type = 0; //is folder
 					return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__DataItem_js__["a" /* DataItemWithSongInfo */], {
-						key: __WEBPACK_IMPORTED_MODULE_5__Util_js__["e" /* uniqueKey */](JSON.stringify(item)), type: type,
-						song: { Name: item.Name, Url: item.Url },
-						onClick: () => this.props.setCurDir(item.Name),
+						key: item.HashedCode, type: type,
+						song: item,
+						onClick: () => this.props.setCurDir(item),
 						songLists: this.props.songLists,
 						handleAddToSongList: (songList, song) => this.props.handleAddToSongList(songList, song),
 						songQueryURL: this.props.songQueryURL,
@@ -81660,8 +81649,8 @@ class PageGrid extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 					//console.log("music");
 					type = 1; //is music file
 					return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__DataItem_js__["a" /* DataItemWithSongInfo */], {
-						key: __WEBPACK_IMPORTED_MODULE_5__Util_js__["e" /* uniqueKey */](JSON.stringify(item)), type: type,
-						song: { Name: item.Name, Url: item.Url },
+						key: item.HashedCode, type: type,
+						song: item,
 						onClick: () => this.props.setCurSong(item),
 						songLists: this.props.songLists,
 						handleAddToSongList: (songList, song) => this.props.handleAddToSongList(songList, song),
@@ -81711,13 +81700,13 @@ class PageGrid extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
 
 /***/ }),
-/* 854 */
+/* 855 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(855);
+var content = __webpack_require__(856);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -81742,7 +81731,7 @@ if(false) {
 }
 
 /***/ }),
-/* 855 */
+/* 856 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(31)(false);
@@ -81764,17 +81753,17 @@ exports.locals = {
 };
 
 /***/ }),
-/* 856 */
+/* 857 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_DataItem_scss__ = __webpack_require__(857);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_DataItem_scss__ = __webpack_require__(858);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_DataItem_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_DataItem_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_styled_components__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Dropdown_js__ = __webpack_require__(859);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Dropdown_js__ = __webpack_require__(860);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__context_SongInfoContext_js__ = __webpack_require__(228);
 
 
@@ -81842,7 +81831,7 @@ class DataItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		}
 
 		let colorStyle;
-		if (decodeURIComponent(this.props.song.Url) == decodeURIComponent(this.props.curSong.Url)) {
+		if (decodeURIComponent(this.props.song.HashedCode) == decodeURIComponent(this.props.curSong.HashedCode)) {
 			colorStyle = __WEBPACK_IMPORTED_MODULE_1__css_DataItem_scss___default.a.playing;
 		} else {
 			colorStyle = __WEBPACK_IMPORTED_MODULE_1__css_DataItem_scss___default.a.notPlaying;
@@ -81870,13 +81859,13 @@ const DataItemWithSongInfo = Object(__WEBPACK_IMPORTED_MODULE_5__context_SongInf
 
 
 /***/ }),
-/* 857 */
+/* 858 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(858);
+var content = __webpack_require__(859);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -81901,7 +81890,7 @@ if(false) {
 }
 
 /***/ }),
-/* 858 */
+/* 859 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(31)(false);
@@ -81925,13 +81914,13 @@ exports.locals = {
 };
 
 /***/ }),
-/* 859 */
+/* 860 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_Dropdown_scss__ = __webpack_require__(860);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_Dropdown_scss__ = __webpack_require__(861);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_Dropdown_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_Dropdown_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_styled_components__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_semantic_ui_react__ = __webpack_require__(42);
@@ -82112,13 +82101,13 @@ class Dropdown extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
 
 /***/ }),
-/* 860 */
+/* 861 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(861);
+var content = __webpack_require__(862);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -82143,7 +82132,7 @@ if(false) {
 }
 
 /***/ }),
-/* 861 */
+/* 862 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(31)(false);
@@ -82165,13 +82154,13 @@ exports.locals = {
 };
 
 /***/ }),
-/* 862 */
+/* 863 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(863);
+var content = __webpack_require__(864);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -82196,7 +82185,7 @@ if(false) {
 }
 
 /***/ }),
-/* 863 */
+/* 864 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(31)(false);
@@ -82215,13 +82204,13 @@ exports.locals = {
 };
 
 /***/ }),
-/* 864 */
+/* 865 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-const strictUriEncode = __webpack_require__(865);
-const decodeComponent = __webpack_require__(866);
+const strictUriEncode = __webpack_require__(866);
+const decodeComponent = __webpack_require__(867);
 
 function encoderForArrayFormat(options) {
 	switch (options.arrayFormat) {
@@ -82444,7 +82433,7 @@ exports.parseUrl = (input, options) => {
 
 
 /***/ }),
-/* 865 */
+/* 866 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82453,7 +82442,7 @@ module.exports = str => encodeURIComponent(str).replace(/[!'()*]/g, x => `%${x.c
 
 
 /***/ }),
-/* 866 */
+/* 867 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82554,11 +82543,11 @@ module.exports = function (encodedURI) {
 
 
 /***/ }),
-/* 867 */
+/* 868 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_history_createBrowserHistory__ = __webpack_require__(868);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_history_createBrowserHistory__ = __webpack_require__(869);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_history_createBrowserHistory___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_history_createBrowserHistory__);
 
 
@@ -82567,7 +82556,7 @@ const history = __WEBPACK_IMPORTED_MODULE_0_history_createBrowserHistory___defau
 /* harmony default export */ __webpack_exports__["a"] = (history);
 
 /***/ }),
-/* 868 */
+/* 869 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82587,15 +82576,15 @@ var _invariant = __webpack_require__(34);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _LocationUtils = __webpack_require__(869);
+var _LocationUtils = __webpack_require__(870);
 
 var _PathUtils = __webpack_require__(426);
 
-var _createTransitionManager = __webpack_require__(870);
+var _createTransitionManager = __webpack_require__(871);
 
 var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
-var _DOMUtils = __webpack_require__(871);
+var _DOMUtils = __webpack_require__(872);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -82880,7 +82869,7 @@ var createBrowserHistory = function createBrowserHistory() {
 exports.default = createBrowserHistory;
 
 /***/ }),
-/* 869 */
+/* 870 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82964,7 +82953,7 @@ var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a
 };
 
 /***/ }),
-/* 870 */
+/* 871 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83055,7 +83044,7 @@ var createTransitionManager = function createTransitionManager() {
 exports.default = createTransitionManager;
 
 /***/ }),
-/* 871 */
+/* 872 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83116,37 +83105,37 @@ var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isE
 };
 
 /***/ }),
-/* 872 */
+/* 873 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__ = __webpack_require__(873);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__ = __webpack_require__(874);
 /* unused harmony reexport BrowserRouter */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HashRouter__ = __webpack_require__(883);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HashRouter__ = __webpack_require__(884);
 /* unused harmony reexport HashRouter */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Link__ = __webpack_require__(428);
 /* unused harmony reexport Link */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__ = __webpack_require__(884);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__ = __webpack_require__(885);
 /* unused harmony reexport MemoryRouter */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__NavLink__ = __webpack_require__(886);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__NavLink__ = __webpack_require__(887);
 /* unused harmony reexport NavLink */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Prompt__ = __webpack_require__(888);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Prompt__ = __webpack_require__(889);
 /* unused harmony reexport Prompt */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Redirect__ = __webpack_require__(890);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Redirect__ = __webpack_require__(891);
 /* unused harmony reexport Redirect */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Route__ = __webpack_require__(429);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_7__Route__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Router__ = __webpack_require__(231);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_8__Router__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__StaticRouter__ = __webpack_require__(892);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__StaticRouter__ = __webpack_require__(893);
 /* unused harmony reexport StaticRouter */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Switch__ = __webpack_require__(894);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Switch__ = __webpack_require__(895);
 /* unused harmony reexport Switch */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__generatePath__ = __webpack_require__(896);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__generatePath__ = __webpack_require__(897);
 /* unused harmony reexport generatePath */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__matchPath__ = __webpack_require__(897);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__matchPath__ = __webpack_require__(898);
 /* unused harmony reexport matchPath */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__withRouter__ = __webpack_require__(898);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__withRouter__ = __webpack_require__(899);
 /* unused harmony reexport withRouter */
 
 
@@ -83178,7 +83167,7 @@ var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isE
 
 
 /***/ }),
-/* 873 */
+/* 874 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -83244,7 +83233,7 @@ BrowserRouter.propTypes = {
 /* unused harmony default export */ var _unused_webpack_default_export = (BrowserRouter);
 
 /***/ }),
-/* 874 */
+/* 875 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83263,7 +83252,7 @@ var warning = __webpack_require__(33);
 var assign = __webpack_require__(19);
 
 var ReactPropTypesSecret = __webpack_require__(229);
-var checkPropTypes = __webpack_require__(875);
+var checkPropTypes = __webpack_require__(876);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -83794,7 +83783,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 875 */
+/* 876 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83861,7 +83850,7 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 876 */
+/* 877 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83926,7 +83915,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 877 */
+/* 878 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -84230,7 +84219,7 @@ var createBrowserHistory = function createBrowserHistory() {
 /* harmony default export */ __webpack_exports__["a"] = (createBrowserHistory);
 
 /***/ }),
-/* 878 */
+/* 879 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -84551,7 +84540,7 @@ var createHashHistory = function createHashHistory() {
 /* harmony default export */ __webpack_exports__["a"] = (createHashHistory);
 
 /***/ }),
-/* 879 */
+/* 880 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -84719,7 +84708,7 @@ var createMemoryHistory = function createMemoryHistory() {
 /* harmony default export */ __webpack_exports__["a"] = (createMemoryHistory);
 
 /***/ }),
-/* 880 */
+/* 881 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84738,7 +84727,7 @@ var warning = __webpack_require__(33);
 var assign = __webpack_require__(19);
 
 var ReactPropTypesSecret = __webpack_require__(233);
-var checkPropTypes = __webpack_require__(881);
+var checkPropTypes = __webpack_require__(882);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -85269,7 +85258,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 881 */
+/* 882 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85336,7 +85325,7 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 882 */
+/* 883 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85401,7 +85390,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 883 */
+/* 884 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -85466,18 +85455,18 @@ HashRouter.propTypes = {
 /* unused harmony default export */ var _unused_webpack_default_export = (HashRouter);
 
 /***/ }),
-/* 884 */
+/* 885 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_MemoryRouter__ = __webpack_require__(885);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_MemoryRouter__ = __webpack_require__(886);
 // Written in this round about way for babel-transform-imports
 
 
 /* unused harmony default export */ var _unused_webpack_default_export = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_MemoryRouter__["a" /* default */]);
 
 /***/ }),
-/* 885 */
+/* 886 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -85543,7 +85532,7 @@ MemoryRouter.propTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (MemoryRouter);
 
 /***/ }),
-/* 886 */
+/* 887 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -85629,7 +85618,7 @@ NavLink.defaultProps = {
 /* unused harmony default export */ var _unused_webpack_default_export = (NavLink);
 
 /***/ }),
-/* 887 */
+/* 888 */
 /***/ (function(module, exports) {
 
 module.exports = Array.isArray || function (arr) {
@@ -85638,18 +85627,18 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 888 */
+/* 889 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Prompt__ = __webpack_require__(889);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Prompt__ = __webpack_require__(890);
 // Written in this round about way for babel-transform-imports
 
 
 /* unused harmony default export */ var _unused_webpack_default_export = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_Prompt__["a" /* default */]);
 
 /***/ }),
-/* 889 */
+/* 890 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -85740,18 +85729,18 @@ Prompt.contextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Prompt);
 
 /***/ }),
-/* 890 */
+/* 891 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Redirect__ = __webpack_require__(891);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Redirect__ = __webpack_require__(892);
 // Written in this round about way for babel-transform-imports
 
 
 /* unused harmony default export */ var _unused_webpack_default_export = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_Redirect__["a" /* default */]);
 
 /***/ }),
-/* 891 */
+/* 892 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -85880,18 +85869,18 @@ Redirect.contextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Redirect);
 
 /***/ }),
-/* 892 */
+/* 893 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_StaticRouter__ = __webpack_require__(893);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_StaticRouter__ = __webpack_require__(894);
 // Written in this round about way for babel-transform-imports
 
 
 /* unused harmony default export */ var _unused_webpack_default_export = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_StaticRouter__["a" /* default */]);
 
 /***/ }),
-/* 893 */
+/* 894 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -86057,18 +86046,18 @@ StaticRouter.childContextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (StaticRouter);
 
 /***/ }),
-/* 894 */
+/* 895 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Switch__ = __webpack_require__(895);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Switch__ = __webpack_require__(896);
 // Written in this round about way for babel-transform-imports
 
 
 /* unused harmony default export */ var _unused_webpack_default_export = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_Switch__["a" /* default */]);
 
 /***/ }),
-/* 895 */
+/* 896 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -86160,7 +86149,7 @@ Switch.propTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Switch);
 
 /***/ }),
-/* 896 */
+/* 897 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -86171,7 +86160,7 @@ Switch.propTypes = {
 /* unused harmony default export */ var _unused_webpack_default_export = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_generatePath__["a" /* default */]);
 
 /***/ }),
-/* 897 */
+/* 898 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -86182,18 +86171,18 @@ Switch.propTypes = {
 /* unused harmony default export */ var _unused_webpack_default_export = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_matchPath__["a" /* default */]);
 
 /***/ }),
-/* 898 */
+/* 899 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_withRouter__ = __webpack_require__(899);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_withRouter__ = __webpack_require__(900);
 // Written in this round about way for babel-transform-imports
 
 
 /* unused harmony default export */ var _unused_webpack_default_export = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_withRouter__["a" /* default */]);
 
 /***/ }),
-/* 899 */
+/* 900 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -86201,7 +86190,7 @@ Switch.propTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics__ = __webpack_require__(900);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics__ = __webpack_require__(901);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Route__ = __webpack_require__(430);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -86242,7 +86231,7 @@ var withRouter = function withRouter(Component) {
 /* harmony default export */ __webpack_exports__["a"] = (withRouter);
 
 /***/ }),
-/* 900 */
+/* 901 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

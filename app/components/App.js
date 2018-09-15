@@ -111,7 +111,6 @@ export class App extends React.Component {
 		}
 		let songInfo = {...this.state.songInfo}
 		songInfo.curSong = {
-			Name:'還沒啦',
 			HashedCode:queryParams.m?queryParams.m:'',
 		};
 		this.setState({
@@ -154,17 +153,21 @@ export class App extends React.Component {
 		//console.log(d);
 		//let encodeD = d.map(item => {return encodeURIComponent(item)});
 		//let response = await fetch(this.state.serverURL+encodeD.join('/'));
-
+		code = code?code:'';
 		let response = await fetch(this.state.serverURL + code);
 		let data = await response.json();
 		//console.log(data);
 		if(data){
 		} else {
-			data = [];
+			data = {
+				DirArray:[],
+				DirFiles:[],
+			};
 		}
 
 		this.setState({
-			curDisplayList: data,
+			curDisplayList: data.DirFiles,
+			curDir:data.DirArray,
 			curDisplaySongListName:'',
 			loading:false,
 		});
@@ -289,10 +292,7 @@ export class App extends React.Component {
 		// console.log(output);
 	}
 	setCurDir(item){ // 點擊資料夾，設定瀏覽位置
-		let d = this.state.curDir.slice();
-		d.push(item);
 		this.setState({
-		 	curDir:d,
 			curDirCode:item.HashedCode,
 			activeItem:'folder',
 			curSongListIndex:-1
@@ -378,7 +378,8 @@ export class App extends React.Component {
 						curSongListIndex = {this.state.curSongListIndex}
 					/>
 					<Sidebar.Pusher as={"div"} className={Master.bk}>
-					  	<PageHeader toggleVisibility = {() => this.toggleVisibility()} curDir={this.state.curDir} setCurDirPop = {(index)=>{this.setCurDirPop(index)}}/>
+					  	<PageHeader toggleVisibility = {() => this.toggleVisibility()} curDir={this.state.curDir}
+							setCurDir = {(item)=>this.setCurDir(item)}/>
 
 						<PageGrid
 							curDisplayList = {this.state.curDisplayList}
