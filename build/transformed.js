@@ -46869,7 +46869,6 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		}
 		let songInfo = _extends({}, this.state.songInfo);
 		songInfo.curSong = {
-			Name: '還沒啦',
 			HashedCode: queryParams.m ? queryParams.m : ''
 		};
 		this.setState({
@@ -46913,16 +46912,20 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		//console.log(d);
 		//let encodeD = d.map(item => {return encodeURIComponent(item)});
 		//let response = await fetch(this.state.serverURL+encodeD.join('/'));
-
+		code = code ? code : '';
 		let response = await fetch(this.state.serverURL + code);
 		let data = await response.json();
 		//console.log(data);
 		if (data) {} else {
-			data = [];
+			data = {
+				DirArray: [],
+				DirFiles: []
+			};
 		}
 
 		this.setState({
-			curDisplayList: data,
+			curDisplayList: data.DirFiles,
+			curDir: data.DirArray,
 			curDisplaySongListName: '',
 			loading: false
 		});
@@ -47045,10 +47048,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	}
 	setCurDir(item) {
 		// 點擊資料夾，設定瀏覽位置
-		let d = this.state.curDir.slice();
-		d.push(item);
 		this.setState({
-			curDir: d,
 			curDirCode: item.HashedCode,
 			activeItem: 'folder',
 			curSongListIndex: -1
@@ -47140,9 +47140,8 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 						__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["d" /* Sidebar */].Pusher,
 						{ as: "div", className: __WEBPACK_IMPORTED_MODULE_6__css_Master_css___default.a.bk },
-						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__PageHeader_js__["a" /* PageHeader */], { toggleVisibility: () => this.toggleVisibility(), curDir: this.state.curDir, setCurDirPop: index => {
-								this.setCurDirPop(index);
-							} }),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__PageHeader_js__["a" /* PageHeader */], { toggleVisibility: () => this.toggleVisibility(), curDir: this.state.curDir,
+							setCurDir: item => this.setCurDir(item) }),
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__PageGrid_js__["a" /* PageGrid */], {
 							curDisplayList: this.state.curDisplayList,
 							setCurDir: item => this.setCurDir(item),
@@ -68029,7 +68028,7 @@ class PageHeader extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 				"button",
 				{ className: `${__WEBPACK_IMPORTED_MODULE_1__css_PageHeader_scss___default.a.btn} ${__WEBPACK_IMPORTED_MODULE_1__css_PageHeader_scss___default.a.titleBtn}`,
 					onClick: () => {
-						this.props.setCurDirPop(0);
+						this.props.setCurDir({ Name: '', HashedCode: '' });
 					} },
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-kiwi-bird" }),
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -68041,7 +68040,7 @@ class PageHeader extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 			__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				"div",
 				{ className: __WEBPACK_IMPORTED_MODULE_1__css_PageHeader_scss___default.a.path },
-				this.props.curDir.map((item, index) => {
+				this.props.curDir ? this.props.curDir.map((item, index) => {
 					return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.Fragment,
 						{ key: index },
@@ -68049,12 +68048,12 @@ class PageHeader extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 							"span",
 							{ className: index === this.props.curDir.length - 1 ? __WEBPACK_IMPORTED_MODULE_1__css_PageHeader_scss___default.a.tailBread : '', onClick: () => {
-									this.props.setCurDirPop(index + 1);
+									this.props.setCurDir(item);
 								} },
 							item.Name
 						)
 					);
-				})
+				}) : ''
 			)
 		);
 	}

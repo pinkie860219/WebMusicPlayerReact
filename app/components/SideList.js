@@ -89,10 +89,10 @@ export class SideList extends React.Component {
 						active={this.props.activeItem === 'folder'}
 						name='folder'
 						onClick={({name})=> this.props.handleItemClick({name})}>Folder</SideButton>
-					<SideDropdown icon={<i className="fas fa-list-ol"></i>}
+					{/*<SideDropdown icon={<i className="fas fa-list-ol"></i>}
 						options={this.props.songLists}
 						onChange={(value)=>this.handleChange(value)}
-						activeItem={this.props.activeItem === 'songlist'? this.props.curSongListIndex:-1}>SongList</SideDropdown>
+						activeItem={this.props.activeItem === 'songlist'? this.props.curSongListIndex:-1}>SongList</SideDropdown>*/}
 				</div>
 			  	{/*<Menu.Item name='back' onClick={() => this.props.toggleVisibility()} >
 				  	<Segment textAlign='right' basic>

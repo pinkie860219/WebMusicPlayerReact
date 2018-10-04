@@ -8,6 +8,7 @@ import Master from "./css/Master.css";
 import queryString from 'query-string';
 import * as toolLib from './Util.js';
 import {SongInfoContext} from './context/SongInfoContext.js';
+import {serverApi} from './other/Api.js';
 
 export class App extends React.Component {
 	constructor(props) {
@@ -114,7 +115,7 @@ export class App extends React.Component {
 			HashedCode:queryParams.m?queryParams.m:'',
 		};
 		this.setState({
-			curDirCode: queryParams.dir,
+			curDirCode: queryParams.dir?queryParams.dir:'',
 			curSongListIndex:curSongListIndex,
 			songInfo:songInfo,
 			activeItem:(queryParams.songList)?'songlist':'folder',
@@ -133,16 +134,14 @@ export class App extends React.Component {
 		} else if(queryParams.dir){
 			await this.fetchAsync(queryParams.dir);
 		}
-		// this.setStateByURL(this.props.location);
 
 		if(queryParams.m){
-			this.setCurPlayingList({
-				Name:'',
-				HashedCode:queryParams.m,
-			});
 			this.setState({
-				playStatus:Sound.status.PLAYING,
-			});
+				songInfo:{
+					...this.state.songInfo,
+					curPlayingList:this.getCurPlayingListFromCurDisplayList(queryParams.m)
+				}
+			})
 		}
 	}
 	async fetchAsync(code){ // 更新瀏覽頁面
@@ -317,18 +316,34 @@ export class App extends React.Component {
 		console.log("Now Playing~~ " + item.Name + "\nFrom : " + this.state.musicURL+item.HashedCode);
 
 	}
-	getCurPlayingListFromCurDisplayList(){
+
+	getCurPlayingListFromCurDisplayList(hashed){
 		//把displayList存進playingList
+		let found = true;
+		if(hashed){
+			found = false;
+			for(let item of this.state.curDisplayList){
+				if(item.HashedCode == hashed){
+					found = true;
+				}
+			}
+		}
 		let curPlayingList = [];
-		for(let item of this.state.curDisplayList){
-			if(item.IsDir != true){
-				curPlayingList.push(item);
+		if(found){
+			for(let item of this.state.curDisplayList){
+				if(item.IsDir != true){
+					curPlayingList.push(item);
+				}
 			}
 		}
 		return curPlayingList;
 	}
 	setSongUrl(item){
-
+		if (item == undefined){
+			item = {
+				HashedCode:''
+			}
+		}
 		this.setState(prevState => (
 			{
 				...prevState,
@@ -338,7 +353,7 @@ export class App extends React.Component {
 				}
 			}
 		));
-		console.log("Now Playing~~ " + item.Name + "\nFrom : " + musicURL+item.HashedCode);
+		console.log("Now Playing~~ " + item.Name + "\nFrom : " +serverApi.musicURL+item.HashedCode);
 	}
 
 	toggleVisibility(){ //開關sidelist

@@ -62,7 +62,7 @@ class DataItem extends React.Component {
 		}
 
 		let colorStyle;
-		if(decodeURIComponent(this.props.song.HashedCode) == decodeURIComponent(this.props.curSong.HashedCode)){
+		if(this.props.song.HashedCode == this.props.curSong.HashedCode){
 			colorStyle = styles.playing;
 		} else {
 			colorStyle = styles.notPlaying;
