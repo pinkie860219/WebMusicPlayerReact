@@ -8,6 +8,8 @@ import {CtrlBtn} from "./CtrlBtn.js";
 import Sound from "react-sound";
 import * as toolLib from './Util.js';
 import {withSongInfo} from './context/SongInfoContext.js';
+import {serverApi} from './other/Api.js';
+
 class SongClock extends React.Component{
 	HHMMSS(ms){//time in ms
 		let time = Math.floor(ms/1000);
@@ -37,7 +39,8 @@ class PageFooter extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			curSong:{}, // 現在播放的音樂{Name:歌名, Url,網址 }
+			//curSong:{}, // 現在播放的音樂{Name:歌名, Url,網址 }
+			curSongName:'',
 			playStatus:Sound.status.STOPPED, // 音樂的播放狀態
 			loopStatus:0, // 預設不重複播放，1全部播放，2單曲播放
 			curTime: 0, // 音樂的現在的播放時間
@@ -45,26 +48,35 @@ class PageFooter extends React.Component {
 			volume:100, // 音量
 			lastVolume:0,
 			muteStatus:false,
-			encodeSongUrl:"",//encode後的songurl
+			SongUrl:"",//encode後的songurl
 		}
 
 	}
 	componentDidUpdate(prevProps, prevState){
 		////check curSongURL
-		if(JSON.stringify(this.props.curSong) !== JSON.stringify(prevProps.curSong)){
+		if(this.props.curSong.HashedCode !== prevProps.curSong.HashedCode){
+			this.fetchSongName(this.props.curSong.HashedCode);
 			this.setState({
-				encodeSongUrl:toolLib.playURL(this.props.curSong.Url),
+				SongUrl:serverApi.musicURL + this.props.curSong.HashedCode,
 				curTime:0,
 				playStatus:Sound.status.PLAYING,
 			});
 		}
+	}
+	async fetchSongName(hashed){
+		let response = await fetch(serverApi.songNameURL+hashed);
+		let songName = await response.text();
+		console.log(songName);
+		this.setState({
+			curSongName:songName
+		})
 	}
 	togglePlayStatus(){ // 暫停or播放音樂
 		if(this.state.playStatus == Sound.status.PLAYING){
 			this.setState({
 				playStatus:Sound.status.PAUSED,
 			});
-		} else if(this.props.curSong.Url){
+		} else if(this.props.curSong.HashedCode){
 			this.setState({
 				playStatus:Sound.status.PLAYING,
 			});
@@ -116,9 +128,9 @@ class PageFooter extends React.Component {
 		// console.log(`curPlayingList:`);
 		// console.log(this.props.curPlayingList);
 		for(let i in this.props.curPlayingList){
-			const curUrl = decodeURIComponent(this.props.curSong.Url);
-			const listUrl = decodeURIComponent(this.props.curPlayingList[i].Url)
-			if(listUrl == curUrl){
+			const curHashed = this.props.curSong.HashedCode;
+			const listHashed = this.props.curPlayingList[i].HashedCode;
+			if(listHashed == curHashed){
 				curIndex = i;
 			}
 		}
@@ -138,11 +150,7 @@ class PageFooter extends React.Component {
 				break;
 		}
 
-		//this.setSongURL(this.state.curPlayingList[index]);
-		this.props.setSongUrl({
-			Name:this.props.curPlayingList[index].Name,
-			Url:this.props.curPlayingList[index].Url,
-		});
+		this.props.setSongUrl(this.props.curPlayingList[index]);
 		if(index || this.state.loopStatus){
 			this.setState({
 				curTime : 0,
@@ -159,9 +167,9 @@ class PageFooter extends React.Component {
 		//如果時間小於2秒，上一首，else，時間回到0
 		let curIndex; // 目前的index
 		for(let i in this.props.curPlayingList){
-			const curUrl = decodeURIComponent(this.props.curSong.Url);
-			const listUrl = decodeURIComponent(this.props.curPlayingList[i].Url)
-			if(listUrl == curUrl){
+			const curHashed = this.props.curSong.HashedCode;
+			const listHashed = this.props.curPlayingList[i].HashedCode;
+			if(listHashed == curHashed){
 				curIndex = i;
 			}
 		}
@@ -170,10 +178,7 @@ class PageFooter extends React.Component {
 		if(this.state.curTime / 1000 < 2 && curIndex > 0){
 			let index = curIndex - 1 > 0 ? curIndex - 1 : 0;
 			//this.setSongURL(this.state.curPlayingList[index]);
-			this.props.setSongUrl({
-				Name:this.props.curPlayingList[index].Name,
-				Url:this.props.curPlayingList[index].Url,
-			});
+			this.props.setSongUrl(this.props.curPlayingList[index]);
 			this.setState({
 				curTime : 0,
 			});
@@ -187,7 +192,7 @@ class PageFooter extends React.Component {
 		return(
 			<div className = {style.footer}>
 				<Sound
-					url = {this.state.encodeSongUrl}
+					url = {this.state.SongUrl}
 					playStatus = {this.state.playStatus}
 					volume = {this.state.volume}
 					position = {this.state.curTime}
@@ -224,7 +229,7 @@ class PageFooter extends React.Component {
 					<div className = {style.panel}>
 						<div className = {style.item}>
 								<div className = {style.meta}>
-									<div className={style.songName}>{this.props.curSong.Name||'現在播放歌曲'}</div>
+									<div className={style.songName}>{this.state.curSongName||'現在播放歌曲'}</div>
 									<div className={style.subTitle}>音樂家</div>
 								</div>
 						</div>
