@@ -26285,6 +26285,7 @@ module.exports = ReactPropTypesSecret;
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return serverApi; });
+// let serverPrefix = "https://pinkiebala.nctu.me/MusicServer";
 let serverPrefix = "https://pinkiebala.nctu.me/MusicServer";
 
 let serverApi = {
@@ -46791,10 +46792,6 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			serverURL: 'https://pinkiebala.nctu.me/MusicServer/dir?dir=', // 檔案路徑的API
-			musicURL: 'https://pinkiebala.nctu.me/MusicServer/file?m=', // serve音樂檔案的API
-			songListURL: 'https://pinkiebala.nctu.me/MusicServer/songlist',
-			songQueryURL: 'https://pinkiebala.nctu.me/MusicServer/songquery?url=',
 			visible: false, // sideList的開關
 			activeItem: 'folder', //sideList的選項
 
@@ -46924,23 +46921,13 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			loading: true
 		});
 		//console.log("fetchhhhhhhh");
-		//console.log(d);
-		//let encodeD = d.map(item => {return encodeURIComponent(item)});
-		//let response = await fetch(this.state.serverURL+encodeD.join('/'));
 		code = code ? code : '';
-		let response = await fetch(this.state.serverURL + code);
+		let response = await fetch(__WEBPACK_IMPORTED_MODULE_10__other_Api_js__["a" /* serverApi */].dirURL + code);
 		let data = await response.json();
-		//console.log(data);
-		if (data) {} else {
-			data = {
-				DirArray: [],
-				DirFiles: []
-			};
-		}
 
 		this.setState({
-			curDisplayList: data.DirFiles,
-			curDir: data.DirArray,
+			curDisplayList: data.DirFiles ? data.DirFiles : [],
+			curDir: data.DirArray ? data.DirArray : [],
 			curDisplaySongListName: '',
 			loading: false
 		});
@@ -46949,7 +46936,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	async fetchSongLists() {
 
 		//console.log("fetchhhhhhhhsonglists");
-		let response = await fetch(this.state.songListURL);
+		let response = await fetch(__WEBPACK_IMPORTED_MODULE_10__other_Api_js__["a" /* serverApi */].songListURL);
 		let data = await response.json();
 		let output = [];
 		data.forEach(item => {
@@ -46975,7 +46962,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 			loading: true
 		});
 		// console.log("fetchhhhhhhhsonglistsong");
-		const targetURL = this.state.songListURL + '/' + this.state.songLists[value].text;
+		const targetURL = __WEBPACK_IMPORTED_MODULE_10__other_Api_js__["a" /* serverApi */].songListURL + '/' + this.state.songLists[value].text;
 		let response = await fetch(targetURL);
 		//console.log(targetURL);
 
@@ -47001,7 +46988,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	}
 	async handleAddToSongList(songList, song) {
 		// console.log("handleAddToSongList");
-		const targetURL = this.state.songListURL;
+		const targetURL = __WEBPACK_IMPORTED_MODULE_10__other_Api_js__["a" /* serverApi */].songListURL;
 
 		let formData = new FormData();
 		formData.append('songlist', songList);
@@ -47032,7 +47019,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 	}
 	async handleDeleteSong(songList, song) {
 		// console.log("handleDeleteSong");
-		const targetURL = this.state.songListURL;
+		const targetURL = __WEBPACK_IMPORTED_MODULE_10__other_Api_js__["a" /* serverApi */].songListURL;
 
 		let formData = new FormData();
 		formData.append('songlist', songList);
@@ -47087,7 +47074,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 		songInfo.curPlayingList = this.getCurPlayingListFromCurDisplayList();
 		this.setState({ songInfo });
 
-		console.log("Now Playing~~ " + item.Name + "\nFrom : " + this.state.musicURL + item.HashedCode);
+		console.log("Now Playing~~ " + item.Name + "\nFrom : " + __WEBPACK_IMPORTED_MODULE_10__other_Api_js__["a" /* serverApi */].musicURL + item.HashedCode);
 	}
 
 	getCurPlayingListFromCurDisplayList(hashed) {
@@ -47181,7 +47168,7 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 							loading: this.state.loading,
 							songLists: this.state.songLists,
 							handleAddToSongList: (songList, song) => this.handleAddToSongList(songList, song),
-							songQueryURL: this.state.songQueryURL,
+							songQueryURL: __WEBPACK_IMPORTED_MODULE_10__other_Api_js__["a" /* serverApi */].songQueryURL,
 							handleDeleteSong: (songList, song) => this.handleDeleteSong(songList, song),
 							curDisplaySongListName: this.state.curDisplaySongListName
 						}),
