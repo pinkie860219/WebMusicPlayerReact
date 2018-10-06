@@ -14,10 +14,6 @@ export class App extends React.Component {
 	constructor(props) {
     super(props);
     this.state = {
-			serverURL:'https://pinkiebala.nctu.me/MusicServer/dir?dir=', // 檔案路徑的API
-			musicURL:'https://pinkiebala.nctu.me/MusicServer/file?m=', // serve音樂檔案的API
-			songListURL:'https://pinkiebala.nctu.me/MusicServer/songlist',
-			songQueryURL:'https://pinkiebala.nctu.me/MusicServer/songquery?url=',
 			visible: false, // sideList的開關
 			activeItem: 'folder', //sideList的選項
 
@@ -149,11 +145,8 @@ export class App extends React.Component {
 			loading:true,
 		});
 		//console.log("fetchhhhhhhh");
-		//console.log(d);
-		//let encodeD = d.map(item => {return encodeURIComponent(item)});
-		//let response = await fetch(this.state.serverURL+encodeD.join('/'));
 		code = code?code:'';
-		let response = await fetch(this.state.serverURL + code);
+		let response = await fetch(serverApi.dirURL + code);
 		let data = await response.json();
 		//console.log(data);
 		if(data){
@@ -175,7 +168,7 @@ export class App extends React.Component {
 	async fetchSongLists(){
 
 		//console.log("fetchhhhhhhhsonglists");
-		let response = await fetch(this.state.songListURL);
+		let response = await fetch(serverApi.songListURL);
 		let data = await response.json();
 		let output = [];
 		data.forEach( item => {
@@ -202,7 +195,7 @@ export class App extends React.Component {
 			loading:true,
 		});
 		// console.log("fetchhhhhhhhsonglistsong");
-		const targetURL = this.state.songListURL + '/' + this.state.songLists[value].text;
+		const targetURL = serverApi.songListURL + '/' + this.state.songLists[value].text;
 		let response = await fetch(targetURL);
 		//console.log(targetURL);
 
@@ -228,7 +221,7 @@ export class App extends React.Component {
 	}
 	async handleAddToSongList(songList, song){
 		// console.log("handleAddToSongList");
-		const targetURL = this.state.songListURL;
+		const targetURL = serverApi.songListURL;
 
 		let formData = new FormData();
 		formData.append('songlist',songList);
@@ -260,7 +253,7 @@ export class App extends React.Component {
 	}
 	async handleDeleteSong(songList, song){
 		// console.log("handleDeleteSong");
-		const targetURL = this.state.songListURL;
+		const targetURL = serverApi.songListURL;
 
 		let formData = new FormData();
 		formData.append('songlist',songList);
@@ -313,7 +306,7 @@ export class App extends React.Component {
 		songInfo.curPlayingList = this.getCurPlayingListFromCurDisplayList();
 		this.setState({songInfo});
 
-		console.log("Now Playing~~ " + item.Name + "\nFrom : " + this.state.musicURL+item.HashedCode);
+		console.log("Now Playing~~ " + item.Name + "\nFrom : " + serverApi.musicURL+item.HashedCode);
 
 	}
 
@@ -404,7 +397,7 @@ export class App extends React.Component {
 							loading = {this.state.loading}
 							songLists = {this.state.songLists}
 							handleAddToSongList = {(songList, song)=>this.handleAddToSongList(songList, song)}
-							songQueryURL = {this.state.songQueryURL}
+							songQueryURL = {serverApi.songQueryURL}
 							handleDeleteSong = {(songList, song)=>this.handleDeleteSong(songList, song)}
 							curDisplaySongListName = {this.state.curDisplaySongListName}
 						/>

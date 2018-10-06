@@ -1,4 +1,5 @@
-let serverPrefix = "https://pinkiebala.nctu.me/MusicServer";
+// let serverPrefix = "https://pinkiebala.nctu.me/MusicServer";
+let serverPrefix = SERVER_URL;
 
 export let serverApi = {
 	dirURL:serverPrefix+'/dir?dir=', // 檔案路徑的API
