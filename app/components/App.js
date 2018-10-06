@@ -148,18 +148,10 @@ export class App extends React.Component {
 		code = code?code:'';
 		let response = await fetch(serverApi.dirURL + code);
 		let data = await response.json();
-		//console.log(data);
-		if(data){
-		} else {
-			data = {
-				DirArray:[],
-				DirFiles:[],
-			};
-		}
 
 		this.setState({
-			curDisplayList: data.DirFiles,
-			curDir:data.DirArray,
+			curDisplayList: data.DirFiles?data.DirFiles:[],
+			curDir:data.DirArray?data.DirArray:[],
 			curDisplaySongListName:'',
 			loading:false,
 		});
