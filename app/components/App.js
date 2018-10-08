@@ -1,6 +1,6 @@
 import React from "react";
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Grid, Label } from 'semantic-ui-react';
-import {SideList} from "./SideList.js";
+import {SideListWithSongList as SideList} from "./SideList.js";
 import {PageHeader} from "./PageHeader.js";
 import {FooterPlayer} from "./PageFooter.js";
 import {PageGrid} from "./PageGrid.js";
@@ -8,6 +8,7 @@ import Master from "./css/Master.css";
 import queryString from 'query-string';
 import * as toolLib from './Util.js';
 import {SongInfoContext} from './context/SongInfoContext.js';
+import {SongListContext} from './context/SongListContext.js';
 import {serverApi} from './other/Api.js';
 
 export class App extends React.Component {
@@ -23,7 +24,6 @@ export class App extends React.Component {
 			curDisplayList:[], // 當前的瀏覽路徑下的檔案{Name, Url, IsDir}
 			curSongListIndex:-1,
 			curDisplaySongListName:'',
-			songLists:[],
 
 			fileExist:true,
 			loading:true,
@@ -34,6 +34,12 @@ export class App extends React.Component {
 				curPlayingList:[], // 現在的播放清單，{Name, Url}
 				setSongUrl:(item)=>this.setSongUrl(item),
 			},
+			// for SongListContext usage
+			songListValue:{
+				songLists:[],
+				handleAddToSongList:(value, hashed)=>this.handleAddToSongList(value, hashed),
+				handleDeleteSong:(value, hashed)=>this.handleDeleteSong(value, hashed),
+			}
 		};
 
 	}
@@ -156,30 +162,21 @@ export class App extends React.Component {
 			loading:false,
 		});
 	}
-
+	setSongLists(data){
+		this.setState({
+			songListValue:{
+				...songListValue,
+				songLists:data,
+			}
+		});
+	}
 	async fetchSongLists(){
 
 		//console.log("fetchhhhhhhhsonglists");
 		let response = await fetch(serverApi.songListURL);
 		let data = await response.json();
-		let output = [];
-		data.forEach( item => {
-			let foundindex = item.SongListNames.length
-			for(let i in item.SongListNames){
-				if(item.SongListNames[i] == "system.indexes"){
-					foundindex = i;
-				} else {
-					if(i < foundindex){
-						output.push({ key: i, value: i, text: item.SongListNames[i] });
-					} else {
-						output.push({ key: i-1, value: i-1, text: item.SongListNames[i] });
-					}
-				}
 
-			}
-		});
-
-		this.setState({songLists: output});
+		this.setSongLists(data);
 		//console.log(output);
 	}
 	async fetchSongListSongs(value){
@@ -211,68 +208,38 @@ export class App extends React.Component {
 			loading:false,
 		});
 	}
-	async handleAddToSongList(songList, song){
+	async handleAddToSongList(value, hashed){
 		// console.log("handleAddToSongList");
 		const targetURL = serverApi.songListURL;
 
 		let formData = new FormData();
-		formData.append('songlist',songList);
-		formData.append('name',song.Name);
-		formData.append('url',song.Url);
+		formData.append('songlist',value);
+		formData.append('hashed',hashed);
+
 		let response = await fetch(targetURL,{
 			method:'POST',
 			body:formData,
 		});
 		let data = await response.json();
-		let output = [];
-		data.forEach( item => {
-			let foundindex = item.SongListNames.length
-			for(var i in item.SongListNames){
-				if(item.SongListNames[i] == "system.indexes"){
-					foundindex = i;
-				} else {
-					if(i < foundindex){
-						output.push({ key: i, value: i, text: item.SongListNames[i] });
-					} else {
-						output.push({ key: i-1, value: i-1, text: item.SongListNames[i] });
-					}
-				}
 
-			}
-		});
-		this.setState({songLists: output});
+		this.setSongLists(data);
 		// console.log(output);
 	}
-	async handleDeleteSong(songList, song){
+	async handleDeleteSong(value, hashed){
 		// console.log("handleDeleteSong");
 		const targetURL = serverApi.songListURL;
 
 		let formData = new FormData();
-		formData.append('songlist',songList);
-		formData.append('name',song.Name);
-		formData.append('url',song.Url);
+		formData.append('songlist',value);
+		formData.append('hashed',hashed);
+
 		let response = await fetch(targetURL,{
 			method:'DELETE',
 			body:formData,
 		});
 		let data = await response.json();
-		let output = [];
-		data.forEach( item => {
-			let foundindex = item.SongListNames.length
-			for(var i in item.SongListNames){
-				if(item.SongListNames[i] == "system.indexes"){
-					foundindex = i;
-				} else {
-					if(i < foundindex){
-						output.push({ key: i, value: i, text: item.SongListNames[i] });
-					} else {
-						output.push({ key: i-1, value: i-1, text: item.SongListNames[i] });
-					}
-				}
 
-			}
-		});
-		this.setState({songLists: output});
+		this.setSongLists(data);
 		// console.log(output);
 	}
 	setCurDir(item){ // 點擊資料夾，設定瀏覽位置
@@ -365,6 +332,7 @@ export class App extends React.Component {
 	}
 	render(){
 		return(
+			<SongListContext.Provider value={this.state.songListValue}>
 			<SongInfoContext.Provider value={this.state.songInfo}>
 			<div className={Master.page}>
 				<Sidebar.Pushable as={Segment} className={Master.pushable}>
@@ -374,7 +342,6 @@ export class App extends React.Component {
 						toggleVisibility = {() => this.toggleVisibility()}
 						handleItemClick = {({name}) =>  this.handleItemClick({name})}
 						handleSongListChange = {(value) => this.handleSongListChange(value)}
-						songLists = {this.state.songLists}
 						curSongListIndex = {this.state.curSongListIndex}
 					/>
 					<Sidebar.Pusher as={"div"} className={Master.bk}>
@@ -387,7 +354,6 @@ export class App extends React.Component {
 							setCurSong = {(item)=>this.setCurSong(item)}
 							fileExist = {this.state.fileExist}
 							loading = {this.state.loading}
-							songLists = {this.state.songLists}
 							handleAddToSongList = {(songList, song)=>this.handleAddToSongList(songList, song)}
 							songQueryURL = {serverApi.songQueryURL}
 							handleDeleteSong = {(songList, song)=>this.handleDeleteSong(songList, song)}
@@ -400,6 +366,7 @@ export class App extends React.Component {
 
 			</div>
 			</SongInfoContext.Provider>
+			</SongListContext.Provider>
 		);
 	}
 

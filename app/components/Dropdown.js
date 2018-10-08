@@ -2,6 +2,7 @@ import React from "react";
 import style from "./css/Dropdown.scss";
 import styled from "styled-components";
 import {Button, Checkbox, Divider, Icon, Input, Segment } from 'semantic-ui-react';
+import {withSongList} from './context/SongListContext.js';
 
 class CheckItem extends React.Component{
 	handleOnChange(e){
@@ -25,7 +26,7 @@ const CCheckbox = styled(Checkbox)`
 	margin: 3px 5px 3px 5px !important;
 	padding: 0 !important;
 `;
-export class Dropdown extends React.Component {
+class Dropdown extends React.Component {
 	constructor(props){
 		super(props);
 		this.state={
@@ -45,12 +46,12 @@ export class Dropdown extends React.Component {
 			this.inputField.current.focus();
 		}
 	}
-	handleOnChange({value, song, checked}){
+	handleOnChange({value, checked}){
 		if(checked){
-			this.props.handleAddToSongList(value, song);
+			this.props.handleAddToSongList(value, this.props.song.HashedCode);
 			this.fetchSongQuery();
 		} else {
-			this.props.handleDeleteSong(value, song);
+			this.props.handleDeleteSong(value, this.props.song.HashedCode);
 			this.fetchSongQuery();
 			console.log("curlistname:")
 			console.log(this.props.curDisplaySongListName);
@@ -81,7 +82,7 @@ export class Dropdown extends React.Component {
 		});
 	}
 	handleInputConfirm(){
-		this.props.handleAddToSongList(this.state.inputText, this.props.song);
+		this.props.handleAddToSongList(this.state.inputText, this.props.song.HashedCode);
 		this.fetchSongQuery();
 	}
 	handleInput(e){
@@ -148,12 +149,12 @@ export class Dropdown extends React.Component {
 					<CheckItem
 						key={index}
 						value = {item.text}
-						onChange={(e, {value, song, checked}) => this.handleOnChange( {value, song, checked})}
-						song={this.props.song}
-						checked={this.state.foundInSongListNames.indexOf(item.text)>=0?true:false}
+						onChange={(e, {value, checked}) => this.handleOnChange( {value, checked})}
+						checked={this.state.foundInSongListNames.indexOf(item.text)>=0}
 						>{item.text}</CheckItem>
 				))}
 			</div>
 		);
 	}
 }
+export const DropdownWithSongList =  withSongList(Dropdown);
