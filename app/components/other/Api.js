@@ -6,5 +6,5 @@ export let serverApi = {
 	musicURL:serverPrefix+'/file?m=', // serve音樂檔案的API
 	songNameURL:serverPrefix+'/songName?m=',//serve音樂名稱的API
 	songListURL:serverPrefix+'/songlist',
-	songQueryURL:serverPrefix+'/songquery?url=',
+	songQueryURL:serverPrefix+'/songquery?h=',
 }

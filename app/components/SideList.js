@@ -27,11 +27,11 @@ class SideDropdown extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			visible:false,
+			visible:true,
 		}
 	}
 	toggleVisibility(){
-		console.log(`toggleVisibility`);
+		//console.log(`toggleVisibility`);
 		this.setState({
 			visible:!this.state.visible,
 		})
@@ -48,10 +48,10 @@ class SideDropdown extends React.Component{
 				</div>
 				<div className={dropdownStyle}>
 					{this.props.options.map((item, index)=>(
-						<DropdownItem key = {index} active={this.props.activeItem === item.value}
+						<DropdownItem key = {index} active={this.props.activeItem === item.HashedCode}
 								icon={<i className="fas fa-list-ol"></i>}
-								onClick = {()=>this.props.onChange(item.value)}>
-							{item.text}
+								onClick = {()=>this.props.onChange(item.HashedCode)}>
+							{item.Name}
 						</DropdownItem>
 					))}
 				</div>
@@ -76,7 +76,6 @@ export class SideList extends React.Component {
 		};
 	}
 	handleChange(value){
-		this.props.handleItemClick({name:'songlist'});
 		this.props.handleSongListChange(value);
 	}
 	render(){
@@ -93,7 +92,7 @@ export class SideList extends React.Component {
 					{<SideDropdown icon={<i className="fas fa-list-ol"></i>}
 						options={this.props.songLists}
 						onChange={(value)=>this.handleChange(value)}
-						activeItem={this.props.activeItem === 'songlist'? this.props.curSongListIndex:-1}>SongList</SideDropdown>}
+						activeItem={this.props.activeItem === 'songlist'? this.props.curSongListIndex:''}>SongList</SideDropdown>}
 				</div>
 			  	{/*<Menu.Item name='back' onClick={() => this.props.toggleVisibility()} >
 				  	<Segment textAlign='right' basic>

@@ -52,7 +52,6 @@ export class PageGrid extends React.Component {
 							handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
 							songQueryURL = {this.props.songQueryURL}
 							handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}
-							curDisplaySongListName = {this.props.curDisplaySongListName}
 						/>
 					);
 				}

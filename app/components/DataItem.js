@@ -50,7 +50,6 @@ class DataItem extends React.Component {
 						visible={this.state.visibleDropdown}
 						setVisible = {(t)=>this.setVisible(t)}
 						song={this.props.song}
-						curDisplaySongListName = {this.props.curDisplaySongListName}
 						/>
 					{
 						// songLists={this.props.songLists}

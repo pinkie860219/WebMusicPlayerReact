@@ -22,8 +22,6 @@ export class App extends React.Component {
 			curDir:[], // 當前的瀏覽路徑
 
 			curDisplayList:[], // 當前的瀏覽路徑下的檔案{Name, Url, IsDir}
-			curSongListIndex:-1,
-			curDisplaySongListName:'',
 
 			fileExist:true,
 			loading:true,
@@ -37,6 +35,7 @@ export class App extends React.Component {
 			// for SongListContext usage
 			songListValue:{
 				songLists:[],
+				curSongListIndex:'',
 				handleAddToSongList:(value, hashed)=>this.handleAddToSongList(value, hashed),
 				handleDeleteSong:(value, hashed)=>this.handleDeleteSong(value, hashed),
 			}
@@ -68,12 +67,12 @@ export class App extends React.Component {
 		//state change url
 		const newSearch = {
 			curDirCode:this.state.curDirCode,
-			curSongListIndex:this.state.curSongListIndex,
+			curSongListIndex:this.state.songListValue.curSongListIndex,
 			curSongCode:this.state.songInfo.curSong.HashedCode,
 		};
 		const prevSearch = {
 			curDirCode:prevState.curDirCode,
-			curSongListIndex:prevState.curSongListIndex,
+			curSongListIndex:prevState.songListValue.curSongListIndex,
 			curSongCode:prevState.songInfo.curSong.HashedCode,
 		};
 		if(JSON.stringify(newSearch) !== JSON.stringify(prevSearch)){
@@ -84,13 +83,11 @@ export class App extends React.Component {
 
 			///
 			////check curSongListIndex
-			if((this.state.curSongListIndex !== prevState.curSongListIndex) && (this.state.curSongListIndex >= 0)){
-				this.fetchSongListSongs(this.state.curSongListIndex);
+			if((this.state.songListValue.curSongListIndex !== prevState.songListValue.curSongListIndex) && (this.state.songListValue.curSongListIndex != '')){
+				this.fetchSongListSongs(this.state.songListValue.curSongListIndex);
 			} else if(newCurDirCode != prevCurDirCode){/////check curDir
 				this.fetchAsync(newCurDirCode);
-				this.setState({
-					curSongListIndex:-1,
-				})
+				this.setCurSongListIndex('')
 			}
 
 			///
@@ -108,18 +105,21 @@ export class App extends React.Component {
 
 		let curSongListIndex
 		if(queryParams.songList){
-			curSongListIndex = parseInt(queryParams.songList);
+			curSongListIndex = queryParams.songList;
 		} else {
-			curSongListIndex = -1;
+			curSongListIndex = '';
 		}
-		let songInfo = {...this.state.songInfo}
-		songInfo.curSong = {
-			HashedCode:queryParams.m?queryParams.m:'',
-		};
+		let songInfo = {
+			...this.state.songInfo,
+			curSong:{HashedCode:queryParams.m?queryParams.m:'',}
+		}
 		this.setState({
 			curDirCode: queryParams.dir?queryParams.dir:'',
-			curSongListIndex:curSongListIndex,
 			songInfo:songInfo,
+			songListValue:{
+				...this.state.songListValue,
+				curSongListIndex:curSongListIndex,
+			},
 			activeItem:(queryParams.songList)?'songlist':'folder',
 		});
 	}
@@ -165,8 +165,16 @@ export class App extends React.Component {
 	setSongLists(data){
 		this.setState({
 			songListValue:{
-				...songListValue,
+				...this.state.songListValue,
 				songLists:data,
+			}
+		});
+	}
+	setCurSongListIndex(value){
+		this.setState({
+			songListValue:{
+				...this.state.songListValue,
+				curSongListIndex:value,
 			}
 		});
 	}
@@ -179,32 +187,18 @@ export class App extends React.Component {
 		this.setSongLists(data);
 		//console.log(output);
 	}
-	async fetchSongListSongs(value){
+	async fetchSongListSongs(hashed){
 		this.setState({
 			loading:true,
 		});
 		// console.log("fetchhhhhhhhsonglistsong");
-		const targetURL = serverApi.songListURL + '/' + this.state.songLists[value].text;
+		const targetURL = serverApi.songListURL + '/' + hashed;
 		let response = await fetch(targetURL);
 		//console.log(targetURL);
 
 		let data = await response.json();
-		if(data){
-			data.forEach(item => {
-				item.IsDir = false;
-			});
-		} else {
-			data = [];
-		}
-		// let output = data.map(item => {
-		// 	let newItem = Object.assign({},item);
-		// 	newItem.IsDir = false;
-		// 	return newItem;
-		// });
-		//console.log(output);
 		this.setState({
 			curDisplayList: data,
-			curDisplaySongListName: this.state.songLists[value].text,
 			loading:false,
 		});
 	}
@@ -246,7 +240,10 @@ export class App extends React.Component {
 		this.setState({
 			curDirCode:item.HashedCode,
 			activeItem:'folder',
-			curSongListIndex:-1
+			songListValue:{
+				...this.state.songListValue,
+				curSongListIndex:curSongListIndex,
+			}
 		});
 	}
 	setCurDirPop(index){ // 點擊麵包的路徑，設定瀏覽位置
@@ -256,7 +253,10 @@ export class App extends React.Component {
 			curDir:d,
 			curDirCode:d[index-1]?d[index-1].HashedCode:'',
 			activeItem:'folder',
-			curSongListIndex:-1
+			songListValue:{
+				...this.state.songListValue,
+				curSongListIndex:curSongListIndex,
+			}
 		});
 	}
 	setCurSong(item){ //點音樂item切換音樂
@@ -310,7 +310,7 @@ export class App extends React.Component {
 
 	toggleVisibility(){ //開關sidelist
 		this.setState({ visible: !this.state.visible });
-		console.log("toggle!");
+		//console.log("toggle!");
 	}
 
 	handleItemClick({name}){ // 發生在點sidelist的時候
@@ -323,10 +323,13 @@ export class App extends React.Component {
 				break;
 		}
 	}
-	handleSongListChange(str){
+	handleSongListChange(hashed){
 		// console.log(`handleSongListChange: ${str}`);
 		this.setState({
-			curSongListIndex:parseInt(str),
+			songListValue:{
+				...this.state.songListValue,
+				curSongListIndex:hashed,
+			},
 			activeItem: 'songlist'
 		});
 	}
@@ -342,7 +345,6 @@ export class App extends React.Component {
 						toggleVisibility = {() => this.toggleVisibility()}
 						handleItemClick = {({name}) =>  this.handleItemClick({name})}
 						handleSongListChange = {(value) => this.handleSongListChange(value)}
-						curSongListIndex = {this.state.curSongListIndex}
 					/>
 					<Sidebar.Pusher as={"div"} className={Master.bk}>
 					  	<PageHeader toggleVisibility = {() => this.toggleVisibility()} curDir={this.state.curDir}
@@ -357,7 +359,6 @@ export class App extends React.Component {
 							handleAddToSongList = {(songList, song)=>this.handleAddToSongList(songList, song)}
 							songQueryURL = {serverApi.songQueryURL}
 							handleDeleteSong = {(songList, song)=>this.handleDeleteSong(songList, song)}
-							curDisplaySongListName = {this.state.curDisplaySongListName}
 						/>
 
 						<FooterPlayer/>

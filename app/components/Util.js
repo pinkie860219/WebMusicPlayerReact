@@ -29,7 +29,7 @@ export function makeSearchString(query){
 	if(query.curDirCode){
 		outputArray.push(`dir=${query.curDirCode}`);
 	}
-	if(query.curSongListIndex >= 0){
+	if(query.curSongListIndex !=''){
 		outputArray.push(`songList=${query.curSongListIndex}`);
 	}
 	if(query.curSongCode){
