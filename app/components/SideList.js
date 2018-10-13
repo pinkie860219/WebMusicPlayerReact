@@ -3,14 +3,16 @@ import styles from "./css/SideList.scss";
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Grid, Label, Dropdown } from 'semantic-ui-react'
 import {withSongList} from './context/SongListContext.js';
 import { Link, withRouter} from 'react-router-dom';
+import queryString from 'query-string';
 
 class SideButton extends React.Component{
 	render(){
 		return(
-			<Link to={this.props.to} className={`${styles.sideBtn} ${this.props.active?styles.active:''}`} >
+			<div onClick = {this.props.onClick}
+				className={`${styles.sideBtn} ${this.props.active?styles.active:''}`} >
 				{this.props.icon}
 				<div className={styles.title}>{this.props.children}</div>
-			</Link>
+			</div>
 		);
 	}
 }
@@ -53,7 +55,6 @@ class SideDropdown extends React.Component{
 								icon={<i className="fas fa-list-ol"></i>}
 								onClick = {()=>{
 									this.props.onChange(item.HashedCode);
-									this.props.history.push('/songlist')
 								}}>
 							{item.Name}
 						</DropdownItem>
@@ -85,23 +86,29 @@ export class SideList extends React.Component {
 	}
 	render(){
 		const { searchQuery, value } = this.state;
+		const queryParams = queryString.parse(this.props.location.search);
 		return(
 			<Sidebar animation='uncover' visible={this.props.visible}>
 				<div className={styles.container}>
 					<ExitButton onClick={()=>this.props.toggleVisibility()}/>
 					<Devider/>
 					<SideButton
-						to='/folder'
+						onClick={()=>{
+							this.props.history.push({
+								pathname: '/folder',
+								search:this.props.location.search,
+							});
+						}}
 						icon={<i className="fas fa-folder-open"></i>}
 						active={this.props.activeItem === 'folder'}
 						name='folder'>Folder</SideButton>
 					<SideDropdownWithRouter icon={<i className="fas fa-list-ol"></i>}
 						options={this.props.songLists}
 						onChange={(value)=>this.handleChange(value)}
-						activeItem={this.props.activeItem === 'songlist'? this.props.curSongListIndex:''}>SongList</SideDropdownWithRouter>
+						activeItem={this.props.activeItem === 'songlist'? queryParams.s:''}>SongList</SideDropdownWithRouter>
 				</div>
 			</Sidebar>
 		);
 	}
 }
-export const SideListWithSongList = withSongList(SideList);
+export const SideListWithSongList = withRouter(withSongList(SideList));

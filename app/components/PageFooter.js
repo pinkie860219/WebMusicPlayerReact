@@ -47,7 +47,7 @@ class PageFooter extends React.Component {
 			loopStatus:0, // 預設不重複播放，1全部播放，2單曲播放
 			curTime: 0, // 音樂的現在的播放時間
 			songTime:0, // 音樂的全長
-			volume:100, // 音量
+			volume:70, // 音量
 			lastVolume:0,
 			muteStatus:false,
 			SongUrl:"",//encode後的songurl
@@ -92,7 +92,9 @@ class PageFooter extends React.Component {
 		}
 	}
 	setCurTime(t){ // TSlider設定歌曲時間，curSong有的時候才有效
-		if(this.props.curSong){
+		const queryParams = queryString.parse(this.props.location.search);
+		let curSongCode = queryParams.m?queryParams.m:''
+		if(curSongCode){
 			this.setState({curTime:t});
 		}
 	}
@@ -212,7 +214,7 @@ class PageFooter extends React.Component {
 					volume = {this.state.volume}
 					position = {this.state.curTime}
 					onError = {(c,d)=>{
-						console.log('!!!!'+d +'\n' + this.props.curSong.Name);
+						console.log('!!!!'+d +'\n' + this.state.curSongName);
 						this.setState({
 							playStatus:Sound.status.STOPPED,
 						});

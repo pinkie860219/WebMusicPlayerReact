@@ -4,6 +4,8 @@ import styled from "styled-components";
 import {Button, Checkbox, Divider, Icon, Input, Segment } from 'semantic-ui-react';
 import {withSongList} from './context/SongListContext.js';
 import {serverApi} from './other/Api.js';
+import queryString from 'query-string';
+import { withRouter} from 'react-router-dom';
 
 class CheckItem extends React.Component{
 	handleOnChange(e){
@@ -52,10 +54,10 @@ class Dropdown extends React.Component {
 			this.props.handleDeleteSong(value, this.props.song.HashedCode);
 			this.fetchSongQuery();
 
-
+			const queryParams = queryString.parse(this.props.location.search);
 			let curDisplaySongListName = ''
 			this.props.songLists.forEach( v =>{
-				if(v.HashedCode == this.props.curSongListIndex){
+				if(v.HashedCode == queryParams.s){
 					curDisplaySongListName = v.Name;
 				}
 			})
@@ -85,6 +87,9 @@ class Dropdown extends React.Component {
 		});
 	}
 	handleInputConfirm(){
+		this.setState({
+			inputVisible:false,
+		});
 		this.props.handleAddToSongList(this.state.inputText, this.props.song.HashedCode);
 		this.fetchSongQuery();
 	}
@@ -122,17 +127,18 @@ class Dropdown extends React.Component {
 					</button>):
 					(<div className={style.inputBlock}>
 						請輸入新歌單名稱
-						<div>
+						<form onSubmit={() => this.handleInputConfirm()}>
 							<input
 								type='text'
 								ref = {this.inputField}
 								placeholder="List Name"
 								onChange={(e)=>this.handleInput(e)}
 							/>
-							<button onClick={() => this.handleInputConfirm()}>
-								<i className="far fa-save"></i>
+							<button type="submit">
+									{/*<i className="far fa-save"></i>*/}
+									建立
 							</button>
-						</div>
+						</form>
 					</div>)
 				}
 				<div className={style.hrLine}>
@@ -150,4 +156,4 @@ class Dropdown extends React.Component {
 		);
 	}
 }
-export const DropdownWithSongList =  withSongList(Dropdown);
+export const DropdownWithSongList =  withRouter(withSongList(Dropdown));

@@ -20,8 +20,10 @@
 	padding-left: 30px;
 	cursor: pointer;
 	position: relative;
+	color: $ctrlColor;
 	&:hover{
 		background-color: rgba(255, 255, 255, 0.15);
+		color: $ctrlColor;
 	}
 }
 .title{

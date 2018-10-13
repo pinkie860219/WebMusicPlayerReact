@@ -17,7 +17,6 @@ export class App extends React.Component {
     this.state = {
 			visible: false, // sideList的開關
 
-			curDirCode:'',//當前的瀏覽路徑的HashedCode
 			curDir:[], // 當前的瀏覽路徑
 
 			curDisplayList:[], // 當前的瀏覽路徑下的檔案{Name, Url, IsDir}
@@ -34,7 +33,6 @@ export class App extends React.Component {
 			// for SongListContext usage
 			songListValue:{
 				songLists:[],
-				curSongListIndex:'',
 				handleAddToSongList:(value, hashed)=>this.handleAddToSongList(value, hashed),
 				handleDeleteSong:(value, hashed)=>this.handleDeleteSong(value, hashed),
 			}
@@ -43,7 +41,11 @@ export class App extends React.Component {
 	}
 	componentDidMount(){ // 程式剛執行時更新頁面
 		this.fetchSongLists();
-		this.fetchAsync();
+		const queryParams = queryString.parse(this.props.location.search);
+		let listCode = queryParams.s?queryParams.s:'';
+		let dirCode = queryParams.dir?queryParams.dir:''
+		this.fetchSongListSongs(listCode)
+		this.fetchAsync(dirCode);
 	}
 	componentDidUpdate(prevProps, prevState) {
 		//url change state
@@ -58,8 +60,8 @@ export class App extends React.Component {
 			let prevListCode = prevParams.s?prevParams.s:'';
 			let prevDirCode = prevParams.dir?prevParams.dir:''
 
-			if (songCode != prevSongCode){
-				this.fetchSongListSongs(songCode)
+			if (listCode != prevListCode){
+				this.fetchSongListSongs(listCode)
 			}
 			if (dirCode != prevDirCode){
 				this.fetchAsync(dirCode);
@@ -150,16 +152,28 @@ export class App extends React.Component {
 		// console.log(output);
 	}
 	setCurDir(item){ // 點擊資料夾，設定瀏覽位置
-		this.setState({
-			curDirCode:item.HashedCode,
-			//activeItem:'folder',
+
+		const queryParams = queryString.parse(this.props.location.search);
+		const stringified = queryString.stringify({
+			...queryParams,
+			dir:item.HashedCode
+		});
+		this.props.history.push({
+			pathname: '/folder',
+			search:stringified
 		});
 	}
 
 	setCurSong(item){ //點音樂item切換音樂
 		let songInfo = {...this.state.songInfo};
+		const queryParams = queryString.parse(this.props.location.search);
+		const stringified = queryString.stringify({
+			...queryParams,
+			m:item.HashedCode
+		});
 		this.props.history.push({
-			search:`?m=${item.HashedCode}`
+			pathname: '/folder',
+			search:stringified
 		});
 		songInfo.curPlayingList = this.getCurPlayingListFromCurDisplayList();
 		this.setState({songInfo});
@@ -195,8 +209,13 @@ export class App extends React.Component {
 				HashedCode:''
 			}
 		}
+		const queryParams = queryString.parse(this.props.location.search);
+		const stringified = queryString.stringify({
+			...queryParams,
+			m:item.HashedCode
+		});
 		this.props.history.push({
-			search:`?m=${item.HashedCode}`
+			search:stringified
 		});
 		console.log("Now Playing~~ " + item.Name + "\nFrom : " +serverApi.musicURL+item.HashedCode);
 	}
@@ -207,12 +226,14 @@ export class App extends React.Component {
 	}
 
 	handleSongListChange(hashed){
-		// console.log(`handleSongListChange: ${str}`);
-		this.setState({
-			songListValue:{
-				...this.state.songListValue,
-				curSongListIndex:hashed,
-			},
+		const queryParams = queryString.parse(this.props.location.search);
+		const stringified = queryString.stringify({
+			...queryParams,
+			s:hashed
+		});
+		this.props.history.push({
+			pathname: '/songlist',
+			search:stringified
 		});
 	}
 	render(){

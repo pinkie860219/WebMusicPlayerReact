@@ -2,7 +2,6 @@ import React from "react";
 
 export const SongListContext = React.createContext({
 	songLists:[],// 歌單名稱們
-	curSongListIndex:'',
 	handleAddToSongList:()=>{},
 	handleDeleteSong:()=>{},
 });
@@ -16,7 +15,6 @@ export function withSongList(Component) {
       <SongListContext.Consumer>
         {context => <Component {...props}
 				songLists={context.songLists}
-				curSongListIndex={context.curSongListIndex}
 				handleAddToSongList={context.handleAddToSongList}
 				handleDeleteSong={context.handleDeleteSong} />}
       </SongListContext.Consumer>
