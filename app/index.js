@@ -1,15 +1,22 @@
 import React from "react";
 import ReactDom from "react-dom";
 import {App} from "./components/App";
-import history from './components/history';
 import {
-	Router,
-  	Route,
+	HashRouter as Router,
+  Route,
+	Switch
 } from "react-router-dom";
 
 ReactDom.render(
-	<Router history={history} basename="ReactPlayerBeta">
-		<Route path={'/'} component={App}/>
+	<Router basename="/">
+		<Switch>
+			<Route path={'/songlist'} render={(props)=>(
+					<App {...props} activeItem='songlist' />
+				)}/>
+			<Route render={(props)=>(
+					<App {...props} activeItem='folder' />
+				)}/>
+		</Switch>
 	</Router>
 	,document.getElementById('app')
 )

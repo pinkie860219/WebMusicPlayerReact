@@ -2,14 +2,15 @@ import React from "react";
 import styles from "./css/SideList.scss";
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Grid, Label, Dropdown } from 'semantic-ui-react'
 import {withSongList} from './context/SongListContext.js';
+import { Link, withRouter} from 'react-router-dom';
 
 class SideButton extends React.Component{
 	render(){
 		return(
-			<div className={`${styles.sideBtn} ${this.props.active?styles.active:''}`} onClick = {()=>this.props.onClick(this.props)}>
+			<Link to={this.props.to} className={`${styles.sideBtn} ${this.props.active?styles.active:''}`} >
 				{this.props.icon}
 				<div className={styles.title}>{this.props.children}</div>
-			</div>
+			</Link>
 		);
 	}
 }
@@ -50,7 +51,10 @@ class SideDropdown extends React.Component{
 					{this.props.options.map((item, index)=>(
 						<DropdownItem key = {index} active={this.props.activeItem === item.HashedCode}
 								icon={<i className="fas fa-list-ol"></i>}
-								onClick = {()=>this.props.onChange(item.HashedCode)}>
+								onClick = {()=>{
+									this.props.onChange(item.HashedCode);
+									this.props.history.push('/songlist')
+								}}>
 							{item.Name}
 						</DropdownItem>
 					))}
@@ -59,6 +63,7 @@ class SideDropdown extends React.Component{
 		);
 	}
 }
+const SideDropdownWithRouter = withRouter(SideDropdown);
 const Devider = (props) =>(
 	<div className={styles.devider}/>
 )
@@ -85,43 +90,16 @@ export class SideList extends React.Component {
 				<div className={styles.container}>
 					<ExitButton onClick={()=>this.props.toggleVisibility()}/>
 					<Devider/>
-					<SideButton icon={<i className="fas fa-folder-open"></i>}
+					<SideButton
+						to='/folder'
+						icon={<i className="fas fa-folder-open"></i>}
 						active={this.props.activeItem === 'folder'}
-						name='folder'
-						onClick={({name})=> this.props.handleItemClick({name})}>Folder</SideButton>
-					{<SideDropdown icon={<i className="fas fa-list-ol"></i>}
+						name='folder'>Folder</SideButton>
+					<SideDropdownWithRouter icon={<i className="fas fa-list-ol"></i>}
 						options={this.props.songLists}
 						onChange={(value)=>this.handleChange(value)}
-						activeItem={this.props.activeItem === 'songlist'? this.props.curSongListIndex:''}>SongList</SideDropdown>}
+						activeItem={this.props.activeItem === 'songlist'? this.props.curSongListIndex:''}>SongList</SideDropdownWithRouter>
 				</div>
-			  	{/*<Menu.Item name='back' onClick={() => this.props.toggleVisibility()} >
-				  	<Segment textAlign='right' basic>
-					 	<Icon name='remove' inverted size='big'/>
-				  	</Segment>
-			  	</Menu.Item>
-			  	<Menu.Item name='album' active={this.props.activeItem === 'album'} onClick={(e,{name}) =>  this.props.handleItemClick({name})}>
-					<Label color='teal'>1</Label>
-					Album
-			  	</Menu.Item>
-
-			  	<Menu.Item name='folder' active={this.props.activeItem === 'folder'}  onClick={(e,{name}) => this.props.handleItemClick({name})}>
-					<Label>51</Label>
-					Folder
-			  	</Menu.Item>
-			  	<Menu.Item name='songlist' active={this.props.activeItem === 'songlist'} >
-					<Label>1</Label>
-					Song List
-					<Dropdown
-						className={styles.dropdown}
-			        	fluid
-			        	onChange={(e, data) => this.handleChange(e, data)}
-			        	placeholder='songlist'
-						options={this.props.songLists}
-			        	search
-			        	selection
-			        	value={value}
-			    	/>
-			  	</Menu.Item>*/}
 			</Sidebar>
 		);
 	}

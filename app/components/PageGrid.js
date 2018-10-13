@@ -32,11 +32,6 @@ export class PageGrid extends React.Component {
 							key = {item.HashedCode} type={type}
 							song = {item}
 							onClick = {()=>this.props.setCurDir(item)}
-							songLists = {this.props.songLists}
-							handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
-							songQueryURL = {this.props.songQueryURL}
-							handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}
-							curDisplaySongListName = {this.props.curDisplaySongListName}
 						/>
 					);
 				}
@@ -48,10 +43,6 @@ export class PageGrid extends React.Component {
 							key = {item.HashedCode} type={type}
 							song = {item}
 							onClick = {()=>this.props.setCurSong(item)}
-							songLists = {this.props.songLists}
-							handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
-							songQueryURL = {this.props.songQueryURL}
-							handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}
 						/>
 					);
 				}

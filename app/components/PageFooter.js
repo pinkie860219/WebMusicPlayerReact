@@ -9,6 +9,8 @@ import Sound from "react-sound";
 import * as toolLib from './Util.js';
 import {withSongInfo} from './context/SongInfoContext.js';
 import {serverApi} from './other/Api.js';
+import {withRouter} from 'react-router-dom';
+import queryString from 'query-string';
 
 class SongClock extends React.Component{
 	HHMMSS(ms){//time in ms
@@ -54,10 +56,15 @@ class PageFooter extends React.Component {
 	}
 	componentDidUpdate(prevProps, prevState){
 		////check curSongURL
-		if(this.props.curSong.HashedCode !== prevProps.curSong.HashedCode){
-			this.fetchSongName(this.props.curSong.HashedCode);
+		const queryParams = queryString.parse(this.props.location.search);
+		let curSongCode = queryParams.m?queryParams.m:''
+		const prevParams = queryString.parse(prevProps.location.search);
+		let prevSongCode = prevParams.m?prevParams.m:''
+
+		if(curSongCode !== prevSongCode){
+			this.fetchSongName(curSongCode);
 			this.setState({
-				SongUrl:serverApi.musicURL + this.props.curSong.HashedCode,
+				SongUrl:serverApi.musicURL + curSongCode,
 				curTime:0,
 				playStatus:Sound.status.PLAYING,
 			});
@@ -72,11 +79,13 @@ class PageFooter extends React.Component {
 		})
 	}
 	togglePlayStatus(){ // 暫停or播放音樂
+		const queryParams = queryString.parse(this.props.location.search);
+		let curSongCode = queryParams.m?queryParams.m:''
 		if(this.state.playStatus == Sound.status.PLAYING){
 			this.setState({
 				playStatus:Sound.status.PAUSED,
 			});
-		} else if(this.props.curSong.HashedCode){
+		} else if(curSongCode){
 			this.setState({
 				playStatus:Sound.status.PLAYING,
 			});
@@ -127,8 +136,11 @@ class PageFooter extends React.Component {
 		let curIndex = 0; // 目前的index
 		// console.log(`curPlayingList:`);
 		// console.log(this.props.curPlayingList);
+		const queryParams = queryString.parse(this.props.location.search);
+		let curSongCode = queryParams.m?queryParams.m:''
+
 		for(let i in this.props.curPlayingList){
-			const curHashed = this.props.curSong.HashedCode;
+			const curHashed = curSongCode;
 			const listHashed = this.props.curPlayingList[i].HashedCode;
 			if(listHashed == curHashed){
 				curIndex = i;
@@ -166,8 +178,11 @@ class PageFooter extends React.Component {
 		// console.log("setSongURLtoPre");
 		//如果時間小於2秒，上一首，else，時間回到0
 		let curIndex; // 目前的index
+		const queryParams = queryString.parse(this.props.location.search);
+		let curSongCode = queryParams.m?queryParams.m:''
+
 		for(let i in this.props.curPlayingList){
-			const curHashed = this.props.curSong.HashedCode;
+			const curHashed = curSongCode;
 			const listHashed = this.props.curPlayingList[i].HashedCode;
 			if(listHashed == curHashed){
 				curIndex = i;
@@ -266,4 +281,4 @@ class PageFooter extends React.Component {
 		);
 	}
 }
-export const FooterPlayer = withSongInfo(PageFooter);
+export const FooterPlayer = withRouter(withSongInfo(PageFooter));
