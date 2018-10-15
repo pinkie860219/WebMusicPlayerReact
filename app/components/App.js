@@ -35,6 +35,7 @@ export class App extends React.Component {
 				songLists:[],
 				handleAddToSongList:(value, hashed)=>this.handleAddToSongList(value, hashed),
 				handleDeleteSong:(value, hashed)=>this.handleDeleteSong(value, hashed),
+				fetchSongListSongs:(hashed)=>this.fetchSongListSongs(hashed)
 			}
 		};
 
@@ -60,10 +61,14 @@ export class App extends React.Component {
 			let prevListCode = prevParams.s?prevParams.s:'';
 			let prevDirCode = prevParams.dir?prevParams.dir:''
 
-			if (listCode != prevListCode){
+			const curPath = this.props.location.pathname;
+			const prevPath = prevProps.location.pathname;
+			const changeToList = (curPath != prevPath) && (curPath == '/songlist');
+			const changeToFolder = (curPath != prevPath) && (curPath == '/folder');
+			if (listCode != prevListCode || changeToList){
 				this.fetchSongListSongs(listCode)
 			}
-			if (dirCode != prevDirCode){
+			if (dirCode != prevDirCode || changeToFolder){
 				this.fetchAsync(dirCode);
 			}
 		}
@@ -113,7 +118,7 @@ export class App extends React.Component {
 
 		let data = await response.json();
 		this.setState({
-			curDisplayList_songList: data,
+			curDisplayList_songList: data?data:[],
 			loading:false,
 		});
 	}

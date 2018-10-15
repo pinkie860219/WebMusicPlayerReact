@@ -46,13 +46,12 @@ class Dropdown extends React.Component {
 			this.inputField.current.focus();
 		}
 	}
-	handleOnCheck(value, checked){
+	async handleOnCheck(value, checked){
 		if(checked){
-			this.props.handleAddToSongList(value, this.props.song.HashedCode);
+			await this.props.handleAddToSongList(value, this.props.song.HashedCode);
 			this.fetchSongQuery();
 		} else {
-			this.props.handleDeleteSong(value, this.props.song.HashedCode);
-			this.fetchSongQuery();
+			await this.props.handleDeleteSong(value, this.props.song.HashedCode);
 
 			const queryParams = queryString.parse(this.props.location.search);
 			let curDisplaySongListName = ''
@@ -62,8 +61,10 @@ class Dropdown extends React.Component {
 				}
 			})
 			if(curDisplaySongListName == value){
-				//this.props.distory();
+				this.props.fetchSongListSongs(queryParams.s);
 				console.log('distory');
+			} else {
+				this.fetchSongQuery();
 			}
 		}
 	}

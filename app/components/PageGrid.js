@@ -3,7 +3,6 @@ import style from "./css/PageGrid.scss";
 import styled from "styled-components";
 import {DataItemWithSongInfo} from "./DataItem.js"
 import { Loader, Icon, Header} from 'semantic-ui-react';
-import * as toolLib from './Util.js';
 
 const NoFile = (props) => (
 	<div className={style.noFile}>
