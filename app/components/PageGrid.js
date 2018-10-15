@@ -1,8 +1,13 @@
 import React from "react";
 import style from "./css/PageGrid.scss";
+import fadeStyles from "./css/FadeStyles.scss";
 import styled from "styled-components";
-import {DataItemWithSongInfo} from "./DataItem.js"
+import {DataItemWithSongInfo} from "./DataItem.js";
 import { Loader, Icon, Header} from 'semantic-ui-react';
+import {
+  CSSTransition,
+  TransitionGroup,
+} from 'react-transition-group';
 
 const NoFile = (props) => (
 	<div className={style.noFile}>
@@ -17,7 +22,6 @@ export class PageGrid extends React.Component {
 		super(props);
 	}
 	render(){
-		const dimmerStyle = this.props.loading? [style.dimmer, style.dimmer_active].join(' '):style.dimmer;
 		let output = [];
 		let containerStyle;
 		if(this.props.curDisplayList.length != 0){
@@ -27,50 +31,68 @@ export class PageGrid extends React.Component {
 					//console.log("file");
 					type=0;//is folder
 					return(
-						<DataItemWithSongInfo
-							key = {item.HashedCode} type={type}
-							song = {item}
-							onClick = {()=>this.props.setCurDir(item)}
-						/>
+						<CSSTransition
+							key = {item.HashedCode}
+							timeout={{ enter: 300, exit: 0 }}
+							classNames={fadeStyles}>
+							<DataItemWithSongInfo
+								type={type}
+								song = {item}
+								onClick = {()=>this.props.setCurDir(item)}
+							/>
+						</CSSTransition>
 					);
 				}
 				else {
 					//console.log("music");
 					type=1;//is music file
 					return(
-						<DataItemWithSongInfo
-							key = {item.HashedCode} type={type}
-							song = {item}
-							onClick = {()=>this.props.setCurSong(item)}
-						/>
+						<CSSTransition
+							key = {item.HashedCode}
+							timeout={300}
+							classNames={fadeStyles}
+							>
+							<DataItemWithSongInfo
+								type={type}
+								song = {item}
+								onClick = {()=>this.props.setCurSong(item)}
+							/>
+						</CSSTransition>
 					);
 				}
-			});
-			output = output.map((item, index)=>(
-				<React.Fragment key={`hr_${index}`}>
-					{item}
-					<div className={style.hrLine}>
-						<hr/>
-					</div>
-				</React.Fragment>
-			));
-			containerStyle = this.props.loading? [style.container, style.dim].join(' '):style.container;
+			}).reduce((sum, cur)=>{
+				return sum===null?[cur]:[...sum,(
+					<CSSTransition
+						timeout={300}
+						classNames={fadeStyles}>
+						<div className={style.hrLine}>
+							<hr/>
+						</div>
+					</CSSTransition>
+				),cur]
+			},null);
 		} else {
-			output = (
-				<NoFile/>
-			);
-			containerStyle = this.props.loading? [style.container2, style.dim].join(' '):style.container2;
+			output=[];
 		}
-
+		containerStyle = this.props.loading? [style.container, style.dim].join(' '):style.container;
 		return(
 			<div className = {style.container}>
-				<div className = {dimmerStyle}>
-					<Loader active={this.props.loading} inverted size='large'>Preparing Files</Loader>
-				</div>
-
-				<div className = {containerStyle}>
+				<CSSTransition
+					in={this.props.loading}
+					timeout={300}
+					classNames={fadeStyles}
+					className = {style.dimmer}>
+					<Loader active={true} inverted size='large'>Preparing Files</Loader>
+			</CSSTransition>
+				<TransitionGroup className = {containerStyle} exit={false}>
 					{output}
-				</div>
+				</TransitionGroup>
+				<CSSTransition
+					in={this.props.curDisplayList.length == 0}
+					timeout={300}
+					classNames={fadeStyles}>
+					<NoFile/>
+				</CSSTransition>
 			</div>
 		);
 
