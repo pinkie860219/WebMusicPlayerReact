@@ -21,7 +21,9 @@ class SongClock extends React.Component{
 		let rt = [];
 		if(hr){
 			rt.push(hr);
-			if(min<10){min = "0"+min;}
+			if(min<10){
+				min = "0"+min;
+			}
 		}
 		rt.push(min);
 		if(sec<10){sec = "0"+sec;}
@@ -53,6 +55,18 @@ class PageFooter extends React.Component {
 			SongUrl:"",//encode後的songurl
 		}
 
+	}
+	componentDidMount(){
+		const queryParams = queryString.parse(this.props.location.search);
+		let curSongCode = queryParams.m?queryParams.m:''
+		if(curSongCode){
+			this.fetchSongName(curSongCode);
+			this.setState({
+				SongUrl:serverApi.musicURL + curSongCode,
+				curTime:0,
+				playStatus:Sound.status.PLAYING,
+			});
+		}
 	}
 	componentDidUpdate(prevProps, prevState){
 		////check curSongURL
