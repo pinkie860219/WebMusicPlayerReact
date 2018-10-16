@@ -9,6 +9,8 @@ import Sound from "react-sound";
 import * as toolLib from './Util.js';
 import {withSongInfo} from './context/SongInfoContext.js';
 import {serverApi} from './other/Api.js';
+import {withRouter} from 'react-router-dom';
+import queryString from 'query-string';
 
 class SongClock extends React.Component{
 	HHMMSS(ms){//time in ms
@@ -19,7 +21,9 @@ class SongClock extends React.Component{
 		let rt = [];
 		if(hr){
 			rt.push(hr);
-			if(min<10){min = "0"+min;}
+			if(min<10){
+				min = "0"+min;
+			}
 		}
 		rt.push(min);
 		if(sec<10){sec = "0"+sec;}
@@ -45,19 +49,36 @@ class PageFooter extends React.Component {
 			loopStatus:0, // 預設不重複播放，1全部播放，2單曲播放
 			curTime: 0, // 音樂的現在的播放時間
 			songTime:0, // 音樂的全長
-			volume:100, // 音量
+			volume:70, // 音量
 			lastVolume:0,
 			muteStatus:false,
 			SongUrl:"",//encode後的songurl
 		}
 
 	}
+	componentDidMount(){
+		const queryParams = queryString.parse(this.props.location.search);
+		let curSongCode = queryParams.m?queryParams.m:''
+		if(curSongCode){
+			this.fetchSongName(curSongCode);
+			this.setState({
+				SongUrl:serverApi.musicURL + curSongCode,
+				curTime:0,
+				playStatus:Sound.status.PLAYING,
+			});
+		}
+	}
 	componentDidUpdate(prevProps, prevState){
 		////check curSongURL
-		if(this.props.curSong.HashedCode !== prevProps.curSong.HashedCode){
-			this.fetchSongName(this.props.curSong.HashedCode);
+		const queryParams = queryString.parse(this.props.location.search);
+		let curSongCode = queryParams.m?queryParams.m:''
+		const prevParams = queryString.parse(prevProps.location.search);
+		let prevSongCode = prevParams.m?prevParams.m:''
+
+		if(curSongCode !== prevSongCode){
+			this.fetchSongName(curSongCode);
 			this.setState({
-				SongUrl:serverApi.musicURL + this.props.curSong.HashedCode,
+				SongUrl:serverApi.musicURL + curSongCode,
 				curTime:0,
 				playStatus:Sound.status.PLAYING,
 			});
@@ -72,18 +93,22 @@ class PageFooter extends React.Component {
 		})
 	}
 	togglePlayStatus(){ // 暫停or播放音樂
+		const queryParams = queryString.parse(this.props.location.search);
+		let curSongCode = queryParams.m?queryParams.m:''
 		if(this.state.playStatus == Sound.status.PLAYING){
 			this.setState({
 				playStatus:Sound.status.PAUSED,
 			});
-		} else if(this.props.curSong.HashedCode){
+		} else if(curSongCode){
 			this.setState({
 				playStatus:Sound.status.PLAYING,
 			});
 		}
 	}
 	setCurTime(t){ // TSlider設定歌曲時間，curSong有的時候才有效
-		if(this.props.curSong){
+		const queryParams = queryString.parse(this.props.location.search);
+		let curSongCode = queryParams.m?queryParams.m:''
+		if(curSongCode){
 			this.setState({curTime:t});
 		}
 	}
@@ -127,8 +152,11 @@ class PageFooter extends React.Component {
 		let curIndex = 0; // 目前的index
 		// console.log(`curPlayingList:`);
 		// console.log(this.props.curPlayingList);
+		const queryParams = queryString.parse(this.props.location.search);
+		let curSongCode = queryParams.m?queryParams.m:''
+
 		for(let i in this.props.curPlayingList){
-			const curHashed = this.props.curSong.HashedCode;
+			const curHashed = curSongCode;
 			const listHashed = this.props.curPlayingList[i].HashedCode;
 			if(listHashed == curHashed){
 				curIndex = i;
@@ -166,8 +194,11 @@ class PageFooter extends React.Component {
 		// console.log("setSongURLtoPre");
 		//如果時間小於2秒，上一首，else，時間回到0
 		let curIndex; // 目前的index
+		const queryParams = queryString.parse(this.props.location.search);
+		let curSongCode = queryParams.m?queryParams.m:''
+
 		for(let i in this.props.curPlayingList){
-			const curHashed = this.props.curSong.HashedCode;
+			const curHashed = curSongCode;
 			const listHashed = this.props.curPlayingList[i].HashedCode;
 			if(listHashed == curHashed){
 				curIndex = i;
@@ -197,7 +228,7 @@ class PageFooter extends React.Component {
 					volume = {this.state.volume}
 					position = {this.state.curTime}
 					onError = {(c,d)=>{
-						console.log('!!!!'+d +'\n' + this.props.curSong.Name);
+						console.log('!!!!'+d +'\n' + this.state.curSongName);
 						this.setState({
 							playStatus:Sound.status.STOPPED,
 						});
@@ -266,4 +297,4 @@ class PageFooter extends React.Component {
 		);
 	}
 }
-export const FooterPlayer = withSongInfo(PageFooter);
+export const FooterPlayer = withRouter(withSongInfo(PageFooter));

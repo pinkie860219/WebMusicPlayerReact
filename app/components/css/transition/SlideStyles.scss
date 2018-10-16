@@ -1,0 +1,29 @@
+.enter {
+  &>div{
+    transform: translateY(-100%);
+  }
+  &.enterActive {
+    transition: all 300ms ease-in;
+    &>div{
+      transition: all 300ms ease-in;
+      transform: translateY(0);
+    }
+  }
+}
+
+.exit {
+  &>div{
+    transform: translateY(0);
+  }
+  &.exitActive {
+    transition: all 300ms ease-in;
+    &>div{
+      transition: all 300ms ease-in;
+      transform: translateY(-100%);
+    }
+  }
+}
+.exitDone {
+  height: 0;
+  display: none;
+}

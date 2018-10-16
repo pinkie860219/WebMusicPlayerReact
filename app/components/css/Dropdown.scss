@@ -61,7 +61,7 @@ $inputBorderRadius:3px;
 	display: flex;
 	flex-direction: column;
 	padding: 5px 10px 5px 10px;
-	div{
+	form{
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -73,33 +73,37 @@ $inputBorderRadius:3px;
 			display: flex;
 			width:0;
 			flex: 1 1 auto;
-			border-top-left-radius: $inputBorderRadius;
-			border-bottom-left-radius: $inputBorderRadius;
+			border-radius: $inputBorderRadius;
+			padding-left: 10px;
 			&:focus{
 				outline: none;
 				border-style: solid none solid solid;
 				border-width: 1px;
-				border-color: $themeColor;
+				//border-color: $themeColor;
+				border-color:rgb(68, 182, 255);
 			}
 		}
 		button{
 			border: none;
 			background: none;
-			background-color: $themeColor;
-			width: 30px;
+			background-color: $themeBackGroundColorSec;
 			height: 30px;
 			display: flex;
-			flex: 0 0 30px;
+			flex: 0 0 50px;
 			cursor: pointer;
+			color:$themeColor;
 			i{
 				// color: $themeBackGroundColorSec;
-				color:rgb(255, 255, 255);
+				color:$themeColor
 			}
-			padding: 0;
+			padding: 0 0 0 10;
 			align-items: center;
 			justify-content: center;
 			border-top-right-radius: $inputBorderRadius;
 			border-bottom-right-radius: $inputBorderRadius;
+			&:hover{
+				color:$ctrlColor
+			}
 		}
 	}
 }

@@ -2,8 +2,10 @@ import React from "react";
 import styles from "./css/DataItem.scss";
 import styled from "styled-components";
 import { Icon, Header, Button,  Input, } from 'semantic-ui-react';
-import {Dropdown} from './Dropdown.js';
+import {DropdownWithSongList as Dropdown} from './Dropdown.js';
 import {withSongInfo} from './context/SongInfoContext.js';
+import {withRouter} from 'react-router-dom';
+import queryString from 'query-string';
 
 const CDropdown = styled(Dropdown)`
 	display: inline-flex !important;
@@ -47,22 +49,19 @@ class DataItem extends React.Component {
 					onClick={()=>this.toggleDropdown()}>
 					<i className={`fas fa-plus`}></i>
 					<Dropdown
-						songLists={this.props.songLists}
 						visible={this.state.visibleDropdown}
 						setVisible = {(t)=>this.setVisible(t)}
 						song={this.props.song}
-						handleAddToSongList = {(songList, song)=>this.props.handleAddToSongList(songList, song)}
-						songQueryURL = {this.props.songQueryURL}
-						handleDeleteSong = {(songList, song)=>this.props.handleDeleteSong(songList, song)}
-						curDisplaySongListName = {this.props.curDisplaySongListName}
 						/>
 					</div>);
 				break;
 
 		}
 
+		const queryParams = queryString.parse(this.props.location.search);
+		let curSongHashedCode = queryParams.m?queryParams.m:''
 		let colorStyle;
-		if(this.props.song.HashedCode == this.props.curSong.HashedCode){
+		if(this.props.song.HashedCode == curSongHashedCode){
 			colorStyle = styles.playing;
 		} else {
 			colorStyle = styles.notPlaying;
@@ -81,4 +80,4 @@ class DataItem extends React.Component {
 		);
 	}
 }
-export const DataItemWithSongInfo = withSongInfo(DataItem);
+export const DataItemWithSongInfo = withRouter(withSongInfo(DataItem));

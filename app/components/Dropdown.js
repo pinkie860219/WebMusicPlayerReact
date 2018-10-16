@@ -2,13 +2,14 @@ import React from "react";
 import style from "./css/Dropdown.scss";
 import styled from "styled-components";
 import {Button, Checkbox, Divider, Icon, Input, Segment } from 'semantic-ui-react';
+import {withSongList} from './context/SongListContext.js';
+import {serverApi} from './other/Api.js';
+import queryString from 'query-string';
+import { withRouter} from 'react-router-dom';
 
 class CheckItem extends React.Component{
 	handleOnChange(e){
-		this.props.onChange(e,{
-			...this.props,
-			checked:e.target.checked
-		})
+		this.props.onChange(e.target.checked)
 	}
 	render(){
 		return(
@@ -25,7 +26,7 @@ const CCheckbox = styled(Checkbox)`
 	margin: 3px 5px 3px 5px !important;
 	padding: 0 !important;
 `;
-export class Dropdown extends React.Component {
+class Dropdown extends React.Component {
 	constructor(props){
 		super(props);
 		this.state={
@@ -45,24 +46,30 @@ export class Dropdown extends React.Component {
 			this.inputField.current.focus();
 		}
 	}
-	handleOnChange({value, song, checked}){
+	async handleOnCheck(value, checked){
 		if(checked){
-			this.props.handleAddToSongList(value, song);
+			await this.props.handleAddToSongList(value, this.props.song.HashedCode);
 			this.fetchSongQuery();
 		} else {
-			this.props.handleDeleteSong(value, song);
-			this.fetchSongQuery();
-			console.log("curlistname:")
-			console.log(this.props.curDisplaySongListName);
-			console.log("value:"+value);
-			if(this.props.curDisplaySongListName == value){
-				//this.props.distory();
+			await this.props.handleDeleteSong(value, this.props.song.HashedCode);
+
+			const queryParams = queryString.parse(this.props.location.search);
+			let curDisplaySongListName = ''
+			this.props.songLists.forEach( v =>{
+				if(v.HashedCode == queryParams.s){
+					curDisplaySongListName = v.Name;
+				}
+			})
+			if(curDisplaySongListName == value){
+				this.props.fetchSongListSongs(queryParams.s);
 				console.log('distory');
+			} else {
+				this.fetchSongQuery();
 			}
 		}
 	}
 	onBlur(e) {
-		console.log("blurRRRR");
+		// console.log("blurRRRR");
 		let currentTarget = e.currentTarget;
 	    setTimeout(()=>{
 			if (!currentTarget.contains(document.activeElement)) {
@@ -81,7 +88,10 @@ export class Dropdown extends React.Component {
 		});
 	}
 	handleInputConfirm(){
-		this.props.handleAddToSongList(this.state.inputText, this.props.song);
+		this.setState({
+			inputVisible:false,
+		});
+		this.props.handleAddToSongList(this.state.inputText, this.props.song.HashedCode);
 		this.fetchSongQuery();
 	}
 	handleInput(e){
@@ -90,25 +100,15 @@ export class Dropdown extends React.Component {
 		});
 	}
 	async fetchSongQuery(){ // 查詢此歌存在於哪些歌單
+		console.log("songuery!");
+		let response = await fetch(serverApi.songQueryURL+this.props.song.HashedCode);
 
-		//console.log("fetchSongQuery");
-
-		let formData = new FormData();
-		formData.append('url',this.props.song.Url);
-		let response = await fetch(this.props.songQueryURL + this.props.song.Url,{
-			method:'POST',
-			body:formData,
-		});
-	//	let response = await fetch(this.props.songQueryURL + this.props.song.Url);
 		let data = await response.json();
-	//	console.log(data);
-		data.forEach(item => {
-			this.setState({
-				foundInSongListNames:item.SongListNames,
-			});
-			//console.log(item.SongListNames);
-			//console.log(data);
+
+		this.setState({
+			foundInSongListNames:data
 		});
+
 	}
 	render(){
 		let display;
@@ -128,17 +128,18 @@ export class Dropdown extends React.Component {
 					</button>):
 					(<div className={style.inputBlock}>
 						請輸入新歌單名稱
-						<div>
+						<form onSubmit={() => this.handleInputConfirm()}>
 							<input
 								type='text'
 								ref = {this.inputField}
 								placeholder="List Name"
 								onChange={(e)=>this.handleInput(e)}
 							/>
-							<button onClick={() => this.handleInputConfirm()}>
-								<i className="far fa-save"></i>
+							<button type="submit">
+									{/*<i className="far fa-save"></i>*/}
+									建立
 							</button>
-						</div>
+						</form>
 					</div>)
 				}
 				<div className={style.hrLine}>
@@ -147,13 +148,13 @@ export class Dropdown extends React.Component {
 				{this.props.songLists.map((item,index)=>(
 					<CheckItem
 						key={index}
-						value = {item.text}
-						onChange={(e, {value, song, checked}) => this.handleOnChange( {value, song, checked})}
-						song={this.props.song}
-						checked={this.state.foundInSongListNames.indexOf(item.text)>=0?true:false}
-						>{item.text}</CheckItem>
+						value = {item.HashedCode}
+						onChange={(checked) => this.handleOnCheck(item.Name, checked)}
+						checked={this.state.foundInSongListNames.indexOf(item.Name)>=0}
+						>{item.Name}</CheckItem>
 				))}
 			</div>
 		);
 	}
 }
+export const DropdownWithSongList =  withRouter(withSongList(Dropdown));
