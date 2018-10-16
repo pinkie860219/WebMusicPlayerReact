@@ -15,7 +15,7 @@ export class App extends React.Component {
 	constructor(props) {
     super(props);
     this.state = {
-			visible: true, // sideList的開關
+			visible: false, // sideList的開關
 
 			curDir:[], // 當前的瀏覽路徑
 
@@ -36,7 +36,7 @@ export class App extends React.Component {
 				handleAddToSongList:(value, hashed)=>this.handleAddToSongList(value, hashed),
 				handleDeleteSong:(value, hashed)=>this.handleDeleteSong(value, hashed),
 				fetchSongListSongs:(hashed)=>this.fetchSongListSongs(hashed),
-				handleDeleteSongList:(listname)=>this.handleDeleteSongList(listname)
+				handleDeleteSongList:(hashed)=>this.handleDeleteSongList(hashed)
 			}
 		};
 
@@ -109,15 +109,29 @@ export class App extends React.Component {
 		//console.log(output);
 	}
 	async fetchSongListSongs(hashed){
+		if (!hashed){
+			return;
+		}
 		this.setState({
 			loading:true,
 		});
 		// console.log("fetchhhhhhhhsonglistsong");
 		const targetURL = serverApi.songListURL + '/' + hashed;
 		let response = await fetch(targetURL);
-		//console.log(targetURL);
-
-		let data = await response.json();
+		let data;
+		if (response.status === 200){
+			data = await response.json();
+		} else {
+			const queryParams = queryString.parse(this.props.location.search);
+			const stringified = queryString.stringify({
+				...queryParams,
+				s:''
+			});
+			this.props.history.push({
+				pathname: '/folder',
+				search:stringified
+			});
+		}
 		this.setState({
 			curDisplayList_songList: data?data:[],
 			loading:false,
@@ -157,11 +171,11 @@ export class App extends React.Component {
 		this.setSongLists(data);
 		// console.log(output);
 	}
-	async handleDeleteSongList(listname){
+	async handleDeleteSongList(hashed){
 		const targetURL = serverApi.delSongListURL;
 
 		let formData = new FormData();
-		formData.append('songlist',listname);
+		formData.append('hashed',hashed);
 
 		let response = await fetch(targetURL,{
 			method:'DELETE',
@@ -170,6 +184,7 @@ export class App extends React.Component {
 		let data = await response.json();
 
 		this.setSongLists(data);
+		this.fetchSongListSongs(hashed);
 	}
 	setCurDir(item){ // 點擊資料夾，設定瀏覽位置
 

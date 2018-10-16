@@ -84,7 +84,7 @@ export class PageGrid extends React.Component {
 					classNames={fadeStyles}
 					className = {style.dimmer}>
 					<Loader active={true} inverted size='large'>Preparing Files</Loader>
-			</CSSTransition>
+			  </CSSTransition>
 				<TransitionGroup className = {containerStyle} exit={false}>
 					{output}
 				</TransitionGroup>

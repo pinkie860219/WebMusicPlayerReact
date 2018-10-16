@@ -31,7 +31,7 @@ class DropdownItem extends React.Component{
 				</div>
 				<i className="fas fa-trash-alt" onClick={(e)=>{
 						e.stopPropagation();
-						this.props.handleDeleteSongList(this.props.children);
+						this.props.handleDeleteSongList(this.props.hashed);
 					}}></i>
 			</div>
 		);
@@ -69,6 +69,7 @@ class SideDropdown extends React.Component{
 						<div>
 							{this.props.options.map((item, index)=>(
 								<DropdownItemWithSongList key = {item.HashedCode}
+										hashed = {item.HashedCode}
 										active={this.props.activeItem === item.HashedCode}
 										icon={<i className="fas fa-list-ol"></i>}
 										onClick = {()=>{

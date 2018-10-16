@@ -7,5 +7,5 @@ export let serverApi = {
 	songNameURL:serverPrefix+'/songName?m=',//serve音樂名稱的API
 	songListURL:serverPrefix+'/songlist',//  /songlist列出歌單, /songlist/:hashed列出歌單歌曲
 	songQueryURL:serverPrefix+'/songquery?h=',// 查詢這首歌出現在哪些歌單
-	delSongListURL:serverPrefix+'/delSongListURL'
+	delSongListURL:serverPrefix+'/delsonglist'
 }
