@@ -15,7 +15,7 @@ export class App extends React.Component {
 	constructor(props) {
     super(props);
     this.state = {
-			visible: false, // sideList的開關
+			visible: true, // sideList的開關
 
 			curDir:[], // 當前的瀏覽路徑
 
@@ -35,7 +35,8 @@ export class App extends React.Component {
 				songLists:[],
 				handleAddToSongList:(value, hashed)=>this.handleAddToSongList(value, hashed),
 				handleDeleteSong:(value, hashed)=>this.handleDeleteSong(value, hashed),
-				fetchSongListSongs:(hashed)=>this.fetchSongListSongs(hashed)
+				fetchSongListSongs:(hashed)=>this.fetchSongListSongs(hashed),
+				handleDeleteSongList:(listname)=>this.handleDeleteSongList(listname)
 			}
 		};
 
@@ -155,6 +156,20 @@ export class App extends React.Component {
 
 		this.setSongLists(data);
 		// console.log(output);
+	}
+	async handleDeleteSongList(listname){
+		const targetURL = serverApi.delSongListURL;
+
+		let formData = new FormData();
+		formData.append('songlist',listname);
+
+		let response = await fetch(targetURL,{
+			method:'DELETE',
+			body:formData,
+		});
+		let data = await response.json();
+
+		this.setSongLists(data);
 	}
 	setCurDir(item){ // 點擊資料夾，設定瀏覽位置
 

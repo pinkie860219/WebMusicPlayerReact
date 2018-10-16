@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./css/PageGrid.scss";
-import fadeStyles from "./css/FadeStyles.scss";
+import fadeStyles from "./css/transition/FadeStyles.scss";
 import styled from "styled-components";
 import {DataItemWithSongInfo} from "./DataItem.js";
 import { Loader, Icon, Header} from 'semantic-ui-react';
@@ -60,9 +60,10 @@ export class PageGrid extends React.Component {
 						</CSSTransition>
 					);
 				}
-			}).reduce((sum, cur)=>{
+			}).reduce((sum, cur, index)=>{
 				return sum===null?[cur]:[...sum,(
 					<CSSTransition
+            key={`hr_${index}`}
 						timeout={300}
 						classNames={fadeStyles}>
 						<div className={style.hrLine}>

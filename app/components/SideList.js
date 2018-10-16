@@ -1,9 +1,14 @@
 import React from "react";
 import styles from "./css/SideList.scss";
+import slideStyles from "./css/transition/SlideStyles.scss";
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Grid, Label, Dropdown } from 'semantic-ui-react'
 import {withSongList} from './context/SongListContext.js';
 import { Link, withRouter} from 'react-router-dom';
 import queryString from 'query-string';
+import {
+  CSSTransition,
+  TransitionGroup,
+} from 'react-transition-group';
 
 class SideButton extends React.Component{
 	render(){
@@ -20,12 +25,19 @@ class DropdownItem extends React.Component{
 	render(){
 		return(
 			<div className={`${styles.dropdownItem} ${this.props.active?styles.active:''}`} onClick = {()=>this.props.onClick(this.props)}>
-				{this.props.icon}
-				<div className={styles.title}>{this.props.children}</div>
+				<div>
+					{this.props.icon}
+					<div className={styles.title}>{this.props.children}</div>
+				</div>
+				<i className="fas fa-trash-alt" onClick={(e)=>{
+						e.stopPropagation();
+						this.props.handleDeleteSongList(this.props.children);
+					}}></i>
 			</div>
 		);
 	}
 }
+const DropdownItemWithSongList = withSongList(DropdownItem);
 class SideDropdown extends React.Component{
 	constructor(props){
 		super(props);
@@ -40,7 +52,6 @@ class SideDropdown extends React.Component{
 		})
 	}
 	render(){
-		const dropdownStyle = this.state.visible?styles.dropdown:`${styles.dropdown} ${styles.dropdownHidden}`;
 		const arrow = this.state.visible?<i className="fas fa-caret-down"></i>:<i className="fas fa-caret-right"></i>
 		return(
 			<div className={styles.sideDropdown}>
@@ -49,17 +60,26 @@ class SideDropdown extends React.Component{
 					{this.props.icon}
 					<div className={styles.title}>{this.props.children}</div>
 				</div>
-				<div className={dropdownStyle}>
-					{this.props.options.map((item, index)=>(
-						<DropdownItem key = {index} active={this.props.activeItem === item.HashedCode}
-								icon={<i className="fas fa-list-ol"></i>}
-								onClick = {()=>{
-									this.props.onChange(item.HashedCode);
-								}}>
-							{item.Name}
-						</DropdownItem>
-					))}
-				</div>
+				<CSSTransition
+					in={this.state.visible}
+					timeout={300}
+					classNames={slideStyles}
+					className={styles.dropdown}>
+					<div>
+						<div>
+							{this.props.options.map((item, index)=>(
+								<DropdownItemWithSongList key = {item.HashedCode}
+										active={this.props.activeItem === item.HashedCode}
+										icon={<i className="fas fa-list-ol"></i>}
+										onClick = {()=>{
+											this.props.onChange(item.HashedCode);
+										}}>
+									{item.Name}
+								</DropdownItemWithSongList>
+							))}
+						</div>
+					</div>
+				</CSSTransition>
 			</div>
 		);
 	}

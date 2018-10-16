@@ -5,6 +5,7 @@ export const SongListContext = React.createContext({
 	handleAddToSongList:()=>{},
 	handleDeleteSong:()=>{},
 	fetchSongListSongs:()=>{},
+	handleDeleteSongList:()=>{}
 });
 
 export function withSongList(Component) {
@@ -18,7 +19,8 @@ export function withSongList(Component) {
 				songLists={context.songLists}
 				handleAddToSongList={context.handleAddToSongList}
 				handleDeleteSong={context.handleDeleteSong}
-				fetchSongListSongs={context.fetchSongListSongs} />}
+				fetchSongListSongs={context.fetchSongListSongs}
+				handleDeleteSongList={context.handleDeleteSongList} />}
       </SongListContext.Consumer>
     );
   };

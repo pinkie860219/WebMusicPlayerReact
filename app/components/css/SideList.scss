@@ -38,7 +38,7 @@
 }
 .sideDropdown{
 	overflow: hidden;
-	flex: 1;
+	flex: 0 0 auto;
 	display: flex;
 	flex-direction: column;
 }
@@ -47,25 +47,35 @@
 		overflow-y: scroll;
 	}
 	overflow-y: hidden;
-	flex: 1;
+	flex: 0 0 auto;
 	display: flex;
 	flex-direction: column;
-	font-size: 0.8em;
-	transition: 0.2s all ease;
-}
-.dropdownHidden{
-	height: 0;
-	flex: 0 0 0px;
+	font-size: 1em;
 }
 .dropdownItem{
 	display: flex;
 	height: 30px;
 	flex:0 0 30px;
 	align-items: center;
-	padding-left: 40px;
+	justify-content: space-between;
 	cursor: pointer;
+	padding-left: 40px;
+	padding-right: 20px;
 	&:hover{
 		background-color: rgba(255, 255, 255, 0.15);
+		&>i{
+			visibility: visible;
+		}
+	}
+	&>div{
+		display: flex;
+		align-items: center;
+	}
+	&>i{
+		visibility: hidden;
+		&:hover{
+			font-size: 1.2em;
+		}
 	}
 }
 .exitBtn{
