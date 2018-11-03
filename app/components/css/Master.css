@@ -7,9 +7,9 @@
 	display: flex;
 }
 .bk{
-	background-color: rgb(240, 240, 240) !important;
+	background-color: rgb(1, 1, 1) !important;
 	display: flex;
-	width: 100%;
+	width: 100% !important;
 	flex-direction: column;
 	justify-content: space-between;
 }

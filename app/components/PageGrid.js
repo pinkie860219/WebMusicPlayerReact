@@ -23,7 +23,7 @@ export class PageGrid extends React.Component {
 	}
 	render(){
 		let output = [];
-		let containerStyle;
+		let innerContStyle;
 		if(this.props.curDisplayList.length != 0){
 			output = this.props.curDisplayList.map( (item, index) => {
 				let type=0;
@@ -75,7 +75,7 @@ export class PageGrid extends React.Component {
 		} else {
 			output=[];
 		}
-		containerStyle = this.props.loading? [style.container, style.dim].join(' '):style.container;
+		innerContStyle = this.props.loading? [style.innerCont, style.dim].join(' '):style.innerCont;
 		return(
 			<div className = {style.container}>
 				<CSSTransition
@@ -85,7 +85,7 @@ export class PageGrid extends React.Component {
 					className = {style.dimmer}>
 					<Loader active={true} inverted size='large'>Preparing Files</Loader>
 			  </CSSTransition>
-				<TransitionGroup className = {containerStyle} exit={false}>
+				<TransitionGroup className = {innerContStyle} exit={false}>
 					{output}
 				</TransitionGroup>
 				<CSSTransition

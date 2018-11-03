@@ -3,19 +3,19 @@
 	display: flex;
 	flex:1;
 	flex-direction: column;
-	overflow: auto;
+	overflow:hidden;
 	position: relative;
 	background-color: $themeBackGroundColor;
 	z-index: -1;
+	// border: 2px yellow dashed;
 }
-.container2{
+.innerCont{
 	display: flex;
-	flex:1;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	background-color: inherit;
+	overflow-y: scroll;
+	overflow-x: hidden;
 	z-index: -1;
+	// border: 2px lightgreen dashed;
 }
 .dim{
 	filter:  blur(3px);

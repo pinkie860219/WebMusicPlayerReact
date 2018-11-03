@@ -6,12 +6,15 @@
 	box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 	background-color: $themeBackGroundColorSec;
 	align-items: center;
+	padding-right: 20px;
 }
 .path{
-	display: flex;
+	display: inline-flex;
+	flex: 1 1 auto;
 	color: $ctrlColor;
 	align-items: baseline;
 	transition: 0.2s all ease;
+	// border: 2px solid yellow;
 	span{
 		padding: 0;
 		margin-left: 10px;
@@ -19,6 +22,7 @@
 		cursor: pointer;
 		transition: 0.2s all ease;
 		text-decoration:underline;
+		white-space: nowrap;
 		&:hover{
 			color: $themeColor;
 		}
@@ -59,6 +63,11 @@
 	align-items: baseline;
 	justify-content:space-between;
 	flex:0;
+	@media only screen and (max-width: 600px) {
+    h3{
+			display: none;
+		}
+	}
 	i{
 		font-size: 1.5em;
 	}

@@ -6,6 +6,7 @@ import {DropdownWithSongList as Dropdown} from './Dropdown.js';
 import {withSongInfo} from './context/SongInfoContext.js';
 import {withRouter} from 'react-router-dom';
 import queryString from 'query-string';
+import OverflowDiv from './OverflowDiv.js';
 
 const CDropdown = styled(Dropdown)`
 	display: inline-flex !important;
@@ -71,9 +72,9 @@ class DataItem extends React.Component {
 				className = {`${styles.container} ${colorStyle}`}>
 				<div className={styles.head} onClick = {()=>this.clickHandler()}>
 					{icon}
-					<div className = {styles.header} >
+					<OverflowDiv className={styles.header}>
 						{this.props.song.Name}
-					</div>
+					</OverflowDiv>
 				</div>
 				{tail}
 			</div>

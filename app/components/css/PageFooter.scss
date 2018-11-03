@@ -34,10 +34,10 @@
 	padding-left: 10px;
 	padding-right: 10px;
 	display: flex;
-	overflow-x: hidden;
-	white-space: nowrap;
 	flex-direction: column;
 	flex: 1;
+	// border: 2px solid white;
+	min-width: 0;
 	.songName{
 		font-size: 1.2em;
 		color: $fontColorSongName;
@@ -101,6 +101,12 @@
 		.meta{
 			flex-direction: row;
 			justify-content: space-between;
+			// border: 2px white dashed;
+			align-items: center;
+			.subTitle{
+				margin-left: 20px;
+				// border: 2px dashed white;
+			}
 		}
 	}
 	.VSlider{

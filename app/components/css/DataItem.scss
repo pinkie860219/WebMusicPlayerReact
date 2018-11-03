@@ -1,8 +1,11 @@
 @import "./theme.scss";
 $constainerRadius:0px;
 .container{
-	display: inline-flex;
+	display: flex;
 	flex: 0 0 50px;
+	height: 50px;
+	width: 100%;
+	// border: 2px dashed cyan;
 	align-items: center;
 	justify-content: space-between;
 	border-radius: $constainerRadius;
@@ -11,6 +14,7 @@ $constainerRadius:0px;
 	transition: all 0.1s ease;
 	padding-left: 20px;
 	padding-right: 20px;
+	min-width: 0;
 	.plusHidden{
 		visibility: hidden;
 	}
@@ -25,13 +29,16 @@ $constainerRadius:0px;
 }
 .head{
 	display: flex;
+	// border: 2px white dashed;
 	align-items:center;
 	height:100%;
 	flex:1;
+	min-width: 0;//WTF?!?!!
 	padding-left: 10px;
 }
 .tail{
 	display: flex;
+	flex-shrink: 0;
 	align-items: center;
 	border-radius: 0 $constainerRadius $constainerRadius 0;
 	height: 100%;
@@ -44,10 +51,10 @@ $constainerRadius:0px;
 	}
 }
 .header{
-	display: inline-flex;
 	margin-left: 10px;
 	font-size: 1.3em;
 	font-weight: normal;
+	white-space: nowrap;
 }
 .icon{
 	font-size: 1.5em;

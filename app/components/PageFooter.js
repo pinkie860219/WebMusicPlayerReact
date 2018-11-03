@@ -11,6 +11,7 @@ import {withSongInfo} from './context/SongInfoContext.js';
 import {serverApi} from './other/Api.js';
 import {withRouter} from 'react-router-dom';
 import queryString from 'query-string';
+import OverflowDiv from './OverflowDiv.js';
 
 class SongClock extends React.Component{
 	HHMMSS(ms){//time in ms
@@ -260,7 +261,7 @@ class PageFooter extends React.Component {
 					<div className = {style.panel}>
 						<div className = {style.item}>
 								<div className = {style.meta}>
-									<div className={style.songName}>{this.state.curSongName||'現在播放歌曲'}</div>
+									<OverflowDiv className={style.songName}>{this.state.curSongName||'現在播放歌曲'}</OverflowDiv>
 									<div className={style.subTitle}>音樂家</div>
 								</div>
 						</div>

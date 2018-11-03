@@ -1,0 +1,41 @@
+@import "./theme.scss";
+$blurWidth:20px;
+.container{
+	// border: 2px solid blue;
+	display: block;
+	flex: 1;
+	height: 1.5em;
+	min-width: 0;
+	overflow: hidden;
+	position: relative;
+	padding-top: 0.2em;
+}
+.inner{
+	// border: 2px pink dashed;
+	max-width: 100%;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	padding-left: $blurWidth;
+	padding-right: $blurWidth;
+	mix-blend-mode: lighten;
+	height: calc(1.5em + 20px);
+	white-space: nowrap;
+	&::before{
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 100%;
+		width:$blurWidth;
+		background: linear-gradient(to left, transparent, $themeBackGroundColor);
+	}
+	&::after{
+		content: "";
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 100%;
+		width:$blurWidth;
+		background: linear-gradient(to right, transparent, $themeBackGroundColor);
+	}
+}
