@@ -3,6 +3,16 @@ import styles from './css/PageHeader.scss';
 import OverflowDiv from './OverflowDiv.js';
 
 export class PageHeader extends React.Component {
+	constructor(props){
+		super(props);
+		this.tailBread = React.createRef();
+	}
+	componentDidUpdate(prevProps, prevState){
+		if(prevProps.curDir.length !== this.props.curDir.length){
+			if(this.tailBread.current)
+				this.tailBread.current.scrollIntoView({behavior: "smooth"})
+		}
+	}
 	render(){
 		return(
 			<div className={styles.header}>
@@ -21,10 +31,16 @@ export class PageHeader extends React.Component {
 							return(
 								<React.Fragment key={index}>
 									<i className="fas fa-angle-right"></i>
-									<span className={index === this.props.curDir.length - 1?styles.tailBread:''} onClick={()=>{this.props.setCurDir(item)}}>{item.Name}</span>
+									<span
+										className={index === this.props.curDir.length - 1?styles.tailBread:''}
+										onClick={()=>{this.props.setCurDir(item)}}
+										ref={index === this.props.curDir.length - 1?this.tailBread:null}>
+										{item.Name}
+									</span>
 								</React.Fragment>
 							);
 						}):''}
+						{/* <span ref={this.tailBread} className={styles.scrollTarget}>.</span> */}
 					</div>
 				</OverflowDiv>
 
